@@ -5,12 +5,12 @@ import * as path from 'path';
 import * as session from 'express-session';
 import * as cookie from 'cookie-parser';
 import * as morgan from 'morgan';
-import * as config from './config';
 import { randomBytes } from 'crypto';
 import * as ngUniversal from '@nguniversal/express-engine';
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-
+import * as config from './config';
+import './init/db';
 import { infoRouter } from './routes/info/info.route';
 import { authRouter } from './routes/auth/auth.route';
 import { cors, logger, loggerStream } from './services/util/util.service';

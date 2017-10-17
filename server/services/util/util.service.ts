@@ -2,7 +2,6 @@ import * as rp from 'request-promise';
 import * as jwt from 'jsonwebtoken';
 import * as config from '../../config';
 import * as winston from 'winston';
-import { IProxyOptions } from '../../types';
 
 const transports: any = [
   new winston.transports.Console({
@@ -55,21 +54,6 @@ const cors = (req, res, next) => {
   next();
 };
 
-const proxyClient = (options: IProxyOptions): rp.RequestPromise => {
-  if (config.env !== 'production') {
-    let auth;
-    if (options.proxyBackend === 'internalApi' && config.internalApi.auth) {
-      auth = {
-        'user': config.internalApi.auth.username,
-        'pass': config.internalApi.auth.password,
-        'sendImmediately': false
-      };
-    }
-    options.auth = auth;
-  }
-  return rp(options);
-};
-
 const jwtSign = (payload: any): Promise<string> => {
   return new Promise((resolve, reject) => {
     try {
@@ -90,4 +74,4 @@ const jwtVerify = (token: string): Promise<any> => {
   });
 };
 
-export { logger, loggerStream, cors, proxyClient, jwtSign, jwtVerify };
+export { logger, loggerStream, cors, jwtSign, jwtVerify };

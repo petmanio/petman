@@ -1,6 +1,6 @@
 'use strict';
 import { join } from 'path';
-import { Config } from '../types';
+import { Config } from '../../common/shared';
 
 const config: Config = {
   port: 4300,

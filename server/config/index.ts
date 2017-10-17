@@ -1,14 +1,10 @@
 import { join } from 'path';
 import { existsSync } from 'fs';
 import { extend } from 'lodash';
-import { Config } from '../types';
+import { Config } from '../../common/shared';
 
 const debug = require('debug')('petman:config');
 
-/**
- * Create application configurations
- * @returns {Config}
- */
 function createConfig() {
   let config: Config = require('./config');
   config.env = process.env.NODE_ENV || 'local';
@@ -32,5 +28,4 @@ function createConfig() {
 }
 
 const config = createConfig();
-
 export = config;
