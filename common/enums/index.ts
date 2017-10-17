@@ -8,3 +8,8 @@ export enum DBClientType {
 export enum AuthProviderType {
   FACEBOOK = 'FACEBOOK'
 }
+
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE'
+}

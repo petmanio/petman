@@ -1,5 +1,6 @@
-import { Column, DataType, HasMany, HasOne, IsEmail, Model, Table, Unique } from 'sequelize-typescript';
+import { Column, DataType, ForeignKey, HasMany, HasOne, IsEmail, Model, Table, Unique } from 'sequelize-typescript';
 import { AuthProvider } from './AuthProvider';
+import { UserData } from './UserData';
 
 @Table({
   tableName: 'user',
@@ -25,6 +26,13 @@ export class User extends Model<User> {
   /**
    * Associations
    */
+  @ForeignKey(() => UserData)
+  @Column({field: 'user_data_id'})
+  userDataId: number;
+
+  @HasOne(() => UserData)
+  userData: UserData;
+
   @HasMany(() => AuthProvider)
   authProviders: AuthProvider[];
 
