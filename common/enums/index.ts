@@ -4,3 +4,7 @@ export enum DBClientType {
   MARIASQL = 'mariasql',
   SQLITE3 = 'sqlite3'
 }
+
+export enum AuthProviderType {
+  FACEBOOK = 'FACEBOOK'
+}

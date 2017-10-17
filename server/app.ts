@@ -10,7 +10,7 @@ import * as ngUniversal from '@nguniversal/express-engine';
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 import * as config from './config';
-import './init/db';
+import './core/db';
 import { infoRouter } from './routes/info/info.route';
 import { authRouter } from './routes/auth/auth.route';
 import { cors, logger, loggerStream } from './services/util/util.service';

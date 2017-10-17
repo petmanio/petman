@@ -2,8 +2,6 @@ import { join } from 'path';
 import { Sequelize } from 'sequelize-typescript';
 import * as config from '../config/index';
 import { logger } from '../services/util/util.service';
-import { User } from '../models/User';
-import { AuthProvider } from '../models/AuthProvider';
 
 config.sequelizeConfig.modelPaths = [join(__dirname, '../models')];
 const sequelize =  new Sequelize(config.sequelizeConfig);
