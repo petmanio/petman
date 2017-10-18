@@ -1,6 +1,7 @@
-import { Column, DataType, ForeignKey, HasMany, HasOne, IsEmail, Model, Table, Unique } from 'sequelize-typescript';
-import { AuthProvider } from './AuthProvider';
+import { BelongsToMany, Column, DataType, ForeignKey, HasMany, HasOne, IsEmail, Model, Table, Unique } from 'sequelize-typescript';
 import { UserData } from './UserData';
+import { AuthProvider } from './AuthProvider';
+import { Room } from './Room';
 
 @Table({
   tableName: 'user',
@@ -35,6 +36,15 @@ export class User extends Model<User> {
 
   @HasMany(() => AuthProvider)
   authProviders: AuthProvider[];
+
+  @HasMany(() => Room)
+  rooms: Room[];
+
+  @BelongsToMany(() => User, 'user_business_user', 'business_user_id')
+  businessUsers: User[];
+
+  @BelongsToMany(() => User, 'user_business_user', 'owner_id', 'business_user_id')
+  owners: User[];
 
   /**
    * Default

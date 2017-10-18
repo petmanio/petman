@@ -1,5 +1,5 @@
-import { SequelizeConfig } from 'sequelize-typescript/lib/types/SequelizeConfig';
 import { SyncOptions } from 'sequelize';
+import { SequelizeConfig } from 'sequelize-typescript/lib/types/SequelizeConfig';
 
 export interface Config {
   port?: number;

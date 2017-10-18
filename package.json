@@ -98,6 +98,7 @@
     "@types/morgan": "^1.7.33",
     "@types/node": "^6.0.89",
     "@types/request-promise": "^4.1.38",
+    "@types/sequelize": "^4.0.76",
     "@types/winston": "^2.3.6",
     "codelyzer": "~3.1.1",
     "concurrently": "^3.5.0",
