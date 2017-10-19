@@ -1,5 +1,5 @@
-import * as rp from 'request-promise';
 import * as jwt from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 import config from '../../config';
 import * as winston from 'winston';
 
@@ -54,24 +54,12 @@ const cors = (req, res, next) => {
   next();
 };
 
-const jwtSign = (payload: any): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(jwt.sign(payload, config.secret));
-    } catch (err) {
-      reject(err);
-    }
-  });
+const jwtSign = (payload: any): string => {
+  return sign(payload, config.secret, {expiresIn: 60 * 60 * 24 * 30});
 };
 
-const jwtVerify = (token: string): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(jwt.verify(token, config.secret));
-    } catch (err) {
-      reject(err);
-    }
-  });
+const jwtVerify = (token: string): any => {
+  return jwt.verify(token, config.secret);
 };
 
 export { logger, loggerStream, cors, jwtSign, jwtVerify };

@@ -50,11 +50,11 @@ export class User extends Model<User> {
   @HasMany(() => Room)
   rooms: Room[];
 
-  @BelongsToMany(() => User, 'user_business_user', 'business_user_id')
-  businessUsers: User[];
+  @BelongsToMany(() => User, 'user_business_user', 'owner_id')
+  owners: User[];
 
   @BelongsToMany(() => User, 'user_business_user', 'owner_id', 'business_user_id')
-  owners: User[];
+  businessUsers: User[];
 
   /**
    * Default

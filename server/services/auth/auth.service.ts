@@ -1,5 +1,4 @@
 import { Facebook, FacebookApiException } from 'fb';
-import { sign } from 'jsonwebtoken';
 import config from '../../config';
 import { FbUser } from '../../../common/models/user';
 import { AuthProvider } from '../../models/AuthProvider';
@@ -53,8 +52,4 @@ const findOrCreateFbUser = async (fbUser: FbUser, accessToken: string) => {
   return await user.save();
 };
 
-const signUserId = (id: number): string => {
-  return sign({id}, config.secret, {expiresIn: 60 * 60 * 24 * 30});
-};
-
-export { loginService, getUserFbDataByAccessToken, findOrCreateFbUser, signUserId };
+export { loginService, getUserFbDataByAccessToken, findOrCreateFbUser };
