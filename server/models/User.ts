@@ -3,7 +3,6 @@ import {
   Column,
   CreatedAt,
   DeletedAt,
-  ForeignKey,
   HasMany,
   HasOne,
   IsEmail,
@@ -12,9 +11,12 @@ import {
   Unique,
   UpdatedAt
 } from 'sequelize-typescript';
+import { find } from 'lodash';
 import { UserData } from './UserData';
 import { AuthProvider } from './AuthProvider';
 import { Room } from './Room';
+import { AuthProviderType } from '../../common/enums/index';
+import { getUserFbAvatarByFbId } from '../services/util/util.service';
 
 @Table({
   tableName: 'user',
@@ -68,7 +70,13 @@ export class User extends Model<User> {
    * Instance methods
    */
   toJSON() {
-    const obj = super.toJSON();
+    const obj = super.get({clone: true});
+    if (obj.userData && !obj.userData.avatar && obj.authProviders) {
+      const fbAuthProvider = find<AuthProvider>(obj.authProviders, {type: AuthProviderType.FACEBOOK});
+      if (fbAuthProvider) {
+        obj.userData.avatar = getUserFbAvatarByFbId(fbAuthProvider.externalId);
+      }
+    }
     delete obj.deleted;
     delete obj.password;
     delete obj.authProviders;

@@ -28,7 +28,7 @@ const findOrCreateFbUser = async (fbUser: FbUser, accessToken: string) => {
   const auth = await AuthProvider.findOne<AuthProvider>({
     where: {externalId: fbUser.id}, include: [{
       model: User,
-      include: [UserData]
+      include: [UserData, {model: User, as: 'businessUsers', include: [UserData, AuthProvider]}]
     }]
   });
   if (auth) {

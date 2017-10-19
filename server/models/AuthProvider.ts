@@ -1,17 +1,4 @@
-import {
-  AllowNull,
-  BelongsTo,
-  Column,
-  CreatedAt,
-  DataType,
-  DeletedAt,
-  ForeignKey,
-  Model,
-  NotNull,
-  Table,
-  Unique,
-  UpdatedAt
-} from 'sequelize-typescript';
+import { BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table, Unique, UpdatedAt } from 'sequelize-typescript';
 import { User } from './User';
 import { AuthProviderType } from '../../common/enums/index';
 
@@ -67,7 +54,7 @@ export class AuthProvider extends Model<AuthProvider> {
    * Instance methods
    */
   toJSON() {
-    const obj = super.toJSON();
+    const obj = super.get({clone: true});
     delete obj.deleted;
     delete obj.externalId;
     delete obj.accessToken;

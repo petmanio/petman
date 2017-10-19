@@ -54,7 +54,7 @@ export class Token extends Model<Token> {
    * Instance methods
    */
   toJSON() {
-    const obj = super.toJSON();
+    const obj = super.get({clone: true});
     delete obj.deleted;
     delete obj.metadata;
     return obj;

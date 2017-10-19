@@ -56,7 +56,7 @@ export class UserData extends Model<UserData> {
    * Instance methods
    */
   toJSON() {
-    const obj = super.toJSON();
+    const obj = super.get({clone: true});
     delete obj.deleted;
     return obj;
   }

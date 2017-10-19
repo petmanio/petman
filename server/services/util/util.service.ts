@@ -62,4 +62,8 @@ const jwtVerify = (token: string): any => {
   return jwt.verify(token, config.secret);
 };
 
-export { logger, loggerStream, cors, jwtSign, jwtVerify };
+const getUserFbAvatarByFbId = (id: string): string => {
+  return `//graph.facebook.com/{facebookId}/picture?type=normal`;
+};
+
+export { logger, loggerStream, cors, jwtSign, jwtVerify, getUserFbAvatarByFbId };
