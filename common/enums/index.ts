@@ -1,10 +1,3 @@
-export enum DBClientType {
-  PG = 'pg',
-  MYSQL = 'mysql',
-  MARIASQL = 'mariasql',
-  SQLITE3 = 'sqlite3'
-}
-
 export enum AuthProviderType {
   FACEBOOK = 'FACEBOOK'
 }
@@ -12,4 +5,11 @@ export enum AuthProviderType {
 export enum Gender {
   MALE = 'MALE',
   FEMALE = 'FEMALE'
+}
+
+export enum TokenType {
+  AUTH = 'AUTH',
+  AUTH_REMEMBER_ME = 'AUTH_REMEMBER_ME',
+  PASSWORD_RESET = 'PASSWORD_RESET',
+  RESET_EMAIL = 'RESET_EMAIL'
 }

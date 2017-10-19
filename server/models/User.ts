@@ -1,4 +1,17 @@
-import { BelongsToMany, Column, DataType, ForeignKey, HasMany, HasOne, IsEmail, Model, Table, Unique } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  CreatedAt,
+  DeletedAt,
+  ForeignKey,
+  HasMany,
+  HasOne,
+  IsEmail,
+  Model,
+  Table,
+  Unique,
+  UpdatedAt
+} from 'sequelize-typescript';
 import { UserData } from './UserData';
 import { AuthProvider } from './AuthProvider';
 import { Room } from './Room';
@@ -7,10 +20,7 @@ import { Room } from './Room';
   tableName: 'user',
   underscored: true,
   paranoid: true,
-  timestamps: true,
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
+  timestamps: true
 })
 export class User extends Model<User> {
   /**
@@ -49,21 +59,12 @@ export class User extends Model<User> {
   /**
    * Default
    */
-  @Column({
-    field: 'created_at',
-    type: DataType.DATE
-  })
-  createdAt: Date;
+  @CreatedAt
+  created: Date;
 
-  @Column({
-    field: 'updated_at',
-    type: DataType.DATE
-  })
-  updatedAt: Date;
+  @UpdatedAt
+  updated: Date;
 
-  @Column({
-    field: 'deleted_at',
-    type: DataType.DATE
-  })
-  deletedAt: Date;
+  @DeletedAt
+  deleted: Date;
 }

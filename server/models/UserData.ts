@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
 import { User } from './User';
 import { Gender } from '../../common/enums/index';
 
@@ -6,10 +6,7 @@ import { Gender } from '../../common/enums/index';
   tableName: 'user_data',
   underscored: true,
   paranoid: true,
-  timestamps: true,
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
+  timestamps: true
 })
 export class UserData extends Model<UserData> {
   /**
@@ -43,23 +40,14 @@ export class UserData extends Model<UserData> {
   user: User;
 
   /**
-   * Default
+   * Defaults
    */
-  @Column({
-    field: 'created_at',
-    type: DataType.DATE
-  })
-  createdAt: Date;
+  @CreatedAt
+  created: Date;
 
-  @Column({
-    field: 'updated_at',
-    type: DataType.DATE
-  })
-  updatedAt: Date;
+  @UpdatedAt
+  updated: Date;
 
-  @Column({
-    field: 'deleted_at',
-    type: DataType.DATE
-  })
-  deletedAt: Date;
+  @DeletedAt
+  deleted: Date;
 }

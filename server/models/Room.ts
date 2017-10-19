@@ -1,14 +1,11 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, CreatedAt, DeletedAt, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
 import { User } from './User';
 
 @Table({
   tableName: 'room',
   underscored: true,
   paranoid: true,
-  timestamps: true,
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
+  timestamps: true
 })
 export class Room extends Model<Room> {
   /**
@@ -27,21 +24,15 @@ export class Room extends Model<Room> {
   /**
    * Defaults
    */
-  @Column({
-    field: 'created_at',
-    type: DataType.DATE
-  })
-  createdAt: Date;
+  /**
+   * Defaults
+   */
+  @CreatedAt
+  created: Date;
 
-  @Column({
-    field: 'updated_at',
-    type: DataType.DATE
-  })
-  updatedAt: Date;
+  @UpdatedAt
+  updated: Date;
 
-  @Column({
-    field: 'deleted_at',
-    type: DataType.DATE
-  })
-  deletedAt: Date;
+  @DeletedAt
+  deleted: Date;
 }
