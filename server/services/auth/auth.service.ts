@@ -8,8 +8,8 @@ import { UserData } from '../../models/UserData';
 import { AuthProviderType } from '../../../common/enums/index';
 
 const fb = new Facebook({
-  appId:          config.fb.appId,
-  appSecret:      config.fb.appSecret
+  appId: config.fb.appId,
+  appSecret: config.fb.appSecret
 });
 
 const loginService = (body): any => {
@@ -17,7 +17,7 @@ const loginService = (body): any => {
 
 const getUserFbDataByAccessToken = async (token: string) => {
   fb.setAccessToken(token);
-  const res: FbUser | any = await fb.api('me', { fields: 'email,gender,first_name,last_name' });
+  const res: FbUser | any = await fb.api('me', {fields: 'email,gender,first_name,last_name'});
   if (res.error) {
     throw new Error(res.error);
   }
@@ -26,13 +26,18 @@ const getUserFbDataByAccessToken = async (token: string) => {
 };
 
 const findOrCreateFbUser = async (fbUser: FbUser, accessToken: string) => {
-  const auth = await AuthProvider.findOne<AuthProvider>({ where: { externalId: fbUser.id }, include: [ User ] });
+  const auth = await AuthProvider.findOne<AuthProvider>({
+    where: {externalId: fbUser.id}, include: [{
+      model: User,
+      include: [UserData]
+    }]
+  });
   if (auth) {
     auth.set('accessToken', accessToken);
     await auth.save();
-    return await User.findById(auth.userId);
+    return auth.user;
   }
-  let user = new User({
+  const user = new User({
     email: fbUser.email,
     userData: {
       gender: fbUser.gender.toUpperCase(),
@@ -43,13 +48,13 @@ const findOrCreateFbUser = async (fbUser: FbUser, accessToken: string) => {
       type: AuthProviderType.FACEBOOK,
       externalId: fbUser.id,
       accessToken,
-    }]}, { include: [UserData, AuthProvider] });
-  user = await user.save();
-  return user;
+    }]
+  }, {include: [UserData, AuthProvider]});
+  return await user.save();
 };
 
-const signUserId = (id: number): string =>  {
-  return sign({ id }, config.secret, { expiresIn: 60 * 60 * 24 * 30 });
+const signUserId = (id: number): string => {
+  return sign({id}, config.secret, {expiresIn: 60 * 60 * 24 * 30});
 };
 
 export { loginService, getUserFbDataByAccessToken, findOrCreateFbUser, signUserId };
