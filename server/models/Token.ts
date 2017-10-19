@@ -49,4 +49,14 @@ export class Token extends Model<Token> {
 
   @DeletedAt
   deleted: Date;
+
+  /**
+   * Instance methods
+   */
+  toJSON() {
+    const obj = super.toJSON();
+    delete obj.deleted;
+    delete obj.metadata;
+    return obj;
+  }
 }

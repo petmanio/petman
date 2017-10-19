@@ -67,4 +67,15 @@ export class User extends Model<User> {
 
   @DeletedAt
   deleted: Date;
+
+  /**
+   * Instance methods
+   */
+  toJSON() {
+    const obj = super.toJSON();
+    delete obj.deleted;
+    delete obj.password;
+    delete obj.authProviders;
+    return obj;
+  }
 }

@@ -2,7 +2,7 @@
 
 import * as http from 'http';
 import { app } from '../app';
-import * as config from '../config';
+import config from '../config';
 
 const debug = require('debug')('petman');
 

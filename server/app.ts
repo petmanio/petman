@@ -9,11 +9,11 @@ import { randomBytes } from 'crypto';
 import * as ngUniversal from '@nguniversal/express-engine';
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-import * as config from './config';
+import config from './config';
 import './core/db';
+import { cors, logger, loggerStream } from './services/util/util.service';
 import { infoRouter } from './routes/info/info.route';
 import { authRouter } from './routes/auth/auth.route';
-import { cors, logger, loggerStream } from './services/util/util.service';
 
 function universalRouter(req, res) {
   res.render('index', {

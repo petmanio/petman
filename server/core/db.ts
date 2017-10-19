@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { Sequelize } from 'sequelize-typescript';
-import * as config from '../config/index';
+import config from '../config/index';
 import { logger } from '../services/util/util.service';
 
 config.sequelizeConfig.modelPaths = [join(__dirname, '../models')];

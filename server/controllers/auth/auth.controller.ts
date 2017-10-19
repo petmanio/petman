@@ -1,29 +1,25 @@
 import { NextFunction, Request, Response } from 'express';
-import { jwtSign } from '../../services/util/util.service';
-import { loginService } from '../../services/auth/auth.service';
+import { findOrCreateFbUser, getUserFbDataByAccessToken, signUserId } from '../../services/auth/auth.service';
 
 const loginHandler = (req: Request, res: Response, next: NextFunction) => {
-  let user;
-  return loginService({
-    username: req.body.username,
-    password: req.body.password
-  })
-    .then(data => {
-      user = data;
-      return jwtSign(user);
-    })
-    .then(token => {
-      res.status(200).json({
-        token,
-        user
-      });
-    })
-    .catch(next);
+  res.status(501).end();
+};
+
+const loginFbHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const fbUser = await getUserFbDataByAccessToken(req.body.accessToken);
+    const user = await findOrCreateFbUser(fbUser, req.body.accessToken);
+    const token = signUserId(user.id);
+    // TODO: save token into db;
+    res.status(200).json({token, user});
+  } catch (err) {
+    next(err);
+  }
 };
 
 const userHandler = (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json(req['appUser']);
 };
 
-export { loginHandler, userHandler };
+export { loginHandler, loginFbHandler, userHandler };
 

@@ -50,4 +50,13 @@ export class UserData extends Model<UserData> {
 
   @DeletedAt
   deleted: Date;
+
+  /**
+   * Instance methods
+   */
+  toJSON() {
+    const obj = super.toJSON();
+    delete obj.deleted;
+    return obj;
+  }
 }

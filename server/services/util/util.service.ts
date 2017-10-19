@@ -1,6 +1,6 @@
 import * as rp from 'request-promise';
 import * as jwt from 'jsonwebtoken';
-import * as config from '../../config';
+import config from '../../config';
 import * as winston from 'winston';
 
 const transports: any = [

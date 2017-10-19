@@ -35,4 +35,13 @@ export class Room extends Model<Room> {
 
   @DeletedAt
   deleted: Date;
+
+  /**
+   * Instance methods
+   */
+  toJSON() {
+    const obj = super.toJSON();
+    delete obj.deleted;
+    return obj;
+  }
 }

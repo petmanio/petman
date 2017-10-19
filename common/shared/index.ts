@@ -8,4 +8,9 @@ export interface Config {
   fileLog?: string | boolean;
   sequelizeConfig?: SequelizeConfig;
   syncOptions?: SyncOptions;
+  fb?: {
+    appId: string,
+    appSecret: string,
+    scope: string,
+  };
 }

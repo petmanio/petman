@@ -1,4 +1,5 @@
 import {
+  AllowNull,
   BelongsTo,
   Column,
   CreatedAt,
@@ -30,7 +31,7 @@ export class AuthProvider extends Model<AuthProvider> {
   })
   externalId: string;
 
-  @NotNull
+  @AllowNull
   @Column({
     type: DataType.ENUM(AuthProviderType.FACEBOOK)
   })
@@ -62,4 +63,15 @@ export class AuthProvider extends Model<AuthProvider> {
 
   @DeletedAt
   deleted: Date;
+
+  /**
+   * Instance methods
+   */
+  toJSON() {
+    const obj = super.toJSON();
+    delete obj.deleted;
+    delete obj.externalId;
+    delete obj.accessToken;
+    return obj;
+  }
 }

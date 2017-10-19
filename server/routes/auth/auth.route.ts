@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { loginHandler, userHandler } from '../../controllers/auth/auth.controller';
+import { loginHandler, userHandler, loginFbHandler } from '../../controllers/auth/auth.controller';
 import { isAuthenticated } from '../../policies/isAuthenticated/isAuthenticated.policy';
 
 const authRouter: Router = Router();
 
 authRouter
+  .get('/user', isAuthenticated, userHandler)
   .post('/login', loginHandler)
-  .get('/user', isAuthenticated, userHandler);
+  .post('/login/fb', loginFbHandler);
 
 export { authRouter };

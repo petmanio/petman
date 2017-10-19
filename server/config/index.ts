@@ -27,5 +27,4 @@ function createConfig() {
   return config;
 }
 
-const config = createConfig();
-export = config;
+export default createConfig();
