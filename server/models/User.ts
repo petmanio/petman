@@ -37,10 +37,6 @@ export class User extends Model<User> {
   /**
    * Associations
    */
-  @ForeignKey(() => UserData)
-  @Column({field: 'user_data_id'})
-  userDataId: number;
-
   @HasOne(() => UserData)
   userData: UserData;
 

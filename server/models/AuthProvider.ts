@@ -31,7 +31,6 @@ export class AuthProvider extends Model<AuthProvider> {
   })
   externalId: string;
 
-  @AllowNull
   @Column({
     type: DataType.ENUM(AuthProviderType.FACEBOOK)
   })

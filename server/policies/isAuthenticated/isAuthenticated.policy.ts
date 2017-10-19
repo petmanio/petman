@@ -9,7 +9,7 @@ const isAuthenticated = async (req: Request, res: Response, next: NextFunction) 
   const selectedUserId = req.header('x-selected-user');
   try {
     const {id} = jwtVerify(token);
-    const user = await User.findById(id, {include: [UserData, {model: User, as: 'businessUsers'}]});
+    const user = await User.findById(id, {include: [UserData, {model: User, as: 'businessUsers', include: [UserData]}]});
     if (!user) {
       return res.status(401).end();
     }
