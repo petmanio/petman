@@ -1,5 +1,4 @@
-import * as jwt from 'jsonwebtoken';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import config from '../../config';
 import * as winston from 'winston';
 
@@ -59,7 +58,7 @@ const jwtSign = (payload: any): string => {
 };
 
 const jwtVerify = (token: string): any => {
-  return jwt.verify(token, config.secret);
+  return verify(token, config.secret);
 };
 
 const getUserFbAvatarByFbId = (id: string): string => {

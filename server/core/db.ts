@@ -4,6 +4,7 @@ import config from '../config/index';
 import { logger } from '../services/util/util.service';
 
 config.sequelizeConfig.modelPaths = [join(__dirname, '../models')];
+config.sequelizeConfig.logging = msg => logger.info(msg);
 const sequelize =  new Sequelize(config.sequelizeConfig);
 
 sequelize
