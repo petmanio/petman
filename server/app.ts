@@ -30,6 +30,7 @@ function staticRouter(req, res) {
   res.sendfile(path.join(__dirname, '../client/platform-browser/index.html'));
 }
 
+// TODO: use ts-express-decorators
 const app: express.Application = express();
 
 app.disable('x-powered-by');
