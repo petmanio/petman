@@ -48,6 +48,7 @@ app.use(session({
 }));
 app.use(cookie());
 app.use(cors);
+app.get('/', process.env.UNIVERSAL_APP ? universalRouter : staticRouter);
 app.use(express.static(path.join(__dirname, '../client/platform-browser')));
 
 if (process.env.UNIVERSAL_APP) {
