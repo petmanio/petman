@@ -7,7 +7,7 @@ export interface ILocalStorageService {
 }
 
 @Injectable()
-export class LocalStorage implements ILocalStorageService {
+export class LocalStorageService implements ILocalStorageService {
 
   constructor(@Inject(PLATFORM_ID) protected platformId: Object) {}
 
