@@ -1,13 +1,21 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { throwIfAlreadyLoaded } from './module-import-guard';
+import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
+
 import { LocalStorageService } from './local-storage/local-storage.service';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { throwIfAlreadyLoaded } from './module-import-guard';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule
   ],
-  declarations: [],
+  exports: [ToolbarComponent, SidenavComponent],
+  declarations: [ToolbarComponent, SidenavComponent],
   providers: [LocalStorageService]
 })
 export class CoreModule {
