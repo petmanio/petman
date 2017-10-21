@@ -1,10 +1,11 @@
-import { Facebook, FacebookApiException } from 'fb';
 import config from '../../config';
 import { FbUser } from '../../../common/models/user';
 import { AuthProvider } from '../../models/AuthProvider';
 import { User } from '../../models/User';
 import { UserData } from '../../models/UserData';
 import { AuthProviderType } from '../../../common/enums/index';
+
+const { Facebook, FacebookApiException } = require('fb');
 
 const fb = new Facebook({
   appId: config.fb.appId,
@@ -20,7 +21,6 @@ const getUserFbDataByAccessToken = async (token: string) => {
   if (res.error) {
     throw new Error(res.error);
   }
-
   return res;
 };
 

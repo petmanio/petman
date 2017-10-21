@@ -72,7 +72,7 @@ export class User extends Model<User> {
   toJSON() {
     const obj = super.get({clone: true});
     if (obj.userData && !obj.userData.avatar && obj.authProviders) {
-      const fbAuthProvider = find<AuthProvider>(obj.authProviders, {type: AuthProviderType.FACEBOOK});
+      const fbAuthProvider = find(obj.authProviders, {type: AuthProviderType.FACEBOOK});
       if (fbAuthProvider) {
         obj.userData.avatar = getUserFbAvatarByFbId(fbAuthProvider.externalId);
       }
