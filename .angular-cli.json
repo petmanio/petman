@@ -28,9 +28,6 @@
       "scripts": [
         "../node_modules/headroom.js/dist/headroom.js"
       ],
-      "addons": [
-        "../node_modules/mdi/fonts/*.+(eot|svg|ttf|woff|woff2)"
-      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -39,9 +36,9 @@
     },
     {
       "name": "petman",
-      "platform": "server",
       "root": "src",
       "outDir": "dist/client/platform-server",
+      "platform": "server",
       "main": "main-server.ts",
       "tsconfig": "tsconfig.server.json",
       "environmentSource": "environments/environment.ts",
@@ -77,6 +74,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {
+    }
   }
 }
