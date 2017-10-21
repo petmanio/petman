@@ -1,7 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { LocalStorageService } from './local-storage/local-storage.service';
 
 @NgModule({
   imports: [
