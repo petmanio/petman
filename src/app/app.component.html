@@ -4,12 +4,27 @@
     <div class="cssload-whirlpool"></div>
   </div>
 </div>
-<mat-progress-bar mode="indeterminate" [hidden]="!(xhrListener | async)"></mat-progress-bar>
-<app-toolbar (toggleMenu)="toggleSidenav($event)">
-
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<!--TODO: update layout, sideNav containers container-->
+<app-toolbar>
+  <!--TODO: use route config for main route-->
+  <span class="home" [routerLink]="'/'">Petman <span class="font-9">beta</span></span>
+  <span class="toolbar-spacer"></span>
+  <div class="language">
+    <mat-select>
+      <mat-option value="en">En</mat-option>
+      <mat-option value="am">Am</mat-option>
+    </mat-select>
+  </div>
+  <button mat-raised-button
+          color="accent"
+          class="accent-color-white"
+          routerLink="/join" i18n>Join us
+  </button>
 </app-toolbar>
 <!--<app-sidenav [open]="currentSideNavState"-->
              <!--(onClose)="closeSidenav()"-->
              <!--[mode]="sideNavMode">-->
   <!--<router-outlet></router-outlet>-->
 <!--</app-sidenav>-->
+

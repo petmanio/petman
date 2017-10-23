@@ -71,6 +71,7 @@
     "mdi": "^1.9.33",
     "moment": "^2.19.1",
     "ngrx-store-freeze": "^0.1.9",
+    "ngx-gallery": "^2.4.0",
     "normalize.css": "^7.0.0",
     "pg": "^6.4.2",
     "request-promise": "^4.2.2",
