@@ -23,7 +23,6 @@ export function type<T>(label: T | ''): T {
   return <T>label;
 }
 
-
 /**
  * The RouterStateSerializer takes the current RouterStateSnapshot
  * and returns any pertinent information needed. The snapshot contains

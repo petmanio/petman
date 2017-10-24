@@ -3,22 +3,23 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatProgressBarModule, MatCardModule, MatIconModule, MatToolbarModule } from '@angular/material';
-import { RouterModule } from '@angular/router';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatProgressBarModule,
+  MatToolbarModule
+} from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { DBModule } from '@ngrx/db';
-import {
-  StoreRouterConnectingModule,
-  RouterStateSerializer,
-} from '@ngrx/router-store';
+// import { DBModule } from '@ngrx/db';
+import { RouterStateSerializer, StoreRouterConnectingModule, } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { AppComponent } from './app/app.component';
+import { CustomRouterStateSerializer } from '../shared/utils';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { CoreRoutingModule } from './core-routing.module';
 import { environment } from '../../environments/environment';
 import { metaReducers, reducers } from './shared/reducers/index';
 
@@ -27,10 +28,12 @@ import { metaReducers, reducers } from './shared/reducers/index';
     CommonModule,
     BrowserModule.withServerTransition({ appId: 'petman' }),
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatProgressBarModule,
 
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
@@ -73,11 +76,17 @@ import { metaReducers, reducers } from './shared/reducers/index';
      */
     // DBModule.provideDB(schema),
 
-    CoreRoutingModule
   ],
-  exports: [AppComponent, ToolbarComponent, SidenavComponent],
-  declarations: [AppComponent, ToolbarComponent, SidenavComponent],
-  providers: []
+  exports: [ToolbarComponent, SidenavComponent],
+  declarations: [ToolbarComponent, SidenavComponent],
+  providers: [
+    /**
+     * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.
+     * A custom RouterStateSerializer is used to parse the `RouterStateSnapshot` provided
+     * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
+     */
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+  ],
 })
 export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
