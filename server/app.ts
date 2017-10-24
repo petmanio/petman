@@ -1,3 +1,6 @@
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+
 import { json, urlencoded } from 'body-parser';
 import * as compression from 'compression';
 import * as express from 'express';
@@ -6,9 +9,9 @@ import * as session from 'express-session';
 import * as cookie from 'cookie-parser';
 import * as morgan from 'morgan';
 import { randomBytes } from 'crypto';
-import * as ngUniversal from '@nguniversal/express-engine';
-import 'zone.js/dist/zone-node';
-import 'reflect-metadata';
+import { ngExpressEngine } from '@nguniversal/express-engine';
+import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+
 import config from './config';
 import './core/db';
 import { cors, logger, loggerStream } from './services/util/util.service';
@@ -52,10 +55,14 @@ app.get('/', process.env.UNIVERSAL_APP ? universalRouter : staticRouter);
 app.use(express.static(path.join(__dirname, '../client/platform-browser')));
 
 if (process.env.UNIVERSAL_APP) {
-  const appServer = require('../client/platform-server/main.bundle');
-  app.engine('html', ngUniversal.ngExpressEngine({
-    bootstrap: appServer.AppServerModuleNgFactory
+  const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../client/platform-server/main.bundle');
+  app.engine('html', ngExpressEngine({
+    bootstrap: AppServerModuleNgFactory,
+    providers: [
+      provideModuleMap(LAZY_MODULE_MAP)
+    ]
   }));
+
   app.set('view engine', 'html');
   app.set('views', path.join(__dirname, '../client/platform-browser'));
 }
