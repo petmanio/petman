@@ -1,11 +1,11 @@
 
-@mixin mobileMini {
+@mixin mobile-mini {
   @media (min-width: #{320px}) {
     @content;
   }
 }
 
-@mixin mobileL {
+@mixin mobile-l {
   @media (min-width: #{480px}) {
     @content;
   }
@@ -17,13 +17,13 @@
   }
 }
 
-@mixin tabletMiddle {
+@mixin tablet-middle {
   @media (min-width: #{992px}) {
     @content;
   }
 }
 
-@mixin tabletL {
+@mixin tablet-l {
   @media (min-width: #{1024px}) {
     @content;
   }
@@ -35,7 +35,7 @@
   }
 }
 
-@mixin desktopFullHD {
+@mixin desktop-full-hd {
   @media (min-width: #{1360px}) {
     @content;
   }

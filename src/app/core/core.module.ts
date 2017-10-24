@@ -1,11 +1,11 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
 
-import { LocalStorageService } from './local-storage/local-storage.service';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   imports: [
@@ -21,5 +21,12 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
+  }
+
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: CoreModule,
+      providers: []
+    };
   }
 }

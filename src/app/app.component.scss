@@ -1,4 +1,5 @@
 @import 'scss/mixins';
+@import 'scss/variables';
 
 .home {
   cursor: pointer;
@@ -100,7 +101,7 @@ mat-progress-bar {
   font-size: 12px;
   top: 0;
   padding: 1px 3px;
-  background: #fc6f6f;
+  background: $red;
   line-height: initial;
   opacity: 0.8;
   border-radius: 3px;

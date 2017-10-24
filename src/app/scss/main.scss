@@ -3,10 +3,14 @@
 :focus { outline:none; }
 ::-moz-focus-inner { border:0; }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
-  overflow-x: auto;
-  overflow-y: auto;
-  //background: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  -ms-overflow-style: none;
+  overflow: auto;
 }
 
 [hidden] {
@@ -58,33 +62,6 @@ td-json-formatter {
 
 .text-overflow {
   @include text-overflow();
-}
-
-.button-inactive {
-  &.mat-button, &.mat-raised-button{
-    color: $red;
-  }
-}
-
-.button-orange {
-  &.mat-button, &.mat-raised-button{
-    background-color: $yellow;
-    color: #ffffff;
-  }
-}
-
-.button-blue {
-  &.mat-button, &.mat-raised-button{
-    background-color: $blue;
-    color: #ffffff;
-  }
-}
-
-.button-green {
-  &.mat-button, &.mat-raised-button{
-    background-color: $green;
-    color: #ffffff;
-  }
 }
 
 mat-card {

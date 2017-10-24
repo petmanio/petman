@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from './shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { AuthRoutingModule } from './auth-routing.module';
+import { SharedModule } from '../shared/shared.module';
+import { AuthEffects } from './effects/auth.effects';
+import { reducers } from './reducers/index';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    StoreModule.forFeature('auth', reducers),
+    EffectsModule.forFeature([AuthEffects]),
+
+    SharedModule,
+    AuthRoutingModule
   ],
   declarations: []
 })
