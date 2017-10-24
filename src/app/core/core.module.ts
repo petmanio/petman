@@ -20,13 +20,16 @@ import { CustomRouterStateSerializer } from '../shared/utils';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { environment } from '../../environments/environment';
+import { AppComponent } from './app/app.component';
+import { AppRoutingModule } from './core-routing.module';
 import { metaReducers, reducers } from './shared/reducers/index';
+import { environment } from '../../environments/environment';
+import { NotFoundPageComponent } from "./not-found/not-found-page";
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule.withServerTransition({ appId: 'petman' }),
+    BrowserModule.withServerTransition({appId: 'petman'}),
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
@@ -42,7 +45,7 @@ import { metaReducers, reducers } from './shared/reducers/index';
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, {metaReducers}),
 
     /**
      * @ngrx/router-store keeps router state up-to-date in the store.
@@ -75,21 +78,21 @@ import { metaReducers, reducers } from './shared/reducers/index';
      * service available.
      */
     // DBModule.provideDB(schema),
-
+    AppRoutingModule
   ],
-  exports: [ToolbarComponent, SidenavComponent],
-  declarations: [ToolbarComponent, SidenavComponent],
+  exports: [AppComponent],
+  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent],
   providers: [
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.
      * A custom RouterStateSerializer is used to parse the `RouterStateSnapshot` provided
      * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
      */
-    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+    {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer},
   ],
 })
 export class CoreModule {
-  constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }
 

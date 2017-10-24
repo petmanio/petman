@@ -63,6 +63,14 @@ import { Authenticate } from '../../user.model';
         flex-direction: row;
         justify-content: flex-end;
       }
+      
+      /deep/ .mat-form-field {
+        width: 300px;
+      }
+      p {
+        margin: 1em;
+      }
+      
     `,
   ],
 })

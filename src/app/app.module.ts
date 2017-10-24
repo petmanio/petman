@@ -4,18 +4,11 @@ import { MatProgressBarModule } from '@angular/material';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './app-routing.module';
-import { RouterModule } from '@angular/router';
-import { AppComponent } from './app/app.component';
+import { AppComponent } from './core/app/app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [],
   imports: [
-    RouterModule,
-    MatProgressBarModule,
-    AppRoutingModule,
     CoreModule.forRoot(),
     AuthModule.forRoot(),
     SharedModule
