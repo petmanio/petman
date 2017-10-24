@@ -27,7 +27,7 @@ function universalRouter(req, res) {
 }
 
 function staticRouter(req, res) {
-  res.sendfile(path.join(__dirname, '../client/platform-browser/index.html'));
+  res.sendFile(path.join(__dirname, '../client/platform-browser/index.html'));
 }
 
 // TODO: use ts-express-decorators

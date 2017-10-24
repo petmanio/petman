@@ -1,72 +1,82 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Authenticate } from '../../user.model';
 
 @Component({
-  selector: 'bc-login-form',
+  selector: 'app-auth-login-form',
   template: `
-    <md-card>
-      <md-card-title>Login</md-card-title>
-      <md-card-content>
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="submit()">
           <p>
-            <md-input-container>
-              <input type="text" mdInput placeholder="Username" formControlName="username">
-            </md-input-container>
+            <mat-input-container>
+              <input type="text" matInput placeholder="Username" formControlName="username">
+            </mat-input-container>
           </p>
 
           <p>
-            <md-input-container>
-              <input type="password" mdInput placeholder="Password" formControlName="password">
-            </md-input-container>
+            <mat-input-container>
+              <input type="password" matInput placeholder="Password" formControlName="password">
+            </mat-input-container>
           </p>
 
           <p *ngIf="errorMessage" class="loginError">
             {{ errorMessage }}
-          </p>          
-        
+          </p>
+
           <p class="loginButtons">
-            <button type="submit" md-button>Login</button>
+            <button type="submit" mat-button>Login</button>
           </p>
 
         </form>
-      </md-card-content>
-    </md-card>
+      </mat-card-content>
+    </mat-card>
   `,
   styles: [
-    `
-    :host {
-      display: flex;
-      justify-content: center;
-      margin: 72px 0;
-    }
+      `
+      :host {
+        display: flex;
+        justify-content: center;
+        margin: 72px 0;
+      }
 
-    md-card-title,
-    md-card-content {
-      display: flex;
-      justify-content: center;
-    }
+      mat-card-title,
+      mat-card-content {
+        display: flex;
+        justify-content: center;
+      }
 
-    input {
-      width: 300px;
-    }
+      input {
+        width: 300px;
+      }
 
-    .loginError {
-      padding: 16px;
-      width: 300px;
-      font-color: white;
-      background-color: red;
-    }
+      .loginError {
+        padding: 16px;
+        width: 300px;
+        font-color: white;
+        background-color: red;
+      }
 
-    .loginButtons {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-    }
-  `,
+      .loginButtons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+    `,
   ],
 })
 export class LoginFormComponent implements OnInit {
+  @Input() errorMessage: string | null;
+  @Output() submitted = new EventEmitter<Authenticate>();
+  form: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
+
+  constructor() {
+  }
+
   @Input()
   set pending(isPending: boolean) {
     if (isPending) {
@@ -76,18 +86,8 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  @Input() errorMessage: string | null;
-
-  @Output() submitted = new EventEmitter<Authenticate>();
-
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
-
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   submit() {
     if (this.form.valid) {

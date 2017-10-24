@@ -5,13 +5,13 @@ import * as fromAuth from '../shared/reducers';
 import * as Auth from '../shared/actions/auth.action';
 
 @Component({
-  selector: 'bc-login-page',
+  selector: 'app-auth-login-page',
   template: `
-    <bc-login-form
+    <app-auth-login-form
       (submitted)="onSubmit($event)"
       [pending]="pending$ | async"
       [errorMessage]="error$ | async">
-    </bc-login-form>
+    </app-auth-login-form>
   `,
   styles: [],
 })
