@@ -5,8 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { AuthEffects } from './effects/auth.effects';
-import { reducers } from './reducers/index';
+import { AuthEffects } from './shared/effects/auth.effects';
+import { reducers } from './shared/reducers/index';
 
 @NgModule({
   imports: [

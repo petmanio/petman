@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as fromRoot from '../../reducers';
-import * as fromAuth from './auth';
-import * as fromLoginPage from './login-page';
+import * as fromRoot from '../../../reducers';
+import * as fromAuth from './auth/auth.reducer';
+import * as fromLoginPage from './login-page/login-page';
 
 export interface AuthState {
   status: fromAuth.State;

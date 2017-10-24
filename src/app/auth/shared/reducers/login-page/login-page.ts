@@ -1,4 +1,4 @@
-import * as auth from '../actions/auth';
+import * as auth from '../../actions/auth.action';
 
 export interface State {
   error: string | null;

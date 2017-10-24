@@ -2,8 +2,8 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { LoginFormComponent } from './login-form.component';
-import * as Auth from '../actions/auth';
-import * as fromAuth from '../reducers';
+import * as Auth from '../../actions/auth.action';
+import * as fromAuth from '../../reducers';
 import { ReactiveFormsModule } from '@angular/forms';
 
 describe('Login Page', () => {
@@ -33,7 +33,7 @@ describe('Login Page', () => {
      * HTML.
      *
      * We can also use this as a validation tool against changes
-     * to the component's template against the currently stored 
+     * to the component's template against the currently stored
      * snapshot.
      */
     expect(fixture).toMatchSnapshot();

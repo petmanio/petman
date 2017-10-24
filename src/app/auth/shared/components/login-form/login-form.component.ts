@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Authenticate } from '../models/user';
+import { Authenticate } from '../../user.model';
 
 @Component({
   selector: 'bc-login-form',

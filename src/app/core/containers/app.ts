@@ -4,9 +4,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
-import * as fromAuth from '../../auth/reducers';
+import * as fromAuth from '../../auth/shared/reducers';
 import * as layout from '../actions/layout';
-import * as Auth from '../../auth/actions/auth';
+import * as Auth from '../../auth/shared/actions/auth.action';
 
 @Component({
   selector: 'bc-app',

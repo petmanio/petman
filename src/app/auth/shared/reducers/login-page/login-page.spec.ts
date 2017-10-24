@@ -1,7 +1,7 @@
 import { reducer } from './login-page';
 import * as fromLoginPage from './login-page';
-import { Login, LoginSuccess, LoginFailure, Logout } from '../actions/auth';
-import { Authenticate, User } from '../models/user';
+import { Login, LoginSuccess, LoginFailure, Logout } from '../../actions/auth.action';
+import { Authenticate, User } from '../../user.model';
 
 describe('LoginPageReducer', () => {
   describe('undefined action', () => {

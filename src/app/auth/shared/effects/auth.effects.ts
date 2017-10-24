@@ -9,7 +9,7 @@ import { Effect, Actions } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 
 import { AuthService } from '../services/auth.service';
-import * as Auth from '../actions/auth';
+import * as Auth from '../actions/auth.action';
 
 @Injectable()
 export class AuthEffects {

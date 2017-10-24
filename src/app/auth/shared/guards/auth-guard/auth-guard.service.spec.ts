@@ -2,9 +2,9 @@ import { TestBed, inject } from '@angular/core/testing';
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 import { AuthGuard } from './auth-guard.service';
-import * as Auth from '../actions/auth';
-import * as fromRoot from '../../reducers';
-import * as fromAuth from '../reducers';
+import * as Auth from '../../actions/auth.action';
+import * as fromRoot from '../../../../reducers';
+import * as fromAuth from '../../reducers';
 
 describe('Auth Guard', () => {
   let guard: AuthGuard;

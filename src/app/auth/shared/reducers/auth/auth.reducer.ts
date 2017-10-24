@@ -1,5 +1,5 @@
-import * as auth from '../actions/auth';
-import { User } from '../models/user';
+import * as auth from '../../actions/auth.action';
+import { User } from '../../user.model';
 
 export interface State {
   loggedIn: boolean;
