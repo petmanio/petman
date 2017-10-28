@@ -12,6 +12,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { reducers } from './shared/reducers/index';
+import { LoginFormSocialComponent } from './shared/components/login-form-social/login-form-social.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { reducers } from './shared/reducers/index';
   declarations: [
     LoginPageComponent,
     LoginFormComponent,
+    LoginFormSocialComponent,
   ]
 })
 export class AuthModule {

@@ -1,0 +1,19 @@
+@import '../../../../scss/variables';
+
+.login {
+  margin: 0;
+  text-align: center;
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/assets/join-cover.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.button-facebook {
+  background: $facebook;
+  color: #ffffff !important;
+}
