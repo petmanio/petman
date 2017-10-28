@@ -15,7 +15,7 @@
     "lint:server": "tslint './server/**/*.ts' -c ./server/tslint.json --fix",
     "e2e:client": "ng e2e",
     "e2e:server": "echo \"Error: no test specified\" && exit 1",
-    "_server:run": "tsc -p ./server && concurrently \"tsc -w -p ./server\" \"nodemon dist/server/bin/www.js\" ",
+    "_server:run": "tsc -p ./server && concurrently \"tsc -w -p ./server\" \"nodemon --watch dist/server dist/server/bin/www.js\" ",
     "_server:build": "tsc -p ./server",
     "_client:build": "ng build --prod",
     "_client:build:universal": "ng build --prod && ng build --prod --app petman --output-hashing=none"

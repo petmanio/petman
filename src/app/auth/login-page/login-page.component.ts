@@ -6,14 +6,8 @@ import * as Auth from '../shared/actions/auth.action';
 
 @Component({
   selector: 'app-auth-login-page',
-  template: `
-    <app-auth-login-form
-      (submitted)="onSubmit($event)"
-      [pending]="pending$ | async"
-      [errorMessage]="error$ | async">
-    </app-auth-login-form>
-  `,
-  styles: [],
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
   pending$ = this.store.select(fromAuth.getLoginPagePending);
