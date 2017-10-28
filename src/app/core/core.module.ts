@@ -24,7 +24,8 @@ import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './core-routing.module';
 import { metaReducers, reducers } from './shared/reducers/index';
 import { environment } from '../../environments/environment';
-import { NotFoundPageComponent } from "./not-found/not-found-page";
+import { NotFoundPageComponent } from './not-found/not-found-page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -78,7 +79,8 @@ import { NotFoundPageComponent } from "./not-found/not-found-page";
      * service available.
      */
     // DBModule.provideDB(schema),
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   exports: [AppComponent],
   declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent],

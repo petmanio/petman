@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { UtilService } from '../../shared/services/util/util.service';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  xhrListener: Observable<boolean>;
+
+  constructor(public utilService: UtilService) {
+    this.xhrListener = this.utilService.XHRListener;
+  }
 }

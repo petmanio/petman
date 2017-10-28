@@ -3,8 +3,7 @@
     <div class="cssload-whirlpool"></div>
   </div>
 </div>
-<mat-progress-bar mode="indeterminate"></mat-progress-bar>
-<!--TODO: update layout, sideNav containers container-->
+<mat-progress-bar mode="indeterminate" [hidden]="!(xhrListener | async)"></mat-progress-bar>
 <app-toolbar>
   <!--TODO: use route config for main route-->
   <span class="home" [routerLink]="'/'">Petman <span class="font-9">beta</span></span>
@@ -18,7 +17,7 @@
   <button mat-raised-button
           color="accent"
           class="accent-color-white"
-          routerLink="/join" i18n>Join us
+          routerLink="/auth/login" i18n>Join us
   </button>
 </app-toolbar>
 <!--<app-sidenav [open]="currentSideNavState"-->
