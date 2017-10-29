@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:1337',
+  apiEndpoint: '',
   // apiEndpoint: 'https://petman.io',
   fb: {
     appId: '782744788540027',

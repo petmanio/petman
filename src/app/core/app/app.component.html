@@ -3,10 +3,10 @@
     <div class="cssload-whirlpool"></div>
   </div>
 </div>
-<mat-progress-bar mode="indeterminate" [hidden]="!(xhrListener | async)"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" [hidden]="!(XHRListener | async)"></mat-progress-bar>
 <app-toolbar>
   <!--TODO: use route config for main route-->
-  <span class="home" [routerLink]="'/'">Petman <span class="font-9">beta</span></span>
+  <span class="home" routerLink="/">Petman <span class="font-9">beta</span></span>
   <span class="toolbar-spacer"></span>
   <div class="language">
     <mat-select>

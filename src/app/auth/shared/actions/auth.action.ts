@@ -1,41 +1,46 @@
 import { Action } from '@ngrx/store';
-import { User, Authenticate } from '../user.model';
 
-export const LOGIN = '[Auth] Login';
+import { FbAuthenticationResponseDto } from '../../../../../common/models/user.model';
+
 export const LOGOUT = '[Auth] Logout';
-export const LOGIN_SUCCESS = '[Auth] Login Success';
-export const LOGIN_FAILURE = '[Auth] Login Failure';
 export const LOGIN_REDIRECT = '[Auth] Login Redirect';
+export const FB_LOGIN = '[Auth] Fb Login';
+export const FB_LOGIN_SUCCESS = '[Auth] Fb Login Success';
+export const FB_LOGIN_FAILURE = '[Auth] Fb Login Failure';
 
-export class Login implements Action {
-  readonly type = LOGIN;
+export class FbLogin implements Action {
+  readonly type = FB_LOGIN;
 
-  constructor(public payload: Authenticate) {}
+  constructor(public payload: any = null) {}
 }
 
-export class LoginSuccess implements Action {
-  readonly type = LOGIN_SUCCESS;
+export class FbLoginSuccess implements Action {
+  readonly type = FB_LOGIN_SUCCESS;
 
-  constructor(public payload: { user: User }) {}
+  constructor(public payload: any) {}
 }
 
-export class LoginFailure implements Action {
-  readonly type = LOGIN_FAILURE;
+export class FbLoginFailure implements Action {
+  readonly type = FB_LOGIN_FAILURE;
 
   constructor(public payload: any) {}
 }
 
 export class LoginRedirect implements Action {
   readonly type = LOGIN_REDIRECT;
+
+  constructor(public payload: any) {}
 }
 
 export class Logout implements Action {
   readonly type = LOGOUT;
+
+  constructor(public payload: any) {}
 }
 
 export type Actions =
-  | Login
-  | LoginSuccess
-  | LoginFailure
+  | FbLogin
+  | FbLoginSuccess
+  | FbLoginFailure
   | LoginRedirect
   | Logout;

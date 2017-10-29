@@ -5,13 +5,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './login-form-social.component.html',
   styleUrls: ['./login-form-social.component.scss']
 })
-export class LoginFormSocialComponent implements OnInit {
+export class LoginFormSocialComponent {
   @Input() errorMessage: string | null;
   @Input() pending: boolean;
   @Output() submitted = new EventEmitter();
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

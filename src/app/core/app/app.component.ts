@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { UtilService } from '../../shared/services/util/util.service';
@@ -8,10 +8,14 @@ import { UtilService } from '../../shared/services/util/util.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  xhrListener: Observable<boolean>;
+export class AppComponent implements OnInit {
+  XHRListener: Observable<boolean>;
 
   constructor(public utilService: UtilService) {
-    this.xhrListener = this.utilService.XHRListener;
+    this.XHRListener = this.utilService.XHRListener;
+  }
+
+  ngOnInit(): void {
+    this.utilService.initScripts();
   }
 }

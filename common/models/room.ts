@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { UserDto } from './user';
+import { UserDto } from './user.model';
 
 export class RoomDto {
   userId: number;

@@ -1,25 +1,43 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs/observable/of';
-import { _throw } from 'rxjs/observable/throw';
-import { User, Authenticate } from '../user.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import 'rxjs/add/operator/switchMap';
+import { environment } from '../../../../environments/environment';
+import { FbAuthenticationRequestDto, FbAuthenticationResponseDto } from '../../../../../common/models/user.model';
+
+export interface IAuthService {
+  // getFacebookToken(): ReplaySubject<any>;
+  fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto>;
+}
 
 @Injectable()
-export class AuthService {
-  constructor() {}
+export class AuthService implements IAuthService {
+  constructor(private http: HttpClient) {}
 
-  login({ username, password }: Authenticate) {
-    /**
-     * Simulate a failed login to display the error
-     * message for the login form.
-     */
-    if (username !== 'test') {
-      return _throw('Invalid username or password');
-    }
+  private getFacebookToken(): ReplaySubject<any> {
+    const subject = new ReplaySubject(1);
+    FB.login((response) => {
+      if (response.authResponse) {
+        subject.next(response.authResponse);
+      } else {
+        subject.error(new Error());
+      }
+    }, { scope: environment.fb.scope });
 
-    return of({ name: 'User' });
+    return subject;
   }
 
-  logout() {
-    return of(true);
+  fbLogin(): Observable<FbAuthenticationResponseDto> {
+    return this.getFacebookToken()
+      .switchMap(({ accessToken }) => {
+        return this.http
+          .post<FbAuthenticationResponseDto>(`${environment.apiEndpoint}/api/auth/login/fb`, { accessToken })
+          .map(response => {
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            return response;
+          });
+      });
   }
 }

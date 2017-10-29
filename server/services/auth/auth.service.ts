@@ -1,5 +1,5 @@
 import config from '../../config';
-import { FbUser } from '../../../common/models/user';
+import { FbUser } from '../../../common/models/user.model';
 import { AuthProvider } from '../../models/AuthProvider';
 import { User } from '../../models/User';
 import { UserData } from '../../models/UserData';

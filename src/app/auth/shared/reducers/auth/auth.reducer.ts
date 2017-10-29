@@ -1,9 +1,9 @@
 import * as auth from '../../actions/auth.action';
-import { User } from '../../user.model';
+import { UserDto } from '../../../../../../common/models/user.model';
 
 export interface State {
   loggedIn: boolean;
-  user: User | null;
+  user: UserDto | null;
 }
 
 export const initialState: State = {
@@ -13,7 +13,7 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: auth.Actions): State {
   switch (action.type) {
-    case auth.LOGIN_SUCCESS: {
+    case auth.FB_LOGIN_SUCCESS: {
       return {
         ...state,
         loggedIn: true,

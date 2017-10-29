@@ -10,9 +10,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
+import { LoginFormSocialComponent } from './shared/components/login-form-social/login-form-social.component';
+import { AuthService } from './shared/services/auth.service';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { reducers } from './shared/reducers/index';
-import { LoginFormSocialComponent } from './shared/components/login-form-social/login-form-social.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { LoginFormSocialComponent } from './shared/components/login-form-social/
     LoginPageComponent,
     LoginFormComponent,
     LoginFormSocialComponent,
-  ]
+  ],
+  providers: [AuthService]
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {

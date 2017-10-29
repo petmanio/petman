@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Authenticate } from '../shared/user.model';
+
 import * as fromAuth from '../shared/reducers';
 import * as Auth from '../shared/actions/auth.action';
 
@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit($event: Authenticate) {
-    this.store.dispatch(new Auth.Login($event));
+  onSubmit() {
+    this.store.dispatch(new Auth.FbLogin());
   }
 }

@@ -1,5 +1,5 @@
 import { Exclude, Type } from 'class-transformer';
-import { UserDto } from './user';
+import { UserDto } from './user.model';
 import { Gender } from '../enums/index';
 
 export class UserDataDto {

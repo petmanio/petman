@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Authenticate } from '../../user.model';
+// import { Authenticate } from '../../user.model';
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +9,7 @@ import { Authenticate } from '../../user.model';
 })
 export class LoginFormComponent implements OnInit {
   @Input() errorMessage: string | null;
-  @Output() submitted = new EventEmitter<Authenticate>();
+  // @Output() submitted = new EventEmitter<Authenticate>();
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      this.submitted.emit(this.form.value);
+      // this.submitted.emit(this.form.value);
     }
   }
 }
