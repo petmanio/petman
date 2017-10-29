@@ -26,6 +26,7 @@ import { metaReducers, reducers } from './shared/reducers/index';
 import { environment } from '../../environments/environment';
 import { NotFoundPageComponent } from './not-found/not-found-page';
 import { SharedModule } from '../shared/shared.module';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   imports: [
@@ -83,7 +84,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   exports: [AppComponent],
-  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent],
+  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent, HomePageComponent],
   providers: [
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.

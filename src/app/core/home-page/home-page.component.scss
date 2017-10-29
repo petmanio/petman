@@ -1,0 +1,78 @@
+.login {
+  text-align: center;
+  margin-top: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.home-card {
+  height: calc((100vh - 112px) / 2);
+  text-align: center;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0.75rem;
+  position: relative;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  cursor: pointer;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .home-card {
+    height: 300px;
+  }
+}
+
+.home-card:hover {
+  /*color: #fcdd7f; */
+}
+
+.home-card > span {
+  z-index: 20;
+  width: 80%;
+}
+
+.home-card-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #484848;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+}
+
+.home-card-sitters {
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/assets/home.jpeg");
+}
+
+.home-card-walkers {
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/assets/walker.jpg");
+}
+
+.home-card-adopt {
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/assets/adopt.jpg");
+}
+
+.home-card-lost-found {
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/assets/lost-found.jpg");
+}
+
+.home-card-blog {
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/assets/news.jpg");
+}
+
+.home-card-locations {
+  /*noinspection CssUnknownTarget*/
+  background-image: url("/assets/clinic.jpg");
+}
