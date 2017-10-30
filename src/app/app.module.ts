@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material';
 
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';

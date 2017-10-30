@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 
 import * as fromAuth from '../shared/reducers';
 import * as Auth from '../shared/actions/auth.action';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-login-page',

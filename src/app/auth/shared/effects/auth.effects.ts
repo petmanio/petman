@@ -26,7 +26,9 @@ export class AuthEffects {
   @Effect({dispatch: false})
   loginSuccess$ = this.actions$
     .ofType(Auth.FB_LOGIN_SUCCESS)
-    .do(() => this.router.navigate(['/']));
+    //  TODO: use router.navigate
+    // .do(() => this.router.navigate(['/']))
+    .do(() => location.href = '/');
 
   @Effect({dispatch: false})
   loginRedirect$ = this.actions$

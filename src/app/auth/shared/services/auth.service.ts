@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/operator/switchMap';
+import { Subject } from 'rxjs/Subject';
+
 import { environment } from '../../../../environments/environment';
 import { FbAuthenticationRequestDto, FbAuthenticationResponseDto } from '../../../../../common/models/user.model';
-import { of } from "rxjs/observable/of";
-import { Subject } from "rxjs/Subject";
+import { LocalStorageService } from '../../../shared/services/local-storage/local-storage.service';
 
 export interface IAuthService {
   getFacebookToken(): Subject<any>;
@@ -15,7 +14,7 @@ export interface IAuthService {
 
 @Injectable()
 export class AuthService implements IAuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {}
 
   getFacebookToken(): Subject<any> {
     const subject = new Subject();
@@ -34,10 +33,9 @@ export class AuthService implements IAuthService {
     return this.http
       .post<FbAuthenticationResponseDto>(`${environment.apiEndpoint}/api/auth/login/fb`, options)
       .map(response => {
-        // console.log(JSON.stringify(response))
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
-        return of(response);
+        this.localStorageService.setItem('token', response.token);
+        this.localStorageService.setItem('user', response.user);
+        return response;
       });
   }
 }
