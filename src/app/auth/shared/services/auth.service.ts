@@ -5,9 +5,11 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/switchMap';
 import { environment } from '../../../../environments/environment';
 import { FbAuthenticationRequestDto, FbAuthenticationResponseDto } from '../../../../../common/models/user.model';
+import { of } from "rxjs/observable/of";
+import { Subject } from "rxjs/Subject";
 
 export interface IAuthService {
-  // getFacebookToken(): ReplaySubject<any>;
+  getFacebookToken(): Subject<any>;
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto>;
 }
 
@@ -15,8 +17,8 @@ export interface IAuthService {
 export class AuthService implements IAuthService {
   constructor(private http: HttpClient) {}
 
-  private getFacebookToken(): ReplaySubject<any> {
-    const subject = new ReplaySubject(1);
+  getFacebookToken(): Subject<any> {
+    const subject = new Subject();
     FB.login((response) => {
       if (response.authResponse) {
         subject.next(response.authResponse);
@@ -28,16 +30,14 @@ export class AuthService implements IAuthService {
     return subject;
   }
 
-  fbLogin(): Observable<FbAuthenticationResponseDto> {
-    return this.getFacebookToken()
-      .switchMap(({ accessToken }) => {
-        return this.http
-          .post<FbAuthenticationResponseDto>(`${environment.apiEndpoint}/api/auth/login/fb`, { accessToken })
-          .map(response => {
-            localStorage.setItem('token', response.token);
-            localStorage.setItem('user', JSON.stringify(response.user));
-            return response;
-          });
+  fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto> {
+    return this.http
+      .post<FbAuthenticationResponseDto>(`${environment.apiEndpoint}/api/auth/login/fb`, options)
+      .map(response => {
+        // console.log(JSON.stringify(response))
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        return of(response);
       });
   }
 }
