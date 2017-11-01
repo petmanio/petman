@@ -17,7 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule, } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { CustomRouterStateSerializer } from '../shared/utils';
+import { CustomRouterStateSerializer } from '../shared/lib/util';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
