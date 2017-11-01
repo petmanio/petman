@@ -1,5 +1,12 @@
-<div class="columns">
-  <div class="column login">
-    <button mat-raised-button class="button-facebook" (click)="submitted.emit()" i18n>Login with facebook</button>
-  </div>
-</div>
+<mat-card>
+  <img src="/assets/logo.svg" width="60px" height="60px">
+  <mat-card-header>
+    <mat-card-title i18n>New to Petman? Sign up!</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <button type="submit" mat-raised-button class="button-facebook" (click)="submitted.emit()" i18n>
+        <mat-icon svgIcon="app_facebook"></mat-icon>Sign up with Facebook</button>
+    </p>
+  </mat-card-content>
+</mat-card>

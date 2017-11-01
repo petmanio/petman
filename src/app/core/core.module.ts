@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -34,6 +35,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     BrowserModule.withServerTransition({appId: 'petman'}),
     BrowserAnimationsModule,
     HttpClientModule,
+    HttpModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
