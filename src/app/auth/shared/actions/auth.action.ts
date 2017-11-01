@@ -1,7 +1,5 @@
 import { Action } from '@ngrx/store';
 
-import { FbAuthenticationResponseDto } from '../../../../../common/models/user.model';
-
 export const LOGOUT = '[Auth] Logout';
 export const LOGIN_REDIRECT = '[Auth] Login Redirect';
 export const FB_LOGIN = '[Auth] Fb Login';

@@ -1,20 +1,14 @@
-import {
-  ActionReducerMap,
-  createSelector,
-  createFeatureSelector,
-  ActionReducer,
-  MetaReducer,
-} from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
 import { environment } from '../../../../environments/environment';
 import { RouterStateUrl } from '../../../shared/lib/util';
 import * as fromRouter from '@ngrx/router-store';
-
 /**
  * storeFreeze prevents state from being mutated. When mutation occurs, an
  * exception will be thrown. This is useful during development mode to
  * ensure that none of the reducers accidentally mutates the state.
  */
 import { storeFreeze } from 'ngrx-store-freeze';
+import * as fromLayout from './layout';
 
 /**
  * Every reducer module's default export is the reducer function itself. In
@@ -22,8 +16,6 @@ import { storeFreeze } from 'ngrx-store-freeze';
  * the state of the reducer plus any selector functions. The `* as`
  * notation packages up all of the exports into a single object.
  */
-
-import * as fromLayout from './layout';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means

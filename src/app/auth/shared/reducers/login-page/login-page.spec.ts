@@ -1,7 +1,6 @@
 import { reducer } from './login-page';
-import * as fromLoginPage from './login-page';
 // import { Login, LoginSuccess, LoginFailure, Logout } from '../../actions/auth.action';
-import { Authenticate, User } from '../../user.model';
+// import { Authenticate, User } from '../../user.model';
 
 describe('LoginPageReducer', () => {
   describe('undefined action', () => {
@@ -16,7 +15,7 @@ describe('LoginPageReducer', () => {
 
   describe('LOGIN', () => {
     it('should make pending to true', () => {
-      const user = { username: 'test' } as Authenticate;
+      // const user = { username: 'test' } as Authenticate;
       // const createAction = new Login(user);
 
       const expectedResult = {
@@ -32,7 +31,7 @@ describe('LoginPageReducer', () => {
 
   describe('LOGIN_SUCCESS', () => {
     it('should have no error and no pending state', () => {
-      const user = { name: 'test' } as User;
+      // const user = { name: 'test' } as User;
       // const createAction = new LoginSuccess({ user });
 
       const expectedResult = {

@@ -1,7 +1,7 @@
-import { reducer } from './auth.reducer';
 import * as fromAuth from './auth.reducer';
+import { reducer } from './auth.reducer';
 // import { Login, LoginSuccess, Logout } from '../../actions/auth.action';
-import { Authenticate, User } from '../../user.model';
+// import { Authenticate, User } from '../../user.model';
 
 describe('AuthReducer', () => {
   describe('undefined action', () => {
@@ -23,7 +23,7 @@ describe('AuthReducer', () => {
 
   describe('wrong login payload', () => {
     it('should NOT authenticate a user', () => {
-      const user = { username: 'someUserName' } as Authenticate;
+      // const user = { username: 'someUserName' } as Authenticate;
       // const createAction = new Login(user);
 
       const expectedResult = fromAuth.initialState;
@@ -36,7 +36,7 @@ describe('AuthReducer', () => {
 
   describe('LOGIN_SUCCESS', () => {
     it('should add a user set loggedIn to true in auth state', () => {
-      const user = { name: 'test' } as User;
+      // const user = { name: 'test' } as User;
       // const createAction = new LoginSuccess({ user });
 
       const expectedResult = {

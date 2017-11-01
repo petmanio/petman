@@ -1,5 +1,5 @@
 import { RouterStateSerializer } from '@ngrx/router-store';
-import { RouterStateSnapshot, Params } from '@angular/router';
+import { Params, RouterStateSnapshot } from '@angular/router';
 
 /**
  * This function coerces a string into a string literal type.
