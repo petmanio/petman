@@ -1,4 +1,5 @@
 @import '../../../../scss/mixins';
+@import '../../../../scss/variables';
 mat-sidenav {
   width: 250px;
 }
@@ -13,4 +14,15 @@ mat-sidenav {
 .disabled {
   display: block;
   opacity: 0.5;
+}
+
+.secondary {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.is-active {
+  color: $primary;
+}
+mat-chip-list {
+  display: inline-block;
 }

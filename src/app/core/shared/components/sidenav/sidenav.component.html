@@ -10,8 +10,7 @@
     </div>
     <mat-nav-list>
       <app-nav-item (activate)="onItemActivate.emit()"
-                    icon="dashboard" routerLink="" [activeClass]="[isHomeActive]" i18n>
-        Main</app-nav-item>
+                    icon="dashboard" routerLink="" [activeClass]="[isHomeActive]" i18n>Main</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" routerLink="/locations" icon="location_searching"
                     routerLinkActive="is-active" i18n>Places</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" icon="favorite" routerLink="/rooms"
