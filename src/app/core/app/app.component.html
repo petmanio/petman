@@ -3,9 +3,8 @@
     <!--<div class="cssload-whirlpool"></div>-->
   <!--</div>-->
 <!--</div>-->
-<mat-progress-bar mode="indeterminate" [hidden]="!(XHRListener | async)"></mat-progress-bar>
-<app-toolbar>
-  <!--TODO: use route config for main route-->
+<mat-progress-bar mode="indeterminate" [hidden]="!(XHRListener$ | async)"></mat-progress-bar>
+<app-toolbar (toggleMenu)="toggleSidenav($event)">
   <span class="home" routerLink="/">Petman <span class="font-9">beta</span></span>
   <span class="toolbar-spacer"></span>
   <div class="language">
@@ -14,7 +13,8 @@
       <mat-option value="am">Am</mat-option>
     </mat-select>
   </div>
-  <button mat-raised-button
+  <button *ngIf="!(loggedIn$ | async)"
+          mat-raised-button
           color="accent"
           class="accent-color-white"
           routerLink="/auth/login" i18n>Join us
@@ -56,10 +56,9 @@
         </mat-option>
       </mat-select>
     </div>
-    <div mat-card-avatar class="cart-avatar cursor-pointer" [matMenuTriggerFor]="menu"
+    <div class="card-avatar cursor-pointer" [matMenuTriggerFor]="menu"
          [ngStyle]="{'background-image': 'url(' + (selectedUser$ | async)?.userData.avatar + ')'}"></div>
-    <mat-menu #menu="matMenu" [overlapTrigger]="false"
-              yPosition="above" xPosition="before">
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <button mat-menu-item (click)="logOut()">
         <mat-icon>power_settings_new</mat-icon>
         <span i18n>Log out</span>
@@ -67,9 +66,7 @@
     </mat-menu>
   </div>
 </app-toolbar>
-<!--<app-sidenav [open]="currentSideNavState"-->
-             <!--(onClose)="closeSidenav()"-->
-             <!--[mode]="sideNavMode">-->
+<app-sidenav [open]="sideNavState"
+             [mode]="sideNavMode">
   <router-outlet></router-outlet>
-<!--</app-sidenav>-->
-
+</app-sidenav>
