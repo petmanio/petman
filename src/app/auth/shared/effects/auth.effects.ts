@@ -24,6 +24,14 @@ export class AuthEffects {
     .map(response => new Auth.FbLoginSuccess(response))
     .catch(error => of(new Auth.FbLoginFailure(error)));
 
+  @Effect()
+  user$ = this.actions$
+    .ofType(Auth.USER)
+    .map((action: Auth.User) => action.payload)
+    .switchMap(auth => this.authService.user())
+    .map(response => new Auth.UserSuccess(response))
+    .catch(error => of(new Auth.UserFailure(error)));
+
   @Effect({dispatch: false})
   loginSuccess$ = this.actions$
     .ofType(Auth.FB_LOGIN_SUCCESS)

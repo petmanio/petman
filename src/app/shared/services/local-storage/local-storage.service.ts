@@ -20,7 +20,7 @@ export class LocalStorageService implements ILocalStorageService {
   getItem(key: string): void {
     let result;
     if (isPlatformBrowser(this.platformId)) {
-      result = JSON.parse(localStorage.getItem(result));
+      result = JSON.parse(localStorage.getItem(key));
     }
 
     return result;

@@ -21,6 +21,14 @@ export function reducer(state = initialState, action: auth.Actions): State {
       };
     }
 
+    case auth.USER_SUCCESS: {
+      return {
+        ...state,
+        loggedIn: true,
+        user: action.payload,
+      };
+    }
+
     case auth.LOGOUT: {
       return initialState;
     }

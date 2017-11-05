@@ -30,12 +30,3 @@ export class UserDto {
   @Type(() => UserDto)
   owners: UserDto[];
 }
-
-export class FbAuthenticationRequestDto {
-  accessToken: string;
-}
-
-export class FbAuthenticationResponseDto {
-  user: UserDto;
-  token: string;
-}

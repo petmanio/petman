@@ -4,12 +4,17 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { environment } from '../../../../environments/environment';
-import { FbAuthenticationRequestDto, FbAuthenticationResponseDto } from '../../../../../common/models/user.model';
+import {
+  AuthenticationResponseDto,
+  FbAuthenticationRequestDto,
+  FbAuthenticationResponseDto,
+} from '../../../../../common/models/auth.model';
 import { LocalStorageService } from '../../../shared/services/local-storage/local-storage.service';
 
 export interface IAuthService {
   getFacebookToken(): Subject<any>;
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto>;
+  user(): Observable<AuthenticationResponseDto>;
 }
 
 @Injectable()
@@ -35,6 +40,15 @@ export class AuthService implements IAuthService {
       .map(response => {
         this.localStorageService.setItem('token', response.token);
         this.localStorageService.setItem('user', response.user);
+        return response;
+      });
+  }
+
+  user(): Observable<AuthenticationResponseDto> {
+    return this.http
+      .get<AuthenticationResponseDto>(`${environment.apiEndpoint}/api/auth/user`, {})
+      .map(response => {
+        this.localStorageService.setItem('user', response);
         return response;
       });
   }
