@@ -1,8 +1,8 @@
-<div id="page-loader">
-  <div class="cssload-container">
-    <div class="cssload-whirlpool"></div>
-  </div>
-</div>
+<!--<div id="page-loader">-->
+  <!--<div class="cssload-container">-->
+    <!--<div class="cssload-whirlpool"></div>-->
+  <!--</div>-->
+<!--</div>-->
 <mat-progress-bar mode="indeterminate" [hidden]="!(XHRListener | async)"></mat-progress-bar>
 <app-toolbar>
   <!--TODO: use route config for main route-->
@@ -19,6 +19,53 @@
           class="accent-color-white"
           routerLink="/auth/login" i18n>Join us
   </button>
+  <div class="toolbar-actions" *ngIf="loggedIn$ | async">
+    <button mat-icon-button routerLink="messages">
+      <mat-icon>message</mat-icon>
+    </button>
+    <!--<button mat-icon-button-->
+            <!--[matMenuTriggerFor]="notification" (onMenuOpen)="onNotificationMenuOpen()">-->
+      <!--<mat-icon *ngIf="unseenNotificationsCount">notifications</mat-icon>-->
+      <!--<span *ngIf="unseenNotificationsCount" class="unseen-count">{{unseenNotificationsCount}}</span>-->
+      <!--<mat-icon *ngIf="!unseenNotificationsCount">notifications_none</mat-icon>-->
+    <!--</button>-->
+    <!--<mat-menu #notification="matMenu" [overlapTrigger]="false"-->
+              <!--yPosition="above" xPosition="before" class="notification-menu">-->
+      <!--<div class="notification-list" infinite-scroll-->
+           <!--(scrolled)="onScroll()"-->
+           <!--[infiniteScrollDistance]="2"-->
+           <!--[infiniteScrollThrottle]="300"-->
+           <!--[scrollWindow]="false">-->
+        <!--<div *ngIf="!(notifications$ | async)?.list.length"-->
+             <!--class="font-14 color-gray text-center no-notifications">-->
+          <!--{{'no_notifications_yet' | translate}}-->
+        <!--</div>-->
+        <!--<app-notifications [notifications]="(notifications$ | async)?.list"-->
+                           <!--(onNotificationClick)="onNotificationClick($event)"></app-notifications>-->
+        <!--<div *ngIf="(notifications$ | async)?.count > (notifications$ | async)?.list.length"-->
+             <!--class="font-14 color-gray load-more cursor-pointer"-->
+             <!--(click)="onScroll(); $event.stopPropagation()">-->
+          <!--{{'load_more' | translate}} <i class="mati mati-dots-horizontal"></i></div>-->
+      <!--</div>-->
+    <!--</mat-menu>-->
+    <div class="change-user" *ngIf="(user$ | async)?.businessUsers.length">
+      <mat-select (change)="onSelectedUserChange($event)" [ngModel]="(selectedUser$ | async)?.id">
+        <mat-option [value]="(user$ | async)?.id">{{(user$ | async)?.userData.firstName}}</mat-option>
+        <mat-option *ngFor="let businessUser of (user$ | async)?.businessUsers"
+                    [value]="businessUser.id">{{ businessUser.userData.firstName }}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div mat-card-avatar class="cart-avatar cursor-pointer" [matMenuTriggerFor]="menu"
+         [ngStyle]="{'background-image': 'url(' + (selectedUser$ | async)?.userData.avatar + ')'}"></div>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false"
+              yPosition="above" xPosition="before">
+      <button mat-menu-item (click)="logOut()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span i18n>Log out</span>
+      </button>
+    </mat-menu>
+  </div>
 </app-toolbar>
 <!--<app-sidenav [open]="currentSideNavState"-->
              <!--(onClose)="closeSidenav()"-->

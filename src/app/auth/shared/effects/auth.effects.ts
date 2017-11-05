@@ -33,6 +33,12 @@ export class AuthEffects {
     .catch(error => of(new Auth.UserFailure(error)));
 
   @Effect({dispatch: false})
+  userChange$ = this.actions$
+    .ofType(Auth.CHANGE_USER)
+    .map((action: Auth.ChangeUser) => action.payload)
+    .do((selectedUserId) => this.authService.changeUser(selectedUserId));
+
+  @Effect({dispatch: false})
   loginSuccess$ = this.actions$
     .ofType(Auth.FB_LOGIN_SUCCESS)
     //  TODO: use router.navigate

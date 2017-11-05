@@ -1,6 +1,6 @@
-import { Exclude, Type } from 'class-transformer';
-import { RoomDto } from './room';
-import { UserDataDto } from './userData';
+import { Type } from 'class-transformer';
+import { RoomDto } from './room.model';
+import { UserDataDto } from './user-data.model';
 
 export class FbUser {
   id: number;
@@ -11,12 +11,11 @@ export class FbUser {
 }
 
 export class UserDto {
+  id: number;
   email: string;
   userDataId: number;
   created: Date;
   updated: Date;
-  @Exclude()
-  deleted: Date;
 
   @Type(() => UserDataDto)
   userData: UserDataDto;

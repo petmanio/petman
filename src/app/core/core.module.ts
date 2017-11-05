@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,8 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatCardModule,
-  MatIconModule,
+  MatIconModule, MatMenuModule,
   MatProgressBarModule,
+  MatSelectModule,
   MatToolbarModule
 } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
@@ -32,6 +34,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     BrowserModule.withServerTransition({appId: 'petman'}),
     BrowserAnimationsModule,
     HttpClientModule,
@@ -41,7 +44,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatIconModule,
     MatCardModule,
     MatProgressBarModule,
-
+    MatSelectModule,
+    MatMenuModule,
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of

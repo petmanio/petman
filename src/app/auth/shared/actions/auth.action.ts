@@ -9,7 +9,7 @@ export const FB_LOGIN_FAILURE = '[Auth] Fb Login Failure';
 export const USER = '[Auth] User';
 export const USER_SUCCESS = '[Auth] User Success';
 export const USER_FAILURE = '[Auth] User Failure';
-
+export const CHANGE_USER = '[Auth] Change User';
 
 export class FbLogin implements Action {
   readonly type = FB_LOGIN;
@@ -47,6 +47,12 @@ export class UserFailure implements Action {
   constructor(public payload: any) {}
 }
 
+export class ChangeUser implements Action {
+  readonly type = CHANGE_USER;
+
+  constructor(public payload: number) {}
+}
+
 export class LoginRedirect implements Action {
   readonly type = LOGIN_REDIRECT;
 
@@ -66,5 +72,6 @@ export type Actions =
   | User
   | UserSuccess
   | UserFailure
+  | ChangeUser
   | LoginRedirect
   | Logout;
