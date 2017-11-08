@@ -48,7 +48,11 @@ export class AuthEffects {
   @Effect({dispatch: false})
   loginRedirect$ = this.actions$
     .ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT)
-    .do(authed => this.router.navigate(['/auth/login']));
+    //  TODO: use router.navigate
+    .do(() => {
+      this.authService.logOut();
+      location.href = '/auth/login';
+    });
 
   constructor(private actions$: Actions,
               private authService: AuthService,

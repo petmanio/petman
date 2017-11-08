@@ -59,7 +59,7 @@
     <div class="card-avatar cursor-pointer" [matMenuTriggerFor]="menu"
          [ngStyle]="{'background-image': 'url(' + (selectedUser$ | async)?.userData.avatar + ')'}"></div>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
-      <button mat-menu-item (click)="logOut()">
+      <button mat-menu-item (click)="onLogOut()">
         <mat-icon>power_settings_new</mat-icon>
         <span i18n>Log out</span>
       </button>

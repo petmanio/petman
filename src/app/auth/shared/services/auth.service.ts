@@ -17,6 +17,7 @@ export interface IAuthService {
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto>;
   user(): Observable<AuthenticationResponseDto>;
   changeUser(selectedUserId: number): void;
+  logOut(): void;
 }
 
 @Injectable()
@@ -54,6 +55,12 @@ export class AuthService implements IAuthService {
         this.localStorageService.setItem('user', response);
         return response;
       });
+  }
+
+  logOut(): void {
+    this.localStorageService.setItem('user', null);
+    this.localStorageService.setItem('token', null);
+    this.localStorageService.setItem('selectedUserId', null);
   }
 
   changeUser(selectedUserId: number): void {

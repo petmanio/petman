@@ -62,7 +62,7 @@ export class LoginRedirect implements Action {
 export class Logout implements Action {
   readonly type = LOGOUT;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any = null) {}
 }
 
 export type Actions =

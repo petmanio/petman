@@ -16,8 +16,8 @@ import { UserDto } from '../../../../common/models/user.model';
 
 export interface IAppComponent {
   onSelectedUserChange($event): void;
+  onLogOut(): void;
   toggleSidenav($event: Event): void;
-  closeSidenav(): void;
 }
 
 @Component({
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
     }
   }
 
-  closeSidenav(): void {
-    this.store.dispatch(new Layout.CloseSidenav());
+  onLogOut(): void {
+    this.store.dispatch(new Auth.Logout());
   }
 }
