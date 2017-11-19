@@ -5,7 +5,7 @@ function userDtoGetter() {
   return UserDto;
 }
 
-export class RoomDto {
+export class ShelterDto {
   id: number;
   userId: number;
   created: Date;

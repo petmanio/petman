@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UtilService } from './services/util/util.service';
@@ -12,4 +12,11 @@ import { LocalStorageService } from './services/local-storage/local-storage.serv
   providers: [UtilService, LocalStorageService],
   exports: []
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [],
+    };
+  }
+}

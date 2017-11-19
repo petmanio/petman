@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import './app/scss/bulma-theme';
-@import './app/scss/theme';
-@import './app/scss/headroom';
-@import './app/scss/main';
+@import 'app/shared/scss/bulma-theme';
+@import 'app/shared/scss/theme';
+@import 'app/shared/scss/headroom';
+@import 'app/shared/scss/main';

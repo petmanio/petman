@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { RoomDto } from './room.model';
+import { ShelterDto } from './shelter.model';
 import { UserDataDto } from './user-data.model';
 
 function userDtoGetter() {
@@ -10,8 +10,8 @@ function userDataDtoGetter() {
   return UserDataDto;
 }
 
-function roomGetter() {
-  return RoomDto;
+function shelterGetter() {
+  return ShelterDto;
 }
 
 export class FbUser {
@@ -34,9 +34,9 @@ export class UserDto {
   @Type(userDataDtoGetter)
   userData: UserDataDto;
 
-  // @Type(() => RoomDto)
-  @Type(roomGetter)
-  rooms: RoomDto[];
+  // @Type(() => ShelterDto)
+  @Type(shelterGetter)
+  shelters: ShelterDto[];
 
   // @Type(() => UserDto)
   @Type(userDtoGetter)

@@ -2,12 +2,12 @@ import { BelongsTo, Column, CreatedAt, DeletedAt, ForeignKey, Model, Table, Upda
 import { User } from './User';
 
 @Table({
-  tableName: 'room',
+  tableName: 'shelter',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class Room extends Model<Room> {
+export class Shelter extends Model<Shelter> {
   /**
    * Fields
    */

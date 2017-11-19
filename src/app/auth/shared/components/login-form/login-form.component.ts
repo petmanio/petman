@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 // import { Authenticate } from '../../user.model';
 
 @Component({
-  selector: 'app-login-form',
+  selector: 'app-auth-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })

@@ -14,7 +14,7 @@ import {
 import { find } from 'lodash';
 import { UserData } from './UserData';
 import { AuthProvider } from './AuthProvider';
-import { Room } from './Room';
+import { Shelter } from './Shelter';
 import { AuthProviderType } from '../../common/enums/index';
 import { getUserFbAvatarByFbId } from '../services/util/util.service';
 
@@ -45,8 +45,8 @@ export class User extends Model<User> {
   @HasMany(() => AuthProvider)
   authProviders: AuthProvider[];
 
-  @HasMany(() => Room)
-  rooms: Room[];
+  @HasMany(() => Shelter)
+  shelters: Shelter[];
 
   @BelongsToMany(() => User, 'user_business_user', 'owner_id')
   owners: User[];
