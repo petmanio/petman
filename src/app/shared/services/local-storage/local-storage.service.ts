@@ -13,16 +13,23 @@ export class LocalStorageService implements ILocalStorageService {
 
   setItem(key: string, value: any): void {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem(key, JSON.stringify(value));
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (err) {
+        localStorage.setItem(key, value);
+      }
     }
   }
 
   getItem(key: string): any {
     let result;
     if (isPlatformBrowser(this.platformId)) {
-      result = JSON.parse(localStorage.getItem(key));
+      result = localStorage.getItem(key);
+      try {
+        result = JSON.parse(result);
+      } catch (err) {
+      }
     }
-
     return result;
   }
 }
