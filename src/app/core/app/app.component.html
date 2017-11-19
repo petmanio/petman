@@ -67,7 +67,10 @@
   </div>
 </app-toolbar>
 <app-sidenav [open]="sideNavState"
-             [mode]="sideNavMode">
+             [mode]="sideNavMode"
+             [user]="user$ | async"
+             [selectedUser]="selectedUser$ | async"
+             (onSelectedUserChange)="onSelectedUserChange($event)">
   <router-outlet></router-outlet>
 </app-sidenav>
 <!--<app-footer></app-footer>-->
