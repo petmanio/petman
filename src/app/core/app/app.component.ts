@@ -29,7 +29,6 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
   loggedIn$: Observable<boolean>;
   user$: Observable<UserDto>;
   selectedUser$: Observable<UserDto>;
-  XHRListener$: Observable<boolean>;
   showSidenav$: Observable<boolean>;
   sideNavMode: 'side' | 'push' = 'side';
   sideNavState: boolean;
@@ -43,7 +42,6 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
               private breakpointObserver: BreakpointObserver) {
     this.utilService.externalScripts();
     this.utilService.registerNewIcons();
-    this.XHRListener$ = this.utilService.XHRListener;
     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
     this.loggedIn$ = this.store.select(fromAuth.getLoggedIn);
     this.user$ = this.store.select(fromAuth.getUser);

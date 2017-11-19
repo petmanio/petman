@@ -19,10 +19,6 @@ mat-sidenav-container {
 
 .change-user-sidenav {
   text-align: center;
-  @include tablet {
-    display: none;
-  }
-
 }
 
 /deep/ .change-user-sidenav .mat-select-value {

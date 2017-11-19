@@ -229,7 +229,7 @@ mat-icon {
   float: right;
 }
 
-.card-avatar {
+.pm-card-avatar {
   background-size: cover;
   height: 40px;
   width: 40px;
@@ -237,7 +237,7 @@ mat-icon {
   flex-shrink: 0;
 }
 
-.cursor-pointer, .cp {
+.pm-cursor-pointer, .cp {
   cursor: pointer;
 };
 

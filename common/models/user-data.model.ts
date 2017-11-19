@@ -14,6 +14,10 @@ export class UserDataDto {
   userId: number;
   created: Date;
 
+  get name(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
   // @Type(() => UserDto)
   @Type(userDtoGetter)
   user: UserDto;

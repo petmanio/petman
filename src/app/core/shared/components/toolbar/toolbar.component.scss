@@ -1,0 +1,28 @@
+@import '../../../../scss/mixins';
+
+td-search-box {
+  display: none;
+  @include tablet {
+    display: block;
+  }
+}
+
+.pm-spacer {
+  display: block;
+  @include tablet {
+    display: none;
+  }
+}
+
+/deep/ .pm-language .mat-select-trigger {
+  min-width: 50px;
+  width: 50px;
+}
+
+/deep/ .pm-language .mat-select-value {
+  color: #ffffff;
+}
+
+/deep/ .pm-language .mat-select-arrow {
+  color: #ffffff;
+}

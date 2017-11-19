@@ -1,10 +1,14 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+// import { DBModule } from '@ngrx/db';
+import { RouterStateSerializer, StoreRouterConnectingModule, } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {
   MatButtonModule,
   MatCardModule,
@@ -18,22 +22,25 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-// import { DBModule } from '@ngrx/db';
-import { RouterStateSerializer, StoreRouterConnectingModule, } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {
+  CovalentLayoutModule,
+  CovalentMenuModule,
+  CovalentNotificationsModule,
+  CovalentSearchModule
+} from '@covalent/core';
+import { NgProgressInterceptor, NgProgressModule } from 'ngx-progressbar';
 
+import { environment } from '../../environments/environment';
+import { throwIfAlreadyLoaded } from './module-import-guard';
+import { metaReducers, reducers } from './shared/reducers/index';
 import { CustomRouterStateSerializer } from '../shared/lib/util';
+import { CustomHeadersInterceptor } from './shared/interseptors/custom-headers/custom-headers.interceptor';
+import { SharedModule } from '../shared/shared.module';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
-import { throwIfAlreadyLoaded } from './module-import-guard';
 import { AppComponent } from './app/app.component';
 import { CoreRoutingModule } from './core-routing.module';
-import { metaReducers, reducers } from './shared/reducers/index';
-import { environment } from '../../environments/environment';
 import { NotFoundPageComponent } from './not-found/not-found-page';
-import { SharedModule } from '../shared/shared.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavItemComponent } from './shared/components/nav-item/nav-item.component';
 import { FooterComponent } from './shared/components/footer/footer/footer.component';
@@ -45,18 +52,6 @@ import { FooterComponent } from './shared/components/footer/footer/footer.compon
     BrowserModule.withServerTransition({appId: 'petman'}),
     BrowserAnimationsModule,
     HttpClientModule,
-    HttpModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatChipsModule,
-    MatListModule,
-    LayoutModule,
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
@@ -97,11 +92,36 @@ import { FooterComponent } from './shared/components/footer/footer/footer.compon
      * service available.
      */
     // DBModule.provideDB(schema),
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatChipsModule,
+    MatListModule,
+    LayoutModule,
+    CovalentSearchModule,
+    CovalentNotificationsModule,
+    CovalentMenuModule,
+    CovalentLayoutModule,
+    NgProgressModule,
+
     CoreRoutingModule,
     SharedModule
   ],
   exports: [AppComponent],
-  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent, HomePageComponent, NavItemComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    NotFoundPageComponent,
+    ToolbarComponent,
+    SidenavComponent,
+    HomePageComponent,
+    NavItemComponent,
+    FooterComponent
+  ],
   providers: [
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.
@@ -109,6 +129,8 @@ import { FooterComponent } from './shared/components/footer/footer/footer.compon
      * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
      */
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer},
+    {provide: HTTP_INTERCEPTORS, useClass: CustomHeadersInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true},
   ],
 })
 export class CoreModule {

@@ -22,6 +22,7 @@
         "../node_modules/normalize.css/normalize.css",
         "../node_modules/mdi/css/materialdesignicons.min.css",
         "../node_modules/animate.css/animate.min.css",
+        "../node_modules/@covalent/core/common/platform.scss",
         "styles.scss"
       ],
       "scripts": [
