@@ -5,9 +5,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundPageComponent } from './not-found/not-found-page';
 
 export const routes: Routes = [
-  {path: '', component: HomePageComponent, pathMatch: 'full'},
+  {path: '', component: HomePageComponent, pathMatch: 'full', data: {showSidenav: true}},
   {path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule'},
-  {path: '**', component: NotFoundPageComponent},
+  {path: '**', component: NotFoundPageComponent, data: {showSidenav: true}},
 ];
 
 @NgModule({

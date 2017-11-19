@@ -29,7 +29,7 @@ export class SidenavComponent implements ISidenavComponent, OnInit {
       if (event instanceof NavigationStart) {
 
       } else if (event instanceof NavigationEnd) {
-        this.isHomeActive = this.router.url === '/' ? 'is-active' : '';
+        this.isHomeActive = this.router.url === '/' ? 'pm-is-active' : '';
       }
     });
   }

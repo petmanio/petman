@@ -64,7 +64,8 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
           if (!breakpoint.matches) {
             this.store.dispatch(new Layout.CloseSidenav());
           }
-          const showSidenav = this.activatedRoute.data['showSidenav'];
+          // const showSidenav = this.activatedRoute.data['showSidenav'];
+          const showSidenav = UtilService.getRouteDataByKey(this.activatedRoute, 'showSidenav');
           if (typeof showSidenav !== 'undefined') {
             if (showSidenav && breakpoint.matches) {
               this.store.dispatch(new Layout.OpenSidenav());

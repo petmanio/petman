@@ -20,8 +20,11 @@ mat-sidenav {
   color: rgba(0, 0, 0, 0.54);
 }
 
-.is-active {
+.pm-is-active {
   color: $primary;
+  mat-icon {
+    color: $primary;
+  }
 }
 mat-chip-list {
   display: inline-block;

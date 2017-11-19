@@ -1,9 +1,10 @@
 @import '../../../../scss/mixins';
+@import '../../../../scss/variables';
 
 mat-sidenav {
   width: 300px;
-  background-color: #f8f8f8 !important;
-  box-shadow: -10px 0 50px #acacac;
+  background-color: $lightest-gray !important;
+  box-shadow: -10px 0 50px $light-gray;
 }
 mat-sidenav-container {
   @include calc(height, '100vh - 56px');

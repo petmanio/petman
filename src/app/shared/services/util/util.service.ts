@@ -13,6 +13,13 @@ export interface IUtilService {
 
 @Injectable()
 export class UtilService implements IUtilService {
+  static getRouteDataByKey(activatedRoute, key: string): any {
+    // TODO: Find better way to get data from activated route
+    return activatedRoute.snapshot.data[key] ||
+      (activatedRoute.snapshot.children.length && activatedRoute.snapshot.children[0].data[key]) ||
+      (activatedRoute.snapshot.children[0].children.length && activatedRoute.snapshot.children[0].children[0].data[key]);
+  }
+
   constructor(@Inject(PLATFORM_ID) protected platformId: Object,
               private matIconRegistry: MatIconRegistry,
               private sanitizer: DomSanitizer) {
