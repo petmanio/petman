@@ -2,6 +2,10 @@ import { Exclude, Type } from 'class-transformer';
 import { UserDto } from './user.model';
 import { Gender } from '../enums/index';
 
+function userDtoGetter() {
+  return UserDto;
+}
+
 export class UserDataDto {
   gender: Gender;
   avatar: string;
@@ -10,6 +14,7 @@ export class UserDataDto {
   userId: number;
   created: Date;
 
-  @Type(() => UserDto)
+  // @Type(() => UserDto)
+  @Type(userDtoGetter)
   user: UserDto;
 }
