@@ -29,7 +29,7 @@ import { ToolbarComponent } from './shared/components/toolbar/toolbar.component'
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './core-routing.module';
+import { CoreRoutingModule } from './core-routing.module';
 import { metaReducers, reducers } from './shared/reducers/index';
 import { environment } from '../../environments/environment';
 import { NotFoundPageComponent } from './not-found/not-found-page';
@@ -97,7 +97,7 @@ import { FooterComponent } from './shared/components/footer/footer/footer.compon
      * service available.
      */
     // DBModule.provideDB(schema),
-    AppRoutingModule,
+    CoreRoutingModule,
     SharedModule
   ],
   exports: [AppComponent],
