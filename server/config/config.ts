@@ -5,7 +5,16 @@ import { Config } from '../../common/shared';
 const config: Config = {
   port: 4300,
   secret: 'fRmRO5mqrW6gir6TRM06+FjCmo6frE86oxZ8wL+OvqA=',
-  fileLog: join(__dirname, '../../../', 'petman.log')
+  fileLog: join(__dirname, '../../../', 'petman.log'),
+  sequelizeConfig: {
+    dialect: '',
+    database: '',
+    username: '',
+    password: ''
+  },
+  syncOptions: {
+    force: true
+  }
 };
 
 export = config;

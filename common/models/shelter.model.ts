@@ -8,6 +8,8 @@ function userDtoGetter() {
 export class ShelterDto {
   id: number;
   userId: number;
+  description: string;
+  images: string[];
   created: Date;
   updated: Date;
 

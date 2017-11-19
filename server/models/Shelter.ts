@@ -1,4 +1,4 @@
-import { BelongsTo, Column, CreatedAt, DeletedAt, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { BelongsTo, Column, CreatedAt, DeletedAt, ForeignKey, Model, Table, UpdatedAt, DataType } from 'sequelize-typescript';
 import { User } from './User';
 
 @Table({
@@ -11,6 +11,11 @@ export class Shelter extends Model<Shelter> {
   /**
    * Fields
    */
+  @Column(DataType.TEXT)
+  description: string;
+
+  @Column(DataType.ARRAY(DataType.STRING(256)))
+  images: string[];
   /**
    * Associations
    */
@@ -21,9 +26,6 @@ export class Shelter extends Model<Shelter> {
   @BelongsTo(() => User)
   user: User;
 
-  /**
-   * Defaults
-   */
   /**
    * Defaults
    */

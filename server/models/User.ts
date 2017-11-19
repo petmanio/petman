@@ -12,6 +12,7 @@ import {
   UpdatedAt
 } from 'sequelize-typescript';
 import { find } from 'lodash';
+
 import { UserData } from './UserData';
 import { AuthProvider } from './AuthProvider';
 import { Shelter } from './Shelter';

@@ -9,6 +9,7 @@ import {
   Table,
   UpdatedAt
 } from 'sequelize-typescript';
+
 import { User } from './User';
 import { TokenType } from '../../common/enums/index';
 
