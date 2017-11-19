@@ -1,15 +1,11 @@
-.login {
-  text-align: center;
-  margin-top: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
+@import '../../scss/mixins';
+@import '../../scss/variables';
 
 .home-card {
-  height: calc((100vh - 112px) / 2);
+  height: 300px;
+  @include desktop {
+    @include calc(height, '(100vh - 112px) / 2');
+  }
   text-align: center;
   background-size: cover;
   align-items: center;
@@ -28,9 +24,6 @@
   }
 }
 
-.home-card:hover {
-  /*color: #fcdd7f; */
-}
 
 .home-card > .text {
   z-index: 20;
@@ -41,7 +34,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  background: #484848;
+  background: $gray-dark;
   opacity: 0.5;
   top: 0;
   left: 0;

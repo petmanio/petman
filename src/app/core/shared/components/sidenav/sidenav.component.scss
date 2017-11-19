@@ -6,16 +6,9 @@ mat-sidenav {
   box-shadow: -10px 0 50px #acacac;
 }
 mat-sidenav-container {
-  height: calc(100% - 64px);
-  height: -webkit-calc(100% - 64px);
-  height: -moz-calc(100% - 64px);
-  overflow: hidden;
-}
-@media (max-width: 600px) and (orientation: portrait) {
-  mat-sidenav-container {
-    height: calc(100% - 56px);
-    height: -webkit-calc(100% - 56px);
-    height: -moz-calc(100% - 56px);
+  @include calc(height, '100vh - 56px');
+  @include desktop {
+    @include calc(height, '100vh - 64px');
   }
 }
 

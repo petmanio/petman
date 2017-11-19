@@ -36,6 +36,7 @@ import { NotFoundPageComponent } from './not-found/not-found-page';
 import { SharedModule } from '../shared/shared.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavItemComponent } from './shared/components/nav-item/nav-item.component';
+import { FooterComponent } from './shared/components/footer/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -100,7 +101,7 @@ import { NavItemComponent } from './shared/components/nav-item/nav-item.componen
     SharedModule
   ],
   exports: [AppComponent],
-  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent, HomePageComponent, NavItemComponent],
+  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent, HomePageComponent, NavItemComponent, FooterComponent],
   providers: [
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.
