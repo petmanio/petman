@@ -1,0 +1,28 @@
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+mat-sidenav {
+  width: 250px;
+}
+
+.app-body {
+  height: calc(100vh - 65px);
+  height: -webkit-calc(100vh - 65px);
+  height: -moz-calc(100vh - 65px);
+  overflow-x: hidden;
+}
+
+.disabled {
+  display: block;
+  opacity: 0.5;
+}
+
+.secondary {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.is-active {
+  color: $primary;
+}
+mat-chip-list {
+  display: inline-block;
+}

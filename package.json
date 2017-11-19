@@ -21,7 +21,7 @@
     "_client:build:universal": "ng build --prod && ng build --prod --app petman --output-hashing=none"
   },
   "repository": {
-    "url": "https://github.com/navads/petman"
+    "url": "https://bitbucket.org/petmanio/petman"
   },
   "private": true,
   "dependencies": {

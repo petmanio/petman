@@ -1,0 +1,29 @@
+<mat-sidenav-container>
+  <mat-sidenav [opened]="open" [mode]="mode" color="primary" (close)="onClose.emit()">
+    <div class="change-user-sidenav" *ngIf="(user$ | async)?.businessUsers.length">
+      <mat-select (change)="onSelectedUserChange($event)" [ngModel]="(selectedUser$ | async)?.id">
+        <mat-option [value]="(user$ | async)?.id">{{(user$ | async)?.userData.firstName}}</mat-option>
+        <mat-option *ngFor="let businessUser of (user$ | async)?.businessUsers"
+                    [value]="businessUser.id">{{ businessUser.userData.firstName }}
+        </mat-option>
+      </mat-select>
+    </div>
+    <mat-nav-list>
+      <app-nav-item (activate)="onItemActivate.emit()"
+                    icon="dashboard" routerLink="" [activeClass]="[isHomeActive]" i18n>Main</app-nav-item>
+      <app-nav-item (activate)="onItemActivate.emit()" routerLink="/locations" icon="location_searching"
+                    routerLinkActive="is-active" i18n>Places</app-nav-item>
+      <app-nav-item (activate)="onItemActivate.emit()" icon="favorite" routerLink="/rooms"
+                    routerLinkActive="is-active" i18n>Sitters</app-nav-item>
+      <app-nav-item (activate)="onItemActivate.emit()" icon="child_friendly" routerLink="/walkers"
+                    routerLinkActive="is-active" i18n>Walkers</app-nav-item>
+      <app-nav-item (activate)="onItemActivate.emit()" icon="pets" routerLink="/adopt"
+                    routerLinkActive="is-active" i18n>Adopt</app-nav-item>
+      <app-nav-item (activate)="onItemActivate.emit()" icon="search" routerLink="/lost-found"
+                    routerLinkActive="is-active" i18n>Lost or found</app-nav-item>
+      <app-nav-item (activate)="onItemActivate.emit()" icon="info" routerLink="/about-us"
+                    routerLinkActive="is-active" i18n>About us</app-nav-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <ng-content></ng-content>
+</mat-sidenav-container>

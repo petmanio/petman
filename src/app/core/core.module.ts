@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,10 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatCardModule,
+  MatChipsModule,
   MatIconModule,
+  MatListModule,
+  MatMenuModule,
   MatProgressBarModule,
+  MatSelectModule,
+  MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
+import { LayoutModule } from '@angular/cdk/layout';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 // import { DBModule } from '@ngrx/db';
@@ -18,8 +25,8 @@ import { RouterStateSerializer, StoreRouterConnectingModule, } from '@ngrx/route
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { CustomRouterStateSerializer } from '../shared/lib/util';
-import { ToolbarComponent } from './shared/toolbar/toolbar.component';
-import { SidenavComponent } from './shared/sidenav/sidenav.component';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
+import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './core-routing.module';
@@ -28,10 +35,13 @@ import { environment } from '../../environments/environment';
 import { NotFoundPageComponent } from './not-found/not-found-page';
 import { SharedModule } from '../shared/shared.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { NavItemComponent } from './shared/components/nav-item/nav-item.component';
+import { FooterComponent } from './shared/components/footer/footer/footer.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     BrowserModule.withServerTransition({appId: 'petman'}),
     BrowserAnimationsModule,
     HttpClientModule,
@@ -41,7 +51,12 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatIconModule,
     MatCardModule,
     MatProgressBarModule,
-
+    MatSelectModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatChipsModule,
+    MatListModule,
+    LayoutModule,
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
@@ -86,7 +101,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     SharedModule
   ],
   exports: [AppComponent],
-  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent, HomePageComponent],
+  declarations: [AppComponent, NotFoundPageComponent, ToolbarComponent, SidenavComponent, HomePageComponent, NavItemComponent, FooterComponent],
   providers: [
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.

@@ -24,6 +24,20 @@ export class AuthEffects {
     .map(response => new Auth.FbLoginSuccess(response))
     .catch(error => of(new Auth.FbLoginFailure(error)));
 
+  @Effect()
+  user$ = this.actions$
+    .ofType(Auth.USER)
+    .map((action: Auth.User) => action.payload)
+    .switchMap(auth => this.authService.user())
+    .map(response => new Auth.UserSuccess(response))
+    .catch(error => of(new Auth.UserFailure(error)));
+
+  @Effect({dispatch: false})
+  userChange$ = this.actions$
+    .ofType(Auth.CHANGE_USER)
+    .map((action: Auth.ChangeUser) => action.payload)
+    .do((selectedUserId) => this.authService.changeUser(selectedUserId));
+
   @Effect({dispatch: false})
   loginSuccess$ = this.actions$
     .ofType(Auth.FB_LOGIN_SUCCESS)
@@ -34,7 +48,11 @@ export class AuthEffects {
   @Effect({dispatch: false})
   loginRedirect$ = this.actions$
     .ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT)
-    .do(authed => this.router.navigate(['/auth/login']));
+    //  TODO: use router.navigate
+    .do(() => {
+      this.authService.logOut();
+      location.href = '/auth/login';
+    });
 
   constructor(private actions$: Actions,
               private authService: AuthService,
