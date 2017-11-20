@@ -1,6 +1,7 @@
 import { Router } from 'express';
+
+import { isAuthenticated } from '../../policies/is-authenticated/is-authenticated.policy';
 import { loginFbHandler, loginHandler, userHandler } from '../../controllers/auth/auth.controller';
-import { isAuthenticated } from '../../policies/isAuthenticated/isAuthenticated.policy';
 
 const authRouter: Router = Router();
 

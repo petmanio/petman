@@ -15,7 +15,7 @@ const fb = new Facebook({
 const loginService = (body): any => {
 };
 
-const getUserFbDataByAccessToken = async (token: string) => {
+const getUserFbDataByAccessTokenService = async (token: string) => {
   fb.setAccessToken(token);
   const res: FbUser | any = await fb.api('me', {fields: 'email,gender,first_name,last_name'});
   if (res.error) {
@@ -24,7 +24,7 @@ const getUserFbDataByAccessToken = async (token: string) => {
   return res;
 };
 
-const findOrCreateFbUser = async (fbUser: FbUser, accessToken: string) => {
+const findOrCreateFbUserService = async (fbUser: FbUser, accessToken: string) => {
   const auth = await AuthProvider.findOne<AuthProvider>({
     where: {externalId: fbUser.id}, include: [{
       model: User,
@@ -52,4 +52,4 @@ const findOrCreateFbUser = async (fbUser: FbUser, accessToken: string) => {
   return await user.save();
 };
 
-export { loginService, getUserFbDataByAccessToken, findOrCreateFbUser };
+export { loginService, getUserFbDataByAccessTokenService, findOrCreateFbUserService };

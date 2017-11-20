@@ -17,3 +17,11 @@ export class ShelterDto {
   @Type(userDtoGetter)
   user: UserDto;
 }
+
+export class ShelterCreateRequstDto {
+  description: string;
+  images: File[];
+}
+
+export class ShelterCreateResponseDto extends ShelterDto {
+}

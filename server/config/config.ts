@@ -14,6 +14,11 @@ const config: Config = {
   },
   syncOptions: {
     force: true
+  },
+  fb: {
+    appId: '',
+    appSecret: '',
+    scope: ''
   }
 };
 

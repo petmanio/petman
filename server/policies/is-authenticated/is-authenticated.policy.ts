@@ -20,9 +20,9 @@ const isAuthenticated = async (req: Request, res: Response, next: NextFunction) 
     if (!user) {
       return res.status(401).end();
     }
-    req['appUser'] = user;
-    const appSelectedUser = find(req['appUser'].businessUsers, {id: selectedUserId});
-    req['appSelectedUser'] = appSelectedUser || req['appUser'];
+    req['pmUser'] = user;
+    const pmSelectedUser = find(req['pmUser'].businessUsers, {id: selectedUserId});
+    req['pmSelectedUser'] = pmSelectedUser || req['pmUser'];
     next();
   } catch (err) {
     logger.error(err);

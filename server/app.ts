@@ -17,6 +17,7 @@ import './core/db';
 import { cors, logger, loggerStream } from './services/util/util.service';
 import { infoRouter } from './routes/info/info.route';
 import { authRouter } from './routes/auth/auth.route';
+import { shelterRouter } from './routes/shelter/shelter.route';
 
 function universalRouter(req, res) {
   res.render('index', {
@@ -70,6 +71,7 @@ if (process.env.UNIVERSAL_APP) {
 // api routes
 app.use('/api/info', infoRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/shelters', shelterRouter);
 app.get('/*', process.env.UNIVERSAL_APP ? universalRouter : staticRouter);
 
 // catch 404 and forward to error handler
