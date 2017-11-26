@@ -8,6 +8,7 @@ function userDtoGetter() {
 export class ShelterDto {
   id: number;
   userId: number;
+  price: number;
   description: string;
   images: string[];
   created: Date;
@@ -18,7 +19,8 @@ export class ShelterDto {
   user: UserDto;
 }
 
-export class ShelterCreateRequstDto {
+export class ShelterCreateRequestDto {
+  price: string;
   description: string;
   images: File[];
 }

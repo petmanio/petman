@@ -14,6 +14,9 @@ export class Shelter extends Model<Shelter> {
   @Column(DataType.TEXT)
   description: string;
 
+  @Column(DataType.NUMBER)
+  price: number;
+
   @Column(DataType.ARRAY(DataType.STRING(256)))
   images: string[];
   /**

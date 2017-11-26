@@ -7,6 +7,7 @@ import { NotFoundPageComponent } from './not-found/not-found-page';
 export const routes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full', data: {showSidenav: true}},
   {path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule'},
+  {path: 'shelter', loadChildren: 'app/shelter/shelter.module#ShelterModule'},
   {path: '**', component: NotFoundPageComponent, data: {showSidenav: true}},
 ];
 

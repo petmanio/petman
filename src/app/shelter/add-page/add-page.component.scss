@@ -1,0 +1,26 @@
+@import '../../shared/scss/mixins';
+@import '../../shared/scss/variables';
+
+image-upload {
+  /deep/ {
+    .drag-box-message {
+      display: none !important;
+      @include desktop {
+        display: block !important;
+      }
+    }
+
+    .img-ul-clear {
+      display: none;
+    }
+
+    .img-ul-upload {
+      background-color: $primary !important;
+    }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+

@@ -1,0 +1,37 @@
+<div class="columns">
+  <div class="column is-6 is-offset-3">
+    <form [formGroup]="form">
+      <div class="columns is-vcentered">
+        <div class="column is-6 is-offset-1">
+          <mat-form-field>
+            <textarea formControlName='description' matInput i18n-placeholder placeholder="Description" required></textarea>
+          </mat-form-field>
+        </div>
+        <div class="column is-1"></div>
+        <div class="column is-2">
+          <mat-form-field>
+            <input formControlName='price' matInput i18n-placeholder type="number" placeholder="Daily price" min="0"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <image-upload
+            buttonCaption="Select images"
+            i18n-buttonCaption="Select images"
+            dropBoxMessage=""
+            preview="true"
+            max="4"
+            maxFileSize="1048576"
+            (uploadFinished)="onUploadFinished($event)"
+            (removed)="onImageRemove($event)"></image-upload>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column has-text-right">
+          <button mat-raised-button type="submit" [color]="form.valid ? 'primary' : 'warn'" i18n (click)="save()">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
