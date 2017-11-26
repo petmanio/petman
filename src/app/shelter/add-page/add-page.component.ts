@@ -13,7 +13,7 @@ export interface IAddPageComponent {
 }
 
 @Component({
-  selector: 'app-shelter-login-page',
+  selector: 'app-shelter-add-page',
   templateUrl: './add-page.component.html',
   styleUrls: ['./add-page.component.scss'],
 })
