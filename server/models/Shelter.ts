@@ -14,7 +14,7 @@ export class Shelter extends Model<Shelter> {
   @Column(DataType.TEXT)
   description: string;
 
-  @Column(DataType.NUMBER)
+  @Column(DataType.FLOAT)
   price: number;
 
   @Column(DataType.ARRAY(DataType.STRING(256)))
