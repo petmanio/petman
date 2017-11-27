@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule } from '@angular/material';
-import { CovalentFileModule } from '@covalent/core';
+import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { ImageUploadModule } from 'angular2-image-upload';
 
 import { SharedModule } from '../shared/shared.module';
@@ -25,6 +25,8 @@ import { reducers } from './shared/reducers/index';
     MatCardModule,
     MatInputModule,
     CovalentFileModule,
+    CovalentLoadingModule,
+    CovalentMessageModule,
     ImageUploadModule.forRoot(),
     StoreModule.forFeature('shelter', reducers),
     EffectsModule.forFeature([ShelterEffects]),

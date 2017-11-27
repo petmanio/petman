@@ -1,5 +1,4 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { assign } from 'lodash';
 
 import * as shelter from '../../actions/shelter.action';
 import { ShelterDto } from '../../../../../../common/models/shelter.model';
@@ -39,7 +38,10 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: shelter.Actions): State {
   switch (action.type) {
     case shelter.CREATE_SUCCESS: {
-      return assign({}, state, {...adapter.addOne(action.payload, state)});
+      return {
+        ...adapter.addOne(action.payload, state),
+        selectedId: state.selectedId,
+      };
     }
 
     default: {

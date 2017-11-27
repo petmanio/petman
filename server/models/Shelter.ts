@@ -1,5 +1,6 @@
 import { resolve } from 'url';
 import {
+  AllowNull,
   BelongsTo,
   Column,
   CreatedAt,
@@ -8,7 +9,7 @@ import {
   ForeignKey,
   Model,
   Table,
-  UpdatedAt
+  UpdatedAt,
 } from 'sequelize-typescript';
 import { map } from 'lodash';
 
@@ -25,12 +26,15 @@ export class Shelter extends Model<Shelter> {
   /**
    * Fields
    */
+  @AllowNull(false)
   @Column(DataType.TEXT)
   description: string;
 
+  @AllowNull(false)
   @Column(DataType.FLOAT)
   price: number;
 
+  @AllowNull(false)
   @Column(DataType.ARRAY(DataType.STRING(256)))
   images: string[];
   /**

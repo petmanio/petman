@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FileHolder } from 'angular2-image-upload';
 import { Store } from '@ngrx/store';
-import { findIndex, map, cloneDeep } from 'lodash';
+import { cloneDeep, findIndex, map } from 'lodash';
 
 import * as fromShelter from '../shared/reducers';
 import * as Shelter from '../shared/actions/shelter.action';
@@ -19,6 +19,9 @@ export interface IAddPageComponent {
   styleUrls: ['./add-page.component.scss'],
 })
 export class AddPageComponent implements IAddPageComponent {
+  pending$ = this.store.select(fromShelter.getAddPagePending);
+  error$ = this.store.select(fromShelter.getAddPageError);
+  entities$ = this.store.select(fromShelter.getAllShelters);
   form: FormGroup;
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder, private store: Store<fromShelter.State>) {

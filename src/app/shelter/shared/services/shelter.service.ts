@@ -26,7 +26,7 @@ export class ShelterService implements IShelterService {
     if (isPlatformBrowser(this.platformId)) {
       formData = new FormData();
       formData.append('description', body.description);
-      formData.append('cost', body.price);
+      formData.append('price', body.price);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
     return this.http.post<ShelterCreateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData);
