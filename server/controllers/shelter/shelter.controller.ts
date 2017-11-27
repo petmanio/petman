@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { map } from 'lodash';
 
 import config from '../../config';
-import { createService } from '../../services/shelter/shelter.service';
+import { createService, listService } from '../../services/shelter/shelter.service';
 
 const createHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -15,5 +15,15 @@ const createHandler = async (req: Request, res: Response, next: NextFunction) =>
   }
 };
 
-export { createHandler };
+const listHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const {offset, limit} = req.query;
+    const list = await listService(offset, limit);
+    res.status(200).json(list);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { createHandler, listHandler };
 

@@ -9,4 +9,10 @@ const createService = async (body: ShelterCreateRequestDto, user: User) => {
   return await shelter.save();
 };
 
-export { createService };
+const listService = async (offset: number, limit: number) => {
+  const total = await Shelter.count();
+  const list = await Shelter.findAll({ offset, limit });
+  return { list, total };
+};
+
+export { createService, listService };
