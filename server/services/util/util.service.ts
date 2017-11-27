@@ -1,6 +1,7 @@
-import { sign, verify } from 'jsonwebtoken';
-import config from '../../config';
 import * as winston from 'winston';
+import { sign, verify } from 'jsonwebtoken';
+
+import config from '../../config';
 
 const transports: any = [
   new winston.transports.Console({

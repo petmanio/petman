@@ -12,14 +12,14 @@ const config: Config = {
     username: '',
     password: ''
   },
-  syncOptions: {
-    force: true
-  },
+  syncOptions: {},
   fb: {
     appId: '',
     appSecret: '',
     scope: ''
-  }
+  },
+  uploadPath: join(process.env.PWD, 'upload'),
+  host: 'htts://petman.io'
 };
 
 export = config;

@@ -1,20 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import { plainToClass } from 'class-transformer';
+import { forEach } from 'lodash';
 
 import { environment } from '../../../../environments/environment';
-import { ShelterDto } from '../../../../../common/models/shelter.model';
-import { LocalStorageService } from '../../../shared/services/local-storage/local-storage.service';
+import {
+  ShelterCreateRequestDto,
+  ShelterCreateResponseDto,
+  ShelterDto
+} from '../../../../../common/models/shelter.model';
 
 export interface IShelterService {
+  create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto>;
   list(): Observable<any>;
 }
 
 @Injectable()
 export class ShelterService implements IShelterService {
-  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {}
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {}
+
+  create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto> {
+    let formData: FormData;
+    if (isPlatformBrowser(this.platformId)) {
+      formData = new FormData();
+      formData.append('description', body.description);
+      formData.append('cost', body.price);
+      forEach(body.images, file => formData.append('images', file, file.name));
+    }
+    return this.http.post<ShelterCreateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData);
+  }
 
   list(): Observable<any> {
     return this.http

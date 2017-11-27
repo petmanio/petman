@@ -4,13 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { plainToClass } from 'class-transformer';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import {
   AuthenticationResponseDto,
   FbAuthenticationRequestDto,
   FbAuthenticationResponseDto,
-} from '../../../../../common/models/auth.model';
-import { LocalStorageService } from '../../../shared/services/local-storage/local-storage.service';
+} from '../../../../../../common/models/auth.model';
+import { LocalStorageService } from '../../../../shared/services/local-storage/local-storage.service';
 
 export interface IAuthService {
   getFacebookToken(): Subject<any>;

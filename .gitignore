@@ -45,3 +45,6 @@ Thumbs.db
 # Server
 server/config/local.ts
 petman.log
+
+# Upload
+upload

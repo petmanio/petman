@@ -11,7 +11,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { LoginFormSocialComponent } from './shared/components/login-form-social/login-form-social.component';
-import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from './shared/guards/auth-guard/auth.guard';
+import { AuthService } from './shared/services/auth/auth.service';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { reducers } from './shared/reducers/index';
 
@@ -34,7 +35,7 @@ import { reducers } from './shared/reducers/index';
     LoginFormComponent,
     LoginFormSocialComponent,
   ],
-  providers: [AuthService]
+  providers: [AuthService, AuthGuard],
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {

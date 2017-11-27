@@ -1,10 +1,43 @@
 import { Action } from '@ngrx/store';
-import { ShelterDto } from '../../../../../common/models/shelter.model';
+
+import {
+  ShelterCreateRequestDto,
+  ShelterCreateResponseDto,
+  ShelterDto
+} from '../../../../../common/models/shelter.model';
+
+export const CREATE = '[Shelter] Create';
+export const CREATE_SUCCESS = '[Shelter] Create Success';
+export const CREATE_FAILURE = '[Shelter] Create Failure';
 
 export const LIST = '[Shelter] List';
 export const LIST_SUCCESS = '[Shelter] List Success';
 export const LIST_FAILURE = '[Shelter] List Failure';
 
+/**
+ * Create
+ */
+export class Create implements Action {
+  readonly type = CREATE;
+
+  constructor(public payload: ShelterCreateRequestDto) {}
+}
+
+export class CreateSuccess implements Action {
+  readonly type = CREATE_SUCCESS;
+
+  constructor(public payload: ShelterCreateResponseDto) {}
+}
+
+export class CreateFailure implements Action {
+  readonly type = CREATE_FAILURE;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * List
+ */
 export class List implements Action {
   readonly type = LIST;
 
@@ -24,6 +57,9 @@ export class ListFailure implements Action {
 }
 
 export type Actions =
+  | Create
+  | CreateSuccess
+  | CreateFailure
   | List
   | ListSuccess
   | ListFailure;

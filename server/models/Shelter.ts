@@ -1,4 +1,18 @@
-import { BelongsTo, Column, CreatedAt, DeletedAt, ForeignKey, Model, Table, UpdatedAt, DataType } from 'sequelize-typescript';
+import { resolve } from 'url';
+import {
+  BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  DeletedAt,
+  ForeignKey,
+  Model,
+  Table,
+  UpdatedAt
+} from 'sequelize-typescript';
+import { map } from 'lodash';
+
+import config from '../config';
 import { User } from './User';
 
 @Table({
@@ -46,6 +60,7 @@ export class Shelter extends Model<Shelter> {
    */
   toJSON() {
     const obj = super.get({clone: true});
+    obj.images = map(obj.images, path => resolve(config.host, 'upload' + path))
     delete obj.deleted;
     return obj;
   }

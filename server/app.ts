@@ -1,13 +1,12 @@
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-
-import { json, urlencoded } from 'body-parser';
 import * as compression from 'compression';
 import * as express from 'express';
 import * as path from 'path';
 import * as session from 'express-session';
 import * as cookie from 'cookie-parser';
 import * as morgan from 'morgan';
+import { json, urlencoded } from 'body-parser';
 import { randomBytes } from 'crypto';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
@@ -54,6 +53,7 @@ app.use(cookie());
 app.use(cors);
 app.get('/', process.env.UNIVERSAL_APP ? universalRouter : staticRouter);
 app.use(express.static(path.join(__dirname, '../client/platform-browser')));
+app.use('/upload', express.static(config.uploadPath));
 
 if (process.env.UNIVERSAL_APP) {
   const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../client/platform-server/main.bundle');

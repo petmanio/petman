@@ -1,15 +1,16 @@
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FileHolder } from 'angular2-image-upload';
-import { findIndex } from 'lodash';
 import { Store } from '@ngrx/store';
+import { findIndex, map, cloneDeep } from 'lodash';
 
 import * as fromShelter from '../shared/reducers';
+import * as Shelter from '../shared/actions/shelter.action';
 
 export interface IAddPageComponent {
   onUploadFinished($event: FileHolder): void;
   onImageRemove($event: FileHolder): void;
-  save(): void;
+  create(): void;
 }
 
 @Component({
@@ -44,7 +45,9 @@ export class AddPageComponent implements IAddPageComponent {
     }
   }
 
-  save(): void {
-    console.log(this.form.value);
+  create(): void {
+    const body = cloneDeep(this.form.value);
+    body.images = map<FileHolder, File>(body.images, image => image.file);
+    this.store.dispatch(new Shelter.Create(body));
   }
 }
