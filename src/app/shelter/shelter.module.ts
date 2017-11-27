@@ -10,8 +10,10 @@ import { ImageUploadModule } from 'angular2-image-upload';
 import { SharedModule } from '../shared/shared.module';
 
 import { ShelterRoutingModule } from './shelter-routing.module';
+import { ListPageComponent } from './list-page/list-page.component';
 import { AddPageComponent } from './add-page/add-page.component';
-import { DetailsPageComponent } from './details/details.component';
+import { DetailsPageComponent } from './details-page/details-page.component';
+import { EditPageComponent } from './edit-page/edit-page.component';
 import { ShelterService } from './shared/services/shelter.service';
 import { ShelterEffects } from './shared/effects/shelter.effects';
 import { reducers } from './shared/reducers/index';
@@ -36,8 +38,10 @@ import { reducers } from './shared/reducers/index';
     ShelterRoutingModule
   ],
   declarations: [
+    ListPageComponent,
     AddPageComponent,
-    DetailsPageComponent
+    DetailsPageComponent,
+    EditPageComponent,
   ],
   providers: [ShelterService]
 })

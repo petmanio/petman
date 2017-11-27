@@ -5,11 +5,11 @@ import * as fromShelter from '../shared/reducers';
 // import * as Shelter from '../shared/actions/shelter.action';
 
 @Component({
-  selector: 'app-shelter-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss'],
+  selector: 'app-shelter-edit-page',
+  templateUrl: './edit-page.component.html',
+  styleUrls: ['./edit-page.component.scss'],
 })
-export class DetailsPageComponent {
+export class EditPageComponent {
   constructor(private store: Store<fromShelter.State>) {
   }
 }
