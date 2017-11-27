@@ -21,7 +21,6 @@ export interface IAddPageComponent {
 export class AddPageComponent implements IAddPageComponent {
   pending$ = this.store.select(fromShelter.getAddPagePending);
   error$ = this.store.select(fromShelter.getAddPageError);
-  entities$ = this.store.select(fromShelter.getAllShelters);
   form: FormGroup;
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder, private store: Store<fromShelter.State>) {

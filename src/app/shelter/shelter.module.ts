@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { ShelterRoutingModule } from './shelter-routing.module';
 import { AddPageComponent } from './add-page/add-page.component';
+import { DetailsPageComponent } from './details/details.component';
 import { ShelterService } from './shared/services/shelter.service';
 import { ShelterEffects } from './shared/effects/shelter.effects';
 import { reducers } from './shared/reducers/index';
@@ -35,7 +36,8 @@ import { reducers } from './shared/reducers/index';
     ShelterRoutingModule
   ],
   declarations: [
-    AddPageComponent
+    AddPageComponent,
+    DetailsPageComponent
   ],
   providers: [ShelterService]
 })
