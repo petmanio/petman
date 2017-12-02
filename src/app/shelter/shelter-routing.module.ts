@@ -8,7 +8,7 @@ import { DetailsPageComponent } from './details-page/details-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 
 export const routes: Routes = [
-  { path: '', component: ListPageComponent },
+  { path: '', component: ListPageComponent, pathMatch: 'full' },
   { path: 'add', component: AddPageComponent, canActivate: [AuthGuard] },
   { path: ':id', component: DetailsPageComponent },
   { path: ':id/edit', component: EditPageComponent, canActivate: [AuthGuard] }

@@ -28,7 +28,7 @@ export class ShelterEffects {
     .ofType(Shelter.CREATE_SUCCESS)
     .pipe(
       map((action: Shelter.CreateSuccess) => action.payload),
-      tap(shelter => this.router.navigate(['shelter', shelter.id]))
+      tap(shelter => this.router.navigate(['shelters', shelter.id]))
     );
 
   constructor(private actions$: Actions,
