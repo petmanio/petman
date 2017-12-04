@@ -1,0 +1,9 @@
+@import "../../scss/mixins";
+
+.avatar {
+  background-size: cover;
+}
+
+p {
+  @include word-wrap;
+}

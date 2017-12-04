@@ -1,4 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { assign } from 'lodash';
 
 import * as shelter from '../../actions/shelter.action';
 import { ShelterDto } from '../../../../../../common/models/shelter.model';
@@ -12,6 +13,7 @@ import { ShelterDto } from '../../../../../../common/models/shelter.model';
  */
 export interface State extends EntityState<ShelterDto> {
   selectedId: string | null;
+  total: number;
 }
 
 /**
@@ -33,15 +35,21 @@ export const adapter: EntityAdapter<ShelterDto> = createEntityAdapter<ShelterDto
  */
 export const initialState: State = adapter.getInitialState({
   selectedId: null,
+  total: null
 });
 
 export function reducer(state = initialState, action: shelter.Actions): State {
   switch (action.type) {
     case shelter.CREATE_SUCCESS: {
-      return {
-        ...adapter.addOne(action.payload, state),
-        selectedId: state.selectedId,
-      };
+      return assign({}, state, adapter.addOne(action.payload, state));
+    }
+
+    case shelter.LIST_SUCCESS: {
+      return assign({}, state, {total: action.payload.total}, adapter.addAll(action.payload.list, state));
+    }
+
+    case shelter.MORE_SUCCESS: {
+      return assign({}, state, {total: action.payload.total}, adapter.addMany(action.payload.list, state));
     }
 
     default: {
@@ -60,3 +68,4 @@ export function reducer(state = initialState, action: shelter.Actions): State {
  */
 
 export const getSelectedId = (state: State) => state.selectedId;
+export const getTotal = (state: State) => state.total;

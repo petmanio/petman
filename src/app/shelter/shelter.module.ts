@@ -1,11 +1,12 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatPaginatorModule } from '@angular/material';
 import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { ImageUploadModule } from 'angular2-image-upload';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -16,7 +17,7 @@ import { DetailsPageComponent } from './details-page/details-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { ShelterService } from './shared/services/shelter.service';
 import { ShelterEffects } from './shared/effects/shelter.effects';
-import { reducers } from './shared/reducers/index';
+import { reducers } from './shared/reducers';
 
 @NgModule({
   imports: [
@@ -27,10 +28,13 @@ import { reducers } from './shared/reducers/index';
     MatIconModule,
     MatCardModule,
     MatInputModule,
+    MatPaginatorModule,
     CovalentFileModule,
     CovalentLoadingModule,
     CovalentMessageModule,
     ImageUploadModule.forRoot(),
+    NgxMasonryModule,
+
     StoreModule.forFeature('shelter', reducers),
     EffectsModule.forFeature([ShelterEffects]),
 
@@ -43,7 +47,7 @@ import { reducers } from './shared/reducers/index';
     DetailsPageComponent,
     EditPageComponent,
   ],
-  providers: [ShelterService]
+  providers: [DatePipe, ShelterService]
 })
 export class ShelterModule {
   static forRoot(): ModuleWithProviders {

@@ -1,16 +1,21 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
 
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatListModule
   ],
-  declarations: [],
+  declarations: [CardComponent],
   providers: [UtilService, LocalStorageService],
-  exports: []
+  exports: [CardComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

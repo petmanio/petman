@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="avatar" *ngIf="config.avatar"
+         [ngStyle]="{'background-image': 'url(' + config.avatar + ')'}"></div>
+    <mat-card-title>{{config.title}}</mat-card-title>
+    <mat-card-subtitle>{{config.subtitle}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <img mat-card-image *ngIf="config.image" [src]="config.image">
+  <mat-card-content>
+    <p>{{config.content}}</p>
+  </mat-card-content>
+  <mat-card-actions class="has-text-right">
+    <button mat-raised-button color="primary">SHARE</button>
+  </mat-card-actions>
+</mat-card>

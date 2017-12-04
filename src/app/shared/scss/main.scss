@@ -17,43 +17,11 @@ html {
   display: none !important;
 }
 
-.table-resize {
-  th, td {
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
-td-json-formatter {
-  padding: 0;
-  a {
-    color: inherit;
-    text-decoration: inherit;
-    cursor: inherit;
-    &:hover {
-      text-decoration: inherit;
-      color: inherit;
-      background-color: transparent !important;
-    }
-    &:focus {
-      background-color: transparent !important;
-    }
-  }
-  span {
-    font-size: 14px !important;
-  }
-  .mat-icon {
-    @include mat-icon-size(14px);
-  }
-}
-
-.columns {
-  margin: 0 !important;
-  //padding-left: 0.75rem;
-  //padding-right: 0.75rem;
-  //padding-top: 0.75rem;
+.pm-fab {
+  position: fixed !important;
+  right: 20px;
+  bottom: 10px;
+  color: #ffffff !important;
 }
 
 .dont-break-out {
@@ -62,42 +30,6 @@ td-json-formatter {
 
 .text-overflow {
   @include text-overflow();
-}
-
-mat-card {
-  .column {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  mat-divider {
-    &.full {
-      margin-left: -24px;
-      margin-right: -24px;
-    }
-  }
-}
-
-mat-divider {
-  &.light {
-    border-top-color: rgba(0,0,0,.05);
-  }
-}
-
-a {
-  color: $blue;
-  &:hover {
-    color: $blue;
-    text-decoration: underline;
-  }
-}
-
-.star-icon {
-  font-size: 16px !important;
-  line-height: inherit !important;
-  &:before {
-    top: 0;
-    color:  $yellow !important;
-  }
 }
 
 mat-icon {
@@ -244,14 +176,10 @@ mat-icon {
 .clearfix {
   &:before,
   &:after {
-    content: " "; // 1
-    display: table; // 2
+    content: " ";
+    display: table;
   }
   &:after {
     clear: both;
   }
-}
-
-.remove-margin {
-  margin: 0 !important;
 }

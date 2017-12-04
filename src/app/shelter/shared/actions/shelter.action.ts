@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 import {
   ShelterCreateRequestDto,
   ShelterCreateResponseDto,
-  ShelterDto
+  ShelterListRequestDto,
+  ShelterListResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export const CREATE = '[Shelter] Create';
@@ -13,6 +14,10 @@ export const CREATE_FAILURE = '[Shelter] Create Failure';
 export const LIST = '[Shelter] List';
 export const LIST_SUCCESS = '[Shelter] List Success';
 export const LIST_FAILURE = '[Shelter] List Failure';
+
+export const MORE = '[Shelter] More';
+export const MORE_SUCCESS = '[Shelter] More Success';
+export const MORE_FAILURE = '[Shelter] More Failure';
 
 /**
  * Create
@@ -41,17 +46,38 @@ export class CreateFailure implements Action {
 export class List implements Action {
   readonly type = LIST;
 
-  constructor(public payload: any = null) {}
+  constructor(public payload: ShelterListRequestDto = null) {}
 }
 
 export class ListSuccess implements Action {
   readonly type = LIST_SUCCESS;
 
-  constructor(public payload: ShelterDto) {}
+  constructor(public payload: ShelterListResponseDto) {}
 }
 
 export class ListFailure implements Action {
   readonly type = LIST_FAILURE;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * More
+ */
+export class More implements Action {
+  readonly type = MORE;
+
+  constructor(public payload: ShelterListRequestDto = null) {}
+}
+
+export class MoreSuccess implements Action {
+  readonly type = MORE_SUCCESS;
+
+  constructor(public payload: ShelterListResponseDto) {}
+}
+
+export class MoreFailure implements Action {
+  readonly type = MORE_FAILURE;
 
   constructor(public payload: any) {}
 }
@@ -62,4 +88,7 @@ export type Actions =
   | CreateFailure
   | List
   | ListSuccess
-  | ListFailure;
+  | ListFailure
+  | More
+  | MoreSuccess
+  | MoreFailure;

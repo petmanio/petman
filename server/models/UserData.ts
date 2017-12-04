@@ -10,8 +10,9 @@ import {
   Table,
   UpdatedAt
 } from 'sequelize-typescript';
+
 import { User } from './User';
-import { Gender } from '../../common/enums/index';
+import { Gender } from '../../common/enums';
 
 @Table({
   tableName: 'user_data',

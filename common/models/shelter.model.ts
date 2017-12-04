@@ -1,9 +1,6 @@
 import { Type } from 'class-transformer';
 import { UserDto } from './user.model';
-
-function userDtoGetter() {
-  return UserDto;
-}
+import { CommonListRequestDto, CommonListResponse } from '../shared';
 
 export class ShelterDto {
   id: number;
@@ -14,8 +11,7 @@ export class ShelterDto {
   created: Date;
   updated: Date;
 
-  // @Type(() => UserDto)
-  @Type(userDtoGetter)
+  @Type(() => UserDto)
   user: UserDto;
 }
 
@@ -26,4 +22,14 @@ export class ShelterCreateRequestDto {
 }
 
 export class ShelterCreateResponseDto extends ShelterDto {
+}
+
+export class ShelterListRequestDto extends CommonListRequestDto {
+}
+
+export class ShelterListResponseDto {
+  total: number;
+
+  @Type(() => ShelterDto)
+  list: ShelterDto[];
 }

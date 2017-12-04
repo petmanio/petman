@@ -31,8 +31,36 @@ export class ShelterEffects {
       tap(shelter => this.router.navigate(['shelters', shelter.id]))
     );
 
+  @Effect()
+  list$ = this.actions$
+    .ofType(Shelter.LIST)
+    .pipe(
+      map((action: Shelter.List) => action.payload),
+      switchMap(query => {
+        return this.shelterService.list(query)
+          .pipe(
+            map(response => new Shelter.ListSuccess(response)),
+            catchError(error => of(new Shelter.ListFailure(error)))
+          );
+      })
+    );
+
+  @Effect()
+  more$ = this.actions$
+    .ofType(Shelter.MORE)
+    .pipe(
+      map((action: Shelter.More) => action.payload),
+      switchMap(query => {
+        return this.shelterService.list(query)
+          .pipe(
+            map(response => new Shelter.MoreSuccess(response)),
+            catchError(error => of(new Shelter.MoreFailure(error)))
+          );
+      })
+    );
+
   constructor(private actions$: Actions,
-              private shelterService: ShelterService,
-              private router: Router) {
+              private router: Router,
+              private shelterService: ShelterService) {
   }
 }

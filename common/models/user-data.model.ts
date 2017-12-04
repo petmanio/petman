@@ -1,10 +1,6 @@
 import { Type } from 'class-transformer';
 import { UserDto } from './user.model';
-import { Gender } from '../enums/index';
-
-function userDtoGetter() {
-  return UserDto;
-}
+import { Gender } from '../enums';
 
 export class UserDataDto {
   gender: Gender;
@@ -18,7 +14,6 @@ export class UserDataDto {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  // @Type(() => UserDto)
-  @Type(userDtoGetter)
+  @Type(() => UserDto)
   user: UserDto;
 }

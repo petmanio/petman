@@ -29,3 +29,21 @@ $theme: mat-light-theme($primary, $accent, $warn);
 // (optional) Additional themes
 //@include covalent-markdown-theme($theme);
 //@include covalent-highlight-theme();
+
+// TODO: remove after covalent style fix
+html .mat-card {
+  padding: 24px;
+  margin: auto;
+
+  @media (max-width: 600px) {
+    .mat-card {
+      padding: 24px 16px;
+    }
+  }
+}
+
+.mat-card-image {
+  width: calc(100% + 48px) !important;
+  margin: 0 -24px 16px -24px !important;
+  max-width: initial;
+}
