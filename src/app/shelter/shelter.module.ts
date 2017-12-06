@@ -3,10 +3,18 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatPaginatorModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorModule
+} from '@angular/material';
 import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -24,16 +32,18 @@ import { reducers } from './shared/reducers';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatListModule,
     MatInputModule,
+    MatButtonModule,
     MatPaginatorModule,
     CovalentFileModule,
     CovalentLoadingModule,
     CovalentMessageModule,
     ImageUploadModule.forRoot(),
     NgxMasonryModule,
+    InfiniteScrollModule,
 
     StoreModule.forFeature('shelter', reducers),
     EffectsModule.forFeature([ShelterEffects]),

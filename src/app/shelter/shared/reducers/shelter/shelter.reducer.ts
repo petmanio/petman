@@ -45,11 +45,11 @@ export function reducer(state = initialState, action: shelter.Actions): State {
     }
 
     case shelter.LIST_SUCCESS: {
-      return assign({}, state, {total: action.payload.total}, adapter.addAll(action.payload.list, state));
+      return assign({}, state, adapter.addAll(action.payload.list, state), {total: action.payload.total});
     }
 
     case shelter.MORE_SUCCESS: {
-      return assign({}, state, {total: action.payload.total}, adapter.addMany(action.payload.list, state));
+      return assign({}, state, adapter.addMany(action.payload.list, state), {total: action.payload.total});
     }
 
     default: {

@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FileHolder } from 'angular2-image-upload';
+import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
+import { FileHolder } from 'angular2-image-upload';
 import { cloneDeep, findIndex, map } from 'lodash';
 
 import * as fromShelter from '../shared/reducers';
@@ -19,11 +20,14 @@ export interface IAddPageComponent {
   styleUrls: ['./add-page.component.scss'],
 })
 export class AddPageComponent implements IAddPageComponent {
-  pending$ = this.store.select(fromShelter.getAddPagePending);
-  error$ = this.store.select(fromShelter.getAddPageError);
+  error$: Observable<any>;
+  pending$: Observable<boolean>;
   form: FormGroup;
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder, private store: Store<fromShelter.State>) {
+    this.error$ = this.store.select(fromShelter.getAddPageError);
+    this.pending$ = this.store.select(fromShelter.getAddPagePending);
+
     this.form = fb.group({
       price: ['', Validators.required],
       description: ['', Validators.required],

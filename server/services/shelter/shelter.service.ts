@@ -7,8 +7,14 @@ import { ShelterCreateRequestDto } from '../../../common/models/shelter.model';
 import { AuthProvider } from '../../models/AuthProvider';
 
 const createService = async (body: ShelterCreateRequestDto, user: User) => {
-  const shelter = new Shelter(assign({}, body, { userId: user.id }));
-  return await shelter.save();
+  let shelter = new Shelter(assign({}, body, { userId: user.id }));
+  shelter = await shelter.save();
+  return await Shelter.findOne<Shelter>({
+    where: {id: shelter.id}, include: [{
+      model: User,
+      include: [AuthProvider, UserData]
+    }]
+  });
 };
 
 const listService = async (offset: number, limit: number) => {

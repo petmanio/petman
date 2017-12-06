@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,6 +13,7 @@ import { Config } from '../../shared/components/card/card.component';
 
 export interface IListPageComponent {
   getCardConfig(item: ShelterDto): Config;
+  onLoadMore(): void;
 }
 
 @Component({
@@ -22,12 +23,21 @@ export interface IListPageComponent {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent  {
-  offset = 0;
+  list: ShelterDto[];
   limit = 12;
+  total: number;
+  offset = 0;
   selectedUser: UserDto;
   list$: Observable<ShelterDto[]>;
   total$: Observable<number>;
+  error$: Observable<any>;
+  pending$: Observable<boolean>;
   selectedUser$: Observable<UserDto>;
+
+  get canLoadMore(): boolean {
+    return this.offset + this.limit < this.total;
+  }
+
   private subscriptions: Subscription[] = [];
 
   private get listRequest(): ShelterListRequestDto {
@@ -40,10 +50,18 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   constructor(private store: Store<fromShelter.State>, private datePipe: DatePipe) {
     this.list$ = this.store.select(fromShelter.getAllShelters);
     this.total$ = this.store.select(fromShelter.getTotalShelters);
+    this.error$ = this.store.select(fromShelter.getListPageError);
+    this.pending$ = this.store.select(fromShelter.getListPagePending);
     this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
 
     const userSubscription = this.selectedUser$.subscribe(user => this.selectedUser = user);
-    this.subscriptions.push(userSubscription);
+    const listSubscription = this.list$.subscribe(list => {
+      this.list = list;
+      this.offset = Math.max(0, this.list.length - this.limit);
+    });
+    const totalSubscription = this.total$.subscribe(user => this.total = user);
+
+    this.subscriptions.push(...[userSubscription, listSubscription, totalSubscription]);
   }
 
   ngOnInit(): void {
@@ -62,5 +80,12 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       image: item.images[0],
       content: item.description
     };
+  }
+
+  onLoadMore(): void {
+    if (this.canLoadMore) {
+      this.offset += this.limit;
+      this.store.dispatch(new Shelter.More(this.listRequest));
+    }
   }
 }
