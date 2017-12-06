@@ -5,6 +5,8 @@ import { MatButtonModule, MatCardModule } from '@angular/material';
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { CardComponent } from './components/card/card.component';
+import { MuuriComponent } from './components/muuri/muuri.component';
+import { MuuriItemComponent } from './components/muuri-item/muuri-item.component';
 
 @NgModule({
   imports: [
@@ -12,9 +14,9 @@ import { CardComponent } from './components/card/card.component';
     MatCardModule,
     MatButtonModule
   ],
-  declarations: [CardComponent],
+  declarations: [CardComponent, MuuriComponent, MuuriItemComponent],
   providers: [UtilService, LocalStorageService],
-  exports: [CardComponent]
+  exports: [CardComponent, MuuriComponent, MuuriItemComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
