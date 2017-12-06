@@ -30,22 +30,6 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   selectedUser$: Observable<UserDto>;
   private subscriptions: Subscription[] = [];
 
-  get addCardConfig(): Config {
-    let config: Config = {
-      image: '/assets/logo.png',
-      title: '',
-      subtitle: 'Add'
-    };
-    if (this.selectedUser) {
-      config = {
-        avatar: this.selectedUser.userData.avatar,
-        title: this.selectedUser.userData.name,
-        subtitle: ''
-      };
-    }
-    return config;
-  }
-
   private get listRequest(): ShelterListRequestDto {
     return {
       limit: this.limit,

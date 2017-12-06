@@ -17,11 +17,16 @@ html {
   display: none !important;
 }
 
+.pm-content-spacer {
+  @include desktop {
+    margin: -10px 25px !important;
+  }
+}
+
 .pm-fab {
   position: fixed !important;
   right: 20px;
   bottom: 10px;
-  color: #ffffff !important;
 }
 
 .dont-break-out {

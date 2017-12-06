@@ -3,7 +3,7 @@ import { FbUser } from '../../../common/models/user.model';
 import { AuthProvider } from '../../models/AuthProvider';
 import { User } from '../../models/User';
 import { UserData } from '../../models/UserData';
-import { AuthProviderType } from '../../../common/enums/index';
+import { AuthProviderType } from '../../../common/enums';
 
 const { Facebook, FacebookApiException } = require('fb');
 

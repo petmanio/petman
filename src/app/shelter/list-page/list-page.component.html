@@ -1,11 +1,13 @@
-<div class="columns is-marginless">
+<div class="columns is-marginless is-hidden-mobile">
+  <div class="column has-text-right">
+    <a routerLink="add" mat-raised-button color="accent">Add new application</a>
+  </div>
+</div>
+<div class="columns is-marginless pm-content-spacer">
   <div class="column">
-    <ngx-masonry #masonry [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }"
+    <ngx-masonry [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }"
                  [useImagesLoaded]="true"
                  class="columns">
-      <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet">
-        <app-shared-card [config]="addCardConfig"></app-shared-card>
-      </ngx-masonry-item>
       <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
         <app-shared-card [config]="getCardConfig(item)"></app-shared-card>
       </ngx-masonry-item>
