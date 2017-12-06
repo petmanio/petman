@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatCardModule } from '@angular/material';
 
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
@@ -10,8 +10,7 @@ import { CardComponent } from './components/card/card.component';
   imports: [
     CommonModule,
     MatCardModule,
-    MatButtonModule,
-    MatListModule
+    MatButtonModule
   ],
   declarations: [CardComponent],
   providers: [UtilService, LocalStorageService],

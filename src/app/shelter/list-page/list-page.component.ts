@@ -1,28 +1,73 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
+import * as fromAuth from '../../auth/shared/reducers';
 import * as fromShelter from '../shared/reducers';
 import * as Shelter from '../shared/actions/shelter.action';
 import { ShelterDto, ShelterListRequestDto } from '../../../../common/models/shelter.model';
+import { UserDto } from '../../../../common/models/user.model';
 import { Config } from '../../shared/components/card/card.component';
+
+export interface IListPageComponent {
+  getCardConfig(item: ShelterDto): Config;
+}
 
 @Component({
   selector: 'app-shelter-list-page',
   templateUrl: './list-page.component.html',
   styleUrls: ['./list-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListPageComponent implements OnInit  {
+export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent  {
   offset = 0;
   limit = 12;
-  total$ = this.store.select(fromShelter.getTotalShelters);
-  list$ = this.store.select(fromShelter.getAllShelters);
+  selectedUser: UserDto;
+  list$: Observable<ShelterDto[]>;
+  total$: Observable<number>;
+  selectedUser$: Observable<UserDto>;
+  private subscriptions: Subscription[] = [];
+
+  get addCardConfig(): Config {
+    let config: Config = {
+      image: '/assets/logo.png',
+      title: '',
+      subtitle: 'Add'
+    };
+    if (this.selectedUser) {
+      config = {
+        avatar: this.selectedUser.userData.avatar,
+        title: this.selectedUser.userData.name,
+        subtitle: ''
+      };
+    }
+    return config;
+  }
+
+  private get listRequest(): ShelterListRequestDto {
+    return {
+      limit: this.limit,
+      offset: this.offset
+    };
+  }
 
   constructor(private store: Store<fromShelter.State>, private datePipe: DatePipe) {
+    this.list$ = this.store.select(fromShelter.getAllShelters);
+    this.total$ = this.store.select(fromShelter.getTotalShelters);
+    this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
+
+    const userSubscription = this.selectedUser$.subscribe(user => this.selectedUser = user);
+    this.subscriptions.push(userSubscription);
   }
 
   ngOnInit(): void {
     this.store.dispatch(new Shelter.List(this.listRequest));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   getCardConfig(item: ShelterDto): Config {
@@ -32,13 +77,6 @@ export class ListPageComponent implements OnInit  {
       subtitle: this.datePipe.transform(item.created),
       image: item.images[0],
       content: item.description
-    };
-  }
-
-  private get listRequest(): ShelterListRequestDto {
-    return {
-      limit: this.limit,
-      offset: this.offset
     };
   }
 }

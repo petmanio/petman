@@ -5,9 +5,8 @@
     <mat-card-title>{{config.title}}</mat-card-title>
     <mat-card-subtitle>{{config.subtitle}}</mat-card-subtitle>
   </mat-card-header>
-  <mat-divider></mat-divider>
   <img mat-card-image *ngIf="config.image" [src]="config.image">
-  <mat-card-content>
+  <mat-card-content *ngIf="config.content">
     <p>{{config.content}}</p>
   </mat-card-content>
   <mat-card-actions class="has-text-right">

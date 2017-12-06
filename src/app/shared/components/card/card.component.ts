@@ -5,7 +5,7 @@ export interface Config {
   title: string;
   subtitle: string;
   image?: string;
-  content: string;
+  content?: string;
 }
 
 @Component({
