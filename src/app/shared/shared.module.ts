@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material';
 
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
@@ -12,6 +12,7 @@ import { MuuriItemComponent } from './components/muuri-item/muuri-item.component
   imports: [
     CommonModule,
     MatCardModule,
+    MatIconModule,
     MatButtonModule
   ],
   declarations: [CardComponent, MuuriComponent, MuuriItemComponent],
