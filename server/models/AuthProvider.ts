@@ -11,7 +11,7 @@ import {
   UpdatedAt
 } from 'sequelize-typescript';
 import { User } from './User';
-import { AuthProviderType } from '../../common/enums/index';
+import { AuthProviderType } from '../../common/enums';
 
 @Table({
   tableName: 'auth_provider',

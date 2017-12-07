@@ -23,7 +23,7 @@
       <mat-icon>add</mat-icon>
     </button>
   </div>
-  <div class="columns is-marginless" [hidden]="!(list$ | async)?.length">
+  <div class="columns is-marginless" [hidden]="!(list$ | appSharedAsyncDelay:1000 | async)?.length">
     <div class="column has-text-centered">
       <button mat-raised-button [disabled]="!canLoadMore" (click)="onLoadMore()" i18n>Load more</button>
     </div>

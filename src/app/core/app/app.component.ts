@@ -1,10 +1,11 @@
 import 'rxjs/add/observable/combineLatest';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import * as fromRoot from '../shared/reducers';
 import * as fromAuth from '../../auth/shared/reducers';
@@ -34,12 +35,13 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
   sideNavState: boolean;
   private subscriptions: Subscription[] = [];
 
-  constructor(public utilService: UtilService,
+  constructor(private utilService: UtilService,
               private store: Store<fromRoot.State>,
               private localStorageService: LocalStorageService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private breakpointObserver: BreakpointObserver) {
+              private breakpointObserver: BreakpointObserver,
+              @Inject(PLATFORM_ID) protected platformId: Object) {
     this.utilService.externalScripts();
     this.utilService.registerNewIcons();
     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
@@ -53,7 +55,12 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
     this.store.dispatch(new Auth.ChangeUser(+this.localStorageService.getItem('selectedUserId')));
     this.store.dispatch(new Layout.CloseSidenav());
 
-    const sidenavSubscription = this.showSidenav$.subscribe(state =>  this.sideNavState = state);
+    const sidenavSubscription = this.showSidenav$.subscribe(state =>  {
+      this.sideNavState = state;
+      if (isPlatformBrowser(this.platformId)) {
+        setTimeout(() => window.dispatchEvent(new Event('resize')), 300);
+      }
+    });
     const routerBreakpointSubscription = Observable.combineLatest(
       this.router.events,
       this.breakpointObserver.observe([Breakpoints.Web]))
