@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export interface Config {
   avatar?: string;
@@ -15,6 +15,7 @@ export interface Config {
 })
 export class CardComponent implements OnInit {
   @Input() config: Config = <Config>{};
+  @Output() onShare = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {

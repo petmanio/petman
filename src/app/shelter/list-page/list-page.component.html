@@ -15,7 +15,7 @@
                    [useImagesLoaded]="true"
                    class="columns">
         <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
-          <app-shared-card [config]="getCardConfig(item)"></app-shared-card>
+          <app-shared-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-shared-card>
         </ngx-masonry-item>
       </ngx-masonry>
     </div>

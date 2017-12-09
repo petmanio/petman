@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -38,6 +39,7 @@ import { reducers } from './shared/reducers';
     MatInputModule,
     MatButtonModule,
     MatPaginatorModule,
+    MatDialogModule,
     CovalentFileModule,
     CovalentLoadingModule,
     CovalentMessageModule,

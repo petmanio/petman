@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { DatePipe, DOCUMENT, Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
@@ -10,10 +12,12 @@ import * as Shelter from '../shared/actions/shelter.action';
 import { ShelterDto, ShelterListRequestDto } from '../../../../common/models/shelter.model';
 import { UserDto } from '../../../../common/models/user.model';
 import { Config } from '../../shared/components/card/card.component';
+import { ShareDialogComponent } from '../../shared/components/share-dialog/share-dialog.component';
 
 export interface IListPageComponent {
   getCardConfig(item: ShelterDto): Config;
   onLoadMore(): void;
+  onShare(shelter: ShelterDto): void;
 }
 
 @Component({
@@ -47,7 +51,12 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     };
   }
 
-  constructor(private store: Store<fromShelter.State>, private datePipe: DatePipe) {
+  constructor(private router: Router,
+              private location: Location,
+              private dialog: MatDialog,
+              private store: Store<fromShelter.State>,
+              private datePipe: DatePipe,
+              @Inject(DOCUMENT) private document: Document) {
     this.list$ = this.store.select(fromShelter.getAllShelters);
     this.total$ = this.store.select(fromShelter.getTotalShelters);
     this.error$ = this.store.select(fromShelter.getListPageError);
@@ -87,5 +96,14 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       this.offset += this.limit;
       this.store.dispatch(new Shelter.More(this.listRequest));
     }
+  }
+
+  onShare(shelter: ShelterDto): void {
+    const url = this.document.location.origin + this.router.createUrlTree(['shelters', shelter.id]).toString();
+    const _dialogRef = this.dialog.open(ShareDialogComponent, {
+      width: '300px',
+      data: { url }
+    });
+    _dialogRef.afterClosed().subscribe(shareOptions => {});
   }
 }

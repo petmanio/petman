@@ -10,6 +10,6 @@
     <p>{{config.content}}</p>
   </mat-card-content>
   <mat-card-actions class="has-text-right">
-    <button mat-raised-button color="primary">SHARE</button>
+    <button mat-raised-button color="primary" (click)="onShare.emit()" i18n>SHARE</button>
   </mat-card-actions>
 </mat-card>

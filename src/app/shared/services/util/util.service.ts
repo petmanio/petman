@@ -20,6 +20,17 @@ export class UtilService implements IUtilService {
       (activatedRoute.snapshot.children[0].children.length && activatedRoute.snapshot.children[0].children[0].data[key]);
   }
 
+  static getShareUrl(network: string, url: string, redirectUrl?: string, appId?: string | number): string {
+    const networks = {
+      facebook: `https://www.facebook.com/dialog/share?app_id=${appId}&href=${url}&display=popup&redirect_uri=${redirectUrl}`,
+      vkontakte: `http://vkontakte.ru/share.php?url=${url}`,
+      twitter: `https://twitter.com/intent/tweet?url=${url}&via=Petman&related=Petman,Pets`,
+      odnoklassniki: ``
+    };
+
+    return networks[network];
+  }
+
   constructor(@Inject(PLATFORM_ID) protected platformId: Object,
               private matIconRegistry: MatIconRegistry,
               private sanitizer: DomSanitizer) {
@@ -100,8 +111,13 @@ export class UtilService implements IUtilService {
   }
 
   registerNewIcons(): void {
-    this.matIconRegistry.addSvgIcon('app_pet_health', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/stethoscope.svg'));
-    this.matIconRegistry.addSvgIcon('app_facebook', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/facebook.svg'));
+    this.matIconRegistry
+      .addSvgIconInNamespace('app', 'pet_health', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/stethoscope.svg'))
+      .addSvgIconInNamespace('app', 'facebook', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/facebook.svg'))
+      .addSvgIconInNamespace('app', 'vkontakte', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/vkontakte.svg'))
+      .addSvgIconInNamespace('app', 'twitter', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/twitter.svg'))
+      .addSvgIconInNamespace('app', 'skype', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/skype.svg'))
+      .addSvgIconInNamespace('app', 'gplus', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/gplus.svg'))
+      .addSvgIconInNamespace('app', 'odnoklassniki', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/odnoklassniki.svg'));
   }
-
 }
