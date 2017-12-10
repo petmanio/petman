@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -16,6 +17,7 @@ import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from
 import { ImageUploadModule } from 'angular2-image-upload';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -32,6 +34,7 @@ import { reducers } from './shared/reducers';
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
@@ -47,6 +50,7 @@ import { reducers } from './shared/reducers';
     ImageUploadModule.forRoot(),
     NgxMasonryModule,
     InfiniteScrollModule,
+    NgxGalleryModule,
 
     StoreModule.forFeature('shelter', reducers),
     EffectsModule.forFeature([ShelterEffects]),

@@ -8,6 +8,10 @@ export interface Config {
   content?: string;
 }
 
+export interface ICardComponent {
+  onShareLocal($event: Event): void;
+}
+
 @Component({
   selector: 'app-shared-card',
   templateUrl: './card.component.html',
@@ -19,6 +23,12 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onShareLocal($event: Event): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.onShare.emit();
   }
 
 }
