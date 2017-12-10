@@ -17,7 +17,7 @@ export interface ICardComponent {
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, ICardComponent {
   @Input() config: Config = <Config>{};
   @Output() onShare = new EventEmitter();
   constructor() { }
