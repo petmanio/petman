@@ -15,6 +15,7 @@ export class ShelterDto {
   user: UserDto;
 }
 
+// POST shelters
 export class ShelterCreateRequestDto {
   price: string;
   description: string;
@@ -24,6 +25,7 @@ export class ShelterCreateRequestDto {
 export class ShelterCreateResponseDto extends ShelterDto {
 }
 
+// GET shelters
 export class ShelterListRequestDto extends CommonListRequestDto {
 }
 
@@ -33,3 +35,5 @@ export class ShelterListResponseDto {
   @Type(() => ShelterDto)
   list: ShelterDto[];
 }
+
+// GET shelters/:id

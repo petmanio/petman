@@ -12,7 +12,7 @@ import { ShelterDto } from '../../../../../../common/models/shelter.model';
  * any additional interface properties.
  */
 export interface State extends EntityState<ShelterDto> {
-  selectedId: string | null;
+  selectedId: number | null;
   total: number;
 }
 
@@ -44,12 +44,20 @@ export function reducer(state = initialState, action: shelter.Actions): State {
       return assign({}, state, adapter.addOne(action.payload, state));
     }
 
+    case shelter.LOAD_SUCCESS: {
+      return assign({}, state, adapter.addOne(action.payload, state));
+    }
+
     case shelter.LIST_SUCCESS: {
       return assign({}, state, adapter.addAll(action.payload.list, state), {total: action.payload.total});
     }
 
     case shelter.MORE_SUCCESS: {
       return assign({}, state, adapter.addMany(action.payload.list, state), {total: action.payload.total});
+    }
+
+    case shelter.SELECT: {
+      return assign({}, state, {selectedId: action.payload});
     }
 
     default: {

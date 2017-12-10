@@ -14,7 +14,7 @@ import { LoginFormSocialComponent } from './shared/components/login-form-social/
 import { AuthGuard } from './shared/guards/auth-guard/auth.guard';
 import { AuthService } from './shared/services/auth/auth.service';
 import { AuthEffects } from './shared/effects/auth.effects';
-import { reducers } from './shared/reducers/index';
+import { reducers } from './shared/reducers';
 
 @NgModule({
   imports: [

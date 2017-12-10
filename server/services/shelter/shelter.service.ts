@@ -23,4 +23,13 @@ const listService = async (offset: number, limit: number) => {
   return { list, total };
 };
 
-export { createService, listService };
+const byIdService = async (id: number) => {
+  return await Shelter.findOne<Shelter>({
+    where: { id }, include: [{
+      model: User,
+      include: [AuthProvider, UserData]
+    }]
+  });
+};
+
+export { createService, listService, byIdService };

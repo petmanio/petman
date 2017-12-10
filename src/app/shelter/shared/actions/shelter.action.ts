@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import {
   ShelterCreateRequestDto,
-  ShelterCreateResponseDto,
+  ShelterCreateResponseDto, ShelterDto,
   ShelterListRequestDto,
   ShelterListResponseDto
 } from '../../../../../common/models/shelter.model';
@@ -11,6 +11,10 @@ export const CREATE = '[Shelter] Create';
 export const CREATE_SUCCESS = '[Shelter] Create Success';
 export const CREATE_FAILURE = '[Shelter] Create Failure';
 
+export const LOAD = '[Shelter] Load';
+export const LOAD_SUCCESS = '[Shelter] Load Success';
+export const LOAD_FAILURE = '[Shelter] Load Failure';
+
 export const LIST = '[Shelter] List';
 export const LIST_SUCCESS = '[Shelter] List Success';
 export const LIST_FAILURE = '[Shelter] List Failure';
@@ -18,6 +22,8 @@ export const LIST_FAILURE = '[Shelter] List Failure';
 export const MORE = '[Shelter] More';
 export const MORE_SUCCESS = '[Shelter] More Success';
 export const MORE_FAILURE = '[Shelter] More Failure';
+
+export const SELECT = '[Shelter] Select';
 
 /**
  * Create
@@ -36,6 +42,27 @@ export class CreateSuccess implements Action {
 
 export class CreateFailure implements Action {
   readonly type = CREATE_FAILURE;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * Load
+ */
+export class Load implements Action {
+  readonly type = LOAD;
+
+  constructor(public payload: number) {}
+}
+
+export class LoadSuccess implements Action {
+  readonly type = LOAD_SUCCESS;
+
+  constructor(public payload: ShelterDto) {}
+}
+
+export class LoadFailure implements Action {
+  readonly type = LOAD_FAILURE;
 
   constructor(public payload: any) {}
 }
@@ -82,13 +109,23 @@ export class MoreFailure implements Action {
   constructor(public payload: any) {}
 }
 
+export class Select implements Action {
+  readonly type = SELECT;
+
+  constructor(public payload: number) {}
+}
+
 export type Actions =
   | Create
   | CreateSuccess
   | CreateFailure
+  | Load
+  | LoadSuccess
+  | LoadFailure
   | List
   | ListSuccess
   | ListFailure
   | More
   | MoreSuccess
-  | MoreFailure;
+  | MoreFailure
+  | Select;

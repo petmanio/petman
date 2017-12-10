@@ -8,13 +8,14 @@ import { forEach } from 'lodash';
 import { environment } from '../../../../environments/environment';
 import {
   ShelterCreateRequestDto,
-  ShelterCreateResponseDto,
+  ShelterCreateResponseDto, ShelterDto,
   ShelterListRequestDto,
   ShelterListResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export interface IShelterService {
   create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto>;
+  getById(id: number): Observable<ShelterDto>;
   list(query: ShelterListRequestDto): Observable<ShelterListResponseDto>;
 }
 
@@ -31,6 +32,12 @@ export class ShelterService implements IShelterService {
       forEach(body.images, file => formData.append('images', file, file.name));
     }
     return this.http.post<ShelterCreateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData);
+  }
+
+  getById(id: number): Observable<ShelterDto> {
+    return this.http
+      .get<ShelterDto>(`${environment.apiEndpoint}/api/shelters/${id}`)
+      .map(response => plainToClass(ShelterDto, response, { enableCircularCheck: false }));
   }
 
   list(query: ShelterListRequestDto): Observable<ShelterListResponseDto> {

@@ -25,6 +25,7 @@ import { AddPageComponent } from './add-page/add-page.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { ShelterService } from './shared/services/shelter.service';
+import { ShelterExistsGuard } from './shared/guards/shelter-exists/shelter-exists.guard';
 import { ShelterEffects } from './shared/effects/shelter.effects';
 import { reducers } from './shared/reducers';
 
@@ -59,7 +60,7 @@ import { reducers } from './shared/reducers';
     DetailsPageComponent,
     EditPageComponent,
   ],
-  providers: [DatePipe, ShelterService]
+  providers: [DatePipe, ShelterService, ShelterExistsGuard]
 })
 export class ShelterModule {
   static forRoot(): ModuleWithProviders {
