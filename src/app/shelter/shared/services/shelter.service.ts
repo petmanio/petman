@@ -31,7 +31,8 @@ export class ShelterService implements IShelterService {
       formData.append('price', body.price);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
-    return this.http.post<ShelterCreateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData);
+    return this.http.post<ShelterCreateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData)
+      .map(response => plainToClass(ShelterCreateResponseDto, response, { enableCircularCheck: false }));
   }
 
   getById(id: number): Observable<ShelterDto> {
