@@ -5,6 +5,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { environment } from '../../../../environments/environment';
+import { NgxGalleryOptions } from 'ngx-gallery';
 
 export interface IUtilService {
   externalScripts(): void;
@@ -13,6 +14,21 @@ export interface IUtilService {
 
 @Injectable()
 export class UtilService implements IUtilService {
+  static galleryOptions: NgxGalleryOptions[] = [
+    {
+      previewCloseOnEsc: true,
+      previewKeyboardNavigation: true,
+      imageSwipe: true,
+      thumbnailsSwipe: true,
+      previewSwipe: true,
+      thumbnailsRemainingCount: true,
+      thumbnailsColumns: 4,
+      width: '80%',
+      height: '500px'
+    },
+    { breakpoint: 600, thumbnails: false, width: '100%', height: '300px'},
+  ];
+
   static getRouteDataByKey(activatedRoute, key: string): any {
     // TODO: Find better way to get data from activated route
     return activatedRoute.snapshot.data[key] ||
@@ -118,6 +134,7 @@ export class UtilService implements IUtilService {
       .addSvgIconInNamespace('app', 'twitter', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/twitter.svg'))
       .addSvgIconInNamespace('app', 'skype', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/skype.svg'))
       .addSvgIconInNamespace('app', 'gplus', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/gplus.svg'))
-      .addSvgIconInNamespace('app', 'odnoklassniki', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/odnoklassniki.svg'));
+      .addSvgIconInNamespace('app', 'odnoklassniki', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/odnoklassniki.svg'))
+      .addSvgIconInNamespace('app', 'messenger', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/messenger.svg'));
   }
 }

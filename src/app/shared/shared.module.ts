@@ -12,6 +12,7 @@ import {
 } from '@angular/material';
 
 import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
+import { GalleryImagesPipe } from './pipes/gallery-images/gallery-images.pipe';
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { CardComponent } from './components/card/card.component';
@@ -31,9 +32,9 @@ import { ShareDialogComponent } from './components/share-dialog/share-dialog.com
     MatDialogModule,
     MatFormFieldModule
   ],
-  declarations: [AsyncDelayPipe, CardComponent, MuuriComponent, MuuriItemComponent, ShareDialogComponent],
+  declarations: [AsyncDelayPipe, GalleryImagesPipe, CardComponent, MuuriComponent, MuuriItemComponent, ShareDialogComponent],
   providers: [UtilService, LocalStorageService],
-  exports: [AsyncDelayPipe, CardComponent, MuuriComponent, MuuriItemComponent, ShareDialogComponent],
+  exports: [AsyncDelayPipe, GalleryImagesPipe, CardComponent, MuuriComponent, MuuriItemComponent, ShareDialogComponent],
   entryComponents: [ShareDialogComponent]
 })
 export class SharedModule {

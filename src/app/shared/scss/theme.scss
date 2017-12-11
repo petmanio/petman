@@ -50,8 +50,9 @@ html .mat-card {
 
 // Unfortunately transform changes positioning context and preview won't work properly.
 // To avoid this situation you have to override material styles
-.mat-sidenav-container,
-.mat-sidenav-content,
-.mat-tab-body-content {
-  transform: none !important;
-}
+// .mat-sidenav-container,
+// .mat-sidenav-content,
+// .mat-tab-body-content,
+// .mat-sidenav {
+//   transform: none !important;
+// }
