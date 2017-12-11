@@ -2,21 +2,42 @@
   <div class="column is-10 is-offset-1">
     <div class="columns">
       <div class="column is-3 has-text-centered">
-        <div mat-card-avatar class="pm-card-avatar pm-avatar-medium"
+        <div mat-card-avatar
+             class="pm-card-avatar pm-avatar-medium"
              [ngStyle]="{'background-image': 'url(' + (shelter$ | async).user.userData.avatar + ')'}"></div>
-        <div class="is-size-4 has-text-grey">{{(shelter$ | async).user.userData.name}}</div><br>
+        <div class="is-size-4 has-text-grey">{{(shelter$ | async).user.userData.name}}</div>
+        <br>
         <div>
-          <a target="_blank" mat-button><mat-icon svgIcon="app:messenger"></mat-icon> Messenger</a>
-          <a target="_blank" mat-button><mat-icon svgIcon="app:facebook"></mat-icon> Facebook</a>
-          <a mat-button i18n><mat-icon>message</mat-icon> Send message</a>
+          <a target="_blank" mat-button>
+            <mat-icon svgIcon="app:messenger"></mat-icon> Messenger</a>
+          <a target="_blank" mat-button>
+            <mat-icon svgIcon="app:facebook"></mat-icon> Facebook</a>
+          <a mat-button i18n>
+            <mat-icon>message</mat-icon> Send message</a>
         </div>
       </div>
       <div class="column is-9">
         <div class="pm-gallery-custom">
           <ngx-gallery [options]="galleryOptions"
-                       [images]="(shelter$ | async)?.images | appSharedGalleryImages"></ngx-gallery>
+                       [images]="(shelter$ | async)?.images | appSharedGalleryImages"
+                       (previewOpen)="onPreviewOpen()"
+                       (previewClose)="onPreviewClose()"></ngx-gallery>
+        </div>
+        <div class="box">
+          <article class="media">
+            <div class="media-content">
+              <div class="content">
+                <p>{{(shelter$ | async)?.description}}</p>
+              </div>
+            </div>
+            <div class="media-right">
+              <button mat-raised-button color="primary" i18n (click)="onShare(shelter$)">Share</button>
+            </div>
+          </article>
         </div>
       </div>
+    </div>
+    <div class="columns">
     </div>
   </div>
 </div>
