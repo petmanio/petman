@@ -13,3 +13,7 @@ export enum TokenType {
   PASSWORD_RESET = 'PASSWORD_RESET',
   RESET_EMAIL = 'RESET_EMAIL'
 }
+
+export enum ModalSize {
+  MEDIUM = '350px'
+}

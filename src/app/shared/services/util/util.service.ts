@@ -76,6 +76,7 @@ export class UtilService implements IUtilService {
 
   externalScripts(): void {
     if (isPlatformBrowser(this.platformId)) {
+      // TODO: use ngx-facebook
       (<any>window).fbAsyncInit = () => {
         FB.init({
           appId: environment.fb.appId,

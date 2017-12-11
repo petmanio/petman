@@ -1,18 +1,19 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DatePipe, DOCUMENT, Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Store } from '@ngrx/store';
 
-import * as fromAuth from '../../auth/shared/reducers';
-import * as fromShelter from '../shared/reducers';
-import * as Shelter from '../shared/actions/shelter.action';
+import { ModalSize } from '../../../../common/enums';
 import { ShelterDto, ShelterListRequestDto } from '../../../../common/models/shelter.model';
 import { UserDto } from '../../../../common/models/user.model';
 import { Config } from '../../shared/components/card/card.component';
 import { ShareDialogComponent } from '../../shared/components/share-dialog/share-dialog.component';
+import * as fromAuth from '../../auth/shared/reducers';
+import * as Shelter from '../shared/actions/shelter.action';
+import * as fromShelter from '../shared/reducers';
 
 export interface IListPageComponent {
   getCardConfig(item: ShelterDto): Config;
@@ -26,7 +27,8 @@ export interface IListPageComponent {
   styleUrls: ['./list-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent  {
+export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent {
+  @ViewChild('masonry') masonry;
   list: ShelterDto[];
   limit = 12;
   total: number;
@@ -52,11 +54,11 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   }
 
   constructor(private router: Router,
-              private location: Location,
-              private dialog: MatDialog,
-              private store: Store<fromShelter.State>,
-              private datePipe: DatePipe,
-              @Inject(DOCUMENT) private document: Document) {
+    private location: Location,
+    private dialog: MatDialog,
+    private store: Store<fromShelter.State>,
+    private datePipe: DatePipe,
+    @Inject(DOCUMENT) private document: Document) {
     this.list$ = this.store.select(fromShelter.getAllShelters);
     this.total$ = this.store.select(fromShelter.getTotalShelters);
     this.error$ = this.store.select(fromShelter.getListPageError);
@@ -86,7 +88,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       avatar: item.user.userData.avatar,
       title: item.user.userData.name,
       subtitle: this.datePipe.transform(item.created),
-      image: item.images[0],
+      image: item.images && item.images[0],
       content: item.description
     };
   }
@@ -101,9 +103,9 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   onShare(shelter: ShelterDto): void {
     const url = this.document.location.origin + this.router.createUrlTree(['shelters', shelter.id]).toString();
     const _dialogRef = this.dialog.open(ShareDialogComponent, {
-      width: '300px',
+      width: ModalSize.MEDIUM,
       data: { url }
     });
-    _dialogRef.afterClosed().subscribe(shareOptions => {});
+    _dialogRef.afterClosed().subscribe(shareOptions => { });
   }
 }

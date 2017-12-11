@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
@@ -10,6 +11,7 @@ import {
   MatInputModule,
   MatListModule
 } from '@angular/material';
+import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
 import { GalleryImagesPipe } from './pipes/gallery-images/gallery-images.pipe';
@@ -23,6 +25,8 @@ import { ShareDialogComponent } from './components/share-dialog/share-dialog.com
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
     FormsModule,
     MatCardModule,
     MatIconModule,
@@ -30,7 +34,8 @@ import { ShareDialogComponent } from './components/share-dialog/share-dialog.com
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ShareButtonsModule.forRoot()
   ],
   declarations: [AsyncDelayPipe, GalleryImagesPipe, CardComponent, MuuriComponent, MuuriItemComponent, ShareDialogComponent],
   providers: [UtilService, LocalStorageService],

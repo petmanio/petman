@@ -83,6 +83,7 @@
     "ngx-infinite-scroll": "^0.7.2",
     "ngx-masonry": "^0.5.4",
     "ngx-progressbar": "^2.1.1",
+    "ngx-sharebuttons": "^4.1.4",
     "normalize.css": "^7.0.0",
     "pg": "^6.4.2",
     "request-promise": "^4.2.2",
