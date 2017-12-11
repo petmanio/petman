@@ -19,7 +19,12 @@ const createService = async (body: ShelterCreateRequestDto, user: User) => {
 
 const listService = async (offset: number, limit: number) => {
   const total = await Shelter.count();
-  const list = await Shelter.findAll({ offset, limit, include: [{model: User, include: [AuthProvider, UserData]}] });
+  const list = await Shelter.findAll({
+    offset,
+    limit,
+    order: [['updated', 'DESC']],
+    include: [{model: User, include: [AuthProvider, UserData]}]
+  });
   return { list, total };
 };
 
