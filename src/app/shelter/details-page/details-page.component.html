@@ -28,7 +28,7 @@
             <button mat-raised-button (click)="onShare(shelter$)" i18n>Share</button>
           </p>
           <p class="control" *ngIf="(shelter$ | async)?.isOwner">
-            <button mat-raised-button i18n>Edit</button>
+            <button [routerLink]="['/shelters', shelter.id, 'edit']" mat-raised-button i18n>Edit</button>
           </p>
         </div>
         <div class="box">

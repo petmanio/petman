@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, take, tap, takeLast } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 import * as fromShelter from '../../reducers';
@@ -10,14 +10,10 @@ import * as Shelter from '../../actions/shelter.action';
 import { ShelterService } from '../../services/shelter.service';
 
 @Injectable()
-export class ShelterExistsGuard implements CanActivate {
+export class ExistsGuard implements CanActivate {
   constructor(private router: Router,
               private store: Store<fromShelter.State>,
               private shelterService: ShelterService) {}
-
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    return this.hasData(route.params['id']);
-  }
 
   hasData(id: number): Observable<boolean> {
     return this.hasDataInStore(id)
@@ -50,5 +46,31 @@ export class ShelterExistsGuard implements CanActivate {
           return of(false);
         })
       );
+  }
+
+  // TODO: fix catch 404 error and redirect
+  // getFromStoreOrAPI(id: number): Observable<any> {
+  //   return this.store.select(fromShelter.getShelterEntities)
+  //     .pipe(
+  //       tap(entities => {
+  //         if (!entities[id]) {
+  //           this.store.dispatch(new Shelter.Load(id));
+  //         }
+  //       }),
+  //       filter(entities => !!entities[id]),
+  //       take(1)
+  //     );
+  // }
+
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    return this.hasData(route.params['id']);
+    // return this.getFromStoreOrAPI(route.params['id'])
+    //   .pipe(
+    //     switchMap(() => of(true)),
+    //     catchError(() => {
+    //       this.router.navigate(['/404']);
+    //       return of(false);
+    //     })
+    //   );
   }
 }

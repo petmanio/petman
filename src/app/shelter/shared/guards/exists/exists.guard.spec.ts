@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { combineReducers, Store, StoreModule } from '@ngrx/store';
 // import { cold } from 'jasmine-marbles';
-import { ShelterExistsGuard } from './shelter-exists.guard';
+import { ExistsGuard } from './exists.guard';
 import * as fromRoot from '../../../../core/shared/reducers';
 import * as fromShelter from '../../reducers';
 
 describe('Shelter Guard', () => {
-  let guard: ShelterExistsGuard;
+  let guard: ExistsGuard;
   let store: Store<any>;
 
   beforeEach(() => {
@@ -17,12 +17,12 @@ describe('Shelter Guard', () => {
           shelter: combineReducers(fromShelter.reducers),
         }),
       ],
-      providers: [ShelterExistsGuard],
+      providers: [ExistsGuard],
     });
 
     store = TestBed.get(Store);
     spyOn(store, 'dispatch').and.callThrough();
-    guard = TestBed.get(ShelterExistsGuard);
+    guard = TestBed.get(ExistsGuard);
   });
 
   it('should return false if the user state is not logged in', () => {

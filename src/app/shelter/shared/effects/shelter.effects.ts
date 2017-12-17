@@ -23,6 +23,20 @@ export class ShelterEffects {
       })
     );
 
+  @Effect()
+  load$ = this.actions$
+    .ofType(Shelter.LOAD)
+    .pipe(
+      map((action: Shelter.Load) => action.payload),
+      switchMap(id => {
+        return this.shelterService.getById(id)
+          .pipe(
+            map(response => new Shelter.LoadSuccess(response)),
+            catchError(error => of(new Shelter.LoadFailure(error)))
+          );
+      })
+    );
+
   @Effect({dispatch: false})
   createSuccess$ = this.actions$
     .ofType(Shelter.CREATE_SUCCESS)
