@@ -8,6 +8,7 @@ export class ShelterDto {
   price: number;
   description: string;
   images: string[];
+  isOwner: boolean;
   created: Date;
   updated: Date;
 

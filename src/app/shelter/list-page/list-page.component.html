@@ -15,7 +15,8 @@
                    [useImagesLoaded]="true"
                    class="columns">
         <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
-          <a [routerLink]="[item.id]">
+          <!-- TODO: fix full age loag on navigation -->
+          <a [routerLink]="['/shelters', item.id]">
             <app-shared-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-shared-card>
           </a>
         </ngx-masonry-item>

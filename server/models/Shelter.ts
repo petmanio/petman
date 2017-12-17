@@ -64,7 +64,7 @@ export class Shelter extends Model<Shelter> {
    */
   toJSON() {
     const obj = super.get({clone: true});
-    obj.images = map(obj.images, path => resolve(config.host, 'upload' + path))
+    obj.images = map(obj.images, path => resolve(config.host, 'upload' + path));
     delete obj.deleted;
     return obj;
   }
