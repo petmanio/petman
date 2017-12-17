@@ -8,3 +8,9 @@
 ngx-gallery-thumbnails {
   position: absolute;
 }
+
+.control {
+  &:first-child {
+    margin-left: auto;
+  }
+}

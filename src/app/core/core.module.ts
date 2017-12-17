@@ -128,9 +128,9 @@ import { FooterComponent } from './shared/components/footer/footer/footer.compon
      * A custom RouterStateSerializer is used to parse the `RouterStateSnapshot` provided
      * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
      */
-    {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer},
-    {provide: HTTP_INTERCEPTORS, useClass: CustomHeadersInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true},
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHeadersInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
   ],
 })
 export class CoreModule {

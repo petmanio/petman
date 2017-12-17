@@ -18,7 +18,7 @@ const getAuthedUser = async (req: Request, res: Response, next: NextFunction) =>
         include: [UserData, AuthProvider]
       }]
     });
-    req['pmUser'] = user;
+    req['pmUser'] = user.toJSON();
     const pmSelectedUser = find(req['pmUser'].businessUsers, {id: selectedUserId});
     req['pmSelectedUser'] = pmSelectedUser || req['pmUser'];
     next();
