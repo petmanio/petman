@@ -1,6 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
@@ -25,8 +24,6 @@ import { ShareDialogComponent } from './components/share-dialog/share-dialog.com
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
     FormsModule,
     MatCardModule,
     MatIconModule,

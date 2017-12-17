@@ -42,9 +42,7 @@ export class DetailsPageComponent implements OnDestroy, IDetailsPageComponent {
               private store: Store<fromShelter.State>,
               @Inject(DOCUMENT) private document: Document) {
     const paramsSubscription = route.params
-      .pipe(
-      map(params => new Shelter.Select(params.id))
-      )
+      .pipe(map(params => new Shelter.Select(params.id)))
       .subscribe(store);
 
     this.shelter$ = this.store.select(fromShelter.getSelectedShelter);

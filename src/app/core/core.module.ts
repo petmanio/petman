@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -52,6 +52,7 @@ import { FooterComponent } from './shared/components/footer/footer/footer.compon
     BrowserModule.withServerTransition({appId: 'petman'}),
     BrowserAnimationsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
