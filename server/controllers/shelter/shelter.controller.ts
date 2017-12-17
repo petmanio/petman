@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { plainToClass } from 'class-transformer';
 import { map } from 'lodash';
 
 import config from '../../config';
