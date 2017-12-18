@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import {
   ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDto, ShelterListRequestDto, ShelterListResponseDto,
-  ShelterUpdateResponseDto
+  ShelterUpdateRequestDto, ShelterUpdateResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export const CREATE = '[Shelter] Create';
@@ -54,7 +54,7 @@ export class CreateFailure implements Action {
 export class Update implements Action {
   readonly type = UPDATE;
 
-  constructor(public payload: ShelterCreateRequestDto) {}
+  constructor(public payload: ShelterUpdateRequestDto) {}
 }
 
 export class UpdateSuccess implements Action {

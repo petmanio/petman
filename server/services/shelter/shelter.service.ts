@@ -1,4 +1,4 @@
-import { assign } from 'lodash';
+import { assign, extend } from 'lodash';
 
 import { User } from '../../models/User';
 import { UserData } from '../../models/UserData';
@@ -37,4 +37,10 @@ const byIdService = async (id: number) => {
   });
 };
 
-export { createService, listService, byIdService };
+const updateByIdService = async (id: number, update) => {
+  let shelter = await byIdService(id);
+  shelter = extend(shelter, update);
+  return await shelter.save();
+};
+
+export { createService, listService, byIdService, updateByIdService };

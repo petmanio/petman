@@ -28,6 +28,7 @@ export class ShelterCreateResponseDto extends ShelterDto {
 
 // PUT shelters
 export class ShelterUpdateRequestDto {
+  id: number;
   price: string;
   description: string;
   images: any[];

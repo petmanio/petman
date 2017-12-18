@@ -48,7 +48,7 @@ export class ShelterService implements IShelterService {
         }
       });
     }
-    return this.http.put<ShelterUpdateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData)
+    return this.http.put<ShelterUpdateResponseDto>(`${environment.apiEndpoint}/api/shelters/${body.id}`, formData)
       .map(response => plainToClass(ShelterUpdateResponseDto, response, { enableCircularCheck: false }));
   }
 

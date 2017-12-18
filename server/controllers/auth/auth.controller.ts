@@ -19,7 +19,7 @@ const loginFbHandler = async (req: Request, res: Response, next: NextFunction) =
 };
 
 const userHandler = (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).json(req['pmUser']);
+  res.status(200).json(req['appUser']);
 };
 
 export { loginHandler, loginFbHandler, userHandler };
