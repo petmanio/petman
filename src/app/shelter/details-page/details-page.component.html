@@ -23,6 +23,7 @@
                        (previewOpen)="onPreviewOpen()"
                        (previewClose)="onPreviewClose()"></ngx-gallery>
         </div>
+        <div class="notification has-text-weight-semibold">{{(shelter$ | async)?.description}}</div>
         <div class="field is-grouped">
           <p class="control">
             <button mat-raised-button (click)="onShare(shelter$)" i18n>Share</button>
@@ -30,15 +31,6 @@
           <p class="control" *ngIf="(shelter$ | async)?.isOwner">
             <button [routerLink]="['/shelters', shelter.id, 'edit']" mat-raised-button i18n>Edit</button>
           </p>
-        </div>
-        <div class="box">
-          <article class="media">
-            <div class="media-content">
-              <div class="content">
-                <p>{{(shelter$ | async)?.description}}</p>
-              </div>
-            </div>
-          </article>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ export class UtilService implements IUtilService {
       thumbnailsRemainingCount: true,
       thumbnailsColumns: 4,
       width: '80%',
-      height: '500px'
+      height: '400px'
     },
     { breakpoint: 600, thumbnails: false, width: '100%', height: '300px'},
   ];
