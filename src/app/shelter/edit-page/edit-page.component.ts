@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -26,6 +26,7 @@ export interface IEditPageComponent {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditPageComponent implements OnDestroy, IEditPageComponent {
+  @ViewChild('imageUpload') imageUpload;
   form: FormGroup;
   shelter: ShelterDto;
   error$: Observable<any>;
@@ -69,6 +70,15 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   onUploadFinished($event: FileHolder): void {
     const images = <FormArray>this.form.get('images');
     images.push(new FormControl($event));
+
+    // TODO: tmp fix, remove this fu*king piece of code after image upload new release
+    while (images.value.length > 4) {
+      images.removeAt(0);
+    }
+
+    while (this.imageUpload.files.length > 4) {
+      this.imageUpload.files.shift();
+    }
   }
 
   onImageRemove($event: FileHolder): void {
