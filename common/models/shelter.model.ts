@@ -26,6 +26,16 @@ export class ShelterCreateRequestDto {
 export class ShelterCreateResponseDto extends ShelterDto {
 }
 
+// PUT shelters
+export class ShelterUpdateRequestDto {
+  price: string;
+  description: string;
+  images: any[];
+}
+
+export class ShelterUpdateResponseDto extends ShelterDto {
+}
+
 // GET shelters
 export class ShelterListRequestDto extends CommonListRequestDto {
 }

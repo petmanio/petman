@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
@@ -18,6 +18,7 @@ export interface IAddPageComponent {
   selector: 'app-shelter-add-page',
   templateUrl: './add-page.component.html',
   styleUrls: ['./add-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddPageComponent implements IAddPageComponent {
   error$: Observable<any>;
@@ -31,10 +32,7 @@ export class AddPageComponent implements IAddPageComponent {
     this.form = fb.group({
       price: ['', Validators.required],
       description: ['', Validators.required],
-      images: fb.array(
-        [],
-        Validators.compose([Validators.required, Validators.minLength(1)]
-      ))
+      images: fb.array([], Validators.compose([Validators.required, Validators.minLength(1)]))
     });
   }
 

@@ -3,12 +3,14 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromRoot from '../../../core/shared/reducers';
 import * as fromShelter from './shelter/shelter.reducer';
 import * as fromAddPage from './add-page/add-page.reducer';
+import * as fromEditPage from './edit-page/edit-page.reducer';
 import * as fromListPage from './list-page/list-page.reducer';
 
 export interface ShelterState {
   shelter: fromShelter.State;
   addPage: fromAddPage.State;
   listPage: fromListPage.State;
+  editPage: fromEditPage.State;
 }
 
 export interface State extends fromRoot.State {
@@ -18,6 +20,7 @@ export interface State extends fromRoot.State {
 export const reducers = {
   shelter: fromShelter.reducer,
   addPage: fromAddPage.reducer,
+  editPage: fromEditPage.reducer,
   listPage: fromListPage.reducer,
 };
 
@@ -47,6 +50,13 @@ export const getSelectedShelter = createSelector(getShelterEntities, getSelected
 export const getAddPageState = createSelector(getShelterState, (state: ShelterState) => state.addPage);
 export const getAddPageError = createSelector(getAddPageState, fromAddPage.getError);
 export const getAddPagePending = createSelector(getAddPageState, fromAddPage.getPending);
+
+/**
+ * Edit Page
+ */
+export const getEditPageState = createSelector(getShelterState, (state: ShelterState) => state.editPage);
+export const getEditPageError = createSelector(getEditPageState, fromEditPage.getError);
+export const getEditPagePending = createSelector(getEditPageState, fromEditPage.getPending);
 
 /**
  * List Page

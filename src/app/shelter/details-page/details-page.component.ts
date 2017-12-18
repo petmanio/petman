@@ -36,7 +36,8 @@ export class DetailsPageComponent implements OnDestroy, IDetailsPageComponent {
   showSidenav$: Observable<boolean>;
   private subscriptions: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
               private dialog: MatDialog,
               private store: Store<fromShelter.State>,

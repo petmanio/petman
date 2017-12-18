@@ -1,15 +1,17 @@
 import { Action } from '@ngrx/store';
 
 import {
-  ShelterCreateRequestDto,
-  ShelterCreateResponseDto, ShelterDto,
-  ShelterListRequestDto,
-  ShelterListResponseDto
+  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDto, ShelterListRequestDto, ShelterListResponseDto,
+  ShelterUpdateResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export const CREATE = '[Shelter] Create';
 export const CREATE_SUCCESS = '[Shelter] Create Success';
 export const CREATE_FAILURE = '[Shelter] Create Failure';
+
+export const UPDATE = '[Shelter] Update';
+export const UPDATE_SUCCESS = '[Shelter] Update Success';
+export const UPDATE_FAILURE = '[Shelter] Update Failure';
 
 export const LOAD = '[Shelter] Load';
 export const LOAD_SUCCESS = '[Shelter] Load Success';
@@ -42,6 +44,27 @@ export class CreateSuccess implements Action {
 
 export class CreateFailure implements Action {
   readonly type = CREATE_FAILURE;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * Update
+ */
+export class Update implements Action {
+  readonly type = UPDATE;
+
+  constructor(public payload: ShelterCreateRequestDto) {}
+}
+
+export class UpdateSuccess implements Action {
+  readonly type = UPDATE_SUCCESS;
+
+  constructor(public payload: ShelterUpdateResponseDto) {}
+}
+
+export class UpdateFailure implements Action {
+  readonly type = UPDATE_FAILURE;
 
   constructor(public payload: any) {}
 }
@@ -119,6 +142,9 @@ export type Actions =
   | Create
   | CreateSuccess
   | CreateFailure
+  | Update
+  | UpdateSuccess
+  | UpdateFailure
   | Load
   | LoadSuccess
   | LoadFailure

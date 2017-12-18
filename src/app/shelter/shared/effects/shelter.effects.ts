@@ -23,6 +23,37 @@ export class ShelterEffects {
       })
     );
 
+  @Effect({dispatch: false})
+  createSuccess$ = this.actions$
+    .ofType(Shelter.CREATE_SUCCESS)
+    .pipe(
+      map((action: Shelter.CreateSuccess) => action.payload),
+      tap(shelter => this.router.navigate(['shelters', shelter.id]))
+    );
+
+  @Effect()
+  update$ = this.actions$
+    .ofType(Shelter.UPDATE)
+    .pipe(
+      map((action: Shelter.Update) => action.payload),
+      switchMap(shelter => {
+        return this.shelterService.update(shelter)
+          .pipe(
+            map(response => new Shelter.UpdateSuccess(response)),
+            catchError(error => of(new Shelter.UpdateFailure(error)))
+          );
+      })
+    );
+
+
+  @Effect({dispatch: false})
+  updateSuccess$ = this.actions$
+    .ofType(Shelter.UPDATE_SUCCESS)
+    .pipe(
+      map((action: Shelter.CreateSuccess) => action.payload),
+      tap(shelter => this.router.navigate(['shelters', shelter.id]))
+    );
+
   @Effect()
   load$ = this.actions$
     .ofType(Shelter.LOAD)
@@ -35,14 +66,6 @@ export class ShelterEffects {
             catchError(error => of(new Shelter.LoadFailure(error)))
           );
       })
-    );
-
-  @Effect({dispatch: false})
-  createSuccess$ = this.actions$
-    .ofType(Shelter.CREATE_SUCCESS)
-    .pipe(
-      map((action: Shelter.CreateSuccess) => action.payload),
-      tap(shelter => this.router.navigate(['shelters', shelter.id]))
     );
 
   @Effect()

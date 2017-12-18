@@ -7,14 +7,13 @@ import { forEach } from 'lodash';
 
 import { environment } from '../../../../environments/environment';
 import {
-  ShelterCreateRequestDto,
-  ShelterCreateResponseDto, ShelterDto,
-  ShelterListRequestDto,
-  ShelterListResponseDto
+  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDto, ShelterListRequestDto, ShelterListResponseDto,
+  ShelterUpdateRequestDto, ShelterUpdateResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export interface IShelterService {
   create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto>;
+  update(body: ShelterUpdateRequestDto): Observable<ShelterUpdateResponseDto>;
   getById(id: number): Observable<ShelterDto>;
   list(query: ShelterListRequestDto): Observable<ShelterListResponseDto>;
 }
@@ -33,6 +32,24 @@ export class ShelterService implements IShelterService {
     }
     return this.http.post<ShelterCreateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData)
       .map(response => plainToClass(ShelterCreateResponseDto, response, { enableCircularCheck: false }));
+  }
+
+  update(body: ShelterUpdateRequestDto): Observable<ShelterUpdateResponseDto> {
+    let formData: FormData;
+    if (isPlatformBrowser(this.platformId)) {
+      formData = new FormData();
+      formData.append('description', body.description);
+      formData.append('price', body.price);
+      forEach(body.images, file => {
+        if (typeof file === 'string') {
+          formData.append('images', file);
+        } else {
+          formData.append('images', file, file.name);
+        }
+      });
+    }
+    return this.http.put<ShelterUpdateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData)
+      .map(response => plainToClass(ShelterUpdateResponseDto, response, { enableCircularCheck: false }));
   }
 
   getById(id: number): Observable<ShelterDto> {
