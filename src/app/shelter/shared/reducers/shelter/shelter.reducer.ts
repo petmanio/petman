@@ -41,7 +41,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: shelter.Actions): State {
   switch (action.type) {
     case shelter.CREATE_SUCCESS: {
-      return assign({}, state, adapter.addOne(action.payload, state));
+      return assign({}, state, adapter.addOne(action.payload, state), {total: state.total + 1});
     }
 
     case shelter.UPDATE_SUCCESS: {
@@ -49,7 +49,7 @@ export function reducer(state = initialState, action: shelter.Actions): State {
     }
 
     case shelter.DELETE_SUCCESS: {
-      return assign({}, state, adapter.removeOne(action.payload.id, state));
+      return assign({}, state, adapter.removeOne(action.payload.id, state), {total: state.total + 1});
     }
 
     case shelter.LOAD_SUCCESS: {
