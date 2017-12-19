@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { byIdService } from '../../services/shelter/shelter.service';
+import { fetchByIdService } from '../../services/shelter/shelter.service';
 
 const shelterExists = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const shelter: any = await byIdService(req.params.id);
+    const shelter: any = await fetchByIdService(req.params.id);
     if (!shelter) {
       return res.status(404).end();
     }

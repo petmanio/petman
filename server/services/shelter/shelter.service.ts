@@ -28,7 +28,7 @@ const listService = async (offset: number, limit: number) => {
   return { list, total };
 };
 
-const byIdService = async (id: number) => {
+const fetchByIdService = async (id: number) => {
   return await Shelter.findOne<Shelter>({
     where: { id }, include: [{
       model: User,
@@ -38,9 +38,9 @@ const byIdService = async (id: number) => {
 };
 
 const updateByIdService = async (id: number, update) => {
-  let shelter = await byIdService(id);
+  let shelter = await fetchByIdService(id);
   shelter = extend(shelter, update);
   return await shelter.save();
 };
 
-export { createService, listService, byIdService, updateByIdService };
+export { createService, listService, fetchByIdService, updateByIdService };

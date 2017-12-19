@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { map } from 'lodash';
+import { extend, map } from 'lodash';
 
 import config from '../../config';
-import { createService, listService, updateByIdService } from '../../services/shelter/shelter.service';
+import { createService, listService } from '../../services/shelter/shelter.service';
 
 const createHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -32,21 +32,28 @@ const listHandler = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const byIdHandler = async (req: Request, res: Response, next: NextFunction) => {
+const fetchByIdHandler = async (req: Request, res: Response, next: NextFunction) => {
   const shelter = req['appShelter'].toJSON();
   shelter.isOwner = shelter.userId === (req['appSelectedUser'] && req['appSelectedUser'].id);
   res.status(200).json(shelter);
 };
 
-const updateHandler = async (req: Request, res: Response, next: NextFunction) => {
+const updateByIdHandler = async (req: Request, res: Response, next: NextFunction) => {
   req.body.images = typeof req.body.images === 'string' ? [req.body.images] : req.body.images;
   req.body.images = [
     ...map<any>(req.files, file => file.path.replace(config.uploadPath, '')),
     ...map<any>(req.body.images, image => image.replace(/^.*(?=(\/images))/, ''))
   ];
-  const shelter = await updateByIdService(req.params.id, req.body);
-  res.status(200).json(shelter);
+  let shelter = req['appShelter'];
+  shelter = extend(shelter, req.body);
+  res.status(200).json(await shelter.save());
 };
 
-export { createHandler, listHandler, byIdHandler, updateHandler };
+const deleteByIdHandler = async (req: Request, res: Response, next: NextFunction) => {
+  const shelter = req['appShelter'];
+  res.status(200).json(await shelter.destroy());
+};
+
+
+export { createHandler, listHandler, fetchByIdHandler, updateByIdHandler, deleteByIdHandler };
 
