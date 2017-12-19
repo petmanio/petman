@@ -45,13 +45,34 @@ export class ShelterEffects {
       })
     );
 
-
   @Effect({dispatch: false})
   updateSuccess$ = this.actions$
     .ofType(Shelter.UPDATE_SUCCESS)
     .pipe(
       map((action: Shelter.CreateSuccess) => action.payload),
       tap(shelter => this.router.navigate(['shelters', shelter.id]))
+    );
+
+  @Effect()
+  delete$ = this.actions$
+    .ofType(Shelter.DELETE)
+    .pipe(
+      map((action: Shelter.Delete) => action.payload),
+      switchMap(shelter => {
+        return this.shelterService.delete(shelter)
+          .pipe(
+            map(response => new Shelter.DeleteSuccess(response)),
+            catchError(error => of(new Shelter.DeleteFailure(error)))
+          );
+      })
+    );
+
+  @Effect({dispatch: false})
+  deleteSuccess$ = this.actions$
+    .ofType(Shelter.DELETE_SUCCESS)
+    .pipe(
+      map((action: Shelter.CreateSuccess) => action.payload),
+      tap(shelter => this.router.navigate(['shelters']))
     );
 
   @Effect()

@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
 import {
-  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDto, ShelterListRequestDto, ShelterListResponseDto,
-  ShelterUpdateRequestDto, ShelterUpdateResponseDto
+  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDeleteRequestDto, ShelterDeleteResponseDto,
+  ShelterDto, ShelterListRequestDto, ShelterListResponseDto, ShelterUpdateRequestDto, ShelterUpdateResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export const CREATE = '[Shelter] Create';
@@ -12,6 +12,10 @@ export const CREATE_FAILURE = '[Shelter] Create Failure';
 export const UPDATE = '[Shelter] Update';
 export const UPDATE_SUCCESS = '[Shelter] Update Success';
 export const UPDATE_FAILURE = '[Shelter] Update Failure';
+
+export const DELETE = '[Shelter] Delete';
+export const DELETE_SUCCESS = '[Shelter] Delete Success';
+export const DELETE_FAILURE = '[Shelter] Delete Failure';
 
 export const LOAD = '[Shelter] Load';
 export const LOAD_SUCCESS = '[Shelter] Load Success';
@@ -65,6 +69,27 @@ export class UpdateSuccess implements Action {
 
 export class UpdateFailure implements Action {
   readonly type = UPDATE_FAILURE;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * Delete
+ */
+export class Delete implements Action {
+  readonly type = DELETE;
+
+  constructor(public payload: ShelterDeleteRequestDto) {}
+}
+
+export class DeleteSuccess implements Action {
+  readonly type = DELETE_SUCCESS;
+
+  constructor(public payload: ShelterDeleteResponseDto) {}
+}
+
+export class DeleteFailure implements Action {
+  readonly type = DELETE_FAILURE;
 
   constructor(public payload: any) {}
 }
@@ -145,6 +170,9 @@ export type Actions =
   | Update
   | UpdateSuccess
   | UpdateFailure
+  | Delete
+  | DeleteSuccess
+  | DeleteFailure
   | Load
   | LoadSuccess
   | LoadFailure

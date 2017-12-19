@@ -12,7 +12,8 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: shelter.Actions): State {
   switch (action.type) {
-    case shelter.UPDATE: {
+    case shelter.UPDATE:
+    case shelter.DELETE: {
       return {
         ...state,
         error: null,
@@ -20,7 +21,8 @@ export function reducer(state = initialState, action: shelter.Actions): State {
       };
     }
 
-    case shelter.UPDATE_SUCCESS: {
+    case shelter.UPDATE_SUCCESS:
+    case shelter.DELETE_SUCCESS: {
       return {
         ...state,
         error: null,
@@ -28,7 +30,8 @@ export function reducer(state = initialState, action: shelter.Actions): State {
       };
     }
 
-    case shelter.UPDATE_FAILURE: {
+    case shelter.UPDATE_FAILURE:
+    case shelter.DELETE_FAILURE: {
       return {
         ...state,
         error: action.payload,

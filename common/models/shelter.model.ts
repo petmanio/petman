@@ -26,7 +26,7 @@ export class ShelterCreateRequestDto {
 export class ShelterCreateResponseDto extends ShelterDto {
 }
 
-// PUT shelters
+// PUT shelters/:id
 export class ShelterUpdateRequestDto {
   id: number;
   price: string;
@@ -35,6 +35,14 @@ export class ShelterUpdateRequestDto {
 }
 
 export class ShelterUpdateResponseDto extends ShelterDto {
+}
+
+// DELETE shelters/:id
+export class ShelterDeleteRequestDto {
+  id: number;
+}
+
+export class ShelterDeleteResponseDto extends ShelterDto {
 }
 
 // GET shelters

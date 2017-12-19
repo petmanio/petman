@@ -7,13 +7,16 @@ import { forEach } from 'lodash';
 
 import { environment } from '../../../../environments/environment';
 import {
-  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDto, ShelterListRequestDto, ShelterListResponseDto,
+  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDeleteRequestDto, ShelterDeleteResponseDto, ShelterDto,
+  ShelterListRequestDto,
+  ShelterListResponseDto,
   ShelterUpdateRequestDto, ShelterUpdateResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export interface IShelterService {
   create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto>;
   update(body: ShelterUpdateRequestDto): Observable<ShelterUpdateResponseDto>;
+  delete(body: ShelterDeleteRequestDto): Observable<ShelterDeleteResponseDto>;
   getById(id: number): Observable<ShelterDto>;
   list(query: ShelterListRequestDto): Observable<ShelterListResponseDto>;
 }
@@ -50,6 +53,11 @@ export class ShelterService implements IShelterService {
     }
     return this.http.put<ShelterUpdateResponseDto>(`${environment.apiEndpoint}/api/shelters/${body.id}`, formData)
       .map(response => plainToClass(ShelterUpdateResponseDto, response, { enableCircularCheck: false }));
+  }
+
+  delete(body: ShelterDeleteRequestDto): Observable<ShelterDeleteResponseDto> {
+    return this.http.delete<ShelterDeleteResponseDto>(`${environment.apiEndpoint}/api/shelters/${body.id}`)
+      .map(response => plainToClass(ShelterDeleteResponseDto, response, { enableCircularCheck: false }));
   }
 
   getById(id: number): Observable<ShelterDto> {

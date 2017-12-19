@@ -48,6 +48,10 @@ export function reducer(state = initialState, action: shelter.Actions): State {
       return assign({}, state, adapter.updateOne({ id: action.payload.id, changes: action.payload }, state));
     }
 
+    case shelter.DELETE_SUCCESS: {
+      return assign({}, state, adapter.removeOne(action.payload.id, state));
+    }
+
     case shelter.LOAD_SUCCESS: {
       return assign({}, state, adapter.addOne(action.payload, state));
     }

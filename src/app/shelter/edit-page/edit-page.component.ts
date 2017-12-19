@@ -56,8 +56,10 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
     this.shelter$ = this.store.select(fromShelter.getSelectedShelter);
 
     const shelterSubscription = this.shelter$.subscribe(shelter => {
-      this.shelter = shelter;
-      this.form = this.formConfig;
+      if (shelter) {
+        this.shelter = shelter;
+        this.form = this.formConfig;
+      }
     });
 
     this.subscriptions.push(...[paramsSubscription, shelterSubscription]);
@@ -96,5 +98,6 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   }
 
   onDelete(): void {
+    this.store.dispatch(new Shelter.Delete(this.shelter));
   }
 }
