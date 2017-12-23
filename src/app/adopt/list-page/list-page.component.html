@@ -1,0 +1,34 @@
+<div infinite-scroll
+     infiniteScrollContainer="mat-sidenav-content"
+     infiniteScrollDistance="2"
+     infiniteScrollThrottle="300"
+     fromRoot="true"
+     (scrolled)="onLoadMore()">
+  <div class="columns is-marginless is-hidden-mobile">
+    <div class="column has-text-right">
+      <a routerLink="add" mat-raised-button color="accent">Add new application</a>
+    </div>
+  </div>
+  <div class="columns is-marginless pm-content-spacer">
+    <div class="column">
+      <ngx-masonry #masonry [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }"
+                   [useImagesLoaded]="true"
+                   class="columns">
+        <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
+          <!-- TODO: fix full age loag on navigation -->
+          <a [routerLink]="['/adoption', item.id]">
+            <app-shared-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-shared-card>
+          </a>
+        </ngx-masonry-item>
+      </ngx-masonry>
+    </div>
+    <button mat-fab class="pm-fab" routerLink="add">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div class="columns is-marginless" [hidden]="!(list$ | appSharedAsyncDelay | async)?.length">
+    <div class="column has-text-centered" [hidden]="!canLoadMore">
+      <button mat-raised-button (click)="onLoadMore()" i18n>Load more</button>
+    </div>
+  </div>
+</div>

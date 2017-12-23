@@ -1,0 +1,40 @@
+<div class="columns is-marginless">
+  <div class="column is-10 is-offset-1">
+    <div class="columns">
+      <div class="column is-3 has-text-centered">
+        <div mat-card-avatar
+             class="pm-card-avatar pm-avatar-medium"
+             [ngStyle]="{'background-image': 'url(' + (adopt$ | async).user.userData.avatar + ')'}"></div>
+        <div class="is-size-4 has-text-grey">{{(adopt$ | async).user.userData.name}}</div>
+        <br>
+        <div>
+          <a target="_blank" mat-button>
+            <mat-icon svgIcon="app:messenger"></mat-icon> Messenger</a>
+          <a target="_blank" mat-button>
+            <mat-icon svgIcon="app:facebook"></mat-icon> Facebook</a>
+          <a mat-button i18n>
+            <mat-icon>message</mat-icon> Send message</a>
+        </div>
+      </div>
+      <div class="column is-9">
+        <div class="pm-gallery-custom">
+          <ngx-gallery [options]="galleryOptions"
+                       [images]="(adopt$ | async)?.images | appSharedGalleryImages"
+                       (previewOpen)="onPreviewOpen()"
+                       (previewClose)="onPreviewClose()"></ngx-gallery>
+        </div>
+        <div class="notification has-text-weight-semibold">{{(adopt$ | async)?.description}}</div>
+        <div class="field is-grouped">
+          <p class="control">
+            <button mat-raised-button (click)="onShare(adopt$)" i18n>Share</button>
+          </p>
+          <p class="control" *ngIf="(adopt$ | async)?.isOwner">
+            <button [routerLink]="['/adoption', adopt.id, 'edit']" mat-raised-button i18n>Edit</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+    </div>
+  </div>
+</div>

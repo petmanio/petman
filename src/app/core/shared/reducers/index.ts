@@ -23,7 +23,7 @@ import * as fromLayout from './layout';
  */
 export interface State {
   layout: fromLayout.State;
-  routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+  router: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
 /**
@@ -34,7 +34,7 @@ export interface State {
 // FIXME: generic with <State> not working
 export const reducers: ActionReducerMap<any> = {
   layout: fromLayout.reducer,
-  routerReducer: fromRouter.routerReducer,
+  router: fromRouter.routerReducer,
 };
 
 // console.log all actions

@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import { ShelterDto } from './shelter.model';
 import { UserDataDto } from './user-data.model';
+import { AdoptDto } from './adopt.model';
 
 export class FbUser {
   id: number;
@@ -22,6 +23,9 @@ export class UserDto {
 
   @Type(() => ShelterDto)
   shelters: ShelterDto[];
+
+  @Type(() => AdoptDto)
+  adoptions: AdoptDto[];
 
   @Type(() => UserDto)
   businessUsers: UserDto[];

@@ -1,0 +1,30 @@
+@import '../../shared/scss/mixins';
+@import '../../shared/scss/variables';
+
+.pm-top-image {
+  background: url("/assets/pets.png") no-repeat center;
+  height: 150px;
+}
+
+image-upload {
+  /deep/ {
+    .drag-box-message {
+      display: none !important;
+      @include desktop {
+        display: block !important;
+      }
+    }
+
+    .img-ul-clear {
+      display: none;
+    }
+
+    .img-ul-upload {
+      background-color: $primary !important;
+    }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
