@@ -11,8 +11,8 @@
     <mat-nav-list>
       <app-nav-item (activate)="onItemActivate.emit()"
                     icon="dashboard" routerLink="" [activeClass]="[isHomeActive]" i18n>Main</app-nav-item>
-      <app-nav-item (activate)="onItemActivate.emit()" routerLink="/locations" icon="location_searching"
-                    routerLinkActive="pm-is-active" i18n>Places</app-nav-item>
+      <app-nav-item (activate)="onItemActivate.emit()" routerLink="/map" icon="place"
+                    routerLinkActive="pm-is-active" i18n>Map</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" icon="favorite" routerLink="/shelters"
                     routerLinkActive="pm-is-active" i18n>Shelters</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" icon="child_friendly" routerLink="/walkers"
