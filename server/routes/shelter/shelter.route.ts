@@ -11,7 +11,7 @@ import {
   updateByIdHandler
 } from '../../controllers/shelter/shelter.controller';
 
-const upload = multer({ dest: join(config.uploadPath, 'images/shelter') });
+const upload = multer({ dest: join(config.uploadPath, 'images/shelters') });
 const shelterRouter: Router = Router();
 
 shelterRouter
