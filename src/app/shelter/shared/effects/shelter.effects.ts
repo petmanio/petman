@@ -4,7 +4,7 @@ import { Actions, Effect } from '@ngrx/effects';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
-import { ShelterService } from '../services/shelter.service';
+import { ShelterService } from '../services/shelter/shelter.service';
 import * as Shelter from '../actions/shelter.action';
 
 @Injectable()

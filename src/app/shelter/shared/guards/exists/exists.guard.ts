@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 
 import * as fromShelter from '../../reducers';
 import * as Shelter from '../../actions/shelter.action';
-import { ShelterService } from '../../services/shelter.service';
+import { ShelterService } from '../../services/shelter/shelter.service';
 
 @Injectable()
 export class ExistsGuard implements CanActivate {

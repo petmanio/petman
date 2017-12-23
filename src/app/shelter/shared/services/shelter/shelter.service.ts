@@ -5,13 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import { plainToClass } from 'class-transformer';
 import { forEach } from 'lodash';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import {
   ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDeleteRequestDto, ShelterDeleteResponseDto, ShelterDto,
   ShelterListRequestDto,
   ShelterListResponseDto,
   ShelterUpdateRequestDto, ShelterUpdateResponseDto
-} from '../../../../../common/models/shelter.model';
+} from '../../../../../../common/models/shelter.model';
 
 export interface IShelterService {
   create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto>;

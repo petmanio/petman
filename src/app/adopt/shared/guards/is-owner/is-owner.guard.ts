@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 
 import * as fromAdopt from '../../reducers';
 import * as Adopt from '../../actions/adopt.action';
-import { AdoptService } from '../../services/adopt.service';
+import { AdoptService } from '../../services/adopt/adopt.service';
 
 @Injectable()
 export class IsOwnerGuard implements CanActivate {

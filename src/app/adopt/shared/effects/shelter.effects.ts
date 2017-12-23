@@ -4,7 +4,7 @@ import { Actions, Effect } from '@ngrx/effects';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
-import { AdoptService } from '../services/adopt.service';
+import { AdoptService } from '../services/adopt/adopt.service';
 import * as Adopt from '../actions/adopt.action';
 
 @Injectable()

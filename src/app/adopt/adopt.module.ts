@@ -21,7 +21,7 @@ import { ListPageComponent } from './list-page/list-page.component';
 import { AddPageComponent } from './add-page/add-page.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
-import { AdoptService } from './shared/services/adopt.service';
+import { AdoptService } from './shared/services/adopt/adopt.service';
 import { ExistsGuard } from './shared/guards/exists/exists.guard';
 import { IsOwnerGuard } from './shared/guards/is-owner/is-owner.guard';
 import { AdoptEffects } from './shared/effects/adopt.effects';
