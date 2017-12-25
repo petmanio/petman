@@ -30,7 +30,6 @@ export class AddPageComponent implements IAddPageComponent {
     this.pending$ = this.store.select(fromAdopt.getAddPagePending);
 
     this.form = fb.group({
-      price: ['', Validators.required],
       description: ['', Validators.required],
       images: fb.array([], Validators.compose([Validators.required, Validators.minLength(1)]))
     });

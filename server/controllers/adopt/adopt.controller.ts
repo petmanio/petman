@@ -2,16 +2,16 @@ import { NextFunction, Request, Response } from 'express';
 import { extend, map } from 'lodash';
 
 import config from '../../config';
-import { createService, listService } from '../../services/shelter/shelter.service';
+import { createService, listService } from '../../services/adopt/adopt.service';
 
 const createHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const body = req.body;
     body.images = map<any>(req.files, file => file.path.replace(config.uploadPath, ''));
-    let shelter: any = await createService(body, req['appSelectedUser']);
-    shelter = shelter.toJSON();
-    shelter.isOwner = shelter.userId === (req['appSelectedUser'] && req['appSelectedUser'].id);
-    res.status(200).json(shelter);
+    let adopt: any = await createService(body, req['appSelectedUser']);
+    adopt = adopt.toJSON();
+    adopt.isOwner = adopt.userId === (req['appSelectedUser'] && req['appSelectedUser'].id);
+    res.status(200).json(adopt);
   } catch (err) {
     next(err);
   }
@@ -20,22 +20,22 @@ const createHandler = async (req: Request, res: Response, next: NextFunction) =>
 const listHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const {offset, limit} = req.query;
-    const shelters = await listService(offset, limit);
-    shelters.list = map(shelters.list, (shelter: any) => {
-      shelter = shelter.toJSON();
-      shelter.isOwner = shelter.userId === (req['appSelectedUser'] && req['appSelectedUser'].id);
-      return shelter;
+    const adoption = await listService(offset, limit);
+    adoption.list = map(adoption.list, (adopt: any) => {
+      adopt = adopt.toJSON();
+      adopt.isOwner = adopt.userId === (req['appSelectedUser'] && req['appSelectedUser'].id);
+      return adopt;
     });
-    res.status(200).json(shelters);
+    res.status(200).json(adoption);
   } catch (err) {
     next(err);
   }
 };
 
 const fetchByIdHandler = async (req: Request, res: Response, next: NextFunction) => {
-  const shelter = req['appShelter'].toJSON();
-  shelter.isOwner = shelter.userId === (req['appSelectedUser'] && req['appSelectedUser'].id);
-  res.status(200).json(shelter);
+  const adopt = req['appAdopt'].toJSON();
+  adopt.isOwner = adopt.userId === (req['appSelectedUser'] && req['appSelectedUser'].id);
+  res.status(200).json(adopt);
 };
 
 const updateByIdHandler = async (req: Request, res: Response, next: NextFunction) => {
@@ -44,14 +44,16 @@ const updateByIdHandler = async (req: Request, res: Response, next: NextFunction
     ...map<any>(req.files, file => file.path.replace(config.uploadPath, '')),
     ...map<any>(req.body.images, image => image.replace(/^.*(?=(\/images))/, ''))
   ];
-  let shelter = req['appShelter'];
-  shelter = extend(shelter, req.body);
-  res.status(200).json(await shelter.save());
+  let adopt = req['appAdopt'];
+  adopt = extend(adopt, req.body);
+  res.status(200).json(await adopt.save());
 };
 
 const deleteByIdHandler = async (req: Request, res: Response, next: NextFunction) => {
-  const shelter = req['appShelter'];
-  res.status(200).json(await shelter.destroy());
+  const adopt = req['appAdopt'];
+  res.status(200).json(await adopt.destroy());
 };
 
+
 export { createHandler, listHandler, fetchByIdHandler, updateByIdHandler, deleteByIdHandler };
+

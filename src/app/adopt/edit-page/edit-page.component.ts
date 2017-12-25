@@ -37,7 +37,6 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   private get formConfig(): FormGroup {
     return this.fb.group({
       id: this.adopt.id,
-      price: [this.adopt.price, Validators.required],
       description: [this.adopt.description, Validators.required],
       images: this.fb.array(this.adopt.images, Validators.compose([Validators.required, Validators.minLength(1)]))
     });

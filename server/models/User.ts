@@ -1,3 +1,4 @@
+import { find } from 'lodash';
 import {
   BelongsToMany,
   Column,
@@ -9,15 +10,15 @@ import {
   Model,
   Table,
   Unique,
-  UpdatedAt
+  UpdatedAt,
 } from 'sequelize-typescript';
-import { find } from 'lodash';
 
-import { UserData } from './UserData';
-import { AuthProvider } from './AuthProvider';
-import { Shelter } from './Shelter';
 import { AuthProviderType } from '../../common/enums/index';
 import { getUserFbAvatarByFbId } from '../services/util/util.service';
+import { Adopt } from './Adopt';
+import { AuthProvider } from './AuthProvider';
+import { Shelter } from './Shelter';
+import { UserData } from './UserData';
 
 @Table({
   tableName: 'user',
@@ -48,6 +49,9 @@ export class User extends Model<User> {
 
   @HasMany(() => Shelter)
   shelters: Shelter[];
+
+  @HasMany(() => Adopt)
+  adoption: Adopt[];
 
   @BelongsToMany(() => User, 'user_business_user', 'owner_id')
   owners: User[];

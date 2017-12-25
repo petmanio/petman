@@ -18,6 +18,7 @@ import { getAuthedUser } from './policies/get-authed-user/get-authed-user.policy
 import { infoRouter } from './routes/info/info.route';
 import { authRouter } from './routes/auth/auth.route';
 import { shelterRouter } from './routes/shelter/shelter.route';
+import { adoptRouter } from './routes/adopt/adopt.route';
 
 function universalRouter(req, res) {
   res.render('index', {
@@ -75,6 +76,7 @@ app.use(getAuthedUser);
 app.use('/api/info', infoRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/shelters', shelterRouter);
+app.use('/api/adoption', adoptRouter);
 app.get('/*', process.env.UNIVERSAL_APP ? universalRouter : staticRouter);
 
 // catch 404 and forward to error handler

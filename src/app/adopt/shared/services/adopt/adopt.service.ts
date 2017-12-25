@@ -30,7 +30,6 @@ export class AdoptService implements IAdoptService {
     if (isPlatformBrowser(this.platformId)) {
       formData = new FormData();
       formData.append('description', body.description);
-      formData.append('price', body.price);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
     return this.http.post<AdoptCreateResponseDto>(`${environment.apiEndpoint}/api/adoption`, formData)
@@ -42,7 +41,6 @@ export class AdoptService implements IAdoptService {
     if (isPlatformBrowser(this.platformId)) {
       formData = new FormData();
       formData.append('description', body.description);
-      formData.append('price', body.price);
       forEach(body.images, file => {
         if (typeof file === 'string') {
           formData.append('images', file);

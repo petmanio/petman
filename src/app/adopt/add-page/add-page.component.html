@@ -5,15 +5,9 @@
     <div class="pm-top-image"></div>
     <form [formGroup]="form">
       <div class="columns is-vcentered">
-        <div class="column is-9">
+        <div class="column">
           <mat-form-field>
             <textarea formControlName='description' matInput i18n-placeholder placeholder="Description" required></textarea>
-          </mat-form-field>
-        </div>
-        <div class="column is-1"></div>
-        <div class="column is-2">
-          <mat-form-field>
-            <input formControlName='price' matInput i18n-placeholder type="number" placeholder="Daily price" min="0"/>
           </mat-form-field>
         </div>
       </div>
