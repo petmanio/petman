@@ -11,7 +11,7 @@ import {
   updateByIdHandler
 } from '../../controllers/adopt/adopt.controller';
 
-const upload = multer({ dest: join(config.uploadPath, 'images/adopts') });
+const upload = multer({ dest: join(config.uploadPath, 'images/adoption') });
 const adoptRouter: Router = Router();
 
 adoptRouter
