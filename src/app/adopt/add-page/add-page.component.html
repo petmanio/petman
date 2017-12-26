@@ -1,16 +1,10 @@
 <div *tdLoading="let item until !(pending$ | async); type:'circular'; mode:'indeterminate'; strategy:'overlay'; color:'primary'"
      class="columns is-marginless">
-  <div class="column is-6 is-offset-3">
+  <div class="column is-8 is-offset-2">
     <td-message [opened]="error$ | async" label="Error!" sublabel="We encountered an error. Please try again." color="warn" icon="error"></td-message>
     <div class="pm-top-image"></div>
     <form [formGroup]="form">
-      <div class="columns is-vcentered">
-        <div class="column">
-          <mat-form-field>
-            <textarea formControlName='description' matInput i18n-placeholder placeholder="Description" required></textarea>
-          </mat-form-field>
-        </div>
-      </div>
+      <quill-editor formControlName="description"></quill-editor>
       <div class="columns">
         <div class="column">
           <image-upload

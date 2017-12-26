@@ -23,7 +23,7 @@
                        (previewOpen)="onPreviewOpen()"
                        (previewClose)="onPreviewClose()"></ngx-gallery>
         </div>
-        <div class="notification has-text-weight-semibold">{{(shelter$ | async)?.description}}</div>
+        <div class="notification has-text-weight-semibold" [innerHTML]="(shelter$ | async)?.description"></div>
         <div class="field is-grouped">
           <p class="control">
             <button mat-raised-button (click)="onShare(shelter$)" i18n>Share</button>

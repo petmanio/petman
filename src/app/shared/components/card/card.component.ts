@@ -6,6 +6,7 @@ export interface Config {
   subtitle: string;
   image?: string;
   content?: string;
+  contentHTML?: string;
 }
 
 export interface ICardComponent {

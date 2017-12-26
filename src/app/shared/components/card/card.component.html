@@ -9,6 +9,7 @@
   <mat-card-content *ngIf="config.content">
     <p>{{config.content}}</p>
   </mat-card-content>
+  <mat-card-content *ngIf="config.contentHTML"  [innerHTML]="config.contentHTML"></mat-card-content>
   <mat-card-actions class="has-text-right">
     <button mat-raised-button (click)="onShareLocal($event)" i18n>SHARE</button>
   </mat-card-actions>
