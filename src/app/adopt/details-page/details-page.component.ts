@@ -11,6 +11,7 @@ import * as fromRoot from '../../core/shared/reducers';
 import * as fromAdopt from '../shared/reducers';
 import * as Layout from '../../core/shared/actions/layout';
 import * as Adopt from '../shared/actions/adopt.action';
+import { ModalSize } from '../../../../common/enums';
 import { AdoptDto } from '../../../../common/models/adopt.model';
 import { UtilService } from '../../shared/services/util/util.service';
 import { ShareDialogComponent } from '../../shared/components/share-dialog/share-dialog.component';
@@ -75,7 +76,7 @@ export class DetailsPageComponent implements OnDestroy, IDetailsPageComponent {
   onShare(): void {
     const url = this.document.location.origin + this.router.createUrlTree(['adoption', this.adopt.id]).toString();
     const _dialogRef = this.dialog.open(ShareDialogComponent, {
-      width: '300px',
+      width: ModalSize.MEDIUM,
       data: { url }
     });
     _dialogRef.afterClosed().subscribe(shareOptions => { });

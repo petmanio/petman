@@ -20,6 +20,7 @@ import { CardComponent } from './components/card/card.component';
 import { MuuriComponent } from './components/muuri/muuri.component';
 import { MuuriItemComponent } from './components/muuri-item/muuri-item.component';
 import { ShareDialogComponent } from './components/share-dialog/share-dialog.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   imports: [
@@ -34,10 +35,26 @@ import { ShareDialogComponent } from './components/share-dialog/share-dialog.com
     MatFormFieldModule,
     ShareButtonsModule.forRoot()
   ],
-  declarations: [AsyncDelayPipe, GalleryImagesPipe, CardComponent, MuuriComponent, MuuriItemComponent, ShareDialogComponent],
+  declarations: [
+    AsyncDelayPipe,
+    GalleryImagesPipe,
+    CardComponent,
+    MuuriComponent,
+    MuuriItemComponent,
+    ShareDialogComponent,
+    ConfirmationDialogComponent
+  ],
   providers: [UtilService, LocalStorageService],
-  exports: [AsyncDelayPipe, GalleryImagesPipe, CardComponent, MuuriComponent, MuuriItemComponent, ShareDialogComponent],
-  entryComponents: [ShareDialogComponent]
+  exports: [
+    AsyncDelayPipe,
+    GalleryImagesPipe,
+    CardComponent,
+    MuuriComponent,
+    MuuriItemComponent,
+    ShareDialogComponent,
+    ConfirmationDialogComponent
+  ],
+  entryComponents: [ShareDialogComponent, ConfirmationDialogComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

@@ -1,16 +1,19 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FileHolder } from 'angular2-image-upload';
-import { map as mapRx } from 'rxjs/operators';
 import { cloneDeep, findIndex, map } from 'lodash';
+import { Observable } from 'rxjs/Observable';
+import { map as mapRx } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
 
-import * as fromAdopt from '../shared/reducers';
 import * as Adopt from '../shared/actions/adopt.action';
-import { ActivatedRoute } from '@angular/router';
+import * as fromAdopt from '../shared/reducers';
 import { AdoptDto } from '../../../../common/models/adopt.model';
+import { ConfirmationDialogComponent } from './../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ModalSize } from '../../../../common/enums';
 
 export interface IEditPageComponent {
   onUploadFinished($event: FileHolder): void;
@@ -43,6 +46,7 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   }
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,
+              private dialog: MatDialog,
               private store: Store<fromAdopt.State>,
               private route: ActivatedRoute) {
     this.error$ = this.store.select(fromAdopt.getEditPageError);
@@ -97,6 +101,14 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   }
 
   onDelete(): void {
-    this.store.dispatch(new Adopt.Delete(this.adopt));
+    const _dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: ModalSize.MEDIUM,
+      data: {}
+    });
+    _dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.store.dispatch(new Adopt.Delete(this.adopt));
+      }
+    });
   }
 }

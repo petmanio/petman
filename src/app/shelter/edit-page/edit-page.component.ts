@@ -1,15 +1,18 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FileHolder } from 'angular2-image-upload';
-import { map as mapRx } from 'rxjs/operators';
 import { cloneDeep, findIndex, map } from 'lodash';
+import { Observable } from 'rxjs/Observable';
+import { map as mapRx } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
 
-import * as fromShelter from '../shared/reducers';
 import * as Shelter from '../shared/actions/shelter.action';
-import { ActivatedRoute } from '@angular/router';
+import * as fromShelter from '../shared/reducers';
+import { ModalSize } from '../../../../common/enums';
+import { ConfirmationDialogComponent } from './../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ShelterDto } from '../../../../common/models/shelter.model';
 
 export interface IEditPageComponent {
@@ -44,6 +47,7 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   }
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,
+              private dialog: MatDialog,
               private store: Store<fromShelter.State>,
               private route: ActivatedRoute) {
     this.error$ = this.store.select(fromShelter.getEditPageError);
@@ -98,6 +102,14 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   }
 
   onDelete(): void {
-    this.store.dispatch(new Shelter.Delete(this.shelter));
+    const _dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: ModalSize.MEDIUM,
+      data: {}
+    });
+    _dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.store.dispatch(new Shelter.Delete(this.shelter));
+      }
+    });
   }
 }
