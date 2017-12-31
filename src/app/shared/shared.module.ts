@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
@@ -23,6 +24,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     MatCardModule,
     MatIconModule,
     MatListModule,

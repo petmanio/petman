@@ -1,15 +1,7 @@
 import { map } from 'lodash';
 import {
-    AllowNull,
-    BelongsTo,
-    Column,
-    CreatedAt,
-    DataType,
-    DeletedAt,
-    ForeignKey,
-    Model,
-    Table,
-    UpdatedAt,
+  AllowNull, BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
+  UpdatedAt,
 } from 'sequelize-typescript';
 import { resolve } from 'url';
 

@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { filter, map, switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 import * as fromAdopt from '../../reducers';
-import * as Adopt from '../../actions/adopt.action';
-import { AdoptService } from '../../services/adopt/adopt.service';
 
 @Injectable()
 export class IsOwnerGuard implements CanActivate {

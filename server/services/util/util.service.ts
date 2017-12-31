@@ -66,4 +66,8 @@ const getUserFbAvatarByFbId = (facebookId: string): string => {
   return `https://graph.facebook.com/${facebookId}/picture?type=normal`;
 };
 
-export { logger, loggerStream, cors, jwtSign, jwtVerify, getUserFbAvatarByFbId };
+const getFacebookById = (facebookId: string): string => {
+  return `https://fb.com/${facebookId}`;
+};
+
+export { logger, loggerStream, cors, jwtSign, jwtVerify, getUserFbAvatarByFbId, getFacebookById };

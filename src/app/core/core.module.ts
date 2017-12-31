@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,22 +10,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule, } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {
-  MatButtonModule,
-  MatCardModule,
-  MatChipsModule,
-  MatIconModule,
-  MatListModule,
-  MatMenuModule,
-  MatProgressBarModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatToolbarModule
+  MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatListModule, MatMenuModule,
+  MatProgressBarModule, MatSelectModule, MatSidenavModule, MatToolbarModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
-  CovalentLayoutModule,
-  CovalentMenuModule,
-  CovalentNotificationsModule,
+  CovalentLayoutModule, CovalentMenuModule, CovalentNotificationsModule,
   CovalentSearchModule
 } from '@covalent/core';
 import { NgProgressInterceptor, NgProgressModule } from 'ngx-progressbar';

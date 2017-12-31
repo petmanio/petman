@@ -9,6 +9,7 @@ export class UserDataDto {
   lastName: string;
   userId: number;
   created: Date;
+  facebook: string;
 
   get name(): string {
     return `${this.firstName} ${this.lastName}`;

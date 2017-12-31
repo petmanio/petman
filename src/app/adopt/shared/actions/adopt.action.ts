@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
 import {
-  AdoptCreateRequestDto, AdoptCreateResponseDto, AdoptDeleteRequestDto, AdoptDeleteResponseDto,
-  AdoptDto, AdoptListRequestDto, AdoptListResponseDto, AdoptUpdateRequestDto, AdoptUpdateResponseDto
+  AdoptCreateRequestDto, AdoptCreateResponseDto, AdoptDeleteRequestDto, AdoptDeleteResponseDto, AdoptDto,
+  AdoptListRequestDto, AdoptListResponseDto, AdoptUpdateRequestDto, AdoptUpdateResponseDto
 } from '../../../../../common/models/adopt.model';
 
 export const CREATE = '[Adopt] Create';

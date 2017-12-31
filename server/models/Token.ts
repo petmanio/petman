@@ -1,17 +1,10 @@
 import {
-  BelongsTo,
-  Column,
-  CreatedAt,
-  DataType,
-  DeletedAt,
-  ForeignKey,
-  Model,
-  Table,
+  BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
 
 import { User } from './User';
-import { TokenType } from '../../common/enums/index';
+import { TokenType } from '../../common/enums';
 
 @Table({
   tableName: 'token',

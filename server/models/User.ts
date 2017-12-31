@@ -1,20 +1,11 @@
 import { find } from 'lodash';
 import {
-  BelongsToMany,
-  Column,
-  CreatedAt,
-  DeletedAt,
-  HasMany,
-  HasOne,
-  IsEmail,
-  Model,
-  Table,
-  Unique,
+  BelongsToMany, Column, CreatedAt, DeletedAt, HasMany, HasOne, IsEmail, Model, Table, Unique,
   UpdatedAt,
 } from 'sequelize-typescript';
 
-import { AuthProviderType } from '../../common/enums/index';
-import { getUserFbAvatarByFbId } from '../services/util/util.service';
+import { AuthProviderType } from '../../common/enums';
+import { getFacebookById, getUserFbAvatarByFbId } from '../services/util/util.service';
 import { Adopt } from './Adopt';
 import { AuthProvider } from './AuthProvider';
 import { Shelter } from './Shelter';
@@ -79,7 +70,9 @@ export class User extends Model<User> {
     if (obj.userData && !obj.userData.avatar && obj.authProviders) {
       const fbAuthProvider = find(obj.authProviders, provider => provider.type === AuthProviderType.FACEBOOK);
       if (fbAuthProvider) {
+        obj.userData = obj.userData.toJSON();
         obj.userData.avatar = getUserFbAvatarByFbId(fbAuthProvider.externalId);
+        obj.userData.facebook = getFacebookById(fbAuthProvider.externalId);
       }
     }
     delete obj.deleted;

@@ -1,13 +1,5 @@
 import {
-  AllowNull,
-  BelongsTo,
-  Column,
-  CreatedAt,
-  DataType,
-  DeletedAt,
-  ForeignKey,
-  Model,
-  Table,
+  AllowNull, BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
 
@@ -63,6 +55,11 @@ export class UserData extends Model<UserData> {
 
   @DeletedAt
   deleted: Date;
+
+  /**
+   * Dynamic fields
+   */
+  facebook: string;
 
   /**
    * Instance methods
