@@ -25,6 +25,9 @@ export class UserData extends Model<UserData> {
   @Column
   avatar: string;
 
+  @Column
+  facebook: string;
+
   @Column({
     field: 'first_name'
   })
@@ -55,11 +58,6 @@ export class UserData extends Model<UserData> {
 
   @DeletedAt
   deleted: Date;
-
-  /**
-   * Dynamic fields
-   */
-  facebook: string;
 
   /**
    * Instance methods

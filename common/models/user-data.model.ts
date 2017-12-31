@@ -5,14 +5,14 @@ import { Gender } from '../enums';
 export class UserDataDto {
   gender: Gender;
   avatar: string;
+  facebook: string;
   firstName: string;
   lastName: string;
   userId: number;
   created: Date;
-  facebook: string;
 
   get name(): string {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.firstName || ''} ${this.lastName || ''}`;
   }
 
   @Type(() => UserDto)

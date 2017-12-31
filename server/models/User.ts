@@ -75,8 +75,8 @@ export class User extends Model<User> {
       const fbAuthProvider = find(obj.authProviders, provider => provider.type === AuthProviderType.FACEBOOK);
       if (fbAuthProvider) {
         obj.userData = obj.userData.toJSON();
-        obj.userData.avatar = getUserFbAvatarByFbId(fbAuthProvider.externalId);
-        obj.userData.facebook = getFacebookById(fbAuthProvider.externalId);
+        obj.userData.avatar = obj.userData.avatar || getUserFbAvatarByFbId(fbAuthProvider.externalId);
+        obj.userData.facebook = obj.userData.facebook || getFacebookById(fbAuthProvider.externalId);
       }
     }
     delete obj.deleted;

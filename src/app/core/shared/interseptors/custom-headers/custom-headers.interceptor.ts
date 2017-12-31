@@ -8,7 +8,9 @@ export class CustomHeadersInterceptor implements HttpInterceptor {
   constructor(private localStorageService: LocalStorageService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     req = req.clone({
-      headers: req.headers.set('x-auth-token', this.localStorageService.getItem('token') || '')
+      headers: req.headers
+        .set('x-auth-token', this.localStorageService.getItem('token') || '')
+        .set('x-selected-user', this.localStorageService.getItem('selectedUserId') || '')
     });
     return next.handle(req);
   }
