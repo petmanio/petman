@@ -1,0 +1,22 @@
+<div class="columns is-marginless">
+  <div class="column is-10 is-offset-1">
+    <div class="columns">
+      <div class="column is-3 has-text-centered">
+        <app-user-details [user]="(walker$ | async)?.user"></app-user-details>
+      </div>
+      <div class="column is-9">
+        <div class="notification" [innerHTML]="(walker$ | async)?.description | appSafeHtml"></div>
+        <div class="field is-grouped">
+          <p class="control">
+            <button mat-raised-button (click)="onShare(walker$)" i18n>Share</button>
+          </p>
+          <p class="control" *ngIf="(walker$ | async)?.isOwner">
+            <button [routerLink]="['/walkers', walker.id, 'edit']" mat-raised-button i18n>Edit</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+    </div>
+  </div>
+</div>

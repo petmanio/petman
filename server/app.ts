@@ -18,6 +18,7 @@ import { getAuthedUser } from './policies/get-authed-user/get-authed-user.policy
 import { infoRouter } from './routes/info/info.route';
 import { authRouter } from './routes/auth/auth.route';
 import { shelterRouter } from './routes/shelter/shelter.route';
+import { walkerRouter } from './routes/walker/walker.route';
 import { adoptRouter } from './routes/adopt/adopt.route';
 
 function universalRouter(req, res) {
@@ -76,6 +77,7 @@ app.use(getAuthedUser);
 app.use('/api/info', infoRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/shelters', shelterRouter);
+app.use('/api/walkers', walkerRouter);
 app.use('/api/adoption', adoptRouter);
 app.get('/*', process.env.UNIVERSAL_APP ? universalRouter : staticRouter);
 

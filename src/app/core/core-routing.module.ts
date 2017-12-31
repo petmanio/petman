@@ -18,6 +18,11 @@ export const routes: Routes = [
     data: { showSidenav: true }
   },
   {
+    path: 'walkers',
+    loadChildren: 'app/walker/walker.module#WalkerModule',
+    data: { showSidenav: true }
+  },
+  {
     path: 'adoption',
     loadChildren: 'app/adopt/adopt.module#AdoptModule',
     data: { showSidenav: true }

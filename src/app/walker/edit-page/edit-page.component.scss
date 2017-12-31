@@ -1,0 +1,17 @@
+@import '../../shared/scss/mixins';
+@import '../../shared/scss/variables';
+
+.pm-top-image {
+  background: url("/assets/pets.png") no-repeat center;
+  height: 150px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+quill-editor {
+  margin: 10px 0 80px 0;
+  display: block;
+  height: 140px;
+}

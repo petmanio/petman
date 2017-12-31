@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { filter, map, switchMap, take } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+
+import * as fromWalker from '../../reducers';
+
+@Injectable()
+export class IsOwnerGuard implements CanActivate {
+  constructor(private router: Router,
+              private store: Store<fromWalker.State>) {}
+
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    return this.isOwner(route.params['id'])
+      .pipe(
+        switchMap(isOwner => {
+          if (isOwner) {
+            return of(isOwner);
+          }
+          this.router.navigate(['/404']);
+          return of(false);
+        })
+      );
+  }
+
+  isOwner(id: number): Observable<boolean> {
+    return this.store.select(fromWalker.getWalkerEntities)
+      .pipe(
+        filter(entities => !!entities[id]),
+        map(entities => entities[id]),
+        map(entity => entity && entity.isOwner),
+        take(1)
+      );
+  }
+}

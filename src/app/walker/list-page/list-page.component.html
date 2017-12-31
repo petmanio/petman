@@ -16,7 +16,7 @@
                    class="columns">
         <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
           <!-- TODO: fix full page load on navigation -->
-          <a [routerLink]="['/adoption', item.id]">
+          <a [routerLink]="['/walkers', item.id]">
             <app-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-card>
           </a>
         </ngx-masonry-item>

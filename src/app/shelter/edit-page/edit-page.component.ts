@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as Shelter from '../shared/actions/shelter.action';
 import * as fromShelter from '../shared/reducers';
 import { ModalSize } from '../../../../common/enums';
-import { ConfirmationDialogComponent } from './../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ShelterDto } from '../../../../common/models/shelter.model';
 
 export interface IEditPageComponent {

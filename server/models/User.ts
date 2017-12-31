@@ -10,6 +10,7 @@ import { Adopt } from './Adopt';
 import { AuthProvider } from './AuthProvider';
 import { Shelter } from './Shelter';
 import { UserData } from './UserData';
+import { Walker } from './Walker';
 
 @Table({
   tableName: 'user',
@@ -40,6 +41,9 @@ export class User extends Model<User> {
 
   @HasMany(() => Shelter)
   shelters: Shelter[];
+
+  @HasMany(() => Walker)
+  walkers: Walker[];
 
   @HasMany(() => Adopt)
   adoption: Adopt[];

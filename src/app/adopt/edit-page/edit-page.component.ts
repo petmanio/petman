@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as Adopt from '../shared/actions/adopt.action';
 import * as fromAdopt from '../shared/reducers';
 import { AdoptDto } from '../../../../common/models/adopt.model';
-import { ConfirmationDialogComponent } from './../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ModalSize } from '../../../../common/enums';
 
 export interface IEditPageComponent {

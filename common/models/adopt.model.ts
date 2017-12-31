@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { UserDto } from './user.model';
-import { CommonListRequestDto, CommonListResponse } from '../shared';
+import { CommonListRequestDto } from '../shared';
 
 export class AdoptDto {
   id: number;

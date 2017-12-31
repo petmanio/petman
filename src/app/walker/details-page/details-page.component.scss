@@ -1,0 +1,18 @@
+@import '../../shared/scss/mixins';
+@import '../../shared/scss/variables';
+
+.pm-card-avatar {
+  display: inline-block;
+}
+
+.control {
+  &:first-child {
+    margin-left: auto;
+  }
+}
+
+.notification {
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+  height: 100%;
+}
