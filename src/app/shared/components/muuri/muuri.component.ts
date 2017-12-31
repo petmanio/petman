@@ -5,7 +5,7 @@ import { MuuriItemComponent } from '../muuri-item/muuri-item.component';
 const Murri = require('muuri');
 
 @Component({
-  selector: 'app-shared-muuri',
+  selector: 'app-muuri',
   templateUrl: './muuri.component.html',
   styleUrls: ['./muuri.component.scss'],
 })

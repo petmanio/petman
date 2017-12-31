@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'appSharedGalleryImages'
+  name: 'appGalleryImages'
 })
 export class GalleryImagesPipe implements PipeTransform {
 

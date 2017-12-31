@@ -14,7 +14,7 @@ export interface ICardComponent {
 }
 
 @Component({
-  selector: 'app-shared-card',
+  selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })

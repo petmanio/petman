@@ -16,7 +16,7 @@ export interface IConfirmationDialogComponent {
 }
 
 @Component({
-  selector: 'app-removal-popup',
+  selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
   styleUrls: ['./confirmation-dialog.component.scss']
 })

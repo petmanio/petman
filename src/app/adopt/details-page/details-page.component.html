@@ -19,11 +19,11 @@
       <div class="column is-9">
         <div class="pm-gallery-custom">
           <ngx-gallery [options]="galleryOptions"
-                       [images]="(adopt$ | async)?.images | appSharedGalleryImages"
+                       [images]="(adopt$ | async)?.images | appGalleryImages"
                        (previewOpen)="onPreviewOpen()"
                        (previewClose)="onPreviewClose()"></ngx-gallery>
         </div>
-        <div class="notification" [innerHTML]="(adopt$ | async)?.description | safeHtml"></div>
+        <div class="notification" [innerHTML]="(adopt$ | async)?.description | appSafeHtml"></div>
         <div class="field is-grouped">
           <p class="control">
             <button mat-raised-button (click)="onShare(adopt$)" i18n>Share</button>

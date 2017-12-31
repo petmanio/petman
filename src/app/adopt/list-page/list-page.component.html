@@ -17,7 +17,7 @@
         <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
           <!-- TODO: fix full age loag on navigation -->
           <a [routerLink]="['/adoption', item.id]">
-            <app-shared-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-shared-card>
+            <app-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-card>
           </a>
         </ngx-masonry-item>
       </ngx-masonry>
@@ -26,7 +26,7 @@
       <mat-icon>add</mat-icon>
     </button>
   </div>
-  <div class="columns is-marginless" [hidden]="!(list$ | appSharedAsyncDelay | async)?.length">
+  <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
     <div class="column has-text-centered" [hidden]="!canLoadMore">
       <button mat-raised-button (click)="onLoadMore()" i18n>Load more</button>
     </div>

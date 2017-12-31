@@ -2,12 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  MatButtonModule,
-  MatCardModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
   MatListModule
 } from '@angular/material';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
@@ -22,6 +17,7 @@ import { MuuriComponent } from './components/muuri/muuri.component';
 import { MuuriItemComponent } from './components/muuri-item/muuri-item.component';
 import { ShareDialogComponent } from './components/share-dialog/share-dialog.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   imports: [
@@ -44,7 +40,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MuuriComponent,
     MuuriItemComponent,
     ShareDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    UserDetailsComponent
   ],
   providers: [UtilService, LocalStorageService],
   exports: [
@@ -55,7 +52,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MuuriComponent,
     MuuriItemComponent,
     ShareDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    UserDetailsComponent
   ],
   entryComponents: [ShareDialogComponent, ConfirmationDialogComponent]
 })
