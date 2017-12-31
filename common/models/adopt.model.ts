@@ -2,6 +2,14 @@ import { Type } from 'class-transformer';
 import { UserDto } from './user.model';
 import { CommonListRequestDto } from '../shared';
 
+function userDtoGetter() {
+  return UserDto;
+}
+
+function adoptDtoGetter() {
+  return AdoptDto;
+}
+
 export class AdoptDto {
   id: number;
   userId: number;
@@ -11,7 +19,8 @@ export class AdoptDto {
   created: Date;
   updated: Date;
 
-  @Type(() => UserDto)
+  // @Type(() => UserDto)
+  @Type(userDtoGetter)
   user: UserDto;
 }
 
@@ -49,7 +58,8 @@ export class AdoptListRequestDto extends CommonListRequestDto {
 export class AdoptListResponseDto {
   total: number;
 
-  @Type(() => AdoptDto)
+  // @Type(() => AdoptDto)
+  @Type(adoptDtoGetter)
   list: AdoptDto[];
 }
 

@@ -38,7 +38,7 @@ export class AuthService implements IAuthService {
 
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto> {
     return this.http
-      .post<FbAuthenticationResponseDto>(`${environment.apiEndpoint}/api/auth/login/fb`, options)
+      .post<FbAuthenticationResponseDto>(`${environment.api}/api/auth/login/fb`, options)
       .map(response => {
         this.localStorageService.setItem('token', response.token);
         this.localStorageService.setItem('user', response.user);
@@ -48,7 +48,7 @@ export class AuthService implements IAuthService {
 
   user(): Observable<AuthenticationResponseDto> {
     return this.http
-      .get<AuthenticationResponseDto>(`${environment.apiEndpoint}/api/auth/user`, {})
+      .get<AuthenticationResponseDto>(`${environment.api}/api/auth/user`, {})
       .map(response => plainToClass(AuthenticationResponseDto, response, {enableCircularCheck: false}))
       .map(response => {
         this.localStorageService.setItem('user', response);

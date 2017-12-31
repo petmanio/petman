@@ -3,6 +3,14 @@ import { Type } from 'class-transformer';
 import { UserDto } from './user.model';
 import { CommonListRequestDto } from '../shared';
 
+function userDtoGetter() {
+  return UserDto;
+}
+
+function shelterDtoGetter() {
+  return ShelterDto;
+}
+
 export class ShelterDto {
   id: number;
   userId: number;
@@ -13,7 +21,8 @@ export class ShelterDto {
   created: Date;
   updated: Date;
 
-  @Type(() => UserDto)
+  // @Type(() => UserDto)
+  @Type(userDtoGetter)
   user: UserDto;
 }
 
@@ -53,7 +62,8 @@ export class ShelterListRequestDto extends CommonListRequestDto {
 export class ShelterListResponseDto {
   total: number;
 
-  @Type(() => ShelterDto)
+  // @Type(() => ShelterDto)
+  @Type(shelterDtoGetter)
   list: ShelterDto[];
 }
 

@@ -31,7 +31,7 @@ export class ShelterService implements IShelterService {
       formData.append('price', body.price);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
-    return this.http.post<ShelterCreateResponseDto>(`${environment.apiEndpoint}/api/shelters`, formData)
+    return this.http.post<ShelterCreateResponseDto>(`${environment.api}/api/shelters`, formData)
       .map(response => plainToClass(ShelterCreateResponseDto, response, { enableCircularCheck: false }));
   }
 
@@ -49,18 +49,18 @@ export class ShelterService implements IShelterService {
         }
       });
     }
-    return this.http.put<ShelterUpdateResponseDto>(`${environment.apiEndpoint}/api/shelters/${body.id}`, formData)
+    return this.http.put<ShelterUpdateResponseDto>(`${environment.api}/api/shelters/${body.id}`, formData)
       .map(response => plainToClass(ShelterUpdateResponseDto, response, { enableCircularCheck: false }));
   }
 
   delete(body: ShelterDeleteRequestDto): Observable<ShelterDeleteResponseDto> {
-    return this.http.delete<ShelterDeleteResponseDto>(`${environment.apiEndpoint}/api/shelters/${body.id}`)
+    return this.http.delete<ShelterDeleteResponseDto>(`${environment.api}/api/shelters/${body.id}`)
       .map(response => plainToClass(ShelterDeleteResponseDto, response, { enableCircularCheck: false }));
   }
 
   getById(id: number): Observable<ShelterDto> {
     return this.http
-      .get<ShelterDto>(`${environment.apiEndpoint}/api/shelters/${id}`)
+      .get<ShelterDto>(`${environment.api}/api/shelters/${id}`)
       .map(response => plainToClass(ShelterDto, response, { enableCircularCheck: false }));
   }
 
@@ -70,7 +70,7 @@ export class ShelterService implements IShelterService {
       .set('limit', query.limit.toString());
 
     return this.http
-      .get<ShelterListResponseDto>(`${environment.apiEndpoint}/api/shelters`, { params })
+      .get<ShelterListResponseDto>(`${environment.api}/api/shelters`, { params })
       .map(response => plainToClass(ShelterListResponseDto, response, { enableCircularCheck: false }));
   }
 }

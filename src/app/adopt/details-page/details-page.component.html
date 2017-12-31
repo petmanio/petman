@@ -14,7 +14,7 @@
         <div class="notification" [innerHTML]="(adopt$ | async)?.description | appSafeHtml"></div>
         <div class="field is-grouped">
           <p class="control">
-            <button mat-raised-button (click)="onShare(adopt$)" i18n>Share</button>
+            <button mat-raised-button (click)="onShare()" i18n>Share</button>
           </p>
           <p class="control" *ngIf="(adopt$ | async)?.isOwner">
             <button [routerLink]="['/adoption', adopt.id, 'edit']" mat-raised-button i18n>Edit</button>

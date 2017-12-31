@@ -8,7 +8,7 @@
         <div class="notification" [innerHTML]="(walker$ | async)?.description | appSafeHtml"></div>
         <div class="field is-grouped">
           <p class="control">
-            <button mat-raised-button (click)="onShare(walker$)" i18n>Share</button>
+            <button mat-raised-button (click)="onShare()" i18n>Share</button>
           </p>
           <p class="control" *ngIf="(walker$ | async)?.isOwner">
             <button [routerLink]="['/walkers', walker.id, 'edit']" mat-raised-button i18n>Edit</button>

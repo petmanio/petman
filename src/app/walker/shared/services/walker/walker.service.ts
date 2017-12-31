@@ -1,14 +1,12 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { plainToClass } from 'class-transformer';
-import { forEach } from 'lodash';
 
 import { environment } from '../../../../../environments/environment';
 import {
-  WalkerCreateRequestDto, WalkerCreateResponseDto, WalkerDeleteRequestDto, WalkerDeleteResponseDto,
-  WalkerDto, WalkerListRequestDto, WalkerListResponseDto, WalkerUpdateRequestDto, WalkerUpdateResponseDto
+  WalkerCreateRequestDto, WalkerCreateResponseDto, WalkerDeleteRequestDto, WalkerDeleteResponseDto, WalkerDto,
+  WalkerListRequestDto, WalkerListResponseDto, WalkerUpdateRequestDto, WalkerUpdateResponseDto
 } from '../../../../../../common/models/walker.model';
 
 export interface IWalkerService {
@@ -21,46 +19,26 @@ export interface IWalkerService {
 
 @Injectable()
 export class WalkerService implements IWalkerService {
-  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   create(body: WalkerCreateRequestDto): Observable<WalkerCreateResponseDto> {
-    let formData: FormData;
-    if (isPlatformBrowser(this.platformId)) {
-      formData = new FormData();
-      formData.append('description', body.description);
-      formData.append('price', body.price);
-      forEach(body.images, file => formData.append('images', file, file.name));
-    }
-    return this.http.post<WalkerCreateResponseDto>(`${environment.apiEndpoint}/api/walkers`, formData)
+    return this.http.post<WalkerCreateResponseDto>(`${environment.api}/api/walkers`, body)
       .map(response => plainToClass(WalkerCreateResponseDto, response, { enableCircularCheck: false }));
   }
 
   update(body: WalkerUpdateRequestDto): Observable<WalkerUpdateResponseDto> {
-    let formData: FormData;
-    if (isPlatformBrowser(this.platformId)) {
-      formData = new FormData();
-      formData.append('description', body.description);
-      formData.append('price', body.price);
-      forEach(body.images, file => {
-        if (typeof file === 'string') {
-          formData.append('images', file);
-        } else {
-          formData.append('images', file, file.name);
-        }
-      });
-    }
-    return this.http.put<WalkerUpdateResponseDto>(`${environment.apiEndpoint}/api/walkers/${body.id}`, formData)
+    return this.http.put<WalkerUpdateResponseDto>(`${environment.api}/api/walkers/${body.id}`, body)
       .map(response => plainToClass(WalkerUpdateResponseDto, response, { enableCircularCheck: false }));
   }
 
   delete(body: WalkerDeleteRequestDto): Observable<WalkerDeleteResponseDto> {
-    return this.http.delete<WalkerDeleteResponseDto>(`${environment.apiEndpoint}/api/walkers/${body.id}`)
+    return this.http.delete<WalkerDeleteResponseDto>(`${environment.api}/api/walkers/${body.id}`)
       .map(response => plainToClass(WalkerDeleteResponseDto, response, { enableCircularCheck: false }));
   }
 
   getById(id: number): Observable<WalkerDto> {
     return this.http
-      .get<WalkerDto>(`${environment.apiEndpoint}/api/walkers/${id}`)
+      .get<WalkerDto>(`${environment.api}/api/walkers/${id}`)
       .map(response => plainToClass(WalkerDto, response, { enableCircularCheck: false }));
   }
 
@@ -70,7 +48,7 @@ export class WalkerService implements IWalkerService {
       .set('limit', query.limit.toString());
 
     return this.http
-      .get<WalkerListResponseDto>(`${environment.apiEndpoint}/api/walkers`, { params })
+      .get<WalkerListResponseDto>(`${environment.api}/api/walkers`, { params })
       .map(response => plainToClass(WalkerListResponseDto, response, { enableCircularCheck: false }));
   }
 }

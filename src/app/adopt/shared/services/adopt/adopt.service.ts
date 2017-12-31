@@ -30,7 +30,7 @@ export class AdoptService implements IAdoptService {
       formData.append('description', body.description);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
-    return this.http.post<AdoptCreateResponseDto>(`${environment.apiEndpoint}/api/adoption`, formData)
+    return this.http.post<AdoptCreateResponseDto>(`${environment.api}/api/adoption`, formData)
       .map(response => plainToClass(AdoptCreateResponseDto, response, { enableCircularCheck: false }));
   }
 
@@ -47,18 +47,18 @@ export class AdoptService implements IAdoptService {
         }
       });
     }
-    return this.http.put<AdoptUpdateResponseDto>(`${environment.apiEndpoint}/api/adoption/${body.id}`, formData)
+    return this.http.put<AdoptUpdateResponseDto>(`${environment.api}/api/adoption/${body.id}`, formData)
       .map(response => plainToClass(AdoptUpdateResponseDto, response, { enableCircularCheck: false }));
   }
 
   delete(body: AdoptDeleteRequestDto): Observable<AdoptDeleteResponseDto> {
-    return this.http.delete<AdoptDeleteResponseDto>(`${environment.apiEndpoint}/api/adoption/${body.id}`)
+    return this.http.delete<AdoptDeleteResponseDto>(`${environment.api}/api/adoption/${body.id}`)
       .map(response => plainToClass(AdoptDeleteResponseDto, response, { enableCircularCheck: false }));
   }
 
   getById(id: number): Observable<AdoptDto> {
     return this.http
-      .get<AdoptDto>(`${environment.apiEndpoint}/api/adoption/${id}`)
+      .get<AdoptDto>(`${environment.api}/api/adoption/${id}`)
       .map(response => plainToClass(AdoptDto, response, { enableCircularCheck: false }));
   }
 
@@ -68,7 +68,7 @@ export class AdoptService implements IAdoptService {
       .set('limit', query.limit.toString());
 
     return this.http
-      .get<AdoptListResponseDto>(`${environment.apiEndpoint}/api/adoption`, { params })
+      .get<AdoptListResponseDto>(`${environment.api}/api/adoption`, { params })
       .map(response => plainToClass(AdoptListResponseDto, response, { enableCircularCheck: false }));
   }
 }

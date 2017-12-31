@@ -1,8 +1,29 @@
 import { Type } from 'class-transformer';
+
 import { ShelterDto } from './shelter.model';
 import { UserDataDto } from './user-data.model';
 import { AdoptDto } from './adopt.model';
 import { WalkerDto } from './walker.model';
+
+function userDtoGetter() {
+  return UserDto;
+}
+
+function userDataDtoGetter() {
+  return UserDataDto;
+}
+
+function shelterDtoGetter() {
+  return ShelterDto;
+}
+
+function walkerDtoGetter() {
+  return WalkerDto;
+}
+
+function adoptDtoGetter() {
+  return AdoptDto;
+}
 
 export class FbUser {
   id: number;
@@ -19,21 +40,28 @@ export class UserDto {
   created: Date;
   updated: Date;
 
-  @Type(() => UserDataDto)
+  // TODO: tmp solution
+  // @Type(() => UserDataDto)
+  @Type(userDataDtoGetter)
   userData: UserDataDto;
 
-  @Type(() => ShelterDto)
+  // @Type(() => ShelterDto)
+  @Type(shelterDtoGetter)
   shelters: ShelterDto[];
 
-  @Type(() => ShelterDto)
+  // @Type(() => WalkerDto)
+  @Type(walkerDtoGetter)
   walkers: WalkerDto[];
 
-  @Type(() => AdoptDto)
+  // @Type(() => AdoptDto)
+  @Type(adoptDtoGetter)
   adoptions: AdoptDto[];
 
-  @Type(() => UserDto)
+  // @Type(() => UserDto)
+  @Type(userDtoGetter)
   businessUsers: UserDto[];
 
-  @Type(() => UserDto)
+  // @Type(() => UserDto)
+  @Type(userDtoGetter)
   owners: UserDto[];
 }

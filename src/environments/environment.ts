@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: '',
-  // apiEndpoint: 'https://petman.io',
+  // api: 'https://petman.io',
+  api: '',
   fb: {
     appId: '782744788540027',
     scope: 'public_profile,email'

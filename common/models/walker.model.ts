@@ -3,6 +3,14 @@ import { UserDto } from './user.model';
 
 import { CommonListRequestDto } from '../shared';
 
+function userDtoGetter() {
+  return UserDto;
+}
+
+function walkerDtoGetter() {
+  return WalkerDto;
+}
+
 export class WalkerDto {
   id: number;
   userId: number;
@@ -13,7 +21,8 @@ export class WalkerDto {
   created: Date;
   updated: Date;
 
-  @Type(() => UserDto)
+  // @Type(() => UserDto)
+  @Type(userDtoGetter)
   user: UserDto;
 }
 
@@ -21,7 +30,6 @@ export class WalkerDto {
 export class WalkerCreateRequestDto {
   price: string;
   description: string;
-  images: File[];
 }
 
 export class WalkerCreateResponseDto extends WalkerDto {
@@ -32,7 +40,6 @@ export class WalkerUpdateRequestDto {
   id: number;
   price: string;
   description: string;
-  images: any[];
 }
 
 export class WalkerUpdateResponseDto extends WalkerDto {
@@ -53,7 +60,8 @@ export class WalkerListRequestDto extends CommonListRequestDto {
 export class WalkerListResponseDto {
   total: number;
 
-  @Type(() => WalkerDto)
+  // @Type(() => WalkerDto)
+  @Type(walkerDtoGetter)
   list: WalkerDto[];
 }
 
