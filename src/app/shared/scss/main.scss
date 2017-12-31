@@ -45,6 +45,34 @@ html {
   }
 }
 
+
+quill-editor {
+  margin: 10px 0;
+  display: block;
+  /deep/ .ql-container {
+    z-index: 20;
+  }
+}
+
+image-upload {
+  /deep/ {
+    .drag-box-message {
+      display: none !important;
+      @include desktop {
+        display: block !important;
+      }
+    }
+
+    .img-ul-clear {
+      display: none;
+    }
+
+    .img-ul-upload {
+      background-color: $primary !important;
+    }
+  }
+}
+
 .pm-fab {
   position: fixed !important;
   right: 20px;

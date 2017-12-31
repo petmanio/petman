@@ -1,5 +1,5 @@
 import { DatePipe, DOCUMENT, Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -28,7 +28,6 @@ export interface IListPageComponent {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent {
-  @ViewChild('masonry') masonry;
   list: WalkerDto[];
   limit = 12;
   total: number;

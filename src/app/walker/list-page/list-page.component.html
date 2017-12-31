@@ -11,10 +11,11 @@
   </div>
   <div class="columns is-marginless pm-content-spacer">
     <div class="column">
-      <ngx-masonry #masonry [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }"
+      <ngx-masonry [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }"
                    [useImagesLoaded]="true"
                    class="columns">
-        <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
+        <!--FIXME: without appAsyncDelay sometimes items become duplicated -->
+        <ngx-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | appAsyncDelay | async">
           <!-- TODO: fix full page load on navigation -->
           <a [routerLink]="['/walkers', item.id]">
             <app-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-card>
