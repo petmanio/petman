@@ -1,14 +1,17 @@
 <mat-sidenav-container>
   <mat-sidenav [opened]="open" [mode]="mode" color="primary" (close)="onClose.emit()">
-    <div class="change-user-sidenav" *ngIf="user?.businessUsers.length">
-      <mat-select (change)="onSelectedUserChange.emit($event)" [ngModel]="selectedUser.id">
-        <mat-option [value]="user.id">{{user.userData.firstName}}</mat-option>
-        <mat-option *ngFor="let businessUser of user.businessUsers"
-                    [value]="businessUser.id">{{ businessUser.userData.firstName }}
-        </mat-option>
-      </mat-select>
-    </div>
     <mat-nav-list>
+      <ng-container *ngIf="user?.businessUsers.length">
+        <mat-list-item>
+          <mat-select (change)="onSelectedUserChange.emit($event)" [ngModel]="selectedUser.id">
+            <mat-option [value]="user.id">{{user.userData.firstName}}</mat-option>
+            <mat-option *ngFor="let businessUser of user.businessUsers"
+                        [value]="businessUser.id">{{ businessUser.userData.firstName }}
+            </mat-option>
+          </mat-select>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
       <app-nav-item (activate)="onItemActivate.emit()"
                     icon="dashboard" routerLink="" [activeClass]="[isHomeActive]" i18n>Main</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" routerLink="/map" icon="place"

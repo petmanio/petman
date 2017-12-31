@@ -8,7 +8,9 @@ import * as fromRouter from '@ngrx/router-store';
  * ensure that none of the reducers accidentally mutates the state.
  */
 import { storeFreeze } from 'ngrx-store-freeze';
+
 import * as fromLayout from './layout';
+import { CLEAR } from '../actions';
 
 /**
  * Every reducer module's default export is the reducer function itself. In
@@ -47,12 +49,18 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   };
 }
 
+export function clear(reducer: ActionReducer<State>): ActionReducer<State> {
+  return function(state: State, action: any): State {
+    return reducer(action.type === CLEAR ? undefined : state, action);
+  };
+}
+
 /**
  * By default, @ngrx/store uses combineReducers with the reducer map to compose
  * the root meta-reducer. To add more meta-reducers, provide an array of meta-reducers
  * that will be composed to form the root meta-reducer.
  */
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [logger, storeFreeze] : [];
+export const metaReducers: MetaReducer<State>[] = !environment.production ? [clear, logger, storeFreeze] : [clear];
 
 /**
  * Layout Reducers

@@ -10,6 +10,7 @@ import { Actions, Effect } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 
 import { AuthService } from '../services/auth/auth.service';
+// import * as Core from '../../../core/shared/actions';
 import * as Auth from '../actions/auth.action';
 
 @Injectable()
