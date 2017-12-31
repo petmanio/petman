@@ -23,7 +23,7 @@
                        (previewOpen)="onPreviewOpen()"
                        (previewClose)="onPreviewClose()"></ngx-gallery>
         </div>
-        <div class="notification has-text-weight-semibold" [innerHTML]="(adopt$ | async)?.description"></div>
+        <div class="notification" [innerHTML]="(adopt$ | async)?.description | safeHtml"></div>
         <div class="field is-grouped">
           <p class="control">
             <button mat-raised-button (click)="onShare(adopt$)" i18n>Share</button>

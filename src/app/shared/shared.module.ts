@@ -13,6 +13,7 @@ import {
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
+import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 import { GalleryImagesPipe } from './pipes/gallery-images/gallery-images.pipe';
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
@@ -37,6 +38,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
   ],
   declarations: [
     AsyncDelayPipe,
+    SafeHtmlPipe,
     GalleryImagesPipe,
     CardComponent,
     MuuriComponent,
@@ -47,6 +49,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
   providers: [UtilService, LocalStorageService],
   exports: [
     AsyncDelayPipe,
+    SafeHtmlPipe,
     GalleryImagesPipe,
     CardComponent,
     MuuriComponent,
