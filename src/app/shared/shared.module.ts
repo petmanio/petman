@@ -19,6 +19,7 @@ import { MuuriItemComponent } from './components/muuri-item/muuri-item.component
 import { ShareDialogComponent } from './components/share-dialog/share-dialog.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { BrickComponent } from './components/brick/brick.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     MuuriItemComponent,
     ShareDialogComponent,
     ConfirmationDialogComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    BrickComponent
   ],
   providers: [UtilService, LocalStorageService],
   exports: [
@@ -55,7 +57,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     MuuriItemComponent,
     ShareDialogComponent,
     ConfirmationDialogComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    BrickComponent
   ],
   entryComponents: [ShareDialogComponent, ConfirmationDialogComponent]
 })
