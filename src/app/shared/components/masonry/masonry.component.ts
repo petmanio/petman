@@ -1,5 +1,9 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/core';
 import * as Masonry from 'masonry-layout';
+import {
+  AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, OnDestroy,
+  OnInit
+} from '@angular/core';
+import { debounce } from 'lodash';
 
 @Component({
   selector: 'app-masonry',
@@ -7,29 +11,29 @@ import * as Masonry from 'masonry-layout';
   styleUrls: ['./masonry.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MasonryComponent implements AfterViewInit, AfterViewChecked {
+export class MasonryComponent implements OnInit, AfterViewChecked, OnDestroy {
   @Input() options: Masonry.Options;
   private instance: Masonry;
+  private reloadItems: Function;
+  private layout: Function;
   constructor(private el: ElementRef) { }
 
-  ngAfterViewInit(): void {
-    this.update();
+  ngOnInit(): void {
+    this.instance = new Masonry(this.el.nativeElement, this.options);
+    this.reloadItems = debounce(this.instance.reloadItems.bind(this.instance));
+    this.layout = debounce(this.instance.layout.bind(this.instance));
   }
 
   ngAfterViewChecked(): void {
-    this.update();
+    if (this.instance) {
+      this.reloadItems(300);
+      this.layout(300);
+    }
   }
 
-  private initiate(): void  {
-    this.instance = new Masonry(this.el.nativeElement, this.options);
-    this.update();
-  }
-
-  private update(): void {
-    if (!this.instance) {
-      this.initiate();
-    } else {
-      this.instance.reloadItems();
+  ngOnDestroy(): void {
+    if (this.instance) {
+      this.instance.destroy();
     }
   }
 }
