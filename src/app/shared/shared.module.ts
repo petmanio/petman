@@ -20,6 +20,8 @@ import { ShareDialogComponent } from './components/share-dialog/share-dialog.com
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { BrickComponent } from './components/brick/brick.component';
+import { MasonryComponent } from './components/masonry/masonry.component';
+import { MasonryItemComponent } from './components/masonry-item/masonry-item.component';
 
 @NgModule({
   imports: [
@@ -45,7 +47,9 @@ import { BrickComponent } from './components/brick/brick.component';
     ShareDialogComponent,
     ConfirmationDialogComponent,
     UserDetailsComponent,
-    BrickComponent
+    BrickComponent,
+    MasonryComponent,
+    MasonryItemComponent,
   ],
   providers: [UtilService, LocalStorageService],
   exports: [
@@ -58,7 +62,9 @@ import { BrickComponent } from './components/brick/brick.component';
     ShareDialogComponent,
     ConfirmationDialogComponent,
     UserDetailsComponent,
-    BrickComponent
+    BrickComponent,
+    MasonryComponent,
+    MasonryItemComponent
   ],
   entryComponents: [ShareDialogComponent, ConfirmationDialogComponent]
 })

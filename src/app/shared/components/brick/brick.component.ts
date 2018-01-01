@@ -47,10 +47,6 @@ export class BrickComponent implements OnInit, AfterViewInit, AfterViewChecked {
       this.instance.resize(true).pack();
       this.inProgress = false;
       this.renderer.setStyle(this.brick.nativeElement, 'visibility', 'visible');
-
-      this.instance.on('resize', size => {
-        console.log(size);
-      });
     }, 500);
   }
 

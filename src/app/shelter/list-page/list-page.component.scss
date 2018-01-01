@@ -1,9 +1,0 @@
-@import '../../shared/scss/mixins';
-@import '../../shared/scss/variables';
-
-ngx-masonry-item {
-  @media (max-width: 780px) {
-    // FIXME: remove workaround
-    position: initial !important;
-  }
-}

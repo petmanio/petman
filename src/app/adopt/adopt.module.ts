@@ -10,7 +10,6 @@ import {
 } from '@angular/material';
 import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { ImageUploadModule } from 'angular2-image-upload';
-import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { QuillModule } from 'ngx-quill';
@@ -45,7 +44,6 @@ import { reducers } from './shared/reducers';
     CovalentLoadingModule,
     CovalentMessageModule,
     ImageUploadModule.forRoot(),
-    NgxMasonryModule,
     InfiniteScrollModule,
     NgxGalleryModule,
     QuillModule,

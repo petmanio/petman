@@ -32,8 +32,7 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/headroom.js/dist/headroom.js",
-        "../node_modules/imagesloaded/imagesloaded.pkgd.js"
+        "../node_modules/headroom.js/dist/headroom.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
