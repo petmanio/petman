@@ -1,11 +1,7 @@
-import {
-  BelongsToMany, Column, CreatedAt, DataType, DeletedAt, HasOne, Model, Table,
-  UpdatedAt,
-} from 'sequelize-typescript';
+import { BelongsToMany, CreatedAt, DeletedAt, HasOne, Model, Table, UpdatedAt, } from 'sequelize-typescript';
 
 import { Post } from './Post';
 import { TagI18n } from './TagI18n';
-import { Language } from '../../common/enums';
 
 @Table({
   tableName: 'tag',

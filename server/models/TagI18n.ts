@@ -2,7 +2,7 @@ import {
   AllowNull, BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
-import { User } from './User';
+
 import { Tag } from './Tag';
 import { Language } from '../../common/enums';
 
