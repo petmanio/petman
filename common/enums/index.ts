@@ -7,6 +7,12 @@ export enum Gender {
   FEMALE = 'FEMALE'
 }
 
+export enum Language {
+  EN_US = 'en-US',
+  HY_AM = 'hy-AM'
+}
+
+
 export enum TokenType {
   AUTH = 'AUTH',
   AUTH_REMEMBER_ME = 'AUTH_REMEMBER_ME',

@@ -1,20 +1,21 @@
 import { resolve } from 'url';
 import {
-  AllowNull, BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
+  AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt,
 } from 'sequelize-typescript';
 import { map } from 'lodash';
 
 import config from '../config';
 import { User } from './User';
+import { Tag } from './Tag';
 
 @Table({
-  tableName: 'shelter',
+  tableName: 'post',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class Shelter extends Model<Shelter> {
+export class Post extends Model<Post> {
   /**
    * Fields
    */
@@ -22,11 +23,6 @@ export class Shelter extends Model<Shelter> {
   @Column(DataType.TEXT)
   description: string;
 
-  @AllowNull(false)
-  @Column(DataType.FLOAT)
-  price: number;
-
-  @AllowNull(false)
   @Column(DataType.ARRAY(DataType.STRING(256)))
   images: string[];
 
@@ -39,6 +35,9 @@ export class Shelter extends Model<Shelter> {
 
   @BelongsTo(() => User)
   user: User;
+
+  @BelongsToMany(() => Tag, 'post_tag', 'post_id')
+  tags: Tag[];
 
   /**
    * Defaults

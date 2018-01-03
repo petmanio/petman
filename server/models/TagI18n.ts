@@ -2,51 +2,41 @@ import {
   AllowNull, BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
-
 import { User } from './User';
-import { Gender } from '../../common/enums';
+import { Tag } from './Tag';
+import { Language } from '../../common/enums';
 
 @Table({
-  tableName: 'user_data',
+  tableName: 'tag_i18n',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class UserData extends Model<UserData> {
+export class TagI18n extends Model<TagI18n> {
   /**
    * Fields
    */
-  @AllowNull
-  @Column({
-    type: DataType.ENUM(Gender.MALE, Gender.FEMALE)
-  })
-  gender: Gender;
-
-  @Column
-  avatar: string;
-
-  @Column
-  facebook: string;
+  @AllowNull(false)
+  @Column(DataType.STRING(256))
+  name: string;
 
   @Column({
-    field: 'first_name'
+    type: DataType.ENUM(Language.EN_US, Language.HY_AM)
   })
-  firstName: string;
+  language: Language;
 
-  @Column({
-    field: 'last_name'
-  })
-  lastName: string;
+  @Column({type: DataType.BOOLEAN, field: 'is_default'})
+  isDefault: boolean;
 
   /**
    * Associations
    */
-  @ForeignKey(() => User)
-  @Column({field: 'user_id'})
-  userId: number;
+  @ForeignKey(() => Tag)
+  @Column({field: 'tag_id'})
+  tagId: number;
 
-  @BelongsTo(() => User)
-  user: User;
+  @BelongsTo(() => Tag)
+  tag: Tag;
 
   /**
    * Defaults

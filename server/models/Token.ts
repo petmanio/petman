@@ -29,6 +29,7 @@ export class Token extends Model<Token> {
 
   @Column(DataType.JSON)
   metadata: any;
+
   /**
    * Associations
    */
