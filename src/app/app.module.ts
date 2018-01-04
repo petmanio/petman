@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './core/app/app.component';
 import { ShelterModule } from './shelter/shelter.module';
 import { AdoptModule } from './adopt/adopt.module';
+import { LostFoundModule } from './lost-found/lost-found.module';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,8 @@ import { AdoptModule } from './adopt/adopt.module';
     AuthModule.forRoot(),
     ShelterModule.forRoot(),
     SharedModule.forRoot(),
-    AdoptModule.forRoot()
+    AdoptModule.forRoot(),
+    LostFoundModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

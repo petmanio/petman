@@ -27,6 +27,11 @@ export const routes: Routes = [
     loadChildren: 'app/adopt/adopt.module#AdoptModule',
     data: { showSidenav: true }
   },
+  {
+    path: 'lost-found',
+    loadChildren: 'app/lost-found/lost-found.module#LostFoundModule',
+    data: { showSidenav: true }
+  },
   { path: '**', component: NotFoundPageComponent, data: { showSidenav: false } }
 ];
 

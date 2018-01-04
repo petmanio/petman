@@ -1,0 +1,11 @@
+@import '../../shared/scss/mixins';
+@import '../../shared/scss/variables';
+
+.pm-top-image {
+  background: url("/assets/pets.png") no-repeat center;
+  height: 150px;
+}
+
+mat-form-field {
+  width: 100%;
+}
