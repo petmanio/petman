@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { fetchByIdService } from '../../services/shelter/shelter.service';
+import { fetchByIdService } from '../../../services/shelter/shelter.service';
 
-const shelterExists = async (req: Request, res: Response, next: NextFunction) => {
+const exists = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const shelter: any = await fetchByIdService(req.params.id);
     if (!shelter) {
@@ -15,4 +15,4 @@ const shelterExists = async (req: Request, res: Response, next: NextFunction) =>
   }
 };
 
-export { shelterExists };
+export { exists };

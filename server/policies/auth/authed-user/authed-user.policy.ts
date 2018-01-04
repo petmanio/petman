@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import { find } from 'lodash';
 
-import { jwtVerify } from '../../services/util/util.service';
-import { User } from '../../models/User';
-import { UserData } from '../../models/UserData';
-import { AuthProvider } from '../../models/AuthProvider';
+import { jwtVerify } from '../../../services/util/util.service';
+import { User } from '../../../models/User';
+import { UserData } from '../../../models/UserData';
+import { AuthProvider } from '../../../models/AuthProvider';
 
-const getAuthedUser = async (req: Request, res: Response, next: NextFunction) => {
+const authedUser = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('x-auth-token');
   let selectedUserId: string | number = req.header('x-selected-user');
   selectedUserId = selectedUserId && parseInt(selectedUserId, 0);
@@ -31,4 +31,4 @@ const getAuthedUser = async (req: Request, res: Response, next: NextFunction) =>
   }
 };
 
-export { getAuthedUser };
+export { authedUser };

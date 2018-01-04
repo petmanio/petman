@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { fetchByIdService } from '../../services/adopt/adopt.service';
+import { fetchByIdService } from '../../../services/adopt/adopt.service';
 
-const adoptExists = async (req: Request, res: Response, next: NextFunction) => {
+const exists = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const adopt: any = await fetchByIdService(req.params.id);
     if (!adopt) {
@@ -15,4 +15,4 @@ const adoptExists = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export { adoptExists };
+export { exists };

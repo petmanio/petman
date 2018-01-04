@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { fetchByIdService } from '../../services/lost-found/lost-found.service';
+import { fetchByIdService } from '../../../services/lost-found/lost-found.service';
 
-const lostFoundExists = async (req: Request, res: Response, next: NextFunction) => {
+const exists = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const lostFound: any = await fetchByIdService(req.params.id);
     if (!lostFound) {
@@ -15,4 +15,4 @@ const lostFoundExists = async (req: Request, res: Response, next: NextFunction) 
   }
 };
 
-export { lostFoundExists };
+export { exists };

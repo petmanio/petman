@@ -3,9 +3,9 @@ import { join } from 'path';
 import { Router } from 'express';
 
 import config from '../../config';
-import { isAuthenticated } from '../../policies/is-authenticated/is-authenticated.policy';
-import { shelterExists } from '../../policies/shelter-exists/shelter-exists.policy';
-import { isShelterOwner } from '../../policies/is-shelter-owner/is-shelter-owner.policy';
+import { isAuthenticated } from '../../policies/auth/is-authenticated/is-authenticated.policy';
+import { exists } from '../../policies/shelter/exists/exists.policy';
+import { isOwner } from '../../policies/shelter/is-owner/is-owner.policy';
 import {
   createHandler, deleteByIdHandler, fetchByIdHandler, listHandler,
   updateByIdHandler
@@ -16,9 +16,9 @@ const shelterRouter: Router = Router();
 
 shelterRouter
   .get('/', listHandler)
-  .get('/:id', shelterExists, fetchByIdHandler)
-  .put('/:id', isAuthenticated, shelterExists, isShelterOwner, upload.array('images'), updateByIdHandler)
-  .delete('/:id', isAuthenticated, shelterExists, isShelterOwner, deleteByIdHandler)
+  .get('/:id', exists, fetchByIdHandler)
+  .put('/:id', isAuthenticated, exists, isOwner, upload.array('images'), updateByIdHandler)
+  .delete('/:id', isAuthenticated, exists, isOwner, deleteByIdHandler)
   .post('/', isAuthenticated, upload.array('images'), createHandler);
 
 export { shelterRouter };

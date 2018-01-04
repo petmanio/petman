@@ -14,7 +14,7 @@ import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 import config from './config';
 import './core/db';
 import { cors, logger, loggerStream } from './services/util/util.service';
-import { getAuthedUser } from './policies/get-authed-user/get-authed-user.policy';
+import { authedUser } from './policies/auth/authed-user/authed-user.policy';
 import { infoRouter } from './routes/info/info.route';
 import { authRouter } from './routes/auth/auth.route';
 import { shelterRouter } from './routes/shelter/shelter.route';
@@ -73,7 +73,7 @@ if (process.env.UNIVERSAL_APP) {
 }
 
 // global policies;
-app.use(getAuthedUser);
+app.use(authedUser);
 // api routes
 app.use('/api/info', infoRouter);
 app.use('/api/auth', authRouter);

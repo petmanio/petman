@@ -3,9 +3,9 @@ import { join } from 'path';
 import { Router } from 'express';
 
 import config from '../../config';
-import { isAuthenticated } from '../../policies/is-authenticated/is-authenticated.policy';
-import { lostFoundExists } from '../../policies/lost-found-exists/lost-found-exists.policy';
-import { isLostFoundOwner } from '../../policies/is-lost-found-owner/is-lost-found-owner.policy';
+import { isAuthenticated } from '../../policies/auth/is-authenticated/is-authenticated.policy';
+import { exists } from '../../policies/lost-found/exists/exists.policy';
+import { isOwner } from '../../policies/lost-found/is-owner/is-owner.policy';
 import {
   createHandler, deleteByIdHandler, fetchByIdHandler, listHandler,
   updateByIdHandler
@@ -16,9 +16,9 @@ const lostFoundRouter: Router = Router();
 
 lostFoundRouter
   .get('/', listHandler)
-  .get('/:id', lostFoundExists, fetchByIdHandler)
-  .put('/:id', isAuthenticated, lostFoundExists, isLostFoundOwner, upload.array('images'), updateByIdHandler)
-  .delete('/:id', isAuthenticated, lostFoundExists, isLostFoundOwner, deleteByIdHandler)
+  .get('/:id', exists, fetchByIdHandler)
+  .put('/:id', isAuthenticated, exists, isOwner, upload.array('images'), updateByIdHandler)
+  .delete('/:id', isAuthenticated, exists, isOwner, deleteByIdHandler)
   .post('/', isAuthenticated, upload.array('images'), createHandler);
 
 export { lostFoundRouter };

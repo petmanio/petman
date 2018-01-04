@@ -3,9 +3,9 @@ import { join } from 'path';
 import { Router } from 'express';
 
 import config from '../../config';
-import { isAuthenticated } from '../../policies/is-authenticated/is-authenticated.policy';
-import { walkerExists } from '../../policies/walker-exists/walker-exists.policy';
-import { isWalkerOwner } from '../../policies/is-walker-owner/is-walker-owner.policy';
+import { isAuthenticated } from '../../policies/auth/is-authenticated/is-authenticated.policy';
+import { exists } from '../../policies/walker/exists/exists.policy';
+import { isOwner } from '../../policies/walker/is-owner/is-owner.policy';
 import {
   createHandler, deleteByIdHandler, fetchByIdHandler, listHandler,
   updateByIdHandler
@@ -16,9 +16,9 @@ const walkerRouter: Router = Router();
 
 walkerRouter
   .get('/', listHandler)
-  .get('/:id', walkerExists, fetchByIdHandler)
-  .put('/:id', isAuthenticated, walkerExists, isWalkerOwner, upload.array('images'), updateByIdHandler)
-  .delete('/:id', isAuthenticated, walkerExists, isWalkerOwner, deleteByIdHandler)
+  .get('/:id', exists, fetchByIdHandler)
+  .put('/:id', isAuthenticated, exists, isOwner, upload.array('images'), updateByIdHandler)
+  .delete('/:id', isAuthenticated, exists, isOwner, deleteByIdHandler)
   .post('/', isAuthenticated, upload.array('images'), createHandler);
 
 export { walkerRouter };

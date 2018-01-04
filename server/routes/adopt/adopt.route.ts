@@ -3,9 +3,9 @@ import { join } from 'path';
 import { Router } from 'express';
 
 import config from '../../config';
-import { isAuthenticated } from '../../policies/is-authenticated/is-authenticated.policy';
-import { adoptExists } from '../../policies/adopt-exists/adopt-exists.policy';
-import { isAdoptOwner } from '../../policies/is-adopt-owner/is-adopt-owner.policy';
+import { isAuthenticated } from '../../policies/auth/is-authenticated/is-authenticated.policy';
+import { exists } from '../../policies/adopt/exists/exists.policy';
+import { isOwner } from '../../policies/adopt/is-owner/is-owner.policy';
 import {
   createHandler, deleteByIdHandler, fetchByIdHandler, listHandler,
   updateByIdHandler
@@ -16,9 +16,9 @@ const adoptRouter: Router = Router();
 
 adoptRouter
   .get('/', listHandler)
-  .get('/:id', adoptExists, fetchByIdHandler)
-  .put('/:id', isAuthenticated, adoptExists, isAdoptOwner, upload.array('images'), updateByIdHandler)
-  .delete('/:id', isAuthenticated, adoptExists, isAdoptOwner, deleteByIdHandler)
+  .get('/:id', exists, fetchByIdHandler)
+  .put('/:id', isAuthenticated, exists, isOwner, upload.array('images'), updateByIdHandler)
+  .delete('/:id', isAuthenticated, exists, isOwner, deleteByIdHandler)
   .post('/', isAuthenticated, upload.array('images'), createHandler);
 
 export { adoptRouter };

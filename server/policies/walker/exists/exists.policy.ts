@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { fetchByIdService } from '../../services/walker/walker.service';
+import { fetchByIdService } from '../../../services/walker/walker.service';
 
-const walkerExists = async (req: Request, res: Response, next: NextFunction) => {
+const exists = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const walker: any = await fetchByIdService(req.params.id);
     if (!walker) {
@@ -15,4 +15,4 @@ const walkerExists = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-export { walkerExists };
+export { exists };
