@@ -20,6 +20,7 @@ import { authRouter } from './routes/auth/auth.route';
 import { shelterRouter } from './routes/shelter/shelter.route';
 import { walkerRouter } from './routes/walker/walker.route';
 import { adoptRouter } from './routes/adopt/adopt.route';
+import { lostFoundRouter } from './routes/lost-found/lost-found.route';
 
 function universalRouter(req, res) {
   res.render('index', {
@@ -79,6 +80,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/shelters', shelterRouter);
 app.use('/api/walkers', walkerRouter);
 app.use('/api/adoption', adoptRouter);
+app.use('/api/lost-found', lostFoundRouter);
 app.get('/*', process.env.UNIVERSAL_APP ? universalRouter : staticRouter);
 
 // catch 404 and forward to error handler

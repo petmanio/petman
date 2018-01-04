@@ -11,6 +11,7 @@ import { AuthProvider } from './AuthProvider';
 import { Shelter } from './Shelter';
 import { UserData } from './UserData';
 import { Walker } from './Walker';
+import { LostFound } from './LostFound';
 
 @Table({
   tableName: 'user',
@@ -47,6 +48,9 @@ export class User extends Model<User> {
 
   @HasMany(() => Adopt)
   adoption: Adopt[];
+
+  @HasMany(() => Adopt)
+  lostFound: LostFound[];
 
   @BelongsToMany(() => User, 'user_business_user', 'owner_id')
   owners: User[];

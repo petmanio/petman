@@ -12,6 +12,10 @@ export enum Language {
   HY_AM = 'hy-AM'
 }
 
+export enum LostFoundType {
+  LOST = 'LOST',
+  FOUND = 'FOUND'
+}
 
 export enum TokenType {
   AUTH = 'AUTH',
