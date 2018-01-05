@@ -6,10 +6,11 @@
     <mat-card-subtitle>{{config.subtitle}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image *ngIf="config.image" [src]="config.image">
-  <mat-card-content *ngIf="config.content">
-    <p>{{config.content}}</p>
+  <mat-card-content *ngIf="config.contentHTML || config.content || config.price">
+    <p *ngIf="config.price"><i class="mdi mdi-cash"></i> {{config.price | number}} <span i18n>amd</span></p>
+    <p *ngIf="config.content">{{config.content}}</p>
+    <p *ngIf="config.contentHTML" [innerHTML]="config.contentHTML | appSafeHtml"></p>
   </mat-card-content>
-  <mat-card-content *ngIf="config.contentHTML"  [innerHTML]="config.contentHTML | appSafeHtml"></mat-card-content>
   <mat-card-actions class="has-text-right">
     <button mat-raised-button (click)="onShareLocal($event)" i18n>SHARE</button>
   </mat-card-actions>

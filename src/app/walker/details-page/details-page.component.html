@@ -5,6 +5,7 @@
         <app-user-details [user]="(walker$ | async)?.user"></app-user-details>
       </div>
       <div class="column is-9">
+        <p><i class="mdi mdi-cash"></i> {{(walker$ | async)?.price | number}} <span i18n>amd</span></p>
         <div class="notification" [innerHTML]="(walker$ | async)?.description | appSafeHtml"></div>
         <div class="field is-grouped">
           <p class="control">

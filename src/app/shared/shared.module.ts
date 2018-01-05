@@ -22,6 +22,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { BrickComponent } from './components/brick/brick.component';
 import { MasonryComponent } from './components/masonry/masonry.component';
 import { MasonryItemComponent } from './components/masonry-item/masonry-item.component';
+import { ShareButtonComponent } from './components/share-button/share-button.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { MasonryItemComponent } from './components/masonry-item/masonry-item.com
     BrickComponent,
     MasonryComponent,
     MasonryItemComponent,
+    ShareButtonComponent,
   ],
   providers: [UtilService, LocalStorageService],
   exports: [
@@ -64,7 +66,8 @@ import { MasonryItemComponent } from './components/masonry-item/masonry-item.com
     UserDetailsComponent,
     BrickComponent,
     MasonryComponent,
-    MasonryItemComponent
+    MasonryItemComponent,
+    ShareButtonComponent
   ],
   entryComponents: [ShareDialogComponent, ConfirmationDialogComponent]
 })

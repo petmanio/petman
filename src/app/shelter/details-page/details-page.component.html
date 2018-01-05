@@ -11,6 +11,7 @@
                        (previewOpen)="onPreviewOpen()"
                        (previewClose)="onPreviewClose()"></ngx-gallery>
         </div>
+        <p><i class="mdi mdi-cash"></i> {{(shelter$ | async)?.price | number}} <span i18n>amd</span></p>
         <div class="notification" [innerHTML]="(shelter$ | async)?.description | appSafeHtml"></div>
         <div class="field is-grouped">
           <p class="control">
