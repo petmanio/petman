@@ -7,6 +7,7 @@ import { cloneDeep, findIndex, map } from 'lodash';
 
 import * as fromLostFound from '../shared/reducers';
 import * as LostFound from '../shared/actions/lost-found.action';
+import { LostFoundType } from '../../../../common/enums';
 
 export interface IAddPageComponent {
   onUploadFinished($event: FileHolder): void;
@@ -21,6 +22,7 @@ export interface IAddPageComponent {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddPageComponent implements IAddPageComponent {
+  LostFoundType = LostFoundType;
   error$: Observable<any>;
   pending$: Observable<boolean>;
   form: FormGroup;
@@ -30,7 +32,7 @@ export class AddPageComponent implements IAddPageComponent {
     this.pending$ = this.store.select(fromLostFound.getAddPagePending);
 
     this.form = fb.group({
-      type: ['', Validators.required],
+      type: [LostFoundType.LOST, Validators.required],
       description: ['', Validators.required],
       images: fb.array([], Validators.compose([Validators.required, Validators.minLength(1)]))
     });

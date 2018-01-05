@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import * as LostFound from '../shared/actions/lost-found.action';
 import * as fromLostFound from '../shared/reducers';
-import { ModalSize } from '../../../../common/enums';
+import { LostFoundType, ModalSize } from '../../../../common/enums';
 import { ConfirmationDialogComponent } from '../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { LostFoundDto } from '../../../../common/models/lost-found.model';
 
@@ -30,6 +30,7 @@ export interface IEditPageComponent {
 })
 export class EditPageComponent implements OnDestroy, IEditPageComponent {
   @ViewChild('imageUpload') imageUpload;
+  LostFoundType = LostFoundType;
   form: FormGroup;
   lostFound: LostFoundDto;
   error$: Observable<any>;

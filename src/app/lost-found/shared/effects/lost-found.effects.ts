@@ -28,7 +28,7 @@ export class LostFoundEffects {
     .ofType(LostFound.CREATE_SUCCESS)
     .pipe(
       map((action: LostFound.CreateSuccess) => action.payload),
-      tap(lostFound => this.router.navigate(['lostFound', lostFound.id]))
+      tap(lostFound => this.router.navigate(['lost-found', lostFound.id]))
     );
 
   @Effect()
@@ -50,7 +50,7 @@ export class LostFoundEffects {
     .ofType(LostFound.UPDATE_SUCCESS)
     .pipe(
       map((action: LostFound.CreateSuccess) => action.payload),
-      tap(lostFound => this.router.navigate(['lostFound', lostFound.id]))
+      tap(lostFound => this.router.navigate(['lost-found', lostFound.id]))
     );
 
   @Effect()
@@ -72,7 +72,7 @@ export class LostFoundEffects {
     .ofType(LostFound.DELETE_SUCCESS)
     .pipe(
       map((action: LostFound.CreateSuccess) => action.payload),
-      tap(lostFound => this.router.navigate(['lostFound']))
+      tap(lostFound => this.router.navigate(['lost-found']))
     );
 
   @Effect()

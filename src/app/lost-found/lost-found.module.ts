@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule,
-  MatPaginatorModule
+  MatPaginatorModule, MatSelectModule
 } from '@angular/material';
 import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { ImageUploadModule } from 'angular2-image-upload';
@@ -40,6 +40,7 @@ import { reducers } from './shared/reducers';
     MatButtonModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatSelectModule,
     CovalentFileModule,
     CovalentLoadingModule,
     CovalentMessageModule,

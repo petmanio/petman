@@ -17,7 +17,7 @@
             <button mat-raised-button (click)="onShare()" i18n>Share</button>
           </p>
           <p class="control" *ngIf="(lostFound$ | async)?.isOwner">
-            <button [routerLink]="['/lostFound', lostFound.id, 'edit']" mat-raised-button i18n>Edit</button>
+            <button [routerLink]="['/lost-found', lostFound.id, 'edit']" mat-raised-button i18n>Edit</button>
           </p>
         </div>
       </div>

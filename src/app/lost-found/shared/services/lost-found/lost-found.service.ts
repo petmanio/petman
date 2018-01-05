@@ -31,7 +31,7 @@ export class LostFoundService implements ILostFoundService {
       formData.append('type', body.type);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
-    return this.http.post<LostFoundCreateResponseDto>(`${environment.api}/api/lostFound`, formData)
+    return this.http.post<LostFoundCreateResponseDto>(`${environment.api}/api/lost-found`, formData)
       .map(response => plainToClass(LostFoundCreateResponseDto, response, { enableCircularCheck: false }));
   }
 
@@ -70,7 +70,7 @@ export class LostFoundService implements ILostFoundService {
       .set('limit', query.limit.toString());
 
     return this.http
-      .get<LostFoundListResponseDto>(`${environment.api}/api/lostFound`, { params })
+      .get<LostFoundListResponseDto>(`${environment.api}/api/lost-found`, { params })
       .map(response => plainToClass(LostFoundListResponseDto, response, { enableCircularCheck: false }));
   }
 }
