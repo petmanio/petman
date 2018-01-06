@@ -11,7 +11,7 @@ import * as fromRoot from '../../core/shared/reducers';
 import * as fromLostFound from '../shared/reducers';
 import * as Layout from '../../core/shared/actions/layout';
 import * as LostFound from '../shared/actions/lost-found.action';
-import { ModalSize } from '../../../../common/enums';
+import { ModalSize, LostFoundType } from '../../../../common/enums';
 import { LostFoundDto } from '../../../../common/models/lost-found.model';
 import { UtilService } from '../../shared/services/util/util.service';
 import { ShareDialogComponent } from '../../shared/components/share-dialog/share-dialog.component';
@@ -29,6 +29,7 @@ export interface IDetailsPageComponent {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsPageComponent implements OnDestroy, IDetailsPageComponent {
+  LostFoundType = LostFoundType;
   lostFound: LostFoundDto;
   sideNavState: boolean;
   prevSideNavState: boolean;

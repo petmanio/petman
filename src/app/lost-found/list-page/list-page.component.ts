@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalSize } from '../../../../common/enums';
+import { LostFoundType, ModalSize } from '../../../../common/enums';
 import { LostFoundDto, LostFoundListRequestDto } from '../../../../common/models/lost-found.model';
 import { UserDto } from '../../../../common/models/user.model';
 import { Config } from '../../shared/components/card/card.component';
@@ -87,6 +87,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       avatar: item.user.userData.avatar,
       title: item.user.userData.name,
       subtitle: this.datePipe.transform(item.created),
+      chip: { color: item.type === LostFoundType.FOUND ? 'accent' : 'warn', text: item.type },
       image: item.images && item.images[0],
       contentHTML: item.description
     };

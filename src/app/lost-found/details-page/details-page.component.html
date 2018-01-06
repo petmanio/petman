@@ -5,6 +5,9 @@
         <app-user-details [user]="(lostFound$ | async)?.user"></app-user-details>
       </div>
       <div class="column is-9">
+        <mat-chip-list>
+          <mat-chip [color]="(lostFound$ | async)?.type === LostFoundType.FOUND ? 'accent' : 'warn'"
+                    selected="true">{{(lostFound$ | async)?.type}}</mat-chip></mat-chip-list>
         <div class="pm-gallery-custom">
           <ngx-gallery [options]="galleryOptions"
                        [images]="(lostFound$ | async)?.images | appGalleryImages"

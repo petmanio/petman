@@ -8,6 +8,7 @@ export interface Config {
   content?: string;
   price?: number;
   contentHTML?: string;
+  chip?: { color: string, text: string };
 }
 
 export interface ICardComponent {

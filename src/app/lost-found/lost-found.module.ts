@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule,
+  MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule,
   MatPaginatorModule, MatSelectModule
 } from '@angular/material';
 import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
@@ -41,6 +41,7 @@ import { reducers } from './shared/reducers';
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
+    MatChipsModule,
     CovalentFileModule,
     CovalentLoadingModule,
     CovalentMessageModule,
