@@ -13,8 +13,12 @@
     <div class="column">
       <app-masonry class="columns"
                    [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
+        <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet">
+          <a [routerLink]="['/shelters', 'add']">
+            <app-add-application [user]="selectedUser$ | async"></app-add-application>
+          </a>
+        </app-masonry-item>
         <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet" *ngFor="let item of list$ | async">
-          <!-- TODO: fix full page load on navigation -->
           <a [routerLink]="['/shelters', item.id]">
             <app-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-card>
           </a>

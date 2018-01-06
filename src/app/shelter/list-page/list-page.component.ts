@@ -32,7 +32,6 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   limit = 12;
   total: number;
   offset = 0;
-  selectedUser: UserDto;
   list$: Observable<ShelterDto[]>;
   total$: Observable<number>;
   error$: Observable<any>;
@@ -64,14 +63,13 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     this.pending$ = this.store.select(fromShelter.getListPagePending);
     this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
 
-    const userSubscription = this.selectedUser$.subscribe(user => this.selectedUser = user);
     const listSubscription = this.list$.subscribe(list => {
       this.list = list;
       this.offset = Math.max(0, this.list.length - this.limit);
     });
     const totalSubscription = this.total$.subscribe(user => this.total = user);
 
-    this.subscriptions.push(...[userSubscription, listSubscription, totalSubscription]);
+    this.subscriptions.push(...[listSubscription, totalSubscription]);
   }
 
   ngOnInit(): void {
