@@ -1,11 +1,13 @@
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
+import * as fs from 'fs';
+import * as path from 'path';
 import * as compression from 'compression';
 import * as express from 'express';
-import * as path from 'path';
 import * as session from 'express-session';
 import * as cookie from 'cookie-parser';
 import * as morgan from 'morgan';
+import * as domino from 'domino';
 import { json, urlencoded } from 'body-parser';
 import { randomBytes } from 'crypto';
 import { ngExpressEngine } from '@nguniversal/express-engine';
@@ -21,6 +23,23 @@ import { shelterRouter } from './routes/shelter/shelter.route';
 import { walkerRouter } from './routes/walker/walker.route';
 import { adoptRouter } from './routes/adopt/adopt.route';
 import { lostFoundRouter } from './routes/lost-found/lost-found.route';
+
+const template = fs.readFileSync(path.join(__dirname, '../client/platform-browser/index.html')).toString();
+const win = domino.createWindow(template);
+
+global['window'] = win;
+Object.defineProperty(win.document.body.style, 'transform', {
+  value: () => {
+    return {
+      enumerable: true,
+      configurable: true
+    };
+  },
+});
+global['document'] = win.document;
+global['CSS'] = null;
+// global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
+global['Prism'] = null;
 
 function universalRouter(req, res) {
   res.render('index', {
