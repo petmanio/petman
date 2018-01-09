@@ -24,22 +24,24 @@ import { walkerRouter } from './routes/walker/walker.route';
 import { adoptRouter } from './routes/adopt/adopt.route';
 import { lostFoundRouter } from './routes/lost-found/lost-found.route';
 
-const template = fs.readFileSync(path.join(__dirname, '../client/platform-browser/index.html')).toString();
-const win = domino.createWindow(template);
+if (process.env.UNIVERSAL_APP) {
+  const template = fs.readFileSync(path.join(__dirname, '../client/platform-browser/index.html')).toString();
+  const win = domino.createWindow(template);
 
-global['window'] = win;
-Object.defineProperty(win.document.body.style, 'transform', {
-  value: () => {
-    return {
-      enumerable: true,
-      configurable: true
-    };
-  },
-});
-global['document'] = win.document;
-global['CSS'] = null;
+  global['window'] = win;
+  Object.defineProperty(win.document.body.style, 'transform', {
+    value: () => {
+      return {
+        enumerable: true,
+        configurable: true
+      };
+    },
+  });
+  global['document'] = win.document;
+  global['CSS'] = null;
 // global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
-global['Prism'] = null;
+  global['Prism'] = null;
+}
 
 function universalRouter(req, res) {
   res.render('index', {
