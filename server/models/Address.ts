@@ -4,27 +4,49 @@ import {
 } from 'sequelize-typescript';
 
 import { State } from './State';
+import { City } from './City';
+import { Country } from './Country';
 
 @Table({
-  tableName: 'city',
+  tableName: 'address',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class City extends Model<City> {
+export class Address extends Model<Address> {
   @AllowNull(false)
-  @Column(DataType.STRING(30))
-  name: string;
+  @Column({ type: DataType.STRING(255), field: 'line_1' })
+  line1: string;
+
+  @Column({ type: DataType.STRING(255), field: 'line_2' })
+  line2: string;
+
+  @Column({ type: DataType.STRING(255), field: 'line_3' })
+  line3: string;
 
   /**
    * Associations
    */
+  @ForeignKey(() => City)
+  @Column({field: 'city_id'})
+  cityId: number;
+
+  @BelongsTo(() => City)
+  city: City;
+
   @ForeignKey(() => State)
   @Column({field: 'state_id'})
   stateId: number;
 
   @BelongsTo(() => State)
   state: State;
+
+  @ForeignKey(() => Country)
+  @Column({field: 'country_id'})
+  countryId: number;
+
+  @BelongsTo(() => Country)
+  country: Country;
 
   /**
    * Defaults
