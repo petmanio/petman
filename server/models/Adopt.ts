@@ -23,7 +23,7 @@ export class Adopt extends Model<Adopt> {
   description: string;
 
   @AllowNull(false)
-  @Column(DataType.ARRAY(DataType.STRING(256)))
+  @Column(DataType.ARRAY(DataType.STRING(255)))
   images: string[];
   /**
    * Associations

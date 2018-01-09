@@ -23,7 +23,7 @@ export class Post extends Model<Post> {
   @Column(DataType.TEXT)
   description: string;
 
-  @Column(DataType.ARRAY(DataType.STRING(256)))
+  @Column(DataType.ARRAY(DataType.STRING(255)))
   images: string[];
 
   /**

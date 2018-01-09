@@ -30,7 +30,7 @@ export class LostFound extends Model<LostFound> {
   description: string;
 
   @AllowNull(false)
-  @Column(DataType.ARRAY(DataType.STRING(256)))
+  @Column(DataType.ARRAY(DataType.STRING(255)))
   images: string[];
 
   /**

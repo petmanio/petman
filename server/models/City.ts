@@ -1,42 +1,31 @@
 import {
   AllowNull, BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
-  UpdatedAt
+  UpdatedAt,
 } from 'sequelize-typescript';
 
-import { Tag } from './Tag';
-import { Language } from '../../common/enums';
+import { State } from './State';
 
 @Table({
-  tableName: 'tag_i18n',
+  tableName: 'city',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class TagI18n extends Model<TagI18n> {
-  /**
-   * Fields
-   */
+export class City extends Model<City> {
   @AllowNull(false)
-  @Column(DataType.STRING(255))
+  @Column(DataType.STRING(30))
   name: string;
-
-  @Column({
-    type: DataType.ENUM(Language.EN_US, Language.HY_AM)
-  })
-  language: Language;
-
-  @Column({type: DataType.BOOLEAN, field: 'is_default'})
-  isDefault: boolean;
 
   /**
    * Associations
    */
-  @ForeignKey(() => Tag)
-  @Column({field: 'tag_id'})
-  tagId: number;
 
-  @BelongsTo(() => Tag)
-  tag: Tag;
+  @ForeignKey(() => State)
+  @Column({field: 'state_id'})
+  stateId: number;
+
+  @BelongsTo(() => State)
+  state: State;
 
   /**
    * Defaults

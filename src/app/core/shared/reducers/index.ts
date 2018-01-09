@@ -33,7 +33,7 @@ export interface State {
  * These reducer functions are called with each dispatched action
  * and the current or initial state and return a new immutable state.
  */
-// FIXME: generic with <State> not working
+// FIXME: generic with <City> not working
 export const reducers: ActionReducerMap<any> = {
   layout: fromLayout.reducer,
   router: fromRouter.routerReducer,

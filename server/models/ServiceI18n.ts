@@ -17,7 +17,7 @@ export class ServiceI18n extends Model<ServiceI18n> {
    * Fields
    */
   @AllowNull(false)
-  @Column(DataType.STRING(256))
+  @Column(DataType.STRING(255))
   name: string;
 
   @Column({
