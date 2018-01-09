@@ -1,6 +1,7 @@
-import { CreatedAt, DeletedAt, HasOne, Model, Table, UpdatedAt, } from 'sequelize-typescript';
+import { BelongsToMany, CreatedAt, DeletedAt, HasOne, Model, Table, UpdatedAt, } from 'sequelize-typescript';
 
 import { ServiceI18n } from './ServiceI18n';
+import { Company } from './Company';
 
 @Table({
   tableName: 'service',
@@ -14,6 +15,9 @@ export class Service extends Model<Service> {
    */
   @HasOne(() => ServiceI18n)
   i18n: ServiceI18n;
+
+  @BelongsToMany(() => Company, 'company_service', 'service_id', 'company_id')
+  companies: Company[];
 
   /**
    * Defaults

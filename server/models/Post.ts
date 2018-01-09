@@ -36,7 +36,7 @@ export class Post extends Model<Post> {
   @BelongsTo(() => User)
   user: User;
 
-  @BelongsToMany(() => Tag, 'post_tag', 'post_id')
+  @BelongsToMany(() => Tag, 'post_tag', 'post_id', 'tag_id')
   tags: Tag[];
 
   /**

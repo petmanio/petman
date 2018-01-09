@@ -16,8 +16,8 @@ export class Tag extends Model<Tag> {
   @HasOne(() => TagI18n)
   i18n: TagI18n;
 
-  @BelongsToMany(() => Post, 'post_tag', 'post_id', 'tag_id')
-  tags: Tag[];
+  @BelongsToMany(() => Post, 'post_tag', 'tag_id', 'post_id')
+  posts: Post[];
 
   /**
    * Defaults
