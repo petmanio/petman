@@ -2,6 +2,7 @@ import { BelongsToMany, CreatedAt, DeletedAt, HasOne, Model, Table, UpdatedAt, }
 
 import { ServiceI18n } from './ServiceI18n';
 import { Company } from './Company';
+import { Branch } from './Branch';
 
 @Table({
   tableName: 'service',
@@ -18,6 +19,9 @@ export class Service extends Model<Service> {
 
   @BelongsToMany(() => Company, 'company_service', 'service_id', 'company_id')
   companies: Company[];
+
+  @BelongsToMany(() => Branch, 'branch_service', 'service_id', 'branch_id')
+  branches: Branch[];
 
   /**
    * Defaults

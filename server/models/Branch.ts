@@ -1,34 +1,39 @@
 import {
-  AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, DeletedAt, ForeignKey, HasMany, HasOne, Model,
-  Table,
+  AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, Default, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
 
-import { User } from './User';
 import { Service } from './Service';
 import { Address } from './Address';
-import { Branch } from './Branch';
+import { Company } from './Company';
 
 @Table({
-  tableName: 'company',
+  tableName: 'branch',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class Company extends Model<Company> {
+export class Branch extends Model<Branch> {
   @AllowNull(false)
   @Column(DataType.STRING(255))
   name: string;
 
+  @Default(false)
+  @Column(DataType.BOOLEAN)
+  main: boolean;
+
+  @Column(DataType.GEOMETRY)
+  geometry: boolean;
+
   /**
    * Associations
    */
-  @ForeignKey(() => User)
-  @Column({field: 'user_id'})
-  userId: number;
+  @ForeignKey(() => Company)
+  @Column({field: 'company_id'})
+  companyId: number;
 
-  @BelongsTo(() => User)
-  user: User;
+  @BelongsTo(() => Company)
+  company: Company;
 
   @ForeignKey(() => Address)
   @Column({field: 'address_id'})
@@ -37,11 +42,9 @@ export class Company extends Model<Company> {
   @BelongsTo(() => Address)
   address: Address;
 
-  @BelongsToMany(() => Service, 'company_service', 'company_id', 'service_id')
+  @BelongsToMany(() => Service, 'branch_service', 'branch_id', 'service_id')
   services: Service[];
 
-  @HasMany(() => Branch)
-  branches: Branch[];
   /**
    * Defaults
    */
