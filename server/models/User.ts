@@ -12,7 +12,7 @@ import { Shelter } from './Shelter';
 import { UserData } from './UserData';
 import { Walker } from './Walker';
 import { LostFound } from './LostFound';
-import { Company } from './Company';
+import { Organization } from './Organization';
 
 @Table({
   tableName: 'user',
@@ -53,8 +53,8 @@ export class User extends Model<User> {
   @HasMany(() => Adopt)
   lostFound: LostFound[];
 
-  @HasMany(() => Company)
-  companies: Company[];
+  @HasMany(() => Organization)
+  organizations: Organization[];
 
   @BelongsToMany(() => User, 'user_business_user', 'owner_id')
   owners: User[];

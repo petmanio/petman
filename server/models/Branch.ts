@@ -5,7 +5,7 @@ import {
 
 import { Service } from './Service';
 import { Address } from './Address';
-import { Company } from './Company';
+import { Organization } from './Organization';
 import { Product } from './Product';
 import { BranchProduct } from './BranchProduct';
 
@@ -39,12 +39,12 @@ export class Branch extends Model<Branch> {
   /**
    * Associations
    */
-  @ForeignKey(() => Company)
-  @Column({field: 'company_id'})
-  companyId: number;
+  @ForeignKey(() => Organization)
+  @Column({field: 'organization_id'})
+  organizationId: number;
 
-  @BelongsTo(() => Company)
-  company: Company;
+  @BelongsTo(() => Organization)
+  organization: Organization;
 
   @ForeignKey(() => Address)
   @Column({field: 'address_id'})

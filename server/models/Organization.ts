@@ -10,12 +10,12 @@ import { Branch } from './Branch';
 import { Product } from './Product';
 
 @Table({
-  tableName: 'company',
+  tableName: 'organization',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class Company extends Model<Company> {
+export class Organization extends Model<Organization> {
   /**
    * Fields
    */
@@ -28,6 +28,9 @@ export class Company extends Model<Company> {
 
   @Column(DataType.ARRAY(DataType.STRING(255)))
   images: string[];
+
+  @Column(DataType.GEOMETRY)
+  geometry: boolean;
 
   /**
    * Associations
@@ -46,7 +49,7 @@ export class Company extends Model<Company> {
   @BelongsTo(() => Address)
   address: Address;
 
-  @BelongsToMany(() => Service, 'company_service', 'company_id', 'service_id')
+  @BelongsToMany(() => Service, 'organization_service', 'organization_id', 'service_id')
   services: Service[];
 
   @HasMany(() => Branch)

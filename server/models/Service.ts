@@ -1,7 +1,7 @@
 import { BelongsToMany, CreatedAt, DeletedAt, HasOne, Model, Table, UpdatedAt, } from 'sequelize-typescript';
 
 import { ServiceI18n } from './ServiceI18n';
-import { Company } from './Company';
+import { Organization } from './Organization';
 import { Branch } from './Branch';
 
 @Table({
@@ -21,8 +21,8 @@ export class Service extends Model<Service> {
   @HasOne(() => ServiceI18n)
   i18n: ServiceI18n;
 
-  @BelongsToMany(() => Company, 'company_service', 'service_id', 'company_id')
-  companies: Company[];
+  @BelongsToMany(() => Organization, 'organization_service', 'service_id', 'organization_id')
+  organizations: Organization[];
 
   @BelongsToMany(() => Branch, 'branch_service', 'service_id', 'branch_id')
   branches: Branch[];

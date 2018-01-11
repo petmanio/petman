@@ -5,7 +5,7 @@ import {
 
 import { UnitType } from '../../common/enums';
 import { Branch } from './Branch';
-import { Company } from './Company';
+import { Organization } from './Organization';
 import { BranchProduct } from './BranchProduct';
 import { Category } from './Category';
 
@@ -39,17 +39,17 @@ export class Product extends Model<Product> {
   /**
    * Associations
    */
-  @ForeignKey(() => Company)
-  @Column({field: 'company_id'})
-  companyId: number;
+  @ForeignKey(() => Organization)
+  @Column({field: 'organization_id'})
+  organizationId: number;
 
-  @BelongsTo(() => Company)
-  company: Company;
+  @BelongsTo(() => Organization)
+  organization: Organization;
 
   @BelongsToMany(() => Branch, () => BranchProduct)
   branches: Branch[];
 
-  @BelongsToMany(() => Product, 'product_category', 'product_id', 'category_id')
+  @BelongsToMany(() => Category, 'product_category', 'product_id', 'category_id')
   categories: Category[];
 
   /**
