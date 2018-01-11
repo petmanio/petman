@@ -6,6 +6,7 @@ import {
 import { Service } from './Service';
 import { Address } from './Address';
 import { Company } from './Company';
+import { Product } from './Product';
 
 @Table({
   tableName: 'branch',
@@ -21,6 +22,9 @@ export class Branch extends Model<Branch> {
   @Default(false)
   @Column(DataType.BOOLEAN)
   main: boolean;
+
+  @Column(DataType.ARRAY(DataType.STRING(255)))
+  images: string[];
 
   @Column(DataType.GEOMETRY)
   geometry: boolean;
@@ -45,6 +49,8 @@ export class Branch extends Model<Branch> {
   @BelongsToMany(() => Service, 'branch_service', 'branch_id', 'service_id')
   services: Service[];
 
+  @BelongsToMany(() => Product, 'branch_product', 'branch_id', 'product_id')
+  products: Product[];
   /**
    * Defaults
    */

@@ -27,3 +27,8 @@ export enum TokenType {
 export enum ModalSize {
   MEDIUM = '350px'
 }
+
+export enum UnitType {
+  KG = 'KG',
+  ITEM = 'ITEM'
+}

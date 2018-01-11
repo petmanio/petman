@@ -8,6 +8,7 @@ import { User } from './User';
 import { Service } from './Service';
 import { Address } from './Address';
 import { Branch } from './Branch';
+import { Product } from './Product';
 
 @Table({
   tableName: 'company',
@@ -19,6 +20,9 @@ export class Company extends Model<Company> {
   @AllowNull(false)
   @Column(DataType.STRING(255))
   name: string;
+
+  @Column(DataType.ARRAY(DataType.STRING(255)))
+  images: string[];
 
   /**
    * Associations
@@ -39,6 +43,9 @@ export class Company extends Model<Company> {
 
   @BelongsToMany(() => Service, 'company_service', 'company_id', 'service_id')
   services: Service[];
+
+  @BelongsToMany(() => Product, 'company_product', 'company_id', 'product_id')
+  products: Product[];
 
   @HasMany(() => Branch)
   branches: Branch[];
