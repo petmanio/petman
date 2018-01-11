@@ -5,6 +5,7 @@ import {
 import { Branch } from './Branch';
 import { UnitType } from '../../common/enums';
 import { Company } from './Company';
+import { BranchProduct } from './BranchProduct';
 
 @Table({
   tableName: 'product',
@@ -30,7 +31,7 @@ export class Product extends Model<Product> {
   /**
    * Associations
    */
-  @BelongsToMany(() => Branch, 'branch_product', 'product_id', 'branch_id')
+  @BelongsToMany(() => Branch, () => BranchProduct)
   branches: Branch[];
 
   @BelongsToMany(() => Company, 'company_product', 'product_id', 'company_id')

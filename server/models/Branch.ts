@@ -7,6 +7,7 @@ import { Service } from './Service';
 import { Address } from './Address';
 import { Company } from './Company';
 import { Product } from './Product';
+import { BranchProduct } from './BranchProduct';
 
 @Table({
   tableName: 'branch',
@@ -49,8 +50,9 @@ export class Branch extends Model<Branch> {
   @BelongsToMany(() => Service, 'branch_service', 'branch_id', 'service_id')
   services: Service[];
 
-  @BelongsToMany(() => Product, 'branch_product', 'branch_id', 'product_id')
+  @BelongsToMany(() => Product, () => BranchProduct)
   products: Product[];
+
   /**
    * Defaults
    */
