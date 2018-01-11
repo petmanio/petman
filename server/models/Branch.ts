@@ -1,8 +1,11 @@
+import { resolve } from 'url';
 import {
   AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, Default, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
+import { map } from 'lodash';
 
+import config from '../config';
 import { Service } from './Service';
 import { Address } from './Address';
 import { Organization } from './Organization';
@@ -76,6 +79,7 @@ export class Branch extends Model<Branch> {
    */
   toJSON() {
     const obj = super.get({clone: true});
+    obj.images = map(obj.images, path => resolve(config.host, 'upload' + path));
     delete obj.deleted;
     return obj;
   }
