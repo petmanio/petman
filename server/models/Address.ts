@@ -14,6 +14,9 @@ import { Country } from './Country';
   timestamps: true
 })
 export class Address extends Model<Address> {
+  /**
+   * Fields
+   */
   @AllowNull(false)
   @Column({ type: DataType.STRING(255), field: 'line_1' })
   line1: string;

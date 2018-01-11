@@ -12,6 +12,9 @@ import { State } from './State';
   timestamps: true
 })
 export class Country extends Model<Country> {
+  /**
+   * Fields
+   */
   @AllowNull(false)
   @Column(DataType.STRING(3))
   sortname: string;

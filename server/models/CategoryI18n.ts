@@ -3,16 +3,16 @@ import {
   UpdatedAt
 } from 'sequelize-typescript';
 
-import { Service } from './Service';
+import { Category } from './Category';
 import { Language } from '../../common/enums';
 
 @Table({
-  tableName: 'service_i18n',
+  tableName: 'category_i18n',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class ServiceI18n extends Model<ServiceI18n> {
+export class CategoryI18n extends Model<CategoryI18n> {
   /**
    * Fields
    */
@@ -34,12 +34,12 @@ export class ServiceI18n extends Model<ServiceI18n> {
   /**
    * Associations
    */
-  @ForeignKey(() => Service)
-  @Column({field: 'service_id'})
-  serviceId: number;
+  @ForeignKey(() => Category)
+  @Column({field: 'category_id'})
+  categoryId: number;
 
-  @BelongsTo(() => Service)
-  service: Service;
+  @BelongsTo(() => Category)
+  category: Category;
 
   /**
    * Defaults

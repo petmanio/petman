@@ -12,6 +12,10 @@ import { Branch } from './Branch';
 })
 export class Service extends Model<Service> {
   /**
+   * Fields
+   */
+
+  /**
    * Associations
    */
   @HasOne(() => ServiceI18n)

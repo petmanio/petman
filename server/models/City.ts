@@ -12,6 +12,9 @@ import { State } from './State';
   timestamps: true
 })
 export class City extends Model<City> {
+  /**
+   * Fields
+   */
   @AllowNull(false)
   @Column(DataType.STRING(30))
   name: string;

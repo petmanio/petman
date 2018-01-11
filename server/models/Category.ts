@@ -1,15 +1,15 @@
 import { BelongsToMany, CreatedAt, DeletedAt, HasOne, Model, Table, UpdatedAt, } from 'sequelize-typescript';
 
-import { Post } from './Post';
-import { TagI18n } from './TagI18n';
+import { CategoryI18n } from './CategoryI18n';
+import { Product } from './Product';
 
 @Table({
-  tableName: 'tag',
+  tableName: 'category',
   underscored: true,
   paranoid: true,
   timestamps: true
 })
-export class Tag extends Model<Tag> {
+export class Category extends Model<Category> {
   /**
    * Fields
    */
@@ -17,11 +17,11 @@ export class Tag extends Model<Tag> {
   /**
    * Associations
    */
-  @HasOne(() => TagI18n)
-  i18n: TagI18n;
+  @HasOne(() => CategoryI18n)
+  i18n: CategoryI18n;
 
-  @BelongsToMany(() => Post, 'post_tag', 'tag_id', 'post_id')
-  posts: Post[];
+  @BelongsToMany(() => Product, 'product_category', 'category_id', 'product_id')
+  products: Product[];
 
   /**
    * Defaults

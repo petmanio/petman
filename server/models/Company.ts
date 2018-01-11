@@ -1,6 +1,5 @@
 import {
-  AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, DeletedAt, ForeignKey, HasMany, HasOne, Model,
-  Table,
+  AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, DeletedAt, ForeignKey, HasMany, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
 
@@ -17,9 +16,15 @@ import { Product } from './Product';
   timestamps: true
 })
 export class Company extends Model<Company> {
+  /**
+   * Fields
+   */
   @AllowNull(false)
-  @Column(DataType.STRING(255))
-  name: string;
+  @Column(DataType.STRING(150))
+  title: string;
+
+  @Column(DataType.TEXT)
+  description: string;
 
   @Column(DataType.ARRAY(DataType.STRING(255)))
   images: string[];
@@ -44,11 +49,11 @@ export class Company extends Model<Company> {
   @BelongsToMany(() => Service, 'company_service', 'company_id', 'service_id')
   services: Service[];
 
-  @BelongsToMany(() => Product, 'company_product', 'company_id', 'product_id')
-  products: Product[];
-
   @HasMany(() => Branch)
   branches: Branch[];
+
+  @HasMany(() => Product)
+  products: Product[];
   /**
    * Defaults
    */

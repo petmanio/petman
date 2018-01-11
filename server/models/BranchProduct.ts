@@ -9,6 +9,9 @@ import { Product } from './Product';
   timestamps: true
 })
 export class BranchProduct extends Model<BranchProduct> {
+  /**
+   * Fields
+   */
   @Column(DataType.DECIMAL)
   price: number;
 

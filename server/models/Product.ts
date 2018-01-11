@@ -1,11 +1,13 @@
 import {
-  AllowNull, BelongsToMany, Column, CreatedAt, DataType, DeletedAt, Model, Table,
+  AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, DeletedAt, ForeignKey, Model, Table,
   UpdatedAt
 } from 'sequelize-typescript';
-import { Branch } from './Branch';
+
 import { UnitType } from '../../common/enums';
+import { Branch } from './Branch';
 import { Company } from './Company';
 import { BranchProduct } from './BranchProduct';
+import { Category } from './Category';
 
 @Table({
   tableName: 'product',
@@ -14,9 +16,15 @@ import { BranchProduct } from './BranchProduct';
   timestamps: true
 })
 export class Product extends Model<Product> {
+  /**
+   * Fields
+   */
   @AllowNull(false)
-  @Column(DataType.STRING(255))
-  name: string;
+  @Column(DataType.STRING(150))
+  title: string;
+
+  @Column(DataType.TEXT)
+  description: string;
 
   @AllowNull(false)
   @Column({field: 'base_price', type: DataType.FLOAT})
@@ -31,11 +39,18 @@ export class Product extends Model<Product> {
   /**
    * Associations
    */
+  @ForeignKey(() => Company)
+  @Column({field: 'company_id'})
+  companyId: number;
+
+  @BelongsTo(() => Company)
+  company: Company;
+
   @BelongsToMany(() => Branch, () => BranchProduct)
   branches: Branch[];
 
-  @BelongsToMany(() => Company, 'company_product', 'product_id', 'company_id')
-  companies: Company[];
+  @BelongsToMany(() => Product, 'product_category', 'product_id', 'category_id')
+  categories: Category[];
 
   /**
    * Defaults

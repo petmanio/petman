@@ -16,9 +16,15 @@ import { BranchProduct } from './BranchProduct';
   timestamps: true
 })
 export class Branch extends Model<Branch> {
+  /**
+   * Fields
+   */
   @AllowNull(false)
-  @Column(DataType.STRING(255))
-  name: string;
+  @Column(DataType.STRING(150))
+  title: string;
+
+  @Column(DataType.TEXT)
+  description: string;
 
   @Default(false)
   @Column(DataType.BOOLEAN)
