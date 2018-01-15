@@ -1,0 +1,13 @@
+.pm-card-avatar {
+  display: inline-block;
+}
+
+ngx-gallery-thumbnails {
+  position: absolute;
+}
+
+.control {
+  &:first-child {
+    margin-left: auto;
+  }
+}

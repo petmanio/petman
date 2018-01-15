@@ -1,0 +1,22 @@
+<div class="columns is-marginless">
+  <div class="column is-10 is-offset-1">
+    <div class="columns">
+      <div class="column is-9">
+        <div class="pm-gallery-custom">
+          <ngx-gallery [options]="galleryOptions"
+                       [images]="(organization$ | async)?.images | appGalleryImages"
+                       (previewOpen)="onPreviewOpen()"
+                       (previewClose)="onPreviewClose()"></ngx-gallery>
+        </div>
+        <div class="notification" [innerHTML]="(organization$ | async)?.description | appSafeHtml"></div>
+        <div class="field is-grouped">
+          <p class="control">
+            <button mat-raised-button (click)="onShare()" i18n>Share</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+    </div>
+  </div>
+</div>

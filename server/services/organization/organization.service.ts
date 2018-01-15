@@ -3,8 +3,10 @@ import { Address } from '../../models/Address';
 import { Service } from '../../models/Service';
 import { Branch } from '../../models/Branch';
 import { Product } from '../../models/Product';
+import { OrganizationListRequestDto } from '../../../common/models/organization.model';
 
-const listService = async (offset: number, limit: number) => {
+const listService = async (query: OrganizationListRequestDto) => {
+  const { offset, limit } = query;
   const total = await Organization.count();
   const list = await Organization.findAll({
     offset,

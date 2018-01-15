@@ -6,7 +6,7 @@ import { ServiceDto } from './service.model';
 import { BranchDto } from './branch.model';
 import { ProductDto } from './product.model';
 import { CommonListRequestDto } from '../shared';
-import { dtoGetter } from '../../server/services/util/util.service';
+import { dtoGetter } from '../lib/util';
 
 export class OrganizationDto {
   id: number;
@@ -35,8 +35,13 @@ export class OrganizationDto {
   products: ProductDto[];
 }
 
+export class OrganizationFilterDto {
+  service: string;
+}
+
 // GET organizations
 export class OrganizationListRequestDto extends CommonListRequestDto {
+  filter: OrganizationFilterDto;
 }
 
 export class OrganizationListResponseDto {

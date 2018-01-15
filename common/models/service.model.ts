@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 
-import { dtoGetter } from '../../server/services/util/util.service';
+import { dtoGetter } from '../lib/util';
 import { ServiceI18nDto } from './service-i18n.model';
 import { OrganizationDto } from './organization.model';
 import { BranchDto } from './branch.model';

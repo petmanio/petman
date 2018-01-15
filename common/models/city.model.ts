@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 
-import { dtoGetter } from '../../server/services/util/util.service';
+import { dtoGetter } from '../lib/util';
 import { StateDto } from './state.model';
 
 export class CityDto {

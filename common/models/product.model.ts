@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 
-import { dtoGetter } from '../../server/services/util/util.service';
+import { dtoGetter } from '../lib/util';
 import { UnitType } from '../enums';
 import { CategoryDto } from './category.model';
 import { OrganizationDto } from './organization.model';
