@@ -8,6 +8,7 @@ import { ShelterModule } from './shelter/shelter.module';
 import { AdoptModule } from './adopt/adopt.module';
 import { LostFoundModule } from './lost-found/lost-found.module';
 import { OrganizationModule } from './organization/organization.module';
+import { MapModule } from './map/map.module';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,8 @@ import { OrganizationModule } from './organization/organization.module';
     SharedModule.forRoot(),
     AdoptModule.forRoot(),
     LostFoundModule.forRoot(),
-    OrganizationModule.forRoot()
+    OrganizationModule.forRoot(),
+    MapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

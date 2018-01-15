@@ -37,6 +37,11 @@ export const routes: Routes = [
     loadChildren: 'app/organization/organization.module#OrganizationModule',
     data: { showSidenav: true }
   },
+  {
+    path: 'map',
+    loadChildren: 'app/map/map.module#MapModule',
+    data: { showSidenav: true }
+  },
   { path: '**', component: NotFoundPageComponent, data: { showSidenav: false } }
 ];
 

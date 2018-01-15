@@ -2,8 +2,8 @@ import { SyncOptions } from 'sequelize';
 import { SequelizeConfig } from 'sequelize-typescript/lib/types/SequelizeConfig';
 
 export class CommonListRequestDto {
-  limit: number;
-  offset: number;
+  limit?: number;
+  offset?: number;
 }
 
 export class CommonListResponse<T> {

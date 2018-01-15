@@ -41,7 +41,7 @@ export class OrganizationFilterDto {
 
 // GET organizations
 export class OrganizationListRequestDto extends CommonListRequestDto {
-  filter: OrganizationFilterDto;
+  filter?: OrganizationFilterDto;
 }
 
 export class OrganizationListResponseDto {
