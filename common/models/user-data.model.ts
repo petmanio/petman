@@ -6,6 +6,7 @@ function userDtoGetter() {
   return UserDto;
 }
 
+// TODO: merge with user
 export class UserDataDto {
   gender: Gender;
   avatar: string;

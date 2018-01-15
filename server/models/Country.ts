@@ -25,7 +25,7 @@ export class Country extends Model<Country> {
 
   @AllowNull(false)
   @Column(DataType.INTEGER)
-  phonecode: string;
+  phonecode: number;
 
   /**
    * Associations

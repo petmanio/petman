@@ -27,6 +27,9 @@ export class Address extends Model<Address> {
   @Column({ type: DataType.STRING(255), field: 'line_3' })
   line3: string;
 
+  @Column(DataType.GEOMETRY)
+  geometry: boolean;
+
   /**
    * Associations
    */

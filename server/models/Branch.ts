@@ -36,9 +36,6 @@ export class Branch extends Model<Branch> {
   @Column(DataType.ARRAY(DataType.STRING(255)))
   images: string[];
 
-  @Column(DataType.GEOMETRY)
-  geometry: boolean;
-
   /**
    * Associations
    */

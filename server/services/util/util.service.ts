@@ -70,4 +70,10 @@ const getFacebookById = (facebookId: string): string => {
   return `https://fb.com/${facebookId}`;
 };
 
-export { logger, loggerStream, cors, jwtSign, jwtVerify, getUserFbAvatarByFbId, getFacebookById };
+const dtoGetter = function(dto) {
+  return function () {
+    return dto;
+  };
+};
+
+export { logger, loggerStream, cors, jwtSign, jwtVerify, dtoGetter, getUserFbAvatarByFbId, getFacebookById };
