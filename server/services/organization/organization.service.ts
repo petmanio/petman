@@ -2,7 +2,6 @@ import { Organization } from '../../models/Organization';
 import { Address } from '../../models/Address';
 import { Service } from '../../models/Service';
 import { Branch } from '../../models/Branch';
-import { Product } from '../../models/Product';
 import { OrganizationListRequestDto } from '../../../common/models/organization.model';
 
 const listService = async (query: OrganizationListRequestDto) => {
