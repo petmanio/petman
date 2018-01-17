@@ -27,10 +27,10 @@ const listService = async (query: OrganizationListRequestDto) => {
             model: Service,
             where: { id: service },
           },
-          Address, Product
+          Address
         ]
       },
-      Address, Product
+      Address
     ],
   });
 
