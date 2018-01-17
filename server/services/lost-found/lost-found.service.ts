@@ -17,7 +17,7 @@ const createService = async (body: LostFoundCreateRequestDto, user: User) => {
   });
 };
 
-const listService = async (offset: number, limit: number) => {
+const listService = async (offset = 0, limit = 12) => {
   const total = await LostFound.count();
   const list = await LostFound.findAll({
     offset,

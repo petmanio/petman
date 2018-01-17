@@ -35,13 +35,9 @@ export class OrganizationDto {
   products: ProductDto[];
 }
 
-export class OrganizationFilterDto {
-  service: string;
-}
-
 // GET organizations
 export class OrganizationListRequestDto extends CommonListRequestDto {
-  filter?: OrganizationFilterDto;
+  service?: number | number[];
 }
 
 export class OrganizationListResponseDto {

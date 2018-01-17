@@ -17,7 +17,7 @@ const createService = async (body: WalkerCreateRequestDto, user: User) => {
   });
 };
 
-const listService = async (offset: number, limit: number) => {
+const listService = async (offset = 0, limit = 12) => {
   const total = await Walker.count();
   const list = await Walker.findAll({
     offset,

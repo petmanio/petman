@@ -17,7 +17,7 @@ const createService = async (body: AdoptCreateRequestDto, user: User) => {
   });
 };
 
-const listService = async (offset: number, limit: number) => {
+const listService = async (offset = 0, limit = 12) => {
   const total = await Adopt.count();
   const list = await Adopt.findAll({
     offset,
