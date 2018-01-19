@@ -1,4 +1,5 @@
 import { BelongsToMany, CreatedAt, DeletedAt, HasOne, Model, Table, UpdatedAt, } from 'sequelize-typescript';
+import { extend } from 'lodash';
 
 import { ServiceI18n } from './ServiceI18n';
 import { Organization } from './Organization';
@@ -20,7 +21,7 @@ export class Service extends Model<Service> {
    */
   @HasOne(() => ServiceI18n)
   i18n: ServiceI18n;
-
+organization_service
   @BelongsToMany(() => Organization, 'organization_service', 'service_id', 'organization_id')
   organizations: Organization[];
 
@@ -43,8 +44,12 @@ export class Service extends Model<Service> {
    * Instance methods
    */
   toJSON() {
-    const obj = super.get({clone: true});
+    let obj = super.get({clone: true});
+    obj = extend({}, obj, obj.i18n ? obj.i18n.toJSON() : {});
+    delete obj.i18n;
     delete obj.deleted;
+    delete obj.branch_service;
+    delete obj.organization_service;
     return obj;
   }
 }

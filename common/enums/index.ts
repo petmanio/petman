@@ -32,3 +32,8 @@ export enum UnitType {
   KG = 'KG',
   ITEM = 'ITEM'
 }
+
+export enum OrganizationPinType {
+  ORGANIZATION = 'ORGANIZATION',
+  BRANCH = 'BRANCH'
+}

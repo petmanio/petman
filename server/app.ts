@@ -23,7 +23,7 @@ import { shelterRouter } from './routes/shelter/shelter.route';
 import { walkerRouter } from './routes/walker/walker.route';
 import { adoptRouter } from './routes/adopt/adopt.route';
 import { lostFoundRouter } from './routes/lost-found/lost-found.route';
-import { organizationRouter } from './routes/organization/shelter.route';
+import { organizationRouter } from './routes/organization/organization.route';
 
 if (process.env.UNIVERSAL_APP) {
   const template = fs.readFileSync(path.join(__dirname, '../client/platform-browser/index.html')).toString();

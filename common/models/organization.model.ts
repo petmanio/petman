@@ -7,13 +7,13 @@ import { BranchDto } from './branch.model';
 import { ProductDto } from './product.model';
 import { CommonListRequestDto } from '../shared';
 import { dtoGetter } from '../lib/util';
+import { OrganizationPinType } from '../enums';
 
 export class OrganizationDto {
   id: number;
   title: string;
   description: string;
   images: string[];
-  isOwner: boolean;
   created: Date;
   updated: Date;
 
@@ -35,6 +35,16 @@ export class OrganizationDto {
   products: ProductDto[];
 }
 
+export class OrganizationPinDto {
+  id: number;
+  title: string;
+  description: string;
+  type: OrganizationPinType;
+
+  @Type(dtoGetter(AddressDto))
+  address: AddressDto;
+}
+
 // GET organizations
 export class OrganizationListRequestDto extends CommonListRequestDto {
   service?: number | number[];
@@ -43,8 +53,18 @@ export class OrganizationListRequestDto extends CommonListRequestDto {
 export class OrganizationListResponseDto {
   total: number;
 
-  // @Type(() => OrganizationDto)
   @Type(dtoGetter(OrganizationDto))
   list: OrganizationDto[];
 }
 
+// GET pins
+export class OrganizationPinsRequestDto {
+  service?: number | number[];
+}
+
+export class OrganizationPinsResponseDto {
+  total: number;
+
+  @Type(dtoGetter(OrganizationPinDto))
+  pins: OrganizationPinDto[];
+}
