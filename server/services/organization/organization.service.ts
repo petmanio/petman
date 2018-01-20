@@ -22,7 +22,16 @@ const listService = async (query: OrganizationListRequestDto, language: Language
     serviceQuery.id = service;
   }
 
-  const organizations = await Organization.findAndCountAll<Organization>({
+  const total = await Organization.count(<any>{
+    include: [
+      {
+        model: Service,
+        where: serviceQuery
+      }
+    ]
+  });
+
+  const organizations = await Organization.findAll<Organization>({
     offset,
     limit,
     order: [['updated', 'DESC']],
@@ -69,7 +78,7 @@ const listService = async (query: OrganizationListRequestDto, language: Language
   });
 
   // TODO: convert Organization to OrganizationDto
-  return { total: organizations.count, list: <any>organizations.rows };
+  return { total, list: <any>organizations };
 };
 
 const pinsService = async (query: OrganizationPinsRequestDto, language: Language): Promise<OrganizationPinsResponseDto> => {
