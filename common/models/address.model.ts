@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 
 import { dtoGetter } from '../lib/util';
+import { Geometry } from '../shared';
 import { CityDto } from './city.model';
 import { StateDto } from './state.model';
 import { CountryDto } from './country.model';
@@ -10,7 +11,7 @@ export class AddressDto {
   line1: string;
   line2: string;
   line3: string;
-  geometry: number[];
+  geometry: Geometry;
   created: Date;
   updated: Date;
 

@@ -37,3 +37,7 @@ export enum OrganizationPinType {
   ORGANIZATION = 'ORGANIZATION',
   BRANCH = 'BRANCH'
 }
+
+export enum GeometryType {
+  POINT = 'Point'
+}

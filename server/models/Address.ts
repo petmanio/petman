@@ -3,6 +3,7 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
+import { Geometry } from '../../common/shared';
 import { State } from './State';
 import { City } from './City';
 import { Country } from './Country';
@@ -28,7 +29,7 @@ export class Address extends Model<Address> {
   line3: string;
 
   @Column(DataType.GEOMETRY)
-  geometry: boolean;
+  geometry: Geometry;
 
   /**
    * Associations

@@ -1,15 +1,6 @@
 import { SyncOptions } from 'sequelize';
 import { SequelizeConfig } from 'sequelize-typescript/lib/types/SequelizeConfig';
-
-export class CommonListRequestDto {
-  limit?: number;
-  offset?: number;
-}
-
-export class CommonListResponse<T> {
-  total: number;
-  list: T[];
-}
+import { GeometryType } from '../enums';
 
 export interface Config {
   port?: number;
@@ -25,4 +16,19 @@ export interface Config {
   };
   uploadPath?: string;
   host?: string;
+}
+
+export class CommonListRequestDto {
+  limit?: number;
+  offset?: number;
+}
+
+export class CommonListResponse<T> {
+  total: number;
+  list: T[];
+}
+
+export class Geometry {
+  type: GeometryType;
+  coordinates: number[];
 }

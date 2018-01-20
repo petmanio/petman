@@ -1,24 +1,25 @@
 import { Organization } from '../../models/Organization';
+import { Branch } from '../../models/Branch';
 import { Address } from '../../models/Address';
 import { Service } from '../../models/Service';
 import { ServiceI18n } from '../../models/ServiceI18n';
-import { Branch } from '../../models/Branch';
 import {
   OrganizationListRequestDto,
   OrganizationListResponseDto,
+  OrganizationPinDto,
   OrganizationPinsRequestDto,
   OrganizationPinsResponseDto
 } from '../../../common/models/organization.model';
-import { Language } from '../../../common/enums';
+import { Language, OrganizationPinType } from '../../../common/enums';
 import { Country } from '../../models/Country';
 import { City } from '../../models/City';
 import { State } from '../../models/State';
 
 const listService = async (query: OrganizationListRequestDto, language: Language): Promise<OrganizationListResponseDto> => {
   const { offset = 0, limit = 12, service } = query;
-  const whereQuery: { id?: number | number[] } = {};
+  const serviceQuery: { id?: number | number[] } = {};
   if (service) {
-    whereQuery.id = service;
+    serviceQuery.id = service;
   }
 
   const organizations = await Organization.findAndCountAll<Organization>({
@@ -28,7 +29,7 @@ const listService = async (query: OrganizationListRequestDto, language: Language
     include: [
       {
         model: Service,
-        where: { id: service },
+        where: serviceQuery,
         include: [
           {
             model: ServiceI18n,
@@ -43,7 +44,7 @@ const listService = async (query: OrganizationListRequestDto, language: Language
         model: Branch, include: [
           {
             model: Service,
-            where: { id: service },
+            where: serviceQuery,
             include: [
               {
                 model: ServiceI18n,
@@ -72,7 +73,83 @@ const listService = async (query: OrganizationListRequestDto, language: Language
 };
 
 const pinsService = async (query: OrganizationPinsRequestDto, language: Language): Promise<OrganizationPinsResponseDto> => {
-  return <any>{};
+  const { service } = query;
+  const serviceQuery: { id?: number | number[] } = {};
+  if (service) {
+    serviceQuery.id = service;
+  }
+
+  const organizations = await Organization.findAll<Organization>({
+    order: [['updated', 'DESC']],
+    include: [
+      {
+        model: Service,
+        where: serviceQuery,
+        include: [
+          {
+            model: ServiceI18n,
+            attributes: ['title', 'description'],
+            required: false,
+            // FIXME: tmp solution
+            where: <any>{ $or: [{ language }, {isDefault: true}] }
+          }
+        ]
+      },
+      {
+        model: Address,
+        where: {
+          geometry: { $ne: null }
+        },
+        include: [Country, State, City]
+      }
+    ],
+  });
+
+  const branches = await Branch.findAll<Branch>({
+    order: [['updated', 'DESC']],
+    include: [
+      {
+        model: Service,
+        where: serviceQuery,
+        include: [
+          {
+            model: ServiceI18n,
+            attributes: ['title', 'description'],
+            required: false,
+            // FIXME: tmp solution
+            where: <any>{ $or: [{ language }, {isDefault: true}] }
+          }
+        ]
+      },
+      {
+        model: Address,
+        where: {
+          geometry: { $ne: null }
+        },
+        include: [Country, State, City]
+      }
+    ],
+  });
+
+  const pins: OrganizationPinDto[] = [];
+
+  organizations.forEach(organization => pins.push(<OrganizationPinDto>{
+    id: organization.id,
+    title: organization.title,
+    description: organization.description,
+    address: organization.address,
+    type: OrganizationPinType.ORGANIZATION
+  }));
+
+  branches.forEach(branch => pins.push(<OrganizationPinDto>{
+    id: branch.id,
+    title: branch.title,
+    description: branch.description,
+    address: branch.address,
+    type: OrganizationPinType.BRANCH
+  }));
+
+  return { total: organizations.length + branches.length, pins };
 };
 
 export { listService, pinsService };
