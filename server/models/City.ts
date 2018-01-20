@@ -46,6 +46,8 @@ export class City extends Model<City> {
    */
   toJSON() {
     const obj = super.get({clone: true});
+    delete obj.created;
+    delete obj.updated;
     delete obj.deleted;
     return obj;
   }

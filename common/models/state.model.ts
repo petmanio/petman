@@ -7,8 +7,6 @@ import { CityDto } from './city.model';
 export class StateDto {
   id: number;
   name: string;
-  created: Date;
-  updated: Date;
 
   countryId: number;
   @Type(dtoGetter(CountryDto))

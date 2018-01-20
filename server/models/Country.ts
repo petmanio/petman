@@ -50,6 +50,8 @@ export class Country extends Model<Country> {
    */
   toJSON() {
     const obj = super.get({clone: true});
+    delete obj.created;
+    delete obj.updated;
     delete obj.deleted;
     return obj;
   }

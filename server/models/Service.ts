@@ -47,6 +47,8 @@ organization_service
     let obj = super.get({clone: true});
     obj = extend({}, obj, obj.i18n ? obj.i18n.toJSON() : {});
     delete obj.i18n;
+    delete obj.created;
+    delete obj.updated;
     delete obj.deleted;
     delete obj.branch_service;
     delete obj.organization_service;

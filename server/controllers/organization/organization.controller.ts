@@ -6,7 +6,7 @@ import { Language } from '../../../common/enums';
 
 const listHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const organizations = await listService(<OrganizationListRequestDto>req.query, req.header('content-language') as Language);
+    const organizations = await listService(<OrganizationListRequestDto>req.query, req.header('accept-language') as Language);
     res.status(200).json(organizations);
   } catch (err) {
     next(err);
@@ -15,7 +15,7 @@ const listHandler = async (req: Request, res: Response, next: NextFunction) => {
 
 const pinsHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const pins = await pinsService(<OrganizationPinsRequestDto>req.query, req.header('content-language') as Language);
+    const pins = await pinsService(<OrganizationPinsRequestDto>req.query, req.header('accept-language') as Language);
     res.status(200).json(pins);
   } catch (err) {
     next(err);

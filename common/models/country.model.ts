@@ -8,8 +8,6 @@ export class CountryDto {
   sortname: string;
   name: string;
   phonecode: number;
-  created: Date;
-  updated: Date;
 
   @Type(dtoGetter(StateDto))
   states: StateDto[];
