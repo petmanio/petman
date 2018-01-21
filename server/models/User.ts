@@ -1,6 +1,15 @@
 import { find } from 'lodash';
 import {
-  BelongsToMany, Column, CreatedAt, DeletedAt, HasMany, HasOne, IsEmail, Model, Table, Unique,
+  BelongsToMany,
+  Column,
+  CreatedAt,
+  DeletedAt,
+  HasMany,
+  HasOne,
+  IsEmail,
+  Model,
+  Table,
+  Unique,
   UpdatedAt,
 } from 'sequelize-typescript';
 

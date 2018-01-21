@@ -7,7 +7,10 @@ import { isAuthenticated } from '../../policies/auth/is-authenticated/is-authent
 import { exists } from '../../policies/adopt/exists/exists.policy';
 import { isOwner } from '../../policies/adopt/is-owner/is-owner.policy';
 import {
-  createHandler, deleteByIdHandler, fetchByIdHandler, listHandler,
+  createHandler,
+  deleteByIdHandler,
+  fetchByIdHandler,
+  listHandler,
   updateByIdHandler
 } from '../../controllers/adopt/adopt.controller';
 

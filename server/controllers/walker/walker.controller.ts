@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { extend, map } from 'lodash';
-
-import config from '../../config';
 import { createService, listService } from '../../services/walker/walker.service';
 
 const createHandler = async (req: Request, res: Response, next: NextFunction) => {

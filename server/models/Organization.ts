@@ -1,6 +1,16 @@
 import { resolve } from 'url';
 import {
-  AllowNull, BelongsTo, BelongsToMany, Column, CreatedAt, DataType, DeletedAt, ForeignKey, HasMany, Model, Table,
+  AllowNull,
+  BelongsTo,
+  BelongsToMany,
+  Column,
+  CreatedAt,
+  DataType,
+  DeletedAt,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
   UpdatedAt
 } from 'sequelize-typescript';
 import { map } from 'lodash';

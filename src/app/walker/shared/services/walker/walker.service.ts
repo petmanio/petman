@@ -5,8 +5,15 @@ import { plainToClass } from 'class-transformer';
 
 import { environment } from '../../../../../environments/environment';
 import {
-  WalkerCreateRequestDto, WalkerCreateResponseDto, WalkerDeleteRequestDto, WalkerDeleteResponseDto, WalkerDto,
-  WalkerListRequestDto, WalkerListResponseDto, WalkerUpdateRequestDto, WalkerUpdateResponseDto
+  WalkerCreateRequestDto,
+  WalkerCreateResponseDto,
+  WalkerDeleteRequestDto,
+  WalkerDeleteResponseDto,
+  WalkerDto,
+  WalkerListRequestDto,
+  WalkerListResponseDto,
+  WalkerUpdateRequestDto,
+  WalkerUpdateResponseDto
 } from '../../../../../../common/models/walker.model';
 
 export interface IWalkerService {

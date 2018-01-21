@@ -1,7 +1,13 @@
 import * as Masonry from 'masonry-layout';
 import {
-  AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, OnDestroy,
-  OnInit, Renderer2
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2
 } from '@angular/core';
 import { debounce } from 'lodash';
 

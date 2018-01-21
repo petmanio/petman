@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { FileHolder } from 'angular2-image-upload';
-import { cloneDeep, map } from 'lodash';
+import { cloneDeep } from 'lodash';
 
 import * as fromWalker from '../shared/reducers';
 import * as Walker from '../shared/actions/walker.action';

@@ -7,8 +7,15 @@ import { forEach } from 'lodash';
 
 import { environment } from '../../../../../environments/environment';
 import {
-  AdoptCreateRequestDto, AdoptCreateResponseDto, AdoptDeleteRequestDto, AdoptDeleteResponseDto, AdoptDto,
-  AdoptListRequestDto, AdoptListResponseDto, AdoptUpdateRequestDto, AdoptUpdateResponseDto
+  AdoptCreateRequestDto,
+  AdoptCreateResponseDto,
+  AdoptDeleteRequestDto,
+  AdoptDeleteResponseDto,
+  AdoptDto,
+  AdoptListRequestDto,
+  AdoptListResponseDto,
+  AdoptUpdateRequestDto,
+  AdoptUpdateResponseDto
 } from '../../../../../../common/models/adopt.model';
 
 export interface IAdoptService {

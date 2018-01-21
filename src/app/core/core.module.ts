@@ -10,12 +10,22 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule, } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {
-  MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatListModule, MatMenuModule,
-  MatProgressBarModule, MatSelectModule, MatSidenavModule, MatToolbarModule
+  MatButtonModule,
+  MatCardModule,
+  MatChipsModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatProgressBarModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatToolbarModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
-  CovalentLayoutModule, CovalentMenuModule, CovalentNotificationsModule,
+  CovalentLayoutModule,
+  CovalentMenuModule,
+  CovalentNotificationsModule,
   CovalentSearchModule
 } from '@covalent/core';
 import { NgProgressInterceptor, NgProgressModule } from 'ngx-progressbar';

@@ -1,5 +1,11 @@
 import {
-  AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2,
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
   ViewChild
 } from '@angular/core';
 import Bricks, { BricksInstance } from 'bricks.js';

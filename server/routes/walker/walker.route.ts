@@ -4,7 +4,10 @@ import { isAuthenticated } from '../../policies/auth/is-authenticated/is-authent
 import { exists } from '../../policies/walker/exists/exists.policy';
 import { isOwner } from '../../policies/walker/is-owner/is-owner.policy';
 import {
-  createHandler, deleteByIdHandler, fetchByIdHandler, listHandler,
+  createHandler,
+  deleteByIdHandler,
+  fetchByIdHandler,
+  listHandler,
   updateByIdHandler
 } from '../../controllers/walker/walker.controller';
 

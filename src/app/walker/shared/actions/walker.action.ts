@@ -1,8 +1,15 @@
 import { Action } from '@ngrx/store';
 
 import {
-  WalkerCreateRequestDto, WalkerCreateResponseDto, WalkerDeleteRequestDto, WalkerDeleteResponseDto,
-  WalkerDto, WalkerListRequestDto, WalkerListResponseDto, WalkerUpdateRequestDto, WalkerUpdateResponseDto
+  WalkerCreateRequestDto,
+  WalkerCreateResponseDto,
+  WalkerDeleteRequestDto,
+  WalkerDeleteResponseDto,
+  WalkerDto,
+  WalkerListRequestDto,
+  WalkerListResponseDto,
+  WalkerUpdateRequestDto,
+  WalkerUpdateResponseDto
 } from '../../../../../common/models/walker.model';
 
 export const CREATE = '[Walker] Create';

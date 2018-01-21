@@ -1,7 +1,8 @@
 import { Action } from '@ngrx/store';
 
 import {
-  OrganizationDto, OrganizationListRequestDto,
+  OrganizationDto,
+  OrganizationListRequestDto,
   OrganizationListResponseDto,
 } from '../../../../../common/models/organization.model';
 

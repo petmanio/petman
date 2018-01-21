@@ -6,7 +6,8 @@ import { plainToClass } from 'class-transformer';
 
 import { environment } from '../../../../../environments/environment';
 import {
-  AuthenticationResponseDto, FbAuthenticationRequestDto,
+  AuthenticationResponseDto,
+  FbAuthenticationRequestDto,
   FbAuthenticationResponseDto,
 } from '../../../../../../common/models/auth.model';
 import { LocalStorageService } from '../../../../shared/services/local-storage/local-storage.service';

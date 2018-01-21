@@ -1,5 +1,14 @@
 import {
-  AllowNull, BelongsTo, Column, CreatedAt, DataType, DeletedAt, ForeignKey, HasMany, Model, Table,
+  AllowNull,
+  BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  DeletedAt,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
   UpdatedAt,
 } from 'sequelize-typescript';
 

@@ -7,8 +7,15 @@ import { forEach } from 'lodash';
 
 import { environment } from '../../../../../environments/environment';
 import {
-  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDeleteRequestDto, ShelterDeleteResponseDto,
-  ShelterDto, ShelterListRequestDto, ShelterListResponseDto, ShelterUpdateRequestDto, ShelterUpdateResponseDto
+  ShelterCreateRequestDto,
+  ShelterCreateResponseDto,
+  ShelterDeleteRequestDto,
+  ShelterDeleteResponseDto,
+  ShelterDto,
+  ShelterListRequestDto,
+  ShelterListResponseDto,
+  ShelterUpdateRequestDto,
+  ShelterUpdateResponseDto
 } from '../../../../../../common/models/shelter.model';
 
 export interface IShelterService {

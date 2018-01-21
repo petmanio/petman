@@ -1,8 +1,15 @@
 import { Action } from '@ngrx/store';
 
 import {
-  ShelterCreateRequestDto, ShelterCreateResponseDto, ShelterDeleteRequestDto, ShelterDeleteResponseDto,
-  ShelterDto, ShelterListRequestDto, ShelterListResponseDto, ShelterUpdateRequestDto, ShelterUpdateResponseDto
+  ShelterCreateRequestDto,
+  ShelterCreateResponseDto,
+  ShelterDeleteRequestDto,
+  ShelterDeleteResponseDto,
+  ShelterDto,
+  ShelterListRequestDto,
+  ShelterListResponseDto,
+  ShelterUpdateRequestDto,
+  ShelterUpdateResponseDto
 } from '../../../../../common/models/shelter.model';
 
 export const CREATE = '[Shelter] Create';
