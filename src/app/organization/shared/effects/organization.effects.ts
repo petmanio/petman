@@ -51,6 +51,20 @@ export class OrganizationEffects {
       })
     );
 
+  @Effect()
+  pins$ = this.actions$
+    .ofType(Organization.PINS)
+    .pipe(
+      map((action: Organization.Pins) => action.payload),
+      switchMap(query => {
+        return this.organizationService.pins(query)
+          .pipe(
+            map(response => new Organization.PinsSuccess(response)),
+            catchError(error => of(new Organization.PinsFailure(error)))
+          );
+      })
+    );
+
   constructor(private actions$: Actions,
               private router: Router,
               private organizationService: OrganizationService) {

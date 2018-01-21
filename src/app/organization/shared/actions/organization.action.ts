@@ -4,6 +4,8 @@ import {
   OrganizationDto,
   OrganizationListRequestDto,
   OrganizationListResponseDto,
+  OrganizationPinsRequestDto,
+  OrganizationPinsResponseDto,
 } from '../../../../../common/models/organization.model';
 
 export const LOAD = '[Organization] Load';
@@ -17,6 +19,10 @@ export const LIST_FAILURE = '[Organization] List Failure';
 export const MORE = '[Organization] More';
 export const MORE_SUCCESS = '[Organization] More Success';
 export const MORE_FAILURE = '[Organization] More Failure';
+
+export const PINS = '[Organization] Pins';
+export const PINS_SUCCESS = '[Organization] Pins Success';
+export const PINS_FAILURE = '[Organization] Pins Failure';
 
 export const SELECT = '[Organization] Select';
 
@@ -83,6 +89,30 @@ export class MoreFailure implements Action {
   constructor(public payload: any) {}
 }
 
+/**
+ * Pins
+ */
+export class Pins implements Action {
+  readonly type = PINS;
+
+  constructor(public payload: OrganizationPinsRequestDto = null) {}
+}
+
+export class PinsSuccess implements Action {
+  readonly type = PINS_SUCCESS;
+
+  constructor(public payload: OrganizationPinsResponseDto) {}
+}
+
+export class PinsFailure implements Action {
+  readonly type = PINS_FAILURE;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * Select
+ */
 export class Select implements Action {
   readonly type = SELECT;
 
@@ -99,4 +129,7 @@ export type Actions =
   | More
   | MoreSuccess
   | MoreFailure
+  | Pins
+  | PinsSuccess
+  | PinsFailure
   | Select;

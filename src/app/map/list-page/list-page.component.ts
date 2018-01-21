@@ -7,7 +7,11 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ModalSize } from '../../../../common/enums';
-import { OrganizationDto, OrganizationListRequestDto } from '../../../../common/models/organization.model';
+import {
+  OrganizationDto,
+  OrganizationListRequestDto,
+  OrganizationPinDto, OrganizationPinsRequestDto
+} from '../../../../common/models/organization.model';
 import { UserDto } from '../../../../common/models/user.model';
 import { Config } from '../../shared/components/card/card.component';
 import { ShareDialogComponent } from '../../shared/components/share-dialog/share-dialog.component';
@@ -15,7 +19,6 @@ import * as fromAuth from '../../auth/shared/reducers';
 import * as fromOrganization from '../../organization/shared/reducers';
 import * as fromMap from '../shared/reducers';
 import * as Organization from '../../organization/shared/actions/organization.action';
-import { ServiceDto } from '../../../../common/models/service.model';
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto): Config;
@@ -36,6 +39,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   offset = 0;
   list$: Observable<OrganizationDto[]>;
   total$: Observable<number>;
+  pins$: Observable<OrganizationPinDto[]>;
   error$: Observable<any>;
   pending$: Observable<boolean>;
   selectedUser$: Observable<UserDto>;
@@ -53,6 +57,11 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     };
   }
 
+  private get pinsRequest(): OrganizationPinsRequestDto {
+    return {
+    };
+  }
+
   constructor(private router: Router,
     private location: Location,
     private dialog: MatDialog,
@@ -63,6 +72,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
 
     this.list$ = this.store.select(fromOrganization.getAllOrganizations);
     this.total$ = this.store.select(fromOrganization.getTotalOrganizations);
+    this.pins$ = this.store.select(fromOrganization.getAllPins);
 
     this.error$ = this.store.select(fromMap.getListPageError);
     this.pending$ = this.store.select(fromMap.getListPagePending);
@@ -71,13 +81,14 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       this.list = list;
       this.offset = Math.max(0, this.list.length - this.limit);
     });
-    const totalSubscription = this.total$.subscribe(user => this.total = user);
+    const totalSubscription = this.total$.subscribe(total => this.total = total);
 
     this.subscriptions.push(...[listSubscription, totalSubscription]);
   }
 
   ngOnInit(): void {
     this.store.dispatch(new Organization.List(this.listRequest));
+    this.store.dispatch(new Organization.Pins(this.pinsRequest));
   }
 
   ngOnDestroy(): void {

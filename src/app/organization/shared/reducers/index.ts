@@ -2,9 +2,11 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromRoot from '../../../core/shared/reducers';
 import * as fromOrganization from './organization/organization.reducer';
+import * as fromPin from './pin/pin.reducer';
 
 export interface OrganizationState {
   organization: fromOrganization.State;
+  pin: fromPin.State;
 }
 
 export interface State extends fromRoot.State {
@@ -12,7 +14,8 @@ export interface State extends fromRoot.State {
 }
 
 export const reducers = {
-  organization: fromOrganization.reducer
+  organization: fromOrganization.reducer,
+  pin: fromPin.reducer
 };
 
 export const getOrganizationState = createFeatureSelector<OrganizationState>('organization');
@@ -34,3 +37,12 @@ export const getSelectedOrganization = createSelector(getOrganizationEntities, g
     return selectedId && entities[selectedId];
   }
 );
+
+export const getPinEntitiesState = createSelector(getOrganizationState, state => state.pin);
+export const getTotalPins = createSelector(getPinEntitiesState, fromPin.getTotal);
+export const {
+  selectIds: getPinIds,
+  selectEntities: getPinEntities,
+  selectAll: getAllPins,
+  selectTotal: getTotalPinsInStore,
+} = fromPin.adapter.getSelectors(getPinEntitiesState);

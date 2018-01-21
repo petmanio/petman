@@ -15,17 +15,20 @@ export const initialState: State = {
 export function reducer(state = initialState, action: organization.Actions): State {
   switch (action.type) {
     case organization.LIST:
-    case organization.MORE: {
+    case organization.MORE:
+    case organization.PINS: {
       return assign({}, state, { error: null, pending: true });
     }
 
     case organization.LIST_SUCCESS:
-    case organization.MORE_SUCCESS: {
+    case organization.MORE_SUCCESS:
+    case organization.PINS_SUCCESS: {
       return assign({}, state, { error: null, pending: false });
     }
 
     case organization.LIST_FAILURE:
-    case organization.MORE_FAILURE: {
+    case organization.MORE_FAILURE:
+    case organization.PINS_FAILURE: {
       return assign({}, state, { error: action.payload, pending: false });
     }
 

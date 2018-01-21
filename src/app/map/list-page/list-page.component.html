@@ -16,7 +16,7 @@
       </app-masonry>
     </div>
     <div class="column">
-      <h1>Map</h1>
+      {{pins$ | async | json}}
     </div>
     <button mat-fab class="pm-fab" routerLink="add">
       <mat-icon>add</mat-icon>

@@ -67,7 +67,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       this.list = list;
       this.offset = Math.max(0, this.list.length - this.limit);
     });
-    const totalSubscription = this.total$.subscribe(user => this.total = user);
+    const totalSubscription = this.total$.subscribe(total => this.total = total);
 
     this.subscriptions.push(...[listSubscription, totalSubscription]);
   }
