@@ -54,6 +54,7 @@ const listService = async (query: OrganizationListRequestDto, language: Language
           {
             model: Service,
             where: serviceQuery,
+            required: false,
             include: [
               {
                 model: ServiceI18n,

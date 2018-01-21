@@ -15,6 +15,7 @@ import * as fromAuth from '../../auth/shared/reducers';
 import * as fromOrganization from '../../organization/shared/reducers';
 import * as fromMap from '../shared/reducers';
 import * as Organization from '../../organization/shared/actions/organization.action';
+import { ServiceDto } from '../../../../common/models/service.model';
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto): Config;
@@ -85,11 +86,11 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
 
   getCardConfig(item: OrganizationDto): Config {
     return {
-      avatar: item.user.userData.avatar,
-      title: item.user.userData.name,
+      title: item.title,
       subtitle: this.datePipe.transform(item.created),
       image: item.images && item.images[0],
-      contentHTML: item.description,
+      chips: item.services.map<any>(service => ({ color: '', text: service.title })),
+      content: item.description,
     };
   }
 
@@ -101,7 +102,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   }
 
   onShare(map: OrganizationDto): void {
-    const url = this.document.location.origin + this.router.createUrlTree(['maps', map.id]).toString();
+    const url = this.document.location.origin + this.router.createUrlTree(['organizations', map.id]).toString();
     const _dialogRef = this.dialog.open(ShareDialogComponent, {
       width: ModalSize.MEDIUM,
       data: { url }

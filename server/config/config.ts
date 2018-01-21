@@ -18,6 +18,7 @@ const config: Config = {
     appSecret: '',
     scope: ''
   },
+  languages: ['en-US', 'hy-AM'],
   uploadPath: join(process.env.PWD, 'upload'),
   host: 'htts://petman.io'
 };

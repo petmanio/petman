@@ -14,6 +14,7 @@ export interface Config {
     appSecret: string,
     scope: string,
   };
+  languages?: string[];
   uploadPath?: string;
   host?: string;
 }

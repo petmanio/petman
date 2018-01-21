@@ -1,7 +1,11 @@
 import * as winston from 'winston';
+import acceptLanguage from 'accept-language';
 import { sign, verify } from 'jsonwebtoken';
 
 import config from '../../config';
+import { Language } from '../../../common/enums';
+
+acceptLanguage.languages(config.languages);
 
 const transports: any = [
   new winston.transports.Console({
@@ -76,4 +80,8 @@ const dtoGetter = function(dto) {
   };
 };
 
-export { logger, loggerStream, cors, jwtSign, jwtVerify, dtoGetter, getUserFbAvatarByFbId, getFacebookById };
+const getAcceptLanguage = (language: string): Language => {
+  return acceptLanguage.get(language) as Language;
+};
+
+export { logger, loggerStream, cors, jwtSign, jwtVerify, dtoGetter, getUserFbAvatarByFbId, getFacebookById, getAcceptLanguage };
