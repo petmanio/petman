@@ -10,7 +10,8 @@ import { ModalSize } from '../../../../common/enums';
 import {
   OrganizationDto,
   OrganizationListRequestDto,
-  OrganizationPinDto, OrganizationPinsRequestDto
+  OrganizationPinDto,
+  OrganizationPinsRequestDto
 } from '../../../../common/models/organization.model';
 import { UserDto } from '../../../../common/models/user.model';
 import { Config } from '../../shared/components/card/card.component';
@@ -19,6 +20,7 @@ import * as fromAuth from '../../auth/shared/reducers';
 import * as fromOrganization from '../../organization/shared/reducers';
 import * as fromMap from '../shared/reducers';
 import * as Organization from '../../organization/shared/actions/organization.action';
+import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto): Config;
@@ -68,12 +70,11 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     private store: Store<fromOrganization.State>,
     private datePipe: DatePipe,
     @Inject(DOCUMENT) private document: Document) {
-    this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
 
+    this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
     this.list$ = this.store.select(fromOrganization.getAllOrganizations);
     this.total$ = this.store.select(fromOrganization.getTotalOrganizations);
     this.pins$ = this.store.select(fromOrganization.getAllPins);
-
     this.error$ = this.store.select(fromMap.getListPageError);
     this.pending$ = this.store.select(fromMap.getListPagePending);
 
