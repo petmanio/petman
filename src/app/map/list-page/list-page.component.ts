@@ -20,7 +20,6 @@ import * as fromAuth from '../../auth/shared/reducers';
 import * as fromOrganization from '../../organization/shared/reducers';
 import * as fromMap from '../shared/reducers';
 import * as Organization from '../../organization/shared/actions/organization.action';
-import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto): Config;
