@@ -15,7 +15,7 @@
                        (previewOpen)="onPreviewOpen()"
                        (previewClose)="onPreviewClose()"></ngx-gallery>
         </div>
-        <div class="notification" [innerHTML]="(lostFound$ | async)?.description | appSafeHtml"></div>
+        <app-medium-editor [value]="(lostFound$ | async)?.description" readonly="true"></app-medium-editor>
         <div class="field is-grouped">
           <p class="control">
             <button mat-raised-button (click)="onShare()" i18n>Share</button>

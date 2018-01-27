@@ -46,14 +46,6 @@ html {
 }
 
 
-quill-editor {
-  margin: 10px 0;
-  display: block;
-  /deep/ .ql-container {
-    z-index: 20;
-  }
-}
-
 image-upload {
   /deep/ {
     .drag-box-message {

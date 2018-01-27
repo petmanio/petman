@@ -29,7 +29,6 @@ if (process.env.UNIVERSAL_APP) {
   const template = fs.readFileSync(path.join(__dirname, '../client/platform-browser/index.html')).toString();
   const win = domino.createWindow(template);
 
-  global['window'] = win;
   Object.defineProperty(win.document.body.style, 'transform', {
     value: () => {
       return {
@@ -40,8 +39,15 @@ if (process.env.UNIVERSAL_APP) {
   });
   global['document'] = win.document;
   global['CSS'] = null;
-// global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
   global['Prism'] = null;
+  global['window'] = win;
+  global['DOMTokenList'] = win.DOMTokenList;
+  global['Node'] = win.Node;
+  global['navigator'] = win.navigator;
+  global['location'] = win.location;
+  global['HTMLElement'] = win.HTMLElement;
+  global['getComputedStyle'] = win.getComputedStyle;
+  // global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
 }
 
 function universalRouter(req, res) {

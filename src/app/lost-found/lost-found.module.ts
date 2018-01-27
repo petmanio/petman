@@ -19,7 +19,6 @@ import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from
 import { ImageUploadModule } from 'angular2-image-upload';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxGalleryModule } from 'ngx-gallery';
-import { QuillModule } from 'ngx-quill';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -55,7 +54,6 @@ import { reducers } from './shared/reducers';
     ImageUploadModule.forRoot(),
     InfiniteScrollModule,
     NgxGalleryModule,
-    QuillModule,
 
     StoreModule.forFeature('lostFound', reducers),
     EffectsModule.forFeature([LostFoundEffects]),

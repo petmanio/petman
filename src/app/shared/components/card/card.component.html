@@ -11,7 +11,8 @@
   <mat-card-content *ngIf="config.contentHTML || config.content || config.price">
     <p *ngIf="config.price"><i class="mdi mdi-cash"></i> {{config.price | number}} <span i18n>amd</span></p>
     <p *ngIf="config.content">{{config.content}}</p>
-    <p *ngIf="config.contentHTML" [innerHTML]="config.contentHTML | appSafeHtml"></p>
+    <app-medium-editor *ngIf="config.contentHTML"
+                       [value]="config.contentHTML" readonly="true"></app-medium-editor>
   </mat-card-content>
   <mat-card-actions class="has-text-right">
     <button mat-raised-button (click)="onShareLocal($event)" i18n>SHARE</button>

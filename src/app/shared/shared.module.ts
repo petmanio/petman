@@ -30,6 +30,7 @@ import { MasonryComponent } from './components/masonry/masonry.component';
 import { MasonryItemComponent } from './components/masonry-item/masonry-item.component';
 import { ShareButtonComponent } from './components/share-button/share-button.component';
 import { AddApplicationComponent } from './components/add-application/add-application.component';
+import { MediumEditorComponent } from './components/medium-editor/medium-editor.component';
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import { AddApplicationComponent } from './components/add-application/add-applic
     MasonryItemComponent,
     ShareButtonComponent,
     AddApplicationComponent,
+    MediumEditorComponent,
   ],
   providers: [UtilService, LocalStorageService],
   exports: [
@@ -77,7 +79,8 @@ import { AddApplicationComponent } from './components/add-application/add-applic
     MasonryComponent,
     MasonryItemComponent,
     ShareButtonComponent,
-    AddApplicationComponent
+    AddApplicationComponent,
+    MediumEditorComponent
   ],
   entryComponents: [ShareDialogComponent, ConfirmationDialogComponent]
 })

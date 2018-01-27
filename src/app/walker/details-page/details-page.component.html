@@ -6,7 +6,7 @@
       </div>
       <div class="column is-9">
         <p><i class="mdi mdi-cash"></i> {{(walker$ | async)?.price | number}} <span i18n>amd</span></p>
-        <div class="notification" [innerHTML]="(walker$ | async)?.description | appSafeHtml"></div>
+        <app-medium-editor [value]="(walker$ | async)?.description" readonly="true"></app-medium-editor>
         <div class="field is-grouped">
           <p class="control">
             <button mat-raised-button (click)="onShare()" i18n>Share</button>
