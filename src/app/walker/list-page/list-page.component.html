@@ -4,21 +4,16 @@
      infiniteScrollThrottle="300"
      fromRoot="true"
      (scrolled)="onLoadMore()">
-  <div class="columns is-marginless is-hidden-mobile">
-    <div class="column has-text-right">
-      <a routerLink="add" mat-raised-button color="accent">Add new application</a>
-    </div>
-  </div>
-  <div class="columns is-marginless pm-content-spacer">
+  <div class="columns is-marginless is-paddingless">
     <div class="column">
       <app-masonry class="columns"
                    [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
-        <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet">
+        <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet is-marginless">
           <a [routerLink]="['/walkers', 'add']">
             <app-add-application [user]="selectedUser$ | async"></app-add-application>
           </a>
         </app-masonry-item>
-        <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet"
+        <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet is-marginless"
                           *ngFor="let item of list$ | async">
           <a [routerLink]="['/walkers', item.id]">
             <app-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-card>
@@ -26,7 +21,7 @@
         </app-masonry-item>
       </app-masonry>
     </div>
-    <button mat-fab class="pm-fab" routerLink="add">
+    <button mat-fab color="accent" class="pm-fab" routerLink="add">
       <mat-icon>add</mat-icon>
     </button>
   </div>

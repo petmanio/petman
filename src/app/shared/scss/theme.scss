@@ -33,7 +33,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 // TODO: remove after covalent style fix
 html .mat-card {
   padding: 24px !important;
-  margin: auto;
+  margin: auto !important;
 
   @media (max-width: 600px) {
     .mat-card {
