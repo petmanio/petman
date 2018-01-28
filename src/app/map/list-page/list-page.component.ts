@@ -20,6 +20,7 @@ import * as fromAuth from '../../auth/shared/reducers';
 import * as fromOrganization from '../../organization/shared/reducers';
 import * as fromMap from '../shared/reducers';
 import * as Organization from '../../organization/shared/actions/organization.action';
+import { Pin } from '../../../../common/shared';
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto): Config;
@@ -44,6 +45,22 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   error$: Observable<any>;
   pending$: Observable<boolean>;
   selectedUser$: Observable<UserDto>;
+
+  pins: Pin[] = [{
+    lat: 43.434,
+    lng: 40.4342543,
+    title: 'test',
+    infoWindow: {
+      contentFn: pin => pin.lat + ' ' + pin.lng,
+    }
+  }, {
+    lat: 44.434,
+    lng: 40.4342543,
+    title: 'test1',
+    infoWindow: {
+      contentFn: pin => pin.lat + ' ' + pin.lng,
+    }
+  }];
 
   get canLoadMore(): boolean {
     return this.offset + this.limit < this.total;

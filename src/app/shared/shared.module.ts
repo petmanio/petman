@@ -31,6 +31,7 @@ import { MasonryItemComponent } from './components/masonry-item/masonry-item.com
 import { ShareButtonComponent } from './components/share-button/share-button.component';
 import { AddApplicationComponent } from './components/add-application/add-application.component';
 import { MediumEditorComponent } from './components/medium-editor/medium-editor.component';
+import { GoogleMapComponent } from './components/google-map/google-map.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { MediumEditorComponent } from './components/medium-editor/medium-editor.
     ShareButtonComponent,
     AddApplicationComponent,
     MediumEditorComponent,
+    GoogleMapComponent,
   ],
   providers: [UtilService, LocalStorageService],
   exports: [
@@ -80,7 +82,8 @@ import { MediumEditorComponent } from './components/medium-editor/medium-editor.
     MasonryItemComponent,
     ShareButtonComponent,
     AddApplicationComponent,
-    MediumEditorComponent
+    MediumEditorComponent,
+    GoogleMapComponent
   ],
   entryComponents: [ShareDialogComponent, ConfirmationDialogComponent]
 })

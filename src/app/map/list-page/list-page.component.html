@@ -16,11 +16,9 @@
       </app-masonry>
     </div>
     <div class="column">
-      {{pins$ | async | json}}
+      <app-google-map [pins]="pins"></app-google-map>
+      <!--{{pins$ | async | json}}-->
     </div>
-    <button mat-fab color="accent" class="pm-fab" routerLink="add">
-      <mat-icon>add</mat-icon>
-    </button>
   </div>
   <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
     <div class="column has-text-centered" [hidden]="!canLoadMore">
@@ -28,3 +26,4 @@
     </div>
   </div>
 </div>
+

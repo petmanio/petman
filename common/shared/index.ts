@@ -33,3 +33,18 @@ export class Geometry {
   type: GeometryType;
   coordinates: number[];
 }
+
+export class Pin {
+  lat: number;
+  lng: number;
+  title?: string;
+  icon?: {
+    path: string;
+    width: number;
+    height: number;
+  };
+  infoWindow?: {
+    maxWidth?: number;
+    contentFn(pin: Pin): string;
+  };
+}
