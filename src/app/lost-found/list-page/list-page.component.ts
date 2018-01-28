@@ -87,7 +87,8 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       subtitle: this.datePipe.transform(item.created),
       chips: [{ color: item.type === LostFoundType.FOUND ? 'accent' : 'warn', text: item.type }],
       image: item.images && item.images[0],
-      contentHTML: item.description
+      contentHTML: item.description,
+      actions: true
     };
   }
 

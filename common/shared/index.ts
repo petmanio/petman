@@ -47,4 +47,5 @@ export class Pin {
     maxWidth?: number;
     contentFn(pin: Pin): string;
   };
+  meta?: any;
 }

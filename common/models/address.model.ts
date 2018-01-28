@@ -26,4 +26,15 @@ export class AddressDto {
   countryId: number;
   @Type(dtoGetter(CountryDto))
   country: CountryDto;
+
+  fullAddressHTML?(): string {
+    return `
+      ${this.country ? this.country.name : ''}&nbsp;
+      ${this.state ? this.state.name : ''}&nbsp;
+      ${this.city ? this.city.name : ''}&nbsp;
+      ${this.line1 || ''}&nbsp;
+      ${this.line2 || ''}&nbsp;
+      ${this.line3 || ''}&nbsp;
+    `;
+  }
 }

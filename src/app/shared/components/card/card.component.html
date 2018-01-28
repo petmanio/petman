@@ -14,7 +14,7 @@
     <app-medium-editor *ngIf="config.contentHTML"
                        [value]="config.contentHTML" readonly="true"></app-medium-editor>
   </mat-card-content>
-  <mat-card-actions class="has-text-right">
+  <mat-card-actions class="has-text-right" *ngIf="config.actions">
     <button mat-raised-button (click)="onShareLocal($event)" i18n>SHARE</button>
   </mat-card-actions>
 </mat-card>

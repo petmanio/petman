@@ -88,6 +88,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       image: item.images && item.images[0],
       price: item.price,
       contentHTML: item.description,
+      actions: true
     };
   }
 

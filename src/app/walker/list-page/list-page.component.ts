@@ -86,7 +86,8 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       title: item.user.userData.name,
       subtitle: this.datePipe.transform(item.created),
       price: item.price,
-      contentHTML: item.description
+      contentHTML: item.description,
+      actions: true
     };
   }
 

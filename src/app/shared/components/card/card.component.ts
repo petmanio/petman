@@ -9,6 +9,7 @@ export interface Config {
   price?: number;
   contentHTML?: string;
   chips?: { color: string, text: string }[];
+  actions?: boolean;
 }
 
 export interface ICardComponent {

@@ -21,7 +21,8 @@ export interface IGoogleMapComponent {
   createMap(): void;
   initMap(): void;
   triggerResize(): void;
-  panTo(pin: Pin): void;
+  panToPin(pin: Pin): void;
+  panToMarker(marker: google.maps.Marker): void;
   setZoom(level): void;
   clearMap(): void;
 }
@@ -101,6 +102,7 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
           maxWidth: pin.infoWindow.maxWidth
         });
         this.infoWindow.open(this.map, marker);
+        this.panToMarker(marker);
       });
     }
 
@@ -113,11 +115,15 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
     }
   }
 
-  panTo(pin: Pin): void {
+  panToPin(pin: Pin): void {
     const found = this.markers.find(marker => marker['pin'] === pin);
     if (found) {
       this.map.panTo(found.getPosition());
     }
+  }
+
+  panToMarker(marker: google.maps.Marker): void {
+    this.map.panTo(marker.getPosition());
   }
 
   setZoom(level): void {
