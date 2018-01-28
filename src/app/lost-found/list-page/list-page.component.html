@@ -13,7 +13,7 @@
             <app-add-application [user]="selectedUser$ | async"></app-add-application>
           </a>
         </app-masonry-item>
-        <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet is-paddingless"
+        <app-masonry-item class="column is-3-fullhd is-4-desktop is-6-tablet is-marginless"
                           *ngFor="let item of list$ | async">
           <a [routerLink]="['/lost-found', item.id]">
             <app-card [config]="getCardConfig(item)" (onShare)="onShare(item)"></app-card>
