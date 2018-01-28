@@ -22,8 +22,8 @@
         </ng-container>
       </app-masonry>
     </div>
-    <div class="column">
-      <app-google-map [pins]="pins"></app-google-map>
+    <div class="column is-marginless is-paddingless">
+      <app-google-map class="p-full-height" [pins]="pins"></app-google-map>
     </div>
   </div>
   <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
