@@ -39,6 +39,7 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
   map: google.maps.Map;
   markers: google.maps.Marker[] = [];
   bounds: google.maps.LatLngBounds;
+  infoWindow: google.maps.InfoWindow;
   constructor(private el: ElementRef) { }
 
   ngOnInit(): void {
@@ -56,6 +57,8 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
 
   createMap(): void {
     this.map = new this.google.maps.Map(this.el.nativeElement, extend({}, MAP_DEFAULT_OPTIONS, this.options));
+    this.bounds = new google.maps.LatLngBounds();
+    this.infoWindow = new google.maps.InfoWindow();
     this.initMap();
   }
 
@@ -64,7 +67,6 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
     this.markers = this.pins.map(pin => {
       const marker = this.createMarker(pin);
       if (this.fitBounds) {
-        this.bounds = new google.maps.LatLngBounds();
         this.bounds.extend(marker.getPosition());
       }
       return marker;
@@ -93,11 +95,13 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
     const marker = new this.google.maps.Marker(pinMarkerOptions);
 
     if (pin.infoWindow) {
-      const infoWindow = new google.maps.InfoWindow({
-        content: pin.infoWindow.contentFn(pin),
-        maxWidth: pin.infoWindow.maxWidth
+      marker.addListener('click', () => {
+        this.infoWindow.setOptions({
+          content: pin.infoWindow.contentFn(pin),
+          maxWidth: pin.infoWindow.maxWidth
+        });
+        this.infoWindow.open(this.map, marker);
       });
-      marker.addListener('click', () => infoWindow.open(this.map, marker));
     }
 
     return marker;
