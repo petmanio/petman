@@ -1,11 +1,11 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { extend } from 'lodash';
 import { google } from 'google-maps';
-import GoogleMapsLoader = require('google-maps');
 
 import { environment } from '../../../../environments/environment';
 import { Pin } from '../../../../../common/shared';
 
+const GoogleMapsLoader = require('google-maps');
 GoogleMapsLoader.KEY = environment.mapApiKey;
 
 const MAP_DEFAULT_OPTIONS: google.maps.MapOptions = {
