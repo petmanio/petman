@@ -78,4 +78,13 @@
   @include desktop {
     @include calc(height, '100vh - 64px');
   }
+  overflow: auto;
+}
+
+.p-column-full-height {
+  @include calc(height, '100vh - 64px');
+  @include desktop {
+    @include calc(height, '100vh - 72px');
+  }
+  overflow: auto;
 }

@@ -5,7 +5,7 @@
      fromRoot="true"
      (scrolled)="onLoadMore()">
   <div class="columns is-marginless is-paddingless">
-    <div class="column">
+    <div class="column p-column-full-height">
       <app-masonry class="columns is-marginless is-paddingless"
                    [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
         <ng-container *ngFor="let item of list$ | async">
