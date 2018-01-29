@@ -4,7 +4,7 @@
      infiniteScrollThrottle="300"
      fromRoot="true"
      (scrolled)="onLoadMore()">
-  <div class="columns is-marginless is-paddingless">
+  <div class="columns is-marginless is-paddingless is-hidden-mobile">
     <div class="column p-column-full-height">
       <app-masonry class="columns is-marginless is-paddingless"
                    [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
@@ -24,6 +24,27 @@
     </div>
     <div class="column is-marginless is-paddingless">
       <app-google-map class="p-full-height" [pins]="pins"></app-google-map>
+    </div>
+  </div>
+  <div class="columns is-marginless is-paddingless is-hidden-desktop is-hidden-tablet p-list-mobile">
+    <div class="column p-column-full-height">
+      <app-masonry class="columns is-marginless is-paddingless"
+                   [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
+        <ng-container *ngFor="let item of list$ | async">
+          <ng-container *ngIf="item.branches && item.branches.length; else wihtoutBranch">
+            <app-masonry-item class="column is-4-fullhd is-6-desktop" *ngFor="let branch of item.branches">
+              <app-card [config]="getCardConfig(branch)"></app-card>
+              <app-google-map class="p-full-height" [pins]="[getPinData(branch)]"></app-google-map>
+            </app-masonry-item>
+          </ng-container>
+          <ng-template #wihtoutBranch>
+            <app-masonry-item class="column is-4-fullhd is-6-desktop">
+              <app-card [config]="getCardConfig(item)"></app-card>
+              <app-google-map class="p-full-height" [pins]="[getPinData(item)]"></app-google-map>
+            </app-masonry-item>
+          </ng-template>
+        </ng-container>
+      </app-masonry>
     </div>
   </div>
   <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">

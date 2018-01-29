@@ -26,6 +26,7 @@ import { GoogleMapComponent } from '../../shared/components/google-map/google-ma
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto | BranchDto): Config;
+  getPinData(entity: OrganizationDto | BranchDto | OrganizationPinDto): Pin
   onLoadMore(): void;
   panTo(org: BranchDto | OrganizationDto): void;
 }
@@ -97,17 +98,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     const totalSubscription = this.total$.subscribe(total => this.total = total);
 
     const pinsSubscription = this.pins$.subscribe(pins => {
-      this.pins = pins.map(pin => {
-        return {
-          lat: pin.address.geometry.coordinates[0],
-          lng: pin.address.geometry.coordinates[1],
-          title: pin.title,
-          meta: pin,
-          infoWindow: {
-            contentFn: ListPageComponent.pinInfoWindowContentFn
-          }
-        };
-      });
+      this.pins = pins.map(pin => this.getPinData(pin));
     });
 
     this.subscriptions.push(...[listSubscription, totalSubscription, pinsSubscription]);
@@ -129,6 +120,18 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       image: item.images && item.images[0],
       chips: item.services.map<any>(service => ({ color: '', text: service.title })),
       content: item.description
+    };
+  }
+
+  getPinData(entity: OrganizationDto | BranchDto | OrganizationPinDto): Pin {
+    return {
+      lat: entity.address.geometry.coordinates[0],
+      lng: entity.address.geometry.coordinates[1],
+      title: entity.title,
+      meta: entity,
+      infoWindow: {
+        contentFn: ListPageComponent.pinInfoWindowContentFn
+      }
     };
   }
 
