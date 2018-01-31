@@ -11,6 +11,7 @@ import * as fromRoot from '../shared/reducers';
 import * as fromAuth from '../../auth/shared/reducers';
 import * as Auth from '../../auth/shared/actions/auth.action';
 import * as Layout from '../shared/actions/layout';
+import * as Shared from '../../shared/actions/shared.action';
 import { UtilService } from '../../shared/services/util/util.service';
 import { LocalStorageService } from '../../shared/services/local-storage/local-storage.service';
 import { UserDto } from '../../../../common/models/user.model';
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
     this.store.dispatch(new Auth.User());
     this.store.dispatch(new Auth.ChangeUser(+this.localStorageService.getItem('selectedUserId')));
     this.store.dispatch(new Layout.CloseSidenav());
+    this.store.dispatch(new Shared.ServiceList());
 
     const sidenavSubscription = this.showSidenav$.subscribe(state =>  {
       this.sideNavState = state;

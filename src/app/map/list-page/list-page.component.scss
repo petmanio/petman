@@ -1,6 +1,21 @@
+@import '../../shared/scss/mixins';
+
 .p-list-mobile {
   app-google-map {
     height: 150px !important;
   }
 }
 
+.p-filter {
+  margin-top: -10px;
+  padding-left: 10px;
+}
+
+.p-list {
+  margin-top: -20px;
+  @include calc(height, '100vh - 118px');
+  @include desktop {
+    @include calc(height, '100vh - 125px');
+  }
+  overflow: auto;
+}

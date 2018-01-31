@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 
 import { listService, pinsService } from '../../services/organization/organization.service';
 import { OrganizationListRequestDto, OrganizationPinsRequestDto } from '../../../common/models/organization.model';
-import { Language } from '../../../common/enums';
 import { getAcceptLanguage } from '../../services/util/util.service';
 
 const listHandler = async (req: Request, res: Response, next: NextFunction) => {

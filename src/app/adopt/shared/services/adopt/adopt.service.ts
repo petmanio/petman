@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { forEach } from 'lodash';
 
@@ -37,8 +38,9 @@ export class AdoptService implements IAdoptService {
       formData.append('description', body.description);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
-    return this.http.post<AdoptCreateResponseDto>(`${environment.api}/api/adoption`, formData)
-      .map(response => plainToClass(AdoptCreateResponseDto, response, { enableCircularCheck: false }));
+    return this.http.post<AdoptCreateResponseDto>(`${environment.api}/api/adoption`, formData).pipe(
+      map(response => plainToClass(AdoptCreateResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   update(body: AdoptUpdateRequestDto): Observable<AdoptUpdateResponseDto> {
@@ -54,19 +56,22 @@ export class AdoptService implements IAdoptService {
         }
       });
     }
-    return this.http.put<AdoptUpdateResponseDto>(`${environment.api}/api/adoption/${body.id}`, formData)
-      .map(response => plainToClass(AdoptUpdateResponseDto, response, { enableCircularCheck: false }));
+    return this.http.put<AdoptUpdateResponseDto>(`${environment.api}/api/adoption/${body.id}`, formData).pipe(
+      map(response => plainToClass(AdoptUpdateResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   delete(body: AdoptDeleteRequestDto): Observable<AdoptDeleteResponseDto> {
-    return this.http.delete<AdoptDeleteResponseDto>(`${environment.api}/api/adoption/${body.id}`)
-      .map(response => plainToClass(AdoptDeleteResponseDto, response, { enableCircularCheck: false }));
+    return this.http.delete<AdoptDeleteResponseDto>(`${environment.api}/api/adoption/${body.id}`).pipe(
+      map(response => plainToClass(AdoptDeleteResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   getById(id: number): Observable<AdoptDto> {
     return this.http
-      .get<AdoptDto>(`${environment.api}/api/adoption/${id}`)
-      .map(response => plainToClass(AdoptDto, response, { enableCircularCheck: false }));
+      .get<AdoptDto>(`${environment.api}/api/adoption/${id}`).pipe(
+        map(response => plainToClass(AdoptDto, response, { enableCircularCheck: false }))
+      );
   }
 
   list(query: AdoptListRequestDto): Observable<AdoptListResponseDto> {
@@ -75,7 +80,8 @@ export class AdoptService implements IAdoptService {
       .set('limit', query.limit.toString());
 
     return this.http
-      .get<AdoptListResponseDto>(`${environment.api}/api/adoption`, { params })
-      .map(response => plainToClass(AdoptListResponseDto, response, { enableCircularCheck: false }));
+      .get<AdoptListResponseDto>(`${environment.api}/api/adoption`, { params }).pipe(
+        map(response => plainToClass(AdoptListResponseDto, response, { enableCircularCheck: false }))
+      );
   }
 }

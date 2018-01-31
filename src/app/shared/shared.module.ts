@@ -12,6 +12,8 @@ import {
   MatInputModule,
   MatListModule
 } from '@angular/material';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
@@ -32,6 +34,10 @@ import { ShareButtonComponent } from './components/share-button/share-button.com
 import { AddApplicationComponent } from './components/add-application/add-application.component';
 import { MediumEditorComponent } from './components/medium-editor/medium-editor.component';
 import { GoogleMapComponent } from './components/google-map/google-map.component';
+import { SharedService } from './services/shared/shared.service';
+
+import { SharedEffects } from './effects/shared.effects';
+import { reducers } from './reducers';
 
 @NgModule({
   imports: [
@@ -46,7 +52,10 @@ import { GoogleMapComponent } from './components/google-map/google-map.component
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    ShareButtonsModule.forRoot()
+    ShareButtonsModule.forRoot(),
+
+    StoreModule.forFeature('shared', reducers),
+    EffectsModule.forFeature([SharedEffects]),
   ],
   declarations: [
     AsyncDelayPipe,
@@ -66,7 +75,7 @@ import { GoogleMapComponent } from './components/google-map/google-map.component
     MediumEditorComponent,
     GoogleMapComponent,
   ],
-  providers: [UtilService, LocalStorageService],
+  providers: [UtilService, LocalStorageService, SharedService],
   exports: [
     AsyncDelayPipe,
     SafeHtmlPipe,

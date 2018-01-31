@@ -1,6 +1,7 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { isArray } from 'lodash';
 
@@ -25,8 +26,9 @@ export class OrganizationService implements IOrganizationService {
 
   getById(id: number): Observable<OrganizationDto> {
     return this.http
-      .get<OrganizationDto>(`${environment.api}/api/organizations/${id}`)
-      .map(response => plainToClass(OrganizationDto, response, { enableCircularCheck: false }));
+      .get<OrganizationDto>(`${environment.api}/api/organizations/${id}`).pipe(
+        map(response => plainToClass(OrganizationDto, response, { enableCircularCheck: false }))
+      );
   }
 
   list(query: OrganizationListRequestDto): Observable<OrganizationListResponseDto> {
@@ -35,23 +37,25 @@ export class OrganizationService implements IOrganizationService {
       .set('limit', query.limit.toString());
 
     if (query.service) {
-      (isArray(query.service) ? query.service : [query.service]).forEach(svc => params = params.set('service', svc.toString()));
+      (isArray(query.service) ? query.service : [query.service]).forEach(svc => params = params.append('service', svc.toString()));
     }
 
     return this.http
-      .get<OrganizationListResponseDto>(`${environment.api}/api/organizations`, { params })
-      .map(response => plainToClass(OrganizationListResponseDto, response, { enableCircularCheck: false }));
+      .get<OrganizationListResponseDto>(`${environment.api}/api/organizations`, { params }).pipe(
+        map(response => plainToClass(OrganizationListResponseDto, response, { enableCircularCheck: false }))
+      );
   }
 
   pins(query: OrganizationPinsRequestDto): Observable<OrganizationPinsResponseDto> {
     let params = new HttpParams();
 
     if (query.service) {
-      (isArray(query.service) ? query.service : [query.service]).forEach(svc => params = params.set('service', svc.toString()));
+      (isArray(query.service) ? query.service : [query.service]).forEach(svc => params = params.append('service', svc.toString()));
     }
 
     return this.http
-      .get<OrganizationPinsResponseDto>(`${environment.api}/api/organizations/pins`, { params })
-      .map(response => plainToClass(OrganizationPinsResponseDto, response, { enableCircularCheck: false }));
+      .get<OrganizationPinsResponseDto>(`${environment.api}/api/organizations/pins`, { params }).pipe(
+        map(response => plainToClass(OrganizationPinsResponseDto, response, { enableCircularCheck: false }))
+      );
   }
 }

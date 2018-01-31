@@ -9,6 +9,7 @@ import { find } from 'lodash';
 
 import * as fromAuth from '../../auth/shared/reducers';
 import * as fromOrganization from '../../organization/shared/reducers';
+import * as fromService from '../../shared/reducers';
 import * as fromMap from '../shared/reducers';
 import * as Organization from '../../organization/shared/actions/organization.action';
 import {
@@ -23,11 +24,13 @@ import { Config } from '../../shared/components/card/card.component';
 import { OrganizationPinType } from '../../../../common/enums';
 import { Pin } from '../../../../common/shared';
 import { GoogleMapComponent } from '../../shared/components/google-map/google-map.component';
+import { ServiceDto } from '../../../../common/models/service.model';
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto | BranchDto): Config;
   getPinData(entity: OrganizationDto | BranchDto | OrganizationPinDto): Pin
   onLoadMore(): void;
+  updateList(): void;
   panTo(org: BranchDto | OrganizationDto): void;
 }
 
@@ -43,10 +46,12 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   limit = 12;
   total: number;
   offset = 0;
+  selectedServices: number[];
   pins: Pin[] = [];
   list$: Observable<OrganizationDto[]>;
   total$: Observable<number>;
   pins$: Observable<OrganizationPinDto[]>;
+  services$: Observable<ServiceDto[]>;
   error$: Observable<any>;
   pending$: Observable<boolean>;
   selectedUser$: Observable<UserDto>;
@@ -60,12 +65,14 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   private get listRequest(): OrganizationListRequestDto {
     return {
       limit: this.limit,
-      offset: this.offset
+      offset: this.offset,
+      service: this.selectedServices
     };
   }
 
   private get pinsRequest(): OrganizationPinsRequestDto {
     return {
+      service: this.selectedServices
     };
   }
 
@@ -88,6 +95,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     this.list$ = this.store.select(fromOrganization.getAllOrganizations);
     this.total$ = this.store.select(fromOrganization.getTotalOrganizations);
     this.pins$ = this.store.select(fromOrganization.getAllPins);
+    this.services$ = this.store.select(fromService.getServiceAll);
     this.error$ = this.store.select(fromMap.getListPageError);
     this.pending$ = this.store.select(fromMap.getListPagePending);
 
@@ -140,6 +148,13 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       this.offset += this.limit;
       this.store.dispatch(new Organization.More(this.listRequest));
     }
+  }
+
+  updateList(): void {
+    this.offset = 0;
+    this.limit = 12;
+    this.store.dispatch(new Organization.List(this.listRequest));
+    this.store.dispatch(new Organization.Pins(this.pinsRequest));
   }
 
   panTo(org: BranchDto | OrganizationDto): void {

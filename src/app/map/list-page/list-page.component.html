@@ -5,22 +5,31 @@
      fromRoot="true"
      (scrolled)="onLoadMore()">
   <div class="columns is-marginless is-paddingless is-hidden-mobile">
-    <div class="column p-column-full-height">
-      <app-masonry class="columns is-marginless is-paddingless"
-                   [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
-        <ng-container *ngFor="let item of list$ | async">
-          <ng-container *ngIf="item.branches && item.branches.length; else wihtoutBranch">
-            <app-masonry-item class="column is-4-fullhd is-6-desktop" *ngFor="let branch of item.branches">
-              <app-card [config]="getCardConfig(branch)" (click)="panTo(branch)"></app-card>
-            </app-masonry-item>
+    <div class="column">
+      <div class="p-filter">
+        <mat-form-field>
+          <mat-select placeholder="Services" i18n-placeholder multiple="true" [(ngModel)]="selectedServices" (change)="updateList()">
+            <mat-option *ngFor="let service of services$ | async" [value]="service.id">{{service.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="p-list">
+        <app-masonry class="columns is-marginless is-paddingless"
+                     [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
+          <ng-container *ngFor="let item of list$ | async">
+            <ng-container *ngIf="item.branches && item.branches.length; else wihtoutBranch">
+              <app-masonry-item class="column is-4-fullhd is-6-desktop" *ngFor="let branch of item.branches">
+                <app-card [config]="getCardConfig(branch)" (click)="panTo(branch)"></app-card>
+              </app-masonry-item>
+            </ng-container>
+            <ng-template #wihtoutBranch>
+              <app-masonry-item class="column is-4-fullhd is-6-desktop">
+                <app-card [config]="getCardConfig(item)" (click)="panTo(item)"></app-card>
+              </app-masonry-item>
+            </ng-template>
           </ng-container>
-          <ng-template #wihtoutBranch>
-            <app-masonry-item class="column is-4-fullhd is-6-desktop">
-              <app-card [config]="getCardConfig(item)" (click)="panTo(item)"></app-card>
-            </app-masonry-item>
-          </ng-template>
-        </ng-container>
-      </app-masonry>
+        </app-masonry>
+      </div>
     </div>
     <div class="column is-marginless is-paddingless">
       <app-google-map class="p-full-height" [pins]="pins"></app-google-map>

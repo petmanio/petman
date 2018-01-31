@@ -45,7 +45,7 @@ const listService = async (query: OrganizationListRequestDto, language: Language
             attributes: ['title', 'description'],
             required: false,
             // FIXME: tmp solution
-            where: <any>{ $or: [{ language }, {isDefault: true}] }
+            where: { language },
           }
         ]
       },

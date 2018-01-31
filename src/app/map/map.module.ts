@@ -1,8 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatCardModule,
@@ -10,8 +9,11 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatSelectModule
 } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -27,6 +29,7 @@ import { reducers } from './shared/reducers';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     MatIconModule,
     MatCardModule,
     MatListModule,
@@ -34,6 +37,7 @@ import { reducers } from './shared/reducers';
     MatButtonModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatSelectModule,
     CovalentFileModule,
     CovalentLoadingModule,
     CovalentMessageModule,

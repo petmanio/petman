@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { forEach } from 'lodash';
 
@@ -38,8 +39,9 @@ export class LostFoundService implements ILostFoundService {
       formData.append('type', body.type);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
-    return this.http.post<LostFoundCreateResponseDto>(`${environment.api}/api/lost-found`, formData)
-      .map(response => plainToClass(LostFoundCreateResponseDto, response, { enableCircularCheck: false }));
+    return this.http.post<LostFoundCreateResponseDto>(`${environment.api}/api/lost-found`, formData).pipe(
+      map(response => plainToClass(LostFoundCreateResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   update(body: LostFoundUpdateRequestDto): Observable<LostFoundUpdateResponseDto> {
@@ -56,19 +58,22 @@ export class LostFoundService implements ILostFoundService {
         }
       });
     }
-    return this.http.put<LostFoundUpdateResponseDto>(`${environment.api}/api/lost-found/${body.id}`, formData)
-      .map(response => plainToClass(LostFoundUpdateResponseDto, response, { enableCircularCheck: false }));
+    return this.http.put<LostFoundUpdateResponseDto>(`${environment.api}/api/lost-found/${body.id}`, formData).pipe(
+      map(response => plainToClass(LostFoundUpdateResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   delete(body: LostFoundDeleteRequestDto): Observable<LostFoundDeleteResponseDto> {
-    return this.http.delete<LostFoundDeleteResponseDto>(`${environment.api}/api/lost-found/${body.id}`)
-      .map(response => plainToClass(LostFoundDeleteResponseDto, response, { enableCircularCheck: false }));
+    return this.http.delete<LostFoundDeleteResponseDto>(`${environment.api}/api/lost-found/${body.id}`).pipe(
+      map(response => plainToClass(LostFoundDeleteResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   getById(id: number): Observable<LostFoundDto> {
     return this.http
-      .get<LostFoundDto>(`${environment.api}/api/lost-found/${id}`)
-      .map(response => plainToClass(LostFoundDto, response, { enableCircularCheck: false }));
+      .get<LostFoundDto>(`${environment.api}/api/lost-found/${id}`).pipe(
+        map(response => plainToClass(LostFoundDto, response, { enableCircularCheck: false }))
+      );
   }
 
   list(query: LostFoundListRequestDto): Observable<LostFoundListResponseDto> {
@@ -77,7 +82,8 @@ export class LostFoundService implements ILostFoundService {
       .set('limit', query.limit.toString());
 
     return this.http
-      .get<LostFoundListResponseDto>(`${environment.api}/api/lost-found`, { params })
-      .map(response => plainToClass(LostFoundListResponseDto, response, { enableCircularCheck: false }));
+      .get<LostFoundListResponseDto>(`${environment.api}/api/lost-found`, { params }).pipe(
+        map(response => plainToClass(LostFoundListResponseDto, response, { enableCircularCheck: false }))
+      );
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 
 import { environment } from '../../../../../environments/environment';
@@ -39,22 +40,24 @@ export class AuthService implements IAuthService {
 
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto> {
     return this.http
-      .post<FbAuthenticationResponseDto>(`${environment.api}/api/auth/login/fb`, options)
-      .map(response => {
-        this.localStorageService.setItem('token', response.token);
-        this.localStorageService.setItem('user', response.user);
-        return response;
-      });
+      .post<FbAuthenticationResponseDto>(`${environment.api}/api/auth/login/fb`, options).pipe(
+        map(response => {
+          this.localStorageService.setItem('token', response.token);
+          this.localStorageService.setItem('user', response.user);
+          return response;
+        })
+      );
   }
 
   user(): Observable<AuthenticationResponseDto> {
     return this.http
-      .get<AuthenticationResponseDto>(`${environment.api}/api/auth/user`, {})
-      .map(response => plainToClass(AuthenticationResponseDto, response, {enableCircularCheck: false}))
-      .map(response => {
-        this.localStorageService.setItem('user', response);
-        return response;
-      });
+      .get<AuthenticationResponseDto>(`${environment.api}/api/auth/user`, {}).pipe(
+        map(response => plainToClass(AuthenticationResponseDto, response, {enableCircularCheck: false})),
+        map(response => {
+          this.localStorageService.setItem('user', response);
+          return response;
+        })
+      );
   }
 
   logOut(): void {

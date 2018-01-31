@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 import { forEach } from 'lodash';
 
@@ -38,8 +39,9 @@ export class ShelterService implements IShelterService {
       formData.append('price', body.price);
       forEach(body.images, file => formData.append('images', file, file.name));
     }
-    return this.http.post<ShelterCreateResponseDto>(`${environment.api}/api/shelters`, formData)
-      .map(response => plainToClass(ShelterCreateResponseDto, response, { enableCircularCheck: false }));
+    return this.http.post<ShelterCreateResponseDto>(`${environment.api}/api/shelters`, formData).pipe(
+      map(response => plainToClass(ShelterCreateResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   update(body: ShelterUpdateRequestDto): Observable<ShelterUpdateResponseDto> {
@@ -56,19 +58,22 @@ export class ShelterService implements IShelterService {
         }
       });
     }
-    return this.http.put<ShelterUpdateResponseDto>(`${environment.api}/api/shelters/${body.id}`, formData)
-      .map(response => plainToClass(ShelterUpdateResponseDto, response, { enableCircularCheck: false }));
+    return this.http.put<ShelterUpdateResponseDto>(`${environment.api}/api/shelters/${body.id}`, formData).pipe(
+      map(response => plainToClass(ShelterUpdateResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   delete(body: ShelterDeleteRequestDto): Observable<ShelterDeleteResponseDto> {
-    return this.http.delete<ShelterDeleteResponseDto>(`${environment.api}/api/shelters/${body.id}`)
-      .map(response => plainToClass(ShelterDeleteResponseDto, response, { enableCircularCheck: false }));
+    return this.http.delete<ShelterDeleteResponseDto>(`${environment.api}/api/shelters/${body.id}`).pipe(
+      map(response => plainToClass(ShelterDeleteResponseDto, response, { enableCircularCheck: false }))
+    );
   }
 
   getById(id: number): Observable<ShelterDto> {
     return this.http
-      .get<ShelterDto>(`${environment.api}/api/shelters/${id}`)
-      .map(response => plainToClass(ShelterDto, response, { enableCircularCheck: false }));
+      .get<ShelterDto>(`${environment.api}/api/shelters/${id}`).pipe(
+        map(response => plainToClass(ShelterDto, response, { enableCircularCheck: false }))
+      );
   }
 
   list(query: ShelterListRequestDto): Observable<ShelterListResponseDto> {
@@ -77,7 +82,8 @@ export class ShelterService implements IShelterService {
       .set('limit', query.limit.toString());
 
     return this.http
-      .get<ShelterListResponseDto>(`${environment.api}/api/shelters`, { params })
-      .map(response => plainToClass(ShelterListResponseDto, response, { enableCircularCheck: false }));
+      .get<ShelterListResponseDto>(`${environment.api}/api/shelters`, { params }).pipe(
+        map(response => plainToClass(ShelterListResponseDto, response, { enableCircularCheck: false }))
+      );
   }
 }
