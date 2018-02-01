@@ -1,19 +1,18 @@
-<div infinite-scroll
-     infiniteScrollContainer="mat-sidenav-content"
-     infiniteScrollDistance="2"
-     infiniteScrollThrottle="300"
-     fromRoot="true"
-     (scrolled)="onLoadMore()">
+<div>
   <div class="columns is-marginless is-paddingless is-hidden-mobile">
     <div class="column">
       <div class="p-filter">
         <mat-form-field>
-          <mat-select placeholder="Services" i18n-placeholder multiple="true" [(ngModel)]="selectedServices" (change)="updateList()">
+          <mat-select placeholder="Services" i18n-placeholder multiple="true" [(ngModel)]="selectedServices"
+                      (change)="updateList()">
             <mat-option *ngFor="let service of services$ | async" [value]="service.id">{{service.title}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="p-list">
+      <div class="p-list" infinite-scroll infiniteScrollContainer="mat-sidenav-content" infiniteScrollDistance="2"
+           infiniteScrollThrottle="300"
+           fromRoot="true"
+           (scrolled)="onLoadMore()">
         <app-masonry class="columns is-marginless is-paddingless"
                      [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
           <ng-container *ngFor="let item of list$ | async">
@@ -29,13 +28,22 @@
             </ng-template>
           </ng-container>
         </app-masonry>
+        <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
+          <div class="column has-text-centered" [hidden]="!canLoadMore">
+            <button mat-raised-button (click)="onLoadMore()" i18n>Load more</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="column is-marginless is-paddingless">
       <app-google-map class="p-full-height" [pins]="pins"></app-google-map>
     </div>
   </div>
-  <div class="columns is-marginless is-paddingless is-hidden-desktop is-hidden-tablet p-list-mobile">
+  <div class="columns is-marginless is-paddingless is-hidden-desktop is-hidden-tablet p-list-mobile"
+       class="p-list" infinite-scroll infiniteScrollContainer="mat-sidenav-content" infiniteScrollDistance="2"
+       infiniteScrollThrottle="300"
+       fromRoot="true"
+       (scrolled)="onLoadMore()">
     <div class="column p-column-full-height">
       <app-masonry class="columns is-marginless is-paddingless"
                    [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
@@ -54,11 +62,11 @@
           </ng-template>
         </ng-container>
       </app-masonry>
-    </div>
-  </div>
-  <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
-    <div class="column has-text-centered" [hidden]="!canLoadMore">
-      <button mat-raised-button (click)="onLoadMore()" i18n>Load more</button>
+      <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
+        <div class="column has-text-centered" [hidden]="!canLoadMore">
+          <button mat-raised-button (click)="onLoadMore()" i18n>Load more</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
