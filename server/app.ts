@@ -42,11 +42,11 @@ if (process.env.UNIVERSAL_APP) {
   global['CSS'] = null;
   global['Prism'] = null;
   global['window'] = win;
-  global['DOMTokenList'] = win.DOMTokenList;
-  global['Node'] = win.Node;
+  global['DOMTokenList'] = win['DOMTokenList'];
+  global['Node'] = win['Node'];
   global['navigator'] = win.navigator;
   global['location'] = win.location;
-  global['HTMLElement'] = win.HTMLElement;
+  global['HTMLElement'] = win['HTMLElement'];
   global['getComputedStyle'] = win.getComputedStyle;
   // global['XMLHttpRequest'] = require('xmlhttprequest').XMLHttpRequest;
 }
@@ -122,7 +122,7 @@ app.use((req: express.Request, res: express.Response, next) => {
 
 // production error handler
 // no stacktrace leaked to user
-this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   const statusCode = err.status || err.statusCode || 500;
   logger.error(err);
   const customError = {
