@@ -74,14 +74,8 @@ const getFacebookById = (facebookId: string): string => {
   return `https://fb.com/${facebookId}`;
 };
 
-const dtoGetter = function(dto) {
-  return function () {
-    return dto;
-  };
-};
-
 const getAcceptLanguage = (language: string): Language => {
   return acceptLanguage.get(language) as Language;
 };
 
-export { logger, loggerStream, cors, jwtSign, jwtVerify, dtoGetter, getUserFbAvatarByFbId, getFacebookById, getAcceptLanguage };
+export { logger, loggerStream, cors, jwtSign, jwtVerify, getUserFbAvatarByFbId, getFacebookById, getAcceptLanguage };
