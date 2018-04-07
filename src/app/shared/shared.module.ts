@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 import { MaterialModule } from '@material/material.module';
@@ -46,6 +47,7 @@ import { reducers } from './reducers';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    TranslateModule,
     ShareButtonsModule.forRoot(),
 
     MaterialModule,
@@ -84,6 +86,7 @@ import { reducers } from './reducers';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    TranslateModule,
 
     AsyncDelayPipe,
     ChunkPipe,
