@@ -1,25 +1,12 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatChipsModule,
-  MatDialogModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatPaginatorModule,
-  MatSelectModule
-} from '@angular/material';
-import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxGalleryModule } from 'ngx-gallery';
 
+import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { LostFoundRoutingModule } from './lost-found-routing.module';
@@ -35,22 +22,6 @@ import { reducers } from './shared/reducers';
 
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatIconModule,
-    MatCardModule,
-    MatListModule,
-    MatInputModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatChipsModule,
-    CovalentFileModule,
-    CovalentLoadingModule,
-    CovalentMessageModule,
     ImageUploadModule.forRoot(),
     InfiniteScrollModule,
     NgxGalleryModule,
@@ -58,6 +29,7 @@ import { reducers } from './shared/reducers';
     StoreModule.forFeature('lostFound', reducers),
     EffectsModule.forFeature([LostFoundEffects]),
 
+    MaterialModule,
     SharedModule,
     LostFoundRoutingModule
   ],

@@ -1,22 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatDialogModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatPaginatorModule,
-  MatSelectModule
-} from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { CovalentFileModule, CovalentLoadingModule, CovalentMessageModule } from '@covalent/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
+import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { MapRoutingModule } from './map-routing.module';
@@ -27,25 +14,12 @@ import { reducers } from './shared/reducers';
 
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    MatIconModule,
-    MatCardModule,
-    MatListModule,
-    MatInputModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatSelectModule,
-    CovalentFileModule,
-    CovalentLoadingModule,
-    CovalentMessageModule,
     InfiniteScrollModule,
 
     StoreModule.forFeature('map', reducers),
     EffectsModule.forFeature([MapEffects]),
 
+    MaterialModule,
     SharedModule,
     MapRoutingModule
   ],

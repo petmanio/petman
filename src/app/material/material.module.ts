@@ -9,6 +9,7 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
+  MatPaginatorModule,
   MatProgressBarModule,
   MatSelectModule,
   MatSidenavModule,
@@ -16,31 +17,30 @@ import {
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
+  CovalentFileModule,
   CovalentLayoutModule,
+  CovalentLoadingModule,
   CovalentMenuModule,
+  CovalentMessageModule,
   CovalentNotificationsModule,
   CovalentSearchModule
 } from '@covalent/core';
 
 @NgModule({
   imports: [
-    MatCardModule,
     MatIconModule,
-    MatListModule,
     MatInputModule,
-    MatChipsModule,
-    MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule,
-    MatCardModule,
     MatProgressBarModule,
     MatSelectModule,
     MatMenuModule,
     MatSidenavModule,
     MatChipsModule,
+    MatPaginatorModule,
+    MatCardModule,
     MatListModule,
     LayoutModule,
 
@@ -48,25 +48,24 @@ import {
     CovalentNotificationsModule,
     CovalentMenuModule,
     CovalentLayoutModule,
+    CovalentFileModule,
+    CovalentLoadingModule,
+    CovalentMessageModule,
   ],
   exports: [
-    MatCardModule,
     MatIconModule,
-    MatListModule,
     MatInputModule,
-    MatChipsModule,
-    MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule,
-    MatCardModule,
     MatProgressBarModule,
     MatSelectModule,
     MatMenuModule,
     MatSidenavModule,
     MatChipsModule,
+    MatPaginatorModule,
+    MatCardModule,
     MatListModule,
     LayoutModule,
 
@@ -74,6 +73,9 @@ import {
     CovalentNotificationsModule,
     CovalentMenuModule,
     CovalentLayoutModule,
+    CovalentFileModule,
+    CovalentLoadingModule,
+    CovalentMessageModule,
   ],
   declarations: []
 })
