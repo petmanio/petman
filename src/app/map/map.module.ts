@@ -3,8 +3,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { MaterialModule } from '../material/material.module';
-import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '@material/material.module';
+import { SharedModule } from '@shared/shared.module';
 
 import { MapRoutingModule } from './map-routing.module';
 import { ListPageComponent } from './list-page/list-page.component';

@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '@material/material.module';
 
 import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';

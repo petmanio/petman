@@ -6,8 +6,8 @@ import { ImageUploadModule } from 'angular2-image-upload';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxGalleryModule } from 'ngx-gallery';
 
-import { MaterialModule } from '../material/material.module';
-import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '@material/material.module';
+import { SharedModule } from '@shared/shared.module';
 
 import { reducers } from './shared/reducers';
 import { AdoptRoutingModule } from './adopt-routing.module';

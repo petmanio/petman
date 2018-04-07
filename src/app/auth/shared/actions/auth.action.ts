@@ -3,9 +3,11 @@ import { AuthenticationResponseDto, FbAuthenticationResponseDto } from '../../..
 
 export const LOGOUT = '[Auth] Logout';
 export const LOGIN_REDIRECT = '[Auth] Login Redirect';
+
 export const FB_LOGIN = '[Auth] Fb Login';
 export const FB_LOGIN_SUCCESS = '[Auth] Fb Login Success';
 export const FB_LOGIN_FAILURE = '[Auth] Fb Login Failure';
+
 export const USER = '[Auth] User';
 export const USER_SUCCESS = '[Auth] User Success';
 export const USER_FAILURE = '[Auth] User Failure';

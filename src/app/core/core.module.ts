@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 
-import { MaterialModule } from '../material/material.module';
-import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '@material/material.module';
+import { SharedModule } from '@shared/shared.module';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
