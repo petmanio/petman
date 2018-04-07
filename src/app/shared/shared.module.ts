@@ -12,8 +12,17 @@ import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 import { GalleryImagesPipe } from './pipes/gallery-images/gallery-images.pipe';
 import { KeysPipe } from './pipes/keys/keys.pipe';
+import { ChunkPipe } from './pipes/chunk/chunk.pipe';
+import { EllipsisPipe } from './pipes/ellipsis/ellipsis.pipe';
+import { FromNowPipe } from './pipes/from-now/from-now.pipe';
+import { SplicePipe } from './pipes/splice/splice.pipe';
+import { StripTagsPipe } from './pipes/strip-tags/strip-tags.pipe';
+import { UcFirstPipe } from './pipes/uc-first/uc-first.pipe';
+
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { SharedService } from './services/shared/shared.service';
+
 import { CardComponent } from './components/card/card.component';
 import { MuuriComponent } from './components/muuri/muuri.component';
 import { MuuriItemComponent } from './components/muuri-item/muuri-item.component';
@@ -27,7 +36,6 @@ import { ShareButtonComponent } from './components/share-button/share-button.com
 import { AddApplicationComponent } from './components/add-application/add-application.component';
 import { MediumEditorComponent } from './components/medium-editor/medium-editor.component';
 import { GoogleMapComponent } from './components/google-map/google-map.component';
-import { SharedService } from './services/shared/shared.service';
 
 import { SharedEffects } from './effects/shared.effects';
 import { reducers } from './reducers';
@@ -47,9 +55,15 @@ import { reducers } from './reducers';
   ],
   declarations: [
     AsyncDelayPipe,
+    ChunkPipe,
+    EllipsisPipe,
+    FromNowPipe,
     SafeHtmlPipe,
     GalleryImagesPipe,
     KeysPipe,
+    SplicePipe,
+    StripTagsPipe,
+    UcFirstPipe,
     CardComponent,
     MuuriComponent,
     MuuriItemComponent,
@@ -72,9 +86,15 @@ import { reducers } from './reducers';
     RouterModule,
 
     AsyncDelayPipe,
+    ChunkPipe,
+    EllipsisPipe,
+    FromNowPipe,
     SafeHtmlPipe,
     GalleryImagesPipe,
     KeysPipe,
+    SplicePipe,
+    StripTagsPipe,
+    UcFirstPipe,
     CardComponent,
     MuuriComponent,
     MuuriItemComponent,
