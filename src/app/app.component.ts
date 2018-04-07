@@ -23,6 +23,8 @@ export interface IAppComponent {
 
   onLogOut(): void;
 
+  onLanguageChange(key: string): void;
+
   toggleSidenav($event: Event): void;
 }
 
@@ -56,6 +58,7 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
   showSidenav$: Observable<boolean>;
   sideNavMode: 'side' | 'push' = 'side';
   sideNavState: boolean;
+  currentLanguage: string;
   private subscriptions: Subscription[] = [];
 
   ngOnInit(): void {
@@ -115,6 +118,13 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
     }
   }
 
+  onLanguageChange(key: string): void {
+    const language = Language[key];
+    this.currentLanguage = key;
+    this.localStorageService.setItem('language', language);
+    this.translate.use(language);
+  }
+
   onLogOut(): void {
     this.store.dispatch(new Auth.Logout());
   }
@@ -131,6 +141,7 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
 
     const language = Language[languageKey];
 
+    this.currentLanguage = languageKey;
     this.localStorageService.setItem('language', language);
     this.translate.setDefaultLang('en-US');
     this.translate.use(language);

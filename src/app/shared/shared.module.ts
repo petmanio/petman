@@ -11,6 +11,7 @@ import { MaterialModule } from '../material/material.module';
 import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 import { GalleryImagesPipe } from './pipes/gallery-images/gallery-images.pipe';
+import { KeysPipe } from './pipes/keys/keys.pipe';
 import { UtilService } from './services/util/util.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { CardComponent } from './components/card/card.component';
@@ -48,6 +49,7 @@ import { reducers } from './reducers';
     AsyncDelayPipe,
     SafeHtmlPipe,
     GalleryImagesPipe,
+    KeysPipe,
     CardComponent,
     MuuriComponent,
     MuuriItemComponent,
@@ -72,6 +74,7 @@ import { reducers } from './reducers';
     AsyncDelayPipe,
     SafeHtmlPipe,
     GalleryImagesPipe,
+    KeysPipe,
     CardComponent,
     MuuriComponent,
     MuuriItemComponent,

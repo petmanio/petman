@@ -4,12 +4,11 @@
   </button>
   <span routerLink="/" class="pm-cursor-pointer">Petman <span class="font-9">beta</span></span>
   <div flex></div>
-  <!--<td-search-box placeholder="Search" [alwaysVisible]="false" flex></td-search-box>-->
+  <td-search-box placeholder="Search" [alwaysVisible]="false" flex></td-search-box>
   <span class="pm-spacer" flex></span>
   <div class="pm-language">
-    <mat-select ngModel="en">
-      <mat-option value="en">En</mat-option>
-      <mat-option value="am">Am</mat-option>
+    <mat-select [ngModel]="currentLanguage" (change)="onLanguageChange.emit($event.value)">
+      <mat-option *ngFor="let language of Language | appKeys" [value]="language.key">{{language.value}}</mat-option>
     </mat-select>
   </div>
   <ng-container *ngIf="loggedIn; else unauthorized">
