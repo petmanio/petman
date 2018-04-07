@@ -2,10 +2,8 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
 
 import { MaterialModule } from '../material/material.module';
@@ -40,13 +38,6 @@ import { reducers } from './reducers';
     ReactiveFormsModule,
     RouterModule,
     ShareButtonsModule.forRoot(),
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (UtilService.createTranslateLoader),
-        deps: [HttpClient]
-      }
-    }),
 
     MaterialModule,
     StoreModule.forFeature('shared', reducers),
@@ -77,7 +68,6 @@ import { reducers } from './reducers';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
 
     AsyncDelayPipe,
     SafeHtmlPipe,

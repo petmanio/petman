@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -28,6 +28,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundPageComponent } from './not-found-page/not-found-page';
 import { HomePageComponent } from './home-page/home-page.component';
+import { UtilService } from './shared/services/util/util.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,13 @@ import { HomePageComponent } from './home-page/home-page.component';
     BrowserAnimationsModule,
     HttpClientModule,
     HttpClientJsonpModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (UtilService.createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : [],

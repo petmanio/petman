@@ -78,7 +78,14 @@ export class UtilService implements IUtilService {
   }
 
   static createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, './i18n/', '.json');
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  }
+
+  static getBrowserLanguageToEnumKey(lang: string): string {
+    if (!lang) {
+      return null;
+    }
+    return lang.toLocaleUpperCase().replace('-', '_');
   }
 
   externalScripts(): void {

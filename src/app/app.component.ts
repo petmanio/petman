@@ -6,6 +6,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 
 import * as fromRoot from './core/shared/reducers/index';
 import * as fromAuth from './auth/shared/reducers/index';
@@ -15,7 +16,7 @@ import * as Shared from './shared/actions/shared.action';
 import { UtilService } from './shared/services/util/util.service';
 import { LocalStorageService } from './shared/services/local-storage/local-storage.service';
 import { UserDto } from '../../common/models/user.model';
-import { TranslateService } from '@ngx-translate/core';
+import { Language } from '../../common/enums';
 
 export interface IAppComponent {
   onSelectedUserChange($event): void;
@@ -31,6 +32,24 @@ export interface IAppComponent {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy, IAppComponent {
+  constructor(
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private breakpointObserver: BreakpointObserver,
+    private translate: TranslateService,
+    private store: Store<fromRoot.State>,
+    private utilService: UtilService,
+    @Inject(PLATFORM_ID) protected platformId: Object
+  ) {
+    this.utilService.externalScripts();
+    this.utilService.registerNewIcons();
+    this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
+    this.loggedIn$ = this.store.select(fromAuth.getLoggedIn);
+    this.user$ = this.store.select(fromAuth.getUser);
+    this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
+  }
+
   loggedIn$: Observable<boolean>;
   user$: Observable<UserDto>;
   selectedUser$: Observable<UserDto>;
@@ -39,27 +58,9 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
   sideNavState: boolean;
   private subscriptions: Subscription[] = [];
 
-  constructor(private utilService: UtilService,
-              private store: Store<fromRoot.State>,
-              private localStorageService: LocalStorageService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private breakpointObserver: BreakpointObserver,
-              // private translate: TranslateService,
-              @Inject(PLATFORM_ID) protected platformId: Object) {
-    this.utilService.externalScripts();
-    this.utilService.registerNewIcons();
-    this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
-    this.loggedIn$ = this.store.select(fromAuth.getLoggedIn);
-    this.user$ = this.store.select(fromAuth.getUser);
-    this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
-
-    // translate.setDefaultLang('en');
-    //
-    // translate.use('en');
-  }
-
   ngOnInit(): void {
+    this.initLanguage();
+
     this.store.dispatch(new Auth.User());
     this.store.dispatch(new Auth.ChangeUser(+this.localStorageService.getItem('selectedUserId')));
     this.store.dispatch(new Layout.CloseSidenav());
@@ -116,5 +117,22 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
 
   onLogOut(): void {
     this.store.dispatch(new Auth.Logout());
+  }
+
+  private initLanguage(): void {
+    let languageKey = UtilService.getBrowserLanguageToEnumKey(
+      this.localStorageService.getItem('language') ||
+      this.translate.getBrowserCultureLang()
+    );
+
+    if (!languageKey || !Language[languageKey]) {
+      languageKey = 'EN_US';
+    }
+
+    const language = Language[languageKey];
+
+    this.localStorageService.setItem('language', language);
+    this.translate.setDefaultLang('en-US');
+    this.translate.use(language);
   }
 }
