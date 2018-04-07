@@ -1,14 +1,17 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { MatIconRegistry } from '@angular/material';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '../../../../environments/environment';
 import { NgxGalleryOptions } from 'ngx-gallery';
 
 export interface IUtilService {
   externalScripts(): void;
+
   registerNewIcons(): void;
 }
 
@@ -26,26 +29,8 @@ export class UtilService implements IUtilService {
       width: '80%',
       height: '400px'
     },
-    { breakpoint: 600, thumbnails: false, width: '100%', height: '300px'},
+    { breakpoint: 600, thumbnails: false, width: '100%', height: '300px' },
   ];
-
-  static getRouteDataByKey(activatedRoute, key: string): any {
-    // TODO: Find better way to get data from activated route
-    return activatedRoute.snapshot.data[key] ||
-      (activatedRoute.snapshot.children.length && activatedRoute.snapshot.children[0].data[key]) ||
-      (activatedRoute.snapshot.children[0].children.length && activatedRoute.snapshot.children[0].children[0].data[key]);
-  }
-
-  static getShareUrl(network: string, url: string, redirectUrl?: string, appId?: string | number): string {
-    const networks = {
-      facebook: `https://www.facebook.com/dialog/share?app_id=${appId}&href=${url}&display=popup&redirect_uri=${redirectUrl}`,
-      vkontakte: `http://vkontakte.ru/share.php?url=${url}`,
-      twitter: `https://twitter.com/intent/tweet?url=${url}&via=Petman&related=Petman,Pets`,
-      odnoklassniki: ``
-    };
-
-    return networks[network];
-  }
 
   constructor(@Inject(PLATFORM_ID) protected platformId: Object,
               private matIconRegistry: MatIconRegistry,
@@ -72,6 +57,28 @@ export class UtilService implements IUtilService {
 
       return subject;
     }
+  }
+
+  static getRouteDataByKey(activatedRoute, key: string): any {
+    // TODO: Find better way to get data from activated route
+    return activatedRoute.snapshot.data[key] ||
+      (activatedRoute.snapshot.children.length && activatedRoute.snapshot.children[0].data[key]) ||
+      (activatedRoute.snapshot.children[0].children.length && activatedRoute.snapshot.children[0].children[0].data[key]);
+  }
+
+  static getShareUrl(network: string, url: string, redirectUrl?: string, appId?: string | number): string {
+    const networks = {
+      facebook: `https://www.facebook.com/dialog/share?app_id=${appId}&href=${url}&display=popup&redirect_uri=${redirectUrl}`,
+      vkontakte: `http://vkontakte.ru/share.php?url=${url}`,
+      twitter: `https://twitter.com/intent/tweet?url=${url}&via=Petman&related=Petman,Pets`,
+      odnoklassniki: ``
+    };
+
+    return networks[network];
+  }
+
+  static createTranslateLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, './i18n/', '.json');
   }
 
   externalScripts(): void {

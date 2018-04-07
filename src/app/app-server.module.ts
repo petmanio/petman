@@ -4,7 +4,7 @@ import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppModule } from './app.module';
-import { AppComponent } from './core/app/app.component';
+import { AppComponent } from './app.component';
 import { UniversalInterceptor } from './core/shared/interseptors/universal/universal.interceptor';
 
 @NgModule({

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomePageComponent } from './home-page/home-page.component';
-import { NotFoundPageComponent } from './not-found/not-found-page';
+import { NotFoundPageComponent } from './not-found-page/not-found-page';
 
 export const routes: Routes = [
   {
@@ -49,4 +49,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class CoreRoutingModule {}
+export class AppRoutingModule {}

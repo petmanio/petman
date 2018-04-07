@@ -7,18 +7,21 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from '../shared/reducers';
-import * as fromAuth from '../../auth/shared/reducers';
-import * as Auth from '../../auth/shared/actions/auth.action';
-import * as Layout from '../shared/actions/layout';
-import * as Shared from '../../shared/actions/shared.action';
-import { UtilService } from '../../shared/services/util/util.service';
-import { LocalStorageService } from '../../shared/services/local-storage/local-storage.service';
-import { UserDto } from '../../../../common/models/user.model';
+import * as fromRoot from './core/shared/reducers/index';
+import * as fromAuth from './auth/shared/reducers/index';
+import * as Auth from './auth/shared/actions/auth.action';
+import * as Layout from './core/shared/actions/layout';
+import * as Shared from './shared/actions/shared.action';
+import { UtilService } from './shared/services/util/util.service';
+import { LocalStorageService } from './shared/services/local-storage/local-storage.service';
+import { UserDto } from '../../common/models/user.model';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface IAppComponent {
   onSelectedUserChange($event): void;
+
   onLogOut(): void;
+
   toggleSidenav($event: Event): void;
 }
 
@@ -42,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private breakpointObserver: BreakpointObserver,
+              // private translate: TranslateService,
               @Inject(PLATFORM_ID) protected platformId: Object) {
     this.utilService.externalScripts();
     this.utilService.registerNewIcons();
@@ -49,6 +53,10 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
     this.loggedIn$ = this.store.select(fromAuth.getLoggedIn);
     this.user$ = this.store.select(fromAuth.getUser);
     this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
+
+    // translate.setDefaultLang('en');
+    //
+    // translate.use('en');
   }
 
   ngOnInit(): void {
@@ -57,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
     this.store.dispatch(new Layout.CloseSidenav());
     this.store.dispatch(new Shared.ServiceList());
 
-    const sidenavSubscription = this.showSidenav$.subscribe(state =>  {
+    const sidenavSubscription = this.showSidenav$.subscribe(state => {
       this.sideNavState = state;
       if (isPlatformBrowser(this.platformId)) {
         setTimeout(() => window.dispatchEvent(new Event('resize')), 300);

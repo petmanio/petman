@@ -2,19 +2,13 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatChipsModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule
-} from '@angular/material';
+import { HttpClient } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ShareButtonsModule } from 'ngx-sharebuttons';
+
+import { MaterialModule } from '../material/material.module';
 
 import { AsyncDelayPipe } from './pipes/async-delay/async-delay.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
@@ -44,18 +38,19 @@ import { reducers } from './reducers';
     CommonModule,
     FormsModule,
     RouterModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
-    MatInputModule,
-    MatChipsModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
     ShareButtonsModule.forRoot(),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (UtilService.createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
 
+    MaterialModule,
     StoreModule.forFeature('shared', reducers),
-    EffectsModule.forFeature([SharedEffects]),
+    EffectsModule.forFeature([SharedEffects])
+
   ],
   declarations: [
     AsyncDelayPipe,
@@ -77,6 +72,11 @@ import { reducers } from './reducers';
   ],
   providers: [UtilService, LocalStorageService, SharedService],
   exports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    TranslateModule,
+
     AsyncDelayPipe,
     SafeHtmlPipe,
     GalleryImagesPipe,
