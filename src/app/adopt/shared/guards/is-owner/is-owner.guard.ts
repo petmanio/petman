@@ -10,7 +10,8 @@ import * as fromAdopt from '../../reducers';
 @Injectable()
 export class IsOwnerGuard implements CanActivate {
   constructor(private router: Router,
-              private store: Store<fromAdopt.State>) {}
+              private store: Store<fromAdopt.State>) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     return this.isOwner(route.params['id'])

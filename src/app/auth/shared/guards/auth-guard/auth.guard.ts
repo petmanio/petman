@@ -12,7 +12,8 @@ import { AuthService } from '../../services/auth/auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private store: Store<fromAuth.State>,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+  }
 
   hasUserInStore(): Observable<boolean> {
     return this.store.select(fromAuth.getLoggedIn)

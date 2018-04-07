@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./muuri-item.component.scss']
 })
 export class MuuriItemComponent {
-  constructor() { }
+  constructor() {
+  }
 }

@@ -11,7 +11,9 @@ import { LostFoundType } from '../../../../common/enums';
 
 export interface IAddPageComponent {
   onUploadFinished($event: FileHolder): void;
+
   onImageRemove($event: FileHolder): void;
+
   create(): void;
 }
 

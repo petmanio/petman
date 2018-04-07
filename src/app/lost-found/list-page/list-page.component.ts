@@ -17,7 +17,9 @@ import * as fromLostFound from '../shared/reducers';
 
 export interface IListPageComponent {
   getCardConfig(item: LostFoundDto): Config;
+
   onLoadMore(): void;
+
   onShare(lostFound: LostFoundDto): void;
 }
 
@@ -37,26 +39,14 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   error$: Observable<any>;
   pending$: Observable<boolean>;
   selectedUser$: Observable<UserDto>;
-
-  get canLoadMore(): boolean {
-    return this.offset + this.limit < this.total;
-  }
-
   private subscriptions: Subscription[] = [];
 
-  private get listRequest(): LostFoundListRequestDto {
-    return {
-      limit: this.limit,
-      offset: this.offset
-    };
-  }
-
   constructor(private router: Router,
-    private location: Location,
-    private dialog: MatDialog,
-    private store: Store<fromLostFound.State>,
-    private datePipe: DatePipe,
-    @Inject(DOCUMENT) private document: Document) {
+              private location: Location,
+              private dialog: MatDialog,
+              private store: Store<fromLostFound.State>,
+              private datePipe: DatePipe,
+              @Inject(DOCUMENT) private document: Document) {
     this.list$ = this.store.select(fromLostFound.getAllLostFound);
     this.total$ = this.store.select(fromLostFound.getTotalLostFound);
     this.error$ = this.store.select(fromLostFound.getListPageError);
@@ -70,6 +60,17 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     const totalSubscription = this.total$.subscribe(total => this.total = total);
 
     this.subscriptions.push(...[listSubscription, totalSubscription]);
+  }
+
+  get canLoadMore(): boolean {
+    return this.offset + this.limit < this.total;
+  }
+
+  private get listRequest(): LostFoundListRequestDto {
+    return {
+      limit: this.limit,
+      offset: this.offset
+    };
   }
 
   ngOnInit(): void {
@@ -105,6 +106,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       width: ModalSize.MEDIUM,
       data: { url }
     });
-    _dialogRef.afterClosed().subscribe(shareOptions => { });
+    _dialogRef.afterClosed().subscribe(shareOptions => {
+    });
   }
 }

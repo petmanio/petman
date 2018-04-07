@@ -41,7 +41,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: organization.Actions): State {
   switch (action.type) {
     case organization.PINS_SUCCESS: {
-      return assign({}, state, adapter.addAll(action.payload.pins, state), {total: action.payload.total});
+      return assign({}, state, adapter.addAll(action.payload.pins, state), { total: action.payload.total });
     }
 
     default: {

@@ -11,13 +11,15 @@ import { UserDto } from '../../../../../common/models/user.model';
 export class AddApplicationComponent implements OnInit {
   @Input() user: UserDto;
 
+  constructor() {
+  }
+
   get avatar(): string {
     if (this.user) {
       return this.user.userData.avatar;
     }
     return '/assets/logo.png';
   }
-  constructor() { }
 
   ngOnInit() {
   }

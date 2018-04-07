@@ -13,7 +13,8 @@ import { ShelterService } from '../../services/shelter/shelter.service';
 export class ExistsGuard implements CanActivate {
   constructor(private router: Router,
               private store: Store<fromShelter.State>,
-              private shelterService: ShelterService) {}
+              private shelterService: ShelterService) {
+  }
 
   hasData(id: number): Observable<boolean> {
     return this.hasDataInStore(id)

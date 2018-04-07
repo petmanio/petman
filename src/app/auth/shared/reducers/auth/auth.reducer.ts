@@ -33,7 +33,7 @@ export function reducer(state = initialState, action: auth.Actions): State {
     }
 
     case auth.CHANGE_USER: {
-      return assign({}, state, { selectedUserId: action.payload});
+      return assign({}, state, { selectedUserId: action.payload });
     }
 
     case auth.LOGOUT: {

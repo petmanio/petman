@@ -88,6 +88,12 @@ export class UtilService implements IUtilService {
     return lang.toLocaleUpperCase().replace('-', '_');
   }
 
+  static stripHtml = (html: string): string => {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
   externalScripts(): void {
     if (isPlatformBrowser(this.platformId)) {
       // TODO: use ngx-facebook

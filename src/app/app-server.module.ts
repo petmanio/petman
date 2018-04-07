@@ -20,4 +20,5 @@ import { UniversalInterceptor } from './core/shared/interseptors/universal/unive
   }],
   bootstrap: [AppComponent]
 })
-export class AppServerModule {}
+export class AppServerModule {
+}

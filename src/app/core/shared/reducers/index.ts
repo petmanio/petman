@@ -41,7 +41,7 @@ export const reducers: ActionReducerMap<any> = {
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-  return function(state: State, action: any): State {
+  return function (state: State, action: any): State {
     // console.log('state', state);
     // console.log('action', action);
 
@@ -50,7 +50,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 
 export function clear(reducer: ActionReducer<State>): ActionReducer<State> {
-  return function(state: State, action: any): State {
+  return function (state: State, action: any): State {
     return reducer(action.type === CLEAR ? undefined : state, action);
   };
 }

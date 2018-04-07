@@ -11,15 +11,17 @@ const Murri = require('muuri');
 })
 export class MuuriComponent implements AfterViewInit, AfterViewChecked {
   @ContentChildren(MuuriItemComponent, { read: ElementRef }) items: QueryList<ElementRef>;
+  private muuriInstance: any;
+
+  constructor(private el: ElementRef) {
+  }
 
   get itemElements(): any {
     return this.items.toArray().map(el => el.nativeElement);
   }
-  private muuriInstance: any;
-  constructor(private el: ElementRef) { }
 
   ngAfterViewInit(): void {
-    this.muuriInstance = new Murri(this.el.nativeElement, { items: this.itemElements } );
+    this.muuriInstance = new Murri(this.el.nativeElement, { items: this.itemElements });
   }
 
   ngAfterViewChecked(): void {

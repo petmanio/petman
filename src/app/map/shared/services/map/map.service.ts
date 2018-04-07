@@ -3,5 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class MapService {
-  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {}
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {
+  }
 }

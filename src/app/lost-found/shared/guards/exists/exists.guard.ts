@@ -13,7 +13,8 @@ import { LostFoundService } from '../../services/lost-found/lost-found.service';
 export class ExistsGuard implements CanActivate {
   constructor(private router: Router,
               private store: Store<fromLostFound.State>,
-              private lostFoundService: LostFoundService) {}
+              private lostFoundService: LostFoundService) {
+  }
 
   hasData(id: number): Observable<boolean> {
     return this.hasDataInStore(id)

@@ -9,5 +9,7 @@ export class LoginFormSocialComponent {
   @Input() errorMessage: string | null;
   @Input() pending: boolean;
   @Output() submitted = new EventEmitter();
-  constructor() { }
+
+  constructor() {
+  }
 }

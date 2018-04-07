@@ -32,19 +32,22 @@ export const SELECT = '[Organization] Select';
 export class Load implements Action {
   readonly type = LOAD;
 
-  constructor(public payload: number) {}
+  constructor(public payload: number) {
+  }
 }
 
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS;
 
-  constructor(public payload: OrganizationDto) {}
+  constructor(public payload: OrganizationDto) {
+  }
 }
 
 export class LoadFailure implements Action {
   readonly type = LOAD_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -53,19 +56,22 @@ export class LoadFailure implements Action {
 export class List implements Action {
   readonly type = LIST;
 
-  constructor(public payload: OrganizationListRequestDto = null) {}
+  constructor(public payload: OrganizationListRequestDto = null) {
+  }
 }
 
 export class ListSuccess implements Action {
   readonly type = LIST_SUCCESS;
 
-  constructor(public payload: OrganizationListResponseDto) {}
+  constructor(public payload: OrganizationListResponseDto) {
+  }
 }
 
 export class ListFailure implements Action {
   readonly type = LIST_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -74,19 +80,22 @@ export class ListFailure implements Action {
 export class More implements Action {
   readonly type = MORE;
 
-  constructor(public payload: OrganizationListRequestDto = null) {}
+  constructor(public payload: OrganizationListRequestDto = null) {
+  }
 }
 
 export class MoreSuccess implements Action {
   readonly type = MORE_SUCCESS;
 
-  constructor(public payload: OrganizationListResponseDto) {}
+  constructor(public payload: OrganizationListResponseDto) {
+  }
 }
 
 export class MoreFailure implements Action {
   readonly type = MORE_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -95,19 +104,22 @@ export class MoreFailure implements Action {
 export class Pins implements Action {
   readonly type = PINS;
 
-  constructor(public payload: OrganizationPinsRequestDto = null) {}
+  constructor(public payload: OrganizationPinsRequestDto = null) {
+  }
 }
 
 export class PinsSuccess implements Action {
   readonly type = PINS_SUCCESS;
 
-  constructor(public payload: OrganizationPinsResponseDto) {}
+  constructor(public payload: OrganizationPinsResponseDto) {
+  }
 }
 
 export class PinsFailure implements Action {
   readonly type = PINS_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -116,7 +128,8 @@ export class PinsFailure implements Action {
 export class Select implements Action {
   readonly type = SELECT;
 
-  constructor(public payload: number) {}
+  constructor(public payload: number) {
+  }
 }
 
 export type Actions =

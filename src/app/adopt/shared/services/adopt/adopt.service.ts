@@ -21,15 +21,20 @@ import {
 
 export interface IAdoptService {
   create(body: AdoptCreateRequestDto): Observable<AdoptCreateResponseDto>;
+
   update(body: AdoptUpdateRequestDto): Observable<AdoptUpdateResponseDto>;
+
   delete(body: AdoptDeleteRequestDto): Observable<AdoptDeleteResponseDto>;
+
   getById(id: number): Observable<AdoptDto>;
+
   list(query: AdoptListRequestDto): Observable<AdoptListResponseDto>;
 }
 
 @Injectable()
 export class AdoptService implements IAdoptService {
-  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {}
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {
+  }
 
   create(body: AdoptCreateRequestDto): Observable<AdoptCreateResponseDto> {
     let formData: FormData;

@@ -18,7 +18,9 @@ import { ShareDialogComponent } from '../../shared/components/share-dialog/share
 
 export interface IDetailsPageComponent {
   onPreviewOpen(): void;
+
   onPreviewClose(): void;
+
   onShare(): void;
 }
 
@@ -79,6 +81,7 @@ export class DetailsPageComponent implements OnDestroy, IDetailsPageComponent {
       width: ModalSize.MEDIUM,
       data: { url }
     });
-    _dialogRef.afterClosed().subscribe(shareOptions => { });
+    _dialogRef.afterClosed().subscribe(shareOptions => {
+    });
   }
 }

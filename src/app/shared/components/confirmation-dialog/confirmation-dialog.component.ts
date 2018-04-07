@@ -22,9 +22,11 @@ export interface IConfirmationDialogComponent {
 })
 export class ConfirmationDialogComponent implements IConfirmationDialogComponent {
   ConfirmationDialogType = ConfirmationDialogType;
+
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IConfirmationDialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: IConfirmationDialogData) {
+  }
 
   onCancel(): void {
     this.dialogRef.close();

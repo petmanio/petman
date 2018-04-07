@@ -27,7 +27,8 @@ export class BrickComponent implements OnInit, AfterViewInit, AfterViewChecked {
   private instance: BricksInstance;
   private inProgress = false;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
 
   ngOnInit(): void {
   }
@@ -40,7 +41,7 @@ export class BrickComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.update();
   }
 
-  private initiate(): void  {
+  private initiate(): void {
     this.inProgress = true;
     this.renderer.setStyle(this.brick.nativeElement, 'visibility', 'hidden');
     this.instance = Bricks({

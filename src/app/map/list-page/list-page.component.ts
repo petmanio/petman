@@ -28,9 +28,13 @@ import { ServiceDto } from '../../../../common/models/service.model';
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto | BranchDto): Config;
+
   getPinData(entity: OrganizationDto | BranchDto | OrganizationPinDto): Pin
+
   onLoadMore(): void;
+
   updateList(): void;
+
   panTo(org: BranchDto | OrganizationDto): void;
 }
 
@@ -55,12 +59,39 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   error$: Observable<any>;
   pending$: Observable<boolean>;
   selectedUser$: Observable<UserDto>;
+  private subscriptions: Subscription[] = [];
+
+  constructor(private router: Router,
+              private location: Location,
+              private dialog: MatDialog,
+              private store: Store<fromOrganization.State>,
+              private datePipe: DatePipe,
+              @Inject(DOCUMENT) private document: Document) {
+
+    this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
+    this.list$ = this.store.select(fromOrganization.getAllOrganizations);
+    this.total$ = this.store.select(fromOrganization.getTotalOrganizations);
+    this.pins$ = this.store.select(fromOrganization.getAllPins);
+    this.services$ = this.store.select(fromService.getServiceAll);
+    this.error$ = this.store.select(fromMap.getListPageError);
+    this.pending$ = this.store.select(fromMap.getListPagePending);
+
+    const listSubscription = this.list$.subscribe(list => {
+      this.list = list;
+      this.offset = Math.max(0, this.list.length - this.limit);
+    });
+    const totalSubscription = this.total$.subscribe(total => this.total = total);
+
+    const pinsSubscription = this.pins$.subscribe(pins => {
+      this.pins = pins.map(pin => this.getPinData(pin));
+    });
+
+    this.subscriptions.push(...[listSubscription, totalSubscription, pinsSubscription]);
+  }
 
   get canLoadMore(): boolean {
     return this.offset + this.limit < this.total;
   }
-
-  private subscriptions: Subscription[] = [];
 
   private get listRequest(): OrganizationListRequestDto {
     return {
@@ -82,34 +113,6 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       ${pin.meta.description || ''} <br/>
       ${pin.meta.address.fullAddressHTML()}&nbsp;
     `;
-  }
-
-  constructor(private router: Router,
-    private location: Location,
-    private dialog: MatDialog,
-    private store: Store<fromOrganization.State>,
-    private datePipe: DatePipe,
-    @Inject(DOCUMENT) private document: Document) {
-
-    this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
-    this.list$ = this.store.select(fromOrganization.getAllOrganizations);
-    this.total$ = this.store.select(fromOrganization.getTotalOrganizations);
-    this.pins$ = this.store.select(fromOrganization.getAllPins);
-    this.services$ = this.store.select(fromService.getServiceAll);
-    this.error$ = this.store.select(fromMap.getListPageError);
-    this.pending$ = this.store.select(fromMap.getListPagePending);
-
-    const listSubscription = this.list$.subscribe(list => {
-      this.list = list;
-      this.offset = Math.max(0, this.list.length - this.limit);
-    });
-    const totalSubscription = this.total$.subscribe(total => this.total = total);
-
-    const pinsSubscription = this.pins$.subscribe(pins => {
-      this.pins = pins.map(pin => this.getPinData(pin));
-    });
-
-    this.subscriptions.push(...[listSubscription, totalSubscription, pinsSubscription]);
   }
 
   ngOnInit(): void {

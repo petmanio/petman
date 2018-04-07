@@ -21,15 +21,20 @@ import {
 
 export interface ILostFoundService {
   create(body: LostFoundCreateRequestDto): Observable<LostFoundCreateResponseDto>;
+
   update(body: LostFoundUpdateRequestDto): Observable<LostFoundUpdateResponseDto>;
+
   delete(body: LostFoundDeleteRequestDto): Observable<LostFoundDeleteResponseDto>;
+
   getById(id: number): Observable<LostFoundDto>;
+
   list(query: LostFoundListRequestDto): Observable<LostFoundListResponseDto>;
 }
 
 @Injectable()
 export class LostFoundService implements ILostFoundService {
-  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {}
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {
+  }
 
   create(body: LostFoundCreateRequestDto): Observable<LostFoundCreateResponseDto> {
     let formData: FormData;

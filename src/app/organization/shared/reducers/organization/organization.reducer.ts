@@ -45,15 +45,15 @@ export function reducer(state = initialState, action: organization.Actions): Sta
     }
 
     case organization.LIST_SUCCESS: {
-      return assign({}, state, adapter.addAll(action.payload.list, state), {total: action.payload.total});
+      return assign({}, state, adapter.addAll(action.payload.list, state), { total: action.payload.total });
     }
 
     case organization.MORE_SUCCESS: {
-      return assign({}, state, adapter.addMany(action.payload.list, state), {total: action.payload.total});
+      return assign({}, state, adapter.addMany(action.payload.list, state), { total: action.payload.total });
     }
 
     case organization.SELECT: {
-      return assign({}, state, {selectedId: action.payload});
+      return assign({}, state, { selectedId: action.payload });
     }
 
     default: {

@@ -23,7 +23,7 @@ export class WalkerEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   createSuccess$ = this.actions$
     .ofType(Walker.CREATE_SUCCESS)
     .pipe(
@@ -45,7 +45,7 @@ export class WalkerEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   updateSuccess$ = this.actions$
     .ofType(Walker.UPDATE_SUCCESS)
     .pipe(
@@ -67,7 +67,7 @@ export class WalkerEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   deleteSuccess$ = this.actions$
     .ofType(Walker.DELETE_SUCCESS)
     .pipe(

@@ -44,19 +44,22 @@ export const SELECT = '[Shelter] Select';
 export class Create implements Action {
   readonly type = CREATE;
 
-  constructor(public payload: ShelterCreateRequestDto) {}
+  constructor(public payload: ShelterCreateRequestDto) {
+  }
 }
 
 export class CreateSuccess implements Action {
   readonly type = CREATE_SUCCESS;
 
-  constructor(public payload: ShelterCreateResponseDto) {}
+  constructor(public payload: ShelterCreateResponseDto) {
+  }
 }
 
 export class CreateFailure implements Action {
   readonly type = CREATE_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -65,19 +68,22 @@ export class CreateFailure implements Action {
 export class Update implements Action {
   readonly type = UPDATE;
 
-  constructor(public payload: ShelterUpdateRequestDto) {}
+  constructor(public payload: ShelterUpdateRequestDto) {
+  }
 }
 
 export class UpdateSuccess implements Action {
   readonly type = UPDATE_SUCCESS;
 
-  constructor(public payload: ShelterUpdateResponseDto) {}
+  constructor(public payload: ShelterUpdateResponseDto) {
+  }
 }
 
 export class UpdateFailure implements Action {
   readonly type = UPDATE_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -86,19 +92,22 @@ export class UpdateFailure implements Action {
 export class Delete implements Action {
   readonly type = DELETE;
 
-  constructor(public payload: ShelterDeleteRequestDto) {}
+  constructor(public payload: ShelterDeleteRequestDto) {
+  }
 }
 
 export class DeleteSuccess implements Action {
   readonly type = DELETE_SUCCESS;
 
-  constructor(public payload: ShelterDeleteResponseDto) {}
+  constructor(public payload: ShelterDeleteResponseDto) {
+  }
 }
 
 export class DeleteFailure implements Action {
   readonly type = DELETE_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -107,19 +116,22 @@ export class DeleteFailure implements Action {
 export class Load implements Action {
   readonly type = LOAD;
 
-  constructor(public payload: number) {}
+  constructor(public payload: number) {
+  }
 }
 
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS;
 
-  constructor(public payload: ShelterDto) {}
+  constructor(public payload: ShelterDto) {
+  }
 }
 
 export class LoadFailure implements Action {
   readonly type = LOAD_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -128,19 +140,22 @@ export class LoadFailure implements Action {
 export class List implements Action {
   readonly type = LIST;
 
-  constructor(public payload: ShelterListRequestDto = null) {}
+  constructor(public payload: ShelterListRequestDto = null) {
+  }
 }
 
 export class ListSuccess implements Action {
   readonly type = LIST_SUCCESS;
 
-  constructor(public payload: ShelterListResponseDto) {}
+  constructor(public payload: ShelterListResponseDto) {
+  }
 }
 
 export class ListFailure implements Action {
   readonly type = LIST_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 /**
@@ -149,25 +164,29 @@ export class ListFailure implements Action {
 export class More implements Action {
   readonly type = MORE;
 
-  constructor(public payload: ShelterListRequestDto = null) {}
+  constructor(public payload: ShelterListRequestDto = null) {
+  }
 }
 
 export class MoreSuccess implements Action {
   readonly type = MORE_SUCCESS;
 
-  constructor(public payload: ShelterListResponseDto) {}
+  constructor(public payload: ShelterListResponseDto) {
+  }
 }
 
 export class MoreFailure implements Action {
   readonly type = MORE_FAILURE;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 export class Select implements Action {
   readonly type = SELECT;
 
-  constructor(public payload: number) {}
+  constructor(public payload: number) {
+  }
 }
 
 export type Actions =

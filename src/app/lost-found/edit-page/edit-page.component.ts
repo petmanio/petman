@@ -17,8 +17,11 @@ import { LostFoundDto } from '../../../../common/models/lost-found.model';
 
 export interface IEditPageComponent {
   onUploadFinished($event: FileHolder): void;
+
   onImageRemove($event: FileHolder): void;
+
   update(): void;
+
   onDelete(): void;
 }
 
@@ -37,15 +40,6 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   pending$: Observable<boolean>;
   lostFound$: Observable<LostFoundDto>;
   private subscriptions: Subscription[] = [];
-
-  private get formConfig(): FormGroup {
-    return this.fb.group({
-      id: this.lostFound.id,
-      type: [this.lostFound.type, Validators.required],
-      description: [this.lostFound.description, Validators.required],
-      images: this.fb.array(this.lostFound.images, Validators.compose([Validators.required, Validators.minLength(1)]))
-    });
-  }
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,
               private dialog: MatDialog,
@@ -68,6 +62,15 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
     });
 
     this.subscriptions.push(...[paramsSubscription, lostFoundSubscription]);
+  }
+
+  private get formConfig(): FormGroup {
+    return this.fb.group({
+      id: this.lostFound.id,
+      type: [this.lostFound.type, Validators.required],
+      description: [this.lostFound.description, Validators.required],
+      images: this.fb.array(this.lostFound.images, Validators.compose([Validators.required, Validators.minLength(1)]))
+    });
   }
 
   ngOnDestroy(): void {

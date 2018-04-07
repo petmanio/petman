@@ -10,7 +10,9 @@ import * as Adopt from '../shared/actions/adopt.action';
 
 export interface IAddPageComponent {
   onUploadFinished($event: FileHolder): void;
+
   onImageRemove($event: FileHolder): void;
+
   create(): void;
 }
 

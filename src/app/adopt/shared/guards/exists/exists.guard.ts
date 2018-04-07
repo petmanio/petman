@@ -13,7 +13,8 @@ import { AdoptService } from '../../services/adopt/adopt.service';
 export class ExistsGuard implements CanActivate {
   constructor(private router: Router,
               private store: Store<fromAdopt.State>,
-              private adoptService: AdoptService) {}
+              private adoptService: AdoptService) {
+  }
 
   hasData(id: number): Observable<boolean> {
     return this.hasDataInStore(id)

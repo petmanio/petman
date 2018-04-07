@@ -21,7 +21,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: shared.Actions): State {
   switch (action.type) {
     case shared.SERVICE_LIST_SUCCESS: {
-      return assign({}, state, adapter.addAll(action.payload.list, state), {serviceTotal: action.payload.total});
+      return assign({}, state, adapter.addAll(action.payload.list, state), { serviceTotal: action.payload.total });
     }
 
     default: {

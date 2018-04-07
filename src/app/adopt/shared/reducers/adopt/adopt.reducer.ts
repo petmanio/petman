@@ -41,7 +41,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: adopt.Actions): State {
   switch (action.type) {
     case adopt.CREATE_SUCCESS: {
-      return assign({}, state, adapter.addOne(action.payload, state), {total: state.total + 1});
+      return assign({}, state, adapter.addOne(action.payload, state), { total: state.total + 1 });
     }
 
     case adopt.UPDATE_SUCCESS: {
@@ -49,7 +49,7 @@ export function reducer(state = initialState, action: adopt.Actions): State {
     }
 
     case adopt.DELETE_SUCCESS: {
-      return assign({}, state, adapter.removeOne(action.payload.id, state), {total: state.total + 1});
+      return assign({}, state, adapter.removeOne(action.payload.id, state), { total: state.total + 1 });
     }
 
     case adopt.LOAD_SUCCESS: {
@@ -57,15 +57,15 @@ export function reducer(state = initialState, action: adopt.Actions): State {
     }
 
     case adopt.LIST_SUCCESS: {
-      return assign({}, state, adapter.addAll(action.payload.list, state), {total: action.payload.total});
+      return assign({}, state, adapter.addAll(action.payload.list, state), { total: action.payload.total });
     }
 
     case adopt.MORE_SUCCESS: {
-      return assign({}, state, adapter.addMany(action.payload.list, state), {total: action.payload.total});
+      return assign({}, state, adapter.addMany(action.payload.list, state), { total: action.payload.total });
     }
 
     case adopt.SELECT: {
-      return assign({}, state, {selectedId: action.payload});
+      return assign({}, state, { selectedId: action.payload });
     }
 
     default: {

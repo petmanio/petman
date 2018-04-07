@@ -3,13 +3,15 @@ import { isPlatformBrowser } from '@angular/common';
 
 export interface ILocalStorageService {
   setItem(key: string, value: any): void;
+
   getItem(key: string): any;
 }
 
 @Injectable()
 export class LocalStorageService implements ILocalStorageService {
 
-  constructor(@Inject(PLATFORM_ID) protected platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object) {
+  }
 
   setItem(key: string, value: any): void {
     if (isPlatformBrowser(this.platformId)) {

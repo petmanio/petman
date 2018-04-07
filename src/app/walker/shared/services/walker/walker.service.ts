@@ -19,15 +19,20 @@ import {
 
 export interface IWalkerService {
   create(body: WalkerCreateRequestDto): Observable<WalkerCreateResponseDto>;
+
   update(body: WalkerUpdateRequestDto): Observable<WalkerUpdateResponseDto>;
+
   delete(body: WalkerDeleteRequestDto): Observable<WalkerDeleteResponseDto>;
+
   getById(id: number): Observable<WalkerDto>;
+
   list(query: WalkerListRequestDto): Observable<WalkerListResponseDto>;
 }
 
 @Injectable()
 export class WalkerService implements IWalkerService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   create(body: WalkerCreateRequestDto): Observable<WalkerCreateResponseDto> {
     return this.http.post<WalkerCreateResponseDto>(`${environment.api}/api/walkers`, body).pipe(

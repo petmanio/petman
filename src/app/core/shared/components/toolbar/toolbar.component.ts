@@ -17,5 +17,7 @@ export class ToolbarComponent {
   @Output() onLanguageChange = new EventEmitter<string>();
 
   Language = Language;
-  constructor() { }
+
+  constructor() {
+  }
 }

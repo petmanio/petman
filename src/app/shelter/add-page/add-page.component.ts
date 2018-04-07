@@ -10,7 +10,9 @@ import * as Shelter from '../shared/actions/shelter.action';
 
 export interface IAddPageComponent {
   onUploadFinished($event: FileHolder): void;
+
   onImageRemove($event: FileHolder): void;
+
   create(): void;
 }
 

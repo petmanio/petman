@@ -8,5 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
 })
 export class ShareButtonComponent {
   @Output() onShare = new EventEmitter<Event>();
-  constructor() { }
+
+  constructor() {
+  }
 }

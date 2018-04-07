@@ -17,7 +17,9 @@ import * as fromAdopt from '../shared/reducers';
 
 export interface IListPageComponent {
   getCardConfig(item: AdoptDto): Config;
+
   onLoadMore(): void;
+
   onShare(adopt: AdoptDto): void;
 }
 
@@ -37,26 +39,14 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
   error$: Observable<any>;
   pending$: Observable<boolean>;
   selectedUser$: Observable<UserDto>;
-
-  get canLoadMore(): boolean {
-    return this.offset + this.limit < this.total;
-  }
-
   private subscriptions: Subscription[] = [];
 
-  private get listRequest(): AdoptListRequestDto {
-    return {
-      limit: this.limit,
-      offset: this.offset
-    };
-  }
-
   constructor(private router: Router,
-    private location: Location,
-    private dialog: MatDialog,
-    private store: Store<fromAdopt.State>,
-    private datePipe: DatePipe,
-    @Inject(DOCUMENT) private document: Document) {
+              private location: Location,
+              private dialog: MatDialog,
+              private store: Store<fromAdopt.State>,
+              private datePipe: DatePipe,
+              @Inject(DOCUMENT) private document: Document) {
     this.list$ = this.store.select(fromAdopt.getAllAdoption);
     this.total$ = this.store.select(fromAdopt.getTotalAdoption);
     this.error$ = this.store.select(fromAdopt.getListPageError);
@@ -70,6 +60,17 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
     const totalSubscription = this.total$.subscribe(total => this.total = total);
 
     this.subscriptions.push(...[listSubscription, totalSubscription]);
+  }
+
+  get canLoadMore(): boolean {
+    return this.offset + this.limit < this.total;
+  }
+
+  private get listRequest(): AdoptListRequestDto {
+    return {
+      limit: this.limit,
+      offset: this.offset
+    };
   }
 
   ngOnInit(): void {
@@ -104,6 +105,7 @@ export class ListPageComponent implements OnInit, OnDestroy, IListPageComponent 
       width: ModalSize.MEDIUM,
       data: { url }
     });
-    _dialogRef.afterClosed().subscribe(shareOptions => { });
+    _dialogRef.afterClosed().subscribe(shareOptions => {
+    });
   }
 }

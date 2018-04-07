@@ -24,7 +24,9 @@ export interface ICardComponent {
 export class CardComponent implements OnInit, ICardComponent {
   @Input() config: Config = <Config>{};
   @Output() onShare = new EventEmitter();
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

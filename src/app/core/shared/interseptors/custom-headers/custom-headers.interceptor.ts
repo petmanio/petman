@@ -5,7 +5,9 @@ import { LocalStorageService } from '../../../../shared/services/local-storage/l
 
 @Injectable()
 export class CustomHeadersInterceptor implements HttpInterceptor {
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private localStorageService: LocalStorageService) {
+  }
+
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     req = req.clone({
       headers: req.headers

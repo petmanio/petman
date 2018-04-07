@@ -23,7 +23,7 @@ export class AdoptEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   createSuccess$ = this.actions$
     .ofType(Adopt.CREATE_SUCCESS)
     .pipe(
@@ -45,7 +45,7 @@ export class AdoptEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   updateSuccess$ = this.actions$
     .ofType(Adopt.UPDATE_SUCCESS)
     .pipe(
@@ -67,7 +67,7 @@ export class AdoptEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   deleteSuccess$ = this.actions$
     .ofType(Adopt.DELETE_SUCCESS)
     .pipe(

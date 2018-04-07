@@ -22,7 +22,9 @@ export class MasonryComponent implements OnInit, AfterViewChecked, OnDestroy {
   private instance: Masonry;
   private reloadItems: Function;
   private layout: Function;
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
 
   ngOnInit(): void {
     this.renderer.setStyle(this.el.nativeElement, 'visibility', 'hidden');

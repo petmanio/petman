@@ -21,7 +21,7 @@ export class AuthEffects {
     .map((action: Auth.FbLogin) => action.payload)
     .switchMap(auth => this.authService.getFacebookToken())
     .map(fbData => fbData.accessToken)
-    .switchMap(accessToken => this.authService.fbLogin({accessToken}))
+    .switchMap(accessToken => this.authService.fbLogin({ accessToken }))
     .map(response => new Auth.FbLoginSuccess(response))
     .catch(error => of(new Auth.FbLoginFailure(error)));
 
@@ -33,20 +33,20 @@ export class AuthEffects {
     .map(response => new Auth.UserSuccess(response))
     .catch(error => of(new Auth.UserFailure(error)));
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   userChange$ = this.actions$
     .ofType(Auth.CHANGE_USER)
     .map((action: Auth.ChangeUser) => action.payload)
     .do((selectedUserId) => this.authService.changeUser(selectedUserId));
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   loginSuccess$ = this.actions$
     .ofType(Auth.FB_LOGIN_SUCCESS)
     //  TODO: use router.navigate
     // .do(() => this.router.navigate(['/']))
     .do(() => location.href = '/');
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   loginRedirect$ = this.actions$
     .ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT)
     //  TODO: use router.navigate

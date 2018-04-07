@@ -23,7 +23,7 @@ export class ShelterEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   createSuccess$ = this.actions$
     .ofType(Shelter.CREATE_SUCCESS)
     .pipe(
@@ -45,7 +45,7 @@ export class ShelterEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   updateSuccess$ = this.actions$
     .ofType(Shelter.UPDATE_SUCCESS)
     .pipe(
@@ -67,7 +67,7 @@ export class ShelterEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   deleteSuccess$ = this.actions$
     .ofType(Shelter.DELETE_SUCCESS)
     .pipe(

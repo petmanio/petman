@@ -21,15 +21,20 @@ import {
 
 export interface IShelterService {
   create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto>;
+
   update(body: ShelterUpdateRequestDto): Observable<ShelterUpdateResponseDto>;
+
   delete(body: ShelterDeleteRequestDto): Observable<ShelterDeleteResponseDto>;
+
   getById(id: number): Observable<ShelterDto>;
+
   list(query: ShelterListRequestDto): Observable<ShelterListResponseDto>;
 }
 
 @Injectable()
 export class ShelterService implements IShelterService {
-  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {}
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {
+  }
 
   create(body: ShelterCreateRequestDto): Observable<ShelterCreateResponseDto> {
     let formData: FormData;

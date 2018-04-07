@@ -6,7 +6,8 @@ import {
   Input,
   OnChanges,
   OnInit,
-  SimpleChanges, ViewChild
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as MediumEditor from 'medium-editor';
@@ -28,8 +29,13 @@ export class MediumEditorComponent implements ControlValueAccessor, OnInit, OnCh
 
   editor: MediumEditor.MediumEditor;
 
-  propagateChange: any = () => {};
-  validateFn: any = () => {};
+  propagateChange: any = () => {
+  };
+  validateFn: any = () => {
+  };
+
+  constructor() {
+  }
 
   get valueLocal() {
     return this.value;
@@ -39,8 +45,6 @@ export class MediumEditorComponent implements ControlValueAccessor, OnInit, OnCh
     this.value = val;
     this.propagateChange(val);
   }
-
-  constructor() { }
 
   ngOnInit(): void {
   }
@@ -69,7 +73,8 @@ export class MediumEditorComponent implements ControlValueAccessor, OnInit, OnCh
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched() {
+  }
 
   validate(c: FormControl) {
     return this.validateFn(c);

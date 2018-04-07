@@ -16,6 +16,7 @@ import { WalkerDto } from '../../../../common/models/walker.model';
 
 export interface IEditPageComponent {
   update(): void;
+
   onDelete(): void;
 }
 
@@ -33,14 +34,6 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   pending$: Observable<boolean>;
   walker$: Observable<WalkerDto>;
   private subscriptions: Subscription[] = [];
-
-  private get formConfig(): FormGroup {
-    return this.fb.group({
-      id: this.walker.id,
-      price: [this.walker.price, Validators.required],
-      description: [this.walker.description, Validators.required],
-    });
-  }
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,
               private dialog: MatDialog,
@@ -63,6 +56,14 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
     });
 
     this.subscriptions.push(...[paramsSubscription, walkerSubscription]);
+  }
+
+  private get formConfig(): FormGroup {
+    return this.fb.group({
+      id: this.walker.id,
+      price: [this.walker.price, Validators.required],
+      description: [this.walker.description, Validators.required],
+    });
   }
 
   ngOnDestroy(): void {

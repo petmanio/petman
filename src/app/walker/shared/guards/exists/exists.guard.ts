@@ -13,7 +13,8 @@ import { WalkerService } from '../../services/walker/walker.service';
 export class ExistsGuard implements CanActivate {
   constructor(private router: Router,
               private store: Store<fromWalker.State>,
-              private walkerService: WalkerService) {}
+              private walkerService: WalkerService) {
+  }
 
   hasData(id: number): Observable<boolean> {
     return this.hasDataInStore(id)

@@ -16,13 +16,16 @@ import {
 
 export interface IOrganizationService {
   getById(id: number): Observable<OrganizationDto>;
+
   list(query: OrganizationListRequestDto): Observable<OrganizationListResponseDto>;
+
   pins(query: OrganizationPinsRequestDto): Observable<OrganizationPinsResponseDto>;
 }
 
 @Injectable()
 export class OrganizationService implements IOrganizationService {
-  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {}
+  constructor(@Inject(PLATFORM_ID) protected platformId: Object, private http: HttpClient) {
+  }
 
   getById(id: number): Observable<OrganizationDto> {
     return this.http

@@ -8,9 +8,9 @@ describe('MuuriComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MuuriComponent ]
+      declarations: [MuuriComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

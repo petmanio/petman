@@ -13,7 +13,8 @@ import { OrganizationService } from '../../services/organization/organization.se
 export class ExistsGuard implements CanActivate {
   constructor(private router: Router,
               private store: Store<fromOrganization.State>,
-              private organizationService: OrganizationService) {}
+              private organizationService: OrganizationService) {
+  }
 
   hasData(id: number): Observable<boolean> {
     return this.hasDataInStore(id)

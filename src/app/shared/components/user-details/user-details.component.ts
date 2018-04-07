@@ -9,7 +9,9 @@ import { UserDto } from '../../../../../common/models/user.model';
 })
 export class UserDetailsComponent implements OnInit {
   @Input() user: UserDto;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

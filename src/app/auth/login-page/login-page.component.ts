@@ -17,7 +17,8 @@ export class LoginPageComponent implements ILoginPageComponent {
   pending$ = this.store.select(fromAuth.getLoginPagePending);
   error$ = this.store.select(fromAuth.getLoginPageError);
 
-  constructor(private store: Store<fromAuth.State>) {}
+  constructor(private store: Store<fromAuth.State>) {
+  }
 
   onSubmit(): void {
     this.store.dispatch(new Auth.FbLogin());

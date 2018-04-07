@@ -22,4 +22,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   ],
 })
-export class NotFoundPageComponent {}
+export class NotFoundPageComponent {
+}

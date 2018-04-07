@@ -15,15 +15,20 @@ import { LocalStorageService } from '../../../../shared/services/local-storage/l
 
 export interface IAuthService {
   getFacebookToken(): Subject<any>;
+
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto>;
+
   user(): Observable<AuthenticationResponseDto>;
+
   changeUser(selectedUserId: number): void;
+
   logOut(): void;
 }
 
 @Injectable()
 export class AuthService implements IAuthService {
-  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {}
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {
+  }
 
   getFacebookToken(): Subject<any> {
     const subject = new Subject();
@@ -52,7 +57,7 @@ export class AuthService implements IAuthService {
   user(): Observable<AuthenticationResponseDto> {
     return this.http
       .get<AuthenticationResponseDto>(`${environment.api}/api/auth/user`, {}).pipe(
-        map(response => plainToClass(AuthenticationResponseDto, response, {enableCircularCheck: false})),
+        map(response => plainToClass(AuthenticationResponseDto, response, { enableCircularCheck: false })),
         map(response => {
           this.localStorageService.setItem('user', response);
           return response;

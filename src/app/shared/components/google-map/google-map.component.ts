@@ -19,11 +19,17 @@ const MAP_DEFAULT_ICON = '/assets/icons/placeholder.png';
 
 export interface IGoogleMapComponent {
   createMap(): void;
+
   initMap(): void;
+
   triggerResize(): void;
+
   panToPin(pin: Pin): void;
+
   panToMarker(marker: google.maps.Marker): void;
+
   setZoom(level): void;
+
   clearMap(): void;
 }
 
@@ -41,7 +47,9 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
   markers: google.maps.Marker[] = [];
   bounds: google.maps.LatLngBounds;
   infoWindow: google.maps.InfoWindow;
-  constructor(private el: ElementRef) { }
+
+  constructor(private el: ElementRef) {
+  }
 
   ngOnInit(): void {
     GoogleMapsLoader.load(g => {
@@ -85,7 +93,7 @@ export class GoogleMapComponent implements OnInit, OnChanges, IGoogleMapComponen
       title: pin.title,
       icon: {
         url: (pin.icon && pin.icon.path) || MAP_DEFAULT_ICON,
-        scaledSize : new google.maps.Size(
+        scaledSize: new google.maps.Size(
           (pin.icon && pin.icon.width) || 32,
           (pin.icon && pin.icon.height) || 32,
         )

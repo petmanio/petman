@@ -34,6 +34,15 @@ export interface IAppComponent {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy, IAppComponent {
+  loggedIn$: Observable<boolean>;
+  user$: Observable<UserDto>;
+  selectedUser$: Observable<UserDto>;
+  showSidenav$: Observable<boolean>;
+  sideNavMode: 'side' | 'push' = 'side';
+  sideNavState: boolean;
+  currentLanguage: string;
+  private subscriptions: Subscription[] = [];
+
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router,
@@ -51,15 +60,6 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
     this.user$ = this.store.select(fromAuth.getUser);
     this.selectedUser$ = this.store.select(fromAuth.getSelectedUser);
   }
-
-  loggedIn$: Observable<boolean>;
-  user$: Observable<UserDto>;
-  selectedUser$: Observable<UserDto>;
-  showSidenav$: Observable<boolean>;
-  sideNavMode: 'side' | 'push' = 'side';
-  sideNavState: boolean;
-  currentLanguage: string;
-  private subscriptions: Subscription[] = [];
 
   ngOnInit(): void {
     this.initLanguage();

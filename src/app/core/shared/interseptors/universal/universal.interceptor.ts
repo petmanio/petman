@@ -4,7 +4,8 @@ import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http'
 @Injectable()
 export class UniversalInterceptor implements HttpInterceptor {
 
-  constructor(@Optional() @Inject('serverUrl') protected serverUrl: string) {}
+  constructor(@Optional() @Inject('serverUrl') protected serverUrl: string) {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 

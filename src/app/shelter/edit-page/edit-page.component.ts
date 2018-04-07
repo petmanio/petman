@@ -17,8 +17,11 @@ import { ShelterDto } from '../../../../common/models/shelter.model';
 
 export interface IEditPageComponent {
   onUploadFinished($event: FileHolder): void;
+
   onImageRemove($event: FileHolder): void;
+
   update(): void;
+
   onDelete(): void;
 }
 
@@ -36,15 +39,6 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
   pending$: Observable<boolean>;
   shelter$: Observable<ShelterDto>;
   private subscriptions: Subscription[] = [];
-
-  private get formConfig(): FormGroup {
-    return this.fb.group({
-      id: this.shelter.id,
-      price: [this.shelter.price, Validators.required],
-      description: [this.shelter.description, Validators.required],
-      images: this.fb.array(this.shelter.images, Validators.compose([Validators.required, Validators.minLength(1)]))
-    });
-  }
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,
               private dialog: MatDialog,
@@ -67,6 +61,15 @@ export class EditPageComponent implements OnDestroy, IEditPageComponent {
     });
 
     this.subscriptions.push(...[paramsSubscription, shelterSubscription]);
+  }
+
+  private get formConfig(): FormGroup {
+    return this.fb.group({
+      id: this.shelter.id,
+      price: [this.shelter.price, Validators.required],
+      description: [this.shelter.description, Validators.required],
+      images: this.fb.array(this.shelter.images, Validators.compose([Validators.required, Validators.minLength(1)]))
+    });
   }
 
   ngOnDestroy(): void {

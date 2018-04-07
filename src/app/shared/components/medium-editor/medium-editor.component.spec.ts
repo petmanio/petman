@@ -8,9 +8,9 @@ describe('MediumEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediumEditorComponent ]
+      declarations: [MediumEditorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

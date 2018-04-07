@@ -55,6 +55,7 @@ export class DetailsPageComponent implements OnDestroy, IDetailsPageComponent {
       width: ModalSize.MEDIUM,
       data: { url }
     });
-    _dialogRef.afterClosed().subscribe(shareOptions => { });
+    _dialogRef.afterClosed().subscribe(shareOptions => {
+    });
   }
 }

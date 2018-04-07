@@ -23,7 +23,7 @@ export class LostFoundEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   createSuccess$ = this.actions$
     .ofType(LostFound.CREATE_SUCCESS)
     .pipe(
@@ -45,7 +45,7 @@ export class LostFoundEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   updateSuccess$ = this.actions$
     .ofType(LostFound.UPDATE_SUCCESS)
     .pipe(
@@ -67,7 +67,7 @@ export class LostFoundEffects {
       })
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   deleteSuccess$ = this.actions$
     .ofType(LostFound.DELETE_SUCCESS)
     .pipe(

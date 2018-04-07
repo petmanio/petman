@@ -21,6 +21,7 @@ export class SidenavComponent implements ISidenavComponent, OnInit {
   @Output() onClose = new EventEmitter();
   @Output() onSelectedUserChange = new EventEmitter<number>();
   isHomeActive;
+
   constructor(private router: Router) {
   }
 
