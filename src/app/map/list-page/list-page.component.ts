@@ -7,24 +7,29 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { find } from 'lodash';
 
-import * as fromAuth from '../../auth/shared/reducers';
-import * as fromOrganization from '../../organization/shared/reducers';
-import * as fromService from '../../shared/reducers';
-import * as fromMap from '../shared/reducers';
-import * as Organization from '../../organization/shared/actions/organization.action';
 import {
   OrganizationDto,
   OrganizationListRequestDto,
   OrganizationPinDto,
   OrganizationPinsRequestDto
-} from '../../../../common/models/organization.model';
-import { BranchDto } from '../../../../common/models/branch.model';
-import { UserDto } from '../../../../common/models/user.model';
-import { Config } from '../../shared/components/card/card.component';
-import { OrganizationPinType } from '../../../../common/enums';
-import { Pin } from '../../../../common/shared';
-import { GoogleMapComponent } from '../../shared/components/google-map/google-map.component';
-import { ServiceDto } from '../../../../common/models/service.model';
+} from '@common/models/organization.model';
+import { BranchDto } from '@common/models/branch.model';
+import { UserDto } from '@common/models/user.model';
+import { OrganizationPinType } from '@common/enums';
+import { Pin } from '@common/shared';
+import { ServiceDto } from '@common/models/service.model';
+
+import * as fromAuth from '@auth/shared/reducers';
+
+import * as fromOrganization from '@organization/shared/reducers';
+import * as Organization from '@organization/shared/actions/organization.action';
+
+import * as fromService from '@shared/reducers';
+import { Config } from '@shared/components/card/card.component';
+import { GoogleMapComponent } from '@shared/components/google-map/google-map.component';
+
+import * as fromMap from '../shared/reducers';
+
 
 export interface IListPageComponent {
   getCardConfig(item: OrganizationDto | BranchDto): Config;

@@ -1,5 +1,9 @@
 @import "../../scss/mixins";
 
+:host {
+  cursor: pointer;
+}
+
 .avatar {
   background-size: cover;
 }
@@ -13,6 +17,6 @@ mat-card-actions, mat-card-content, mat-card-subtitle, mat-card-title {
   margin-bottom: 10px;
 }
 
-mat-chip-list {
-  margin-left: auto;
+/deep/ .pm-card .mat-chip-list-wrapper {
+  margin-bottom: 12px;
 }
