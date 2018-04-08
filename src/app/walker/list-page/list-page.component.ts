@@ -6,12 +6,15 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ModalSize } from '../../../../common/enums';
-import { WalkerDto, WalkerListRequestDto } from '../../../../common/models/walker.model';
-import { UserDto } from '../../../../common/models/user.model';
-import { Config } from '../../shared/components/card/card.component';
-import { ShareDialogComponent } from '../../shared/components/share-dialog/share-dialog.component';
-import * as fromAuth from '../../auth/shared/reducers';
+import { ModalSize } from '@common/enums';
+import { WalkerDto, WalkerListRequestDto } from '@common/models/walker.model';
+import { UserDto } from '@common/models/user.model';
+
+import { Config } from '@shared/components/card/card.component';
+import { ShareDialogComponent } from '@shared/components/share-dialog/share-dialog.component';
+
+import * as fromAuth from '@auth/shared/reducers';
+
 import * as Walker from '../shared/actions/walker.action';
 import * as fromWalker from '../shared/reducers';
 

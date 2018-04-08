@@ -14,10 +14,10 @@
         <app-medium-editor [value]="(adopt$ | async)?.description" readonly="true"></app-medium-editor>
         <div class="field is-grouped">
           <p class="control">
-            <button mat-raised-button (click)="onShare()" i18n>Share</button>
+            <button mat-raised-button (click)="onShare()">{{'SHARE' | translate}}</button>
           </p>
           <p class="control" *ngIf="(adopt$ | async)?.isOwner">
-            <button [routerLink]="['/adoption', adopt.id, 'edit']" mat-raised-button i18n>Edit</button>
+            <button [routerLink]="['/adoption', adopt.id, 'edit']" mat-raised-button>{{'EDIT' | translate}}</button>
           </p>
         </div>
       </div>

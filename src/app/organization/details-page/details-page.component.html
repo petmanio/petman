@@ -11,7 +11,7 @@
         <app-medium-editor [value]="(organization$ | async)?.description" readonly="true"></app-medium-editor>
         <div class="field is-grouped">
           <p class="control">
-            <button mat-raised-button (click)="onShare()" i18n>Share</button>
+            <button mat-raised-button (click)="onShare()">{{ 'SHARE' | translate }}</button>
           </p>
         </div>
       </div>

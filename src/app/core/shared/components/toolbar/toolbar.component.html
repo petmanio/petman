@@ -47,14 +47,11 @@
       <!--</button>-->
       <button mat-menu-item (click)="onLogOut.emit()">
         <mat-icon>exit_to_app</mat-icon>
-        <span i18n>Sign out</span>
+        <span>{{'SIGN_OUT' | translate}}</span>
       </button>
     </mat-menu>
   </ng-container>
   <ng-template #unauthorized>
-    <button mat-raised-button
-            color="accent"
-            routerLink="/auth/login" i18n>Sign up
-    </button>
+    <button mat-raised-button color="accent" routerLink="/auth/login">{{'SIGN_UP' | translate}}</button>
   </ng-template>
 </mat-toolbar>

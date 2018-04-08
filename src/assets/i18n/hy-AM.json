@@ -22,7 +22,8 @@
   "PLEASE_LOGIN_TO_SHARE": "Խնդրում ենք մուտք գործել համակարգ",
   "SHARE_WITH": "Կիսվել",
   "APPLY": "Դիմել",
-  "EDIT": "Թարմացնել",
+  "EDIT": "Խմբագրել",
+  "UPDATE": "Թարմացնել",
   "HISTORY": "Պատմություն",
   "MY_APPLICATIONS": "Դիմումներ",
   "APPLICATION_REQUESTS": "Դիմումներ",
@@ -72,5 +73,6 @@
   "OPEN_CONVERSATION": "Բացել նամակագրությունը",
   "CHAT": "Զրուցել",
   "SEND": "Ուղարկել",
-  "NO_MESSAGES_YET": "Դեռևս հաղորդագրություններ չկան"
+  "NO_MESSAGES_YET": "Դեռևս հաղորդագրություններ չկան",
+  "NEW_TO_PETMAN": ""
 }

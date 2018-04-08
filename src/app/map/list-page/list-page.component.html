@@ -3,7 +3,7 @@
     <div class="column">
       <div class="p-filter">
         <mat-form-field>
-          <mat-select placeholder="Services" i18n-placeholder multiple="true" [(ngModel)]="selectedServices"
+          <mat-select [placeholder]="'SERVICES' | translate" multiple="true" [(ngModel)]="selectedServices"
                       (change)="updateList()">
             <mat-option *ngFor="let service of services$ | async" [value]="service.id">{{service.title}}</mat-option>
           </mat-select>
@@ -30,7 +30,7 @@
         </app-masonry>
         <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
           <div class="column has-text-centered" [hidden]="!canLoadMore">
-            <button mat-raised-button (click)="onLoadMore()" i18n>Load more</button>
+            <button mat-raised-button (click)="onLoadMore()">{{ 'LOAD_MORE' | translate }}</button>
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
       </app-masonry>
       <div class="columns is-marginless" [hidden]="!(list$ | appAsyncDelay | async)?.length">
         <div class="column has-text-centered" [hidden]="!canLoadMore">
-          <button mat-raised-button (click)="onLoadMore()" i18n>Load more</button>
+          <button mat-raised-button (click)="onLoadMore()">{{ 'LOAD_MORE' | translate }}</button>
         </div>
       </div>
     </div>

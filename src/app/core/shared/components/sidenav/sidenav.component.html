@@ -13,19 +13,17 @@
         <mat-divider></mat-divider>
       </ng-container>
       <app-nav-item (activate)="onItemActivate.emit()"
-                    icon="dashboard" routerLink="" [activeClass]="[isHomeActive]" i18n>Main</app-nav-item>
+                    icon="dashboard" routerLink="" [activeClass]="[isHomeActive]">{{'MAIN' | translate}}</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" routerLink="/map" icon="place"
-                    routerLinkActive="pm-is-active" i18n>Map</app-nav-item>
+                    routerLinkActive="pm-is-active">{{'MAP' | translate}}</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" icon="favorite" routerLink="/shelters"
-                    routerLinkActive="pm-is-active" i18n>Shelters</app-nav-item>
+                    routerLinkActive="pm-is-active">{{'SHELTERS' | translate}}</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" icon="child_friendly" routerLink="/walkers"
-                    routerLinkActive="pm-is-active" i18n>Walkers</app-nav-item>
+                    routerLinkActive="pm-is-active">{{'WALKERS' | translate}}</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" icon="pets" routerLink="/adoption"
-                    routerLinkActive="pm-is-active" i18n>Adoption</app-nav-item>
+                    routerLinkActive="pm-is-active">{{'ADOPTION' | translate}}</app-nav-item>
       <app-nav-item (activate)="onItemActivate.emit()" icon="search" routerLink="/lost-found"
-                    routerLinkActive="pm-is-active" i18n>Lost and found</app-nav-item>
-      <!--<app-nav-item (activate)="onItemActivate.emit()" icon="info" routerLink="/about-us"-->
-                    <!--routerLinkActive="pm-is-active" i18n>About us</app-nav-item>-->
+                    routerLinkActive="pm-is-active">{{'LOST_AND_FOUND' | translate}}</app-nav-item>
     </mat-nav-list>
   </mat-sidenav>
   <ng-content></ng-content>

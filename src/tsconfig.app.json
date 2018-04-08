@@ -14,7 +14,8 @@
       "@organization/*": ["./app/organization/*"],
       "@shared/*": ["./app/shared/*"],
       "@shelter/*": ["./app/shelter/*"],
-      "@walker/*": ["./app/walker/*"]
+      "@walker/*": ["./app/walker/*"],
+      "@common/*": ["../common/*"]
 
     }
   },

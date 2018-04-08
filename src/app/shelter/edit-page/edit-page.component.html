@@ -7,7 +7,7 @@
       <div class="columns is-vcentered">
         <div class="column is-4">
           <mat-form-field>
-            <input formControlName='price' matInput i18n-placeholder type="number" placeholder="Daily price" min="0"/>
+            <input formControlName='price' matInput type="number" [placeholder]="'DAILY_PRICE' | translate" min="0"/>
           </mat-form-field>
         </div>
       </div>
@@ -16,8 +16,7 @@
         <div class="column">
           <image-upload
             #imageUpload
-            buttonCaption="Select images"
-            i18n-buttonCaption="Select images"
+            [buttonCaption]="'SELECT_IMAGES' | translate"
             dropBoxMessage=""
             preview="true"
             max="4"
@@ -29,8 +28,8 @@
       </div>
       <div class="columns">
         <div class="column has-text-right">
-          <button mat-raised-button type="button" color="warn" i18n (click)="onDelete()">Delete</button>
-          <button mat-raised-button type="submit" color="accent" [disabled]="!form.valid" i18n (click)="update()">Update</button>
+          <button mat-raised-button type="button" color="warn" (click)="onDelete()">{{ 'DELETE' | translate }}</button>
+          <button mat-raised-button type="submit" color="accent" [disabled]="!form.valid" (click)="update()">{{ 'UPDATE' | translate }}</button>
         </div>
       </div>
     </form>

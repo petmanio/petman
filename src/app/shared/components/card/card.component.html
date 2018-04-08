@@ -10,12 +10,11 @@
   </mat-card-header>
   <img mat-card-image *ngIf="config.image" [src]="config.image">
   <mat-card-content *ngIf="config.contentHTML || config.content || config.price">
-    <p *ngIf="config.price"><i class="mdi mdi-cash"></i> {{config.price | number}} <span i18n>amd</span></p>
+    <p *ngIf="config.price"><i class="mdi mdi-cash"></i> {{config.price | number}} {{'AMD' | translate }}</p>
     <p *ngIf="config.content">{{config.content}}</p>
-    <app-medium-editor *ngIf="config.contentHTML"
-                       [value]="config.contentHTML" readonly="true"></app-medium-editor>
+    <app-medium-editor *ngIf="config.contentHTML" [value]="config.contentHTML" readonly="true"></app-medium-editor>
   </mat-card-content>
   <mat-card-actions class="has-text-right" *ngIf="config.actions">
-    <button mat-raised-button (click)="onShareLocal($event)" i18n>SHARE</button>
+    <button mat-raised-button (click)="onShareLocal($event)">{{ 'SHARE' | translate }}</button>
   </mat-card-actions>
 </mat-card>
