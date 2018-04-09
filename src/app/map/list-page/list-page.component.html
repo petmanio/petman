@@ -49,13 +49,13 @@
                    [options]="{ transitionDuration: '0.5s', percentPosition: true, resize: true }">
         <ng-container *ngFor="let item of list$ | async">
           <ng-container *ngIf="item.branches && item.branches.length; else wihtoutBranch">
-            <app-masonry-item class="column is-6-desktop" *ngFor="let branch of item.branches">
+            <app-masonry-item class="column" *ngFor="let branch of item.branches">
               <app-card [config]="getCardConfig(branch)"></app-card>
               <app-google-map class="p-full-height" [pins]="[getPinData(branch)]"></app-google-map>
             </app-masonry-item>
           </ng-container>
           <ng-template #wihtoutBranch>
-            <app-masonry-item class="column is-6-desktop">
+            <app-masonry-item class="column">
               <app-card [config]="getCardConfig(item)"></app-card>
               <app-google-map class="p-full-height" [pins]="[getPinData(item)]"></app-google-map>
             </app-masonry-item>

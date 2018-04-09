@@ -7,7 +7,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { NavItemComponent } from './shared/components/nav-item/nav-item.component';
-import { FooterComponent } from './shared/components/footer/footer/footer.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   imports: [

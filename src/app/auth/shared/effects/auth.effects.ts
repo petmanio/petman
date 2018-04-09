@@ -43,7 +43,7 @@ export class AuthEffects {
     map((action: Auth.ChangeUser) => action.payload),
     tap((selectedUserId) => {
       this.authService.changeUser(selectedUserId);
-      this.router.navigate(['/']);
+      // this.router.navigate(['/']);
     })
   );
 
