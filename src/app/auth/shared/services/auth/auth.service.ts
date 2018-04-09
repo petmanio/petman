@@ -1,20 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import { map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 
-import { environment } from '../../../../../environments/environment';
+import { environment } from '@environments/environment';
+
 import {
   AuthenticationResponseDto,
   FbAuthenticationRequestDto,
   FbAuthenticationResponseDto,
-} from '../../../../../../common/models/auth.model';
-import { LocalStorageService } from '../../../../shared/services/local-storage/local-storage.service';
+} from '@common/models/auth.model';
+
+import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
 export interface IAuthService {
-  getFacebookToken(): Subject<any>;
+  getFacebookToken(): Observable<string>;
 
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto>;
 
@@ -27,20 +28,22 @@ export interface IAuthService {
 
 @Injectable()
 export class AuthService implements IAuthService {
-  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService, private ngZone: NgZone) {
   }
 
-  getFacebookToken(): Subject<any> {
-    const subject = new Subject();
-    FB.login((response) => {
-      if (response.authResponse) {
-        subject.next(response.authResponse);
-      } else {
-        subject.error(new Error());
-      }
-    }, { scope: environment.fb.scope });
-
-    return subject;
+  getFacebookToken(): Observable<string> {
+    return new Observable(observer => {
+      FB.login((response) => {
+        this.ngZone.run(() => {
+          if (response.authResponse) {
+            observer.next(response.authResponse.accessToken);
+          } else {
+            // TODO: handle error
+            observer.error(new Error());
+          }
+        });
+      }, { scope: environment.fb.scope });
+    });
   }
 
   fbLogin(options: FbAuthenticationRequestDto): Observable<FbAuthenticationResponseDto> {

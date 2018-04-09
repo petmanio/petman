@@ -6,6 +6,8 @@ import { of } from 'rxjs/observable/of';
 
 import { AuthService } from '../services/auth/auth.service';
 import * as Auth from '../actions/auth.action';
+import { Observable } from 'rxjs/Observable';
+import { defer } from 'rxjs/observable/defer';
 
 @Injectable()
 export class AuthEffects {
@@ -14,19 +16,25 @@ export class AuthEffects {
     ofType(Auth.FB_LOGIN),
     map((action: Auth.FbLogin) => action.payload),
     switchMap(auth => this.authService.getFacebookToken()),
-    map(fbData => fbData.accessToken),
-    switchMap(accessToken => this.authService.fbLogin({ accessToken })),
-    map(response => new Auth.FbLoginSuccess(response)),
-    catchError(error => of(new Auth.FbLoginFailure(error)))
+    switchMap(accessToken => {
+      console.log(accessToken);
+      return this.authService.fbLogin({ accessToken }).pipe(
+        map(response => new Auth.FbLoginSuccess(response)),
+        catchError(error => of(new Auth.FbLoginFailure(error)))
+      );
+    })
   );
 
   @Effect()
   user$ = this.actions$.pipe(
     ofType(Auth.USER),
     map((action: Auth.User) => action.payload),
-    switchMap(auth => this.authService.user()),
-    map(response => new Auth.UserSuccess(response)),
-    catchError(error => of(new Auth.UserFailure(error)))
+    switchMap(() => {
+      return this.authService.user().pipe(
+        map(response => new Auth.UserSuccess(response)),
+        catchError(error => of(new Auth.UserFailure(error)))
+      );
+    })
   );
 
   @Effect({ dispatch: false })
@@ -36,9 +44,10 @@ export class AuthEffects {
     tap((selectedUserId) => this.authService.changeUser(selectedUserId))
   );
 
-  @Effect({ dispatch: false })
+  @Effect()
   loginSuccess$ = this.actions$.pipe(
     ofType(Auth.FB_LOGIN_SUCCESS),
+    map(() => new Auth.User()),
     tap(() => this.router.navigate(['/']))
   );
 
@@ -47,6 +56,11 @@ export class AuthEffects {
     ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT),
     tap(() => this.authService.logOut())
   );
+
+  @Effect()
+  init$: Observable<Auth.User> = defer(() => {
+    return of(new Auth.User());
+  });
 
   constructor(private actions$: Actions,
               private authService: AuthService,

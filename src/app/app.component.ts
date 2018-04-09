@@ -1,5 +1,13 @@
 import 'rxjs/add/observable/combineLatest';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -8,15 +16,17 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 
+import { UserDto } from '@common/models/user.model';
+import { Language } from '@common/enums';
+
+import { UtilService } from '@shared/services/util/util.service';
+import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
+
 import * as fromRoot from './core/shared/reducers/index';
 import * as fromAuth from './auth/shared/reducers/index';
 import * as Auth from './auth/shared/actions/auth.action';
 import * as Layout from './core/shared/actions/layout';
 import * as Shared from './shared/actions/shared.action';
-import { UtilService } from './shared/services/util/util.service';
-import { LocalStorageService } from './shared/services/local-storage/local-storage.service';
-import { UserDto } from '../../common/models/user.model';
-import { Language } from '../../common/enums';
 
 export interface IAppComponent {
   onSelectedUserChange($event): void;
@@ -31,7 +41,8 @@ export interface IAppComponent {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, OnDestroy, IAppComponent {
   loggedIn$: Observable<boolean>;
@@ -44,12 +55,13 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private localStorageService: LocalStorageService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef,
     private breakpointObserver: BreakpointObserver,
     private translate: TranslateService,
     private store: Store<fromRoot.State>,
+    private localStorageService: LocalStorageService,
     private utilService: UtilService,
     @Inject(PLATFORM_ID) protected platformId: Object
   ) {
@@ -64,7 +76,7 @@ export class AppComponent implements OnInit, OnDestroy, IAppComponent {
   ngOnInit(): void {
     this.initLanguage();
 
-    this.store.dispatch(new Auth.User());
+    // TODO: use effects init
     this.store.dispatch(new Auth.ChangeUser(+this.localStorageService.getItem('selectedUserId')));
     this.store.dispatch(new Layout.CloseSidenav());
     this.store.dispatch(new Shared.ServiceList());

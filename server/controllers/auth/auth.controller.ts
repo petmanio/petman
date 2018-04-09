@@ -12,7 +12,7 @@ const loginFbHandler = async (req: Request, res: Response, next: NextFunction) =
     const user = await findOrCreateFbUserService(fbUser, req.body.accessToken);
     const token = jwtSign({id: user.id});
     // TODO: save token into db;
-    res.status(200).json({token, user});
+    res.status(200).json({token});
   } catch (err) {
     next(err);
   }

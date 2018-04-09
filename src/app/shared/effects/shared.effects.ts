@@ -23,8 +23,10 @@ export class SharedEffects {
       })
     );
 
-  constructor(private actions$: Actions,
-              private router: Router,
-              private sharedService: SharedService) {
+  constructor(
+    private actions$: Actions,
+    private router: Router,
+    private sharedService: SharedService
+  ) {
   }
 }

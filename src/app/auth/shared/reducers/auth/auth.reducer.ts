@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 import { assign, find } from 'lodash';
 
+import { UserDto } from '@common/models/user.model';
+
 import * as auth from '../../actions/auth.action';
-import { UserDto } from '../../../../../../common/models/user.model';
 
 export interface State {
   loggedIn: boolean;
@@ -18,13 +19,6 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: auth.Actions): State {
   switch (action.type) {
-    case auth.FB_LOGIN_SUCCESS: {
-      return assign({}, state, {
-        loggedIn: true,
-        user: action.payload.user,
-      });
-    }
-
     case auth.USER_SUCCESS: {
       return assign({}, state, {
         loggedIn: true,

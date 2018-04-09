@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { UserDto } from '../../../../../../common/models/user.model';
-import { Language } from '../../../../../../common/enums';
+import { Language } from '@common/enums';
+import { UserDto } from '@common/models/user.model';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent {
   @Input() loggedIn: boolean;

@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ServiceListRequestDto, ServiceListResponseDto } from '../../../../common/models/service.model';
-
+import { ServiceListRequestDto, ServiceListResponseDto } from '@common/models/service.model';
 
 export const SERVICE_LIST = '[Service] List';
 export const SERVICE_LIST_SUCCESS = '[Service] List Success';
