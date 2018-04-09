@@ -17,7 +17,6 @@ export class AuthEffects {
     map((action: Auth.FbLogin) => action.payload),
     switchMap(auth => this.authService.getFacebookToken()),
     switchMap(accessToken => {
-      console.log(accessToken);
       return this.authService.fbLogin({ accessToken }).pipe(
         map(response => new Auth.FbLoginSuccess(response)),
         catchError(error => of(new Auth.FbLoginFailure(error)))
