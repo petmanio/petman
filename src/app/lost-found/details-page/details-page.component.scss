@@ -1,5 +1,7 @@
-@import '../../shared/scss/mixins';
-@import '../../shared/scss/variables';
+:host {
+  min-height: 100%;
+  display: block;
+}
 
 .pm-card-avatar {
   display: inline-block;

@@ -6,11 +6,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <mat-card>
       <mat-card-title>404: Not Found</mat-card-title>
-      <mat-card-content>
+      <mat-card-content i18n>
         <p>Hey! It looks like this page doesn't exist yet.</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" routerLink="/">Take Me Home</button>
+        <button mat-raised-button color="primary" routerLink="/" i18n>Take Me Home</button>
       </mat-card-actions>
     </mat-card>
   `,
@@ -18,6 +18,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     `
     :host {
       text-align: center;
+      min-height: 100%;
+      display: block;
+      background: #fff;
+    }
+
+    mat-card {
+      box-shadow: none !important;
     }
   `,
   ],

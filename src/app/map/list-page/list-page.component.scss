@@ -1,5 +1,10 @@
 @import '../../shared/scss/mixins';
 
+:host {
+  min-height: 100%;
+  display: block;
+}
+
 .p-list-mobile {
   app-google-map {
     height: 150px !important;
