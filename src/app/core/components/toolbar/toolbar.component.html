@@ -33,6 +33,7 @@
         <!--</button>-->
       <!--</td-menu>-->
     <!--</mat-menu>-->
+    <span class="is-hidden-mobile cp" [matMenuTriggerFor]="menu">{{selectedUser?.userData.firstName}}&nbsp;</span>
     <div class="pm-card-avatar pm-cursor-pointer" [matMenuTriggerFor]="menu"
          [ngStyle]="{'background-image': 'url(' + selectedUser?.userData.avatar + ')'}"></div>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
