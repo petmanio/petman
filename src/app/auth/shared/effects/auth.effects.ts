@@ -41,7 +41,10 @@ export class AuthEffects {
   userChange$ = this.actions$.pipe(
     ofType(Auth.CHANGE_USER),
     map((action: Auth.ChangeUser) => action.payload),
-    tap((selectedUserId) => this.authService.changeUser(selectedUserId))
+    tap((selectedUserId) => {
+      this.authService.changeUser(selectedUserId);
+      this.router.navigate(['/']);
+    })
   );
 
   @Effect()
@@ -51,10 +54,19 @@ export class AuthEffects {
     tap(() => this.router.navigate(['/']))
   );
 
+  // @Effect({ dispatch: false })
+  // loginRedirect$ = this.actions$.pipe(
+  //   ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT),
+  //   tap(() => this.authService.logOut())
+  // );
+
   @Effect({ dispatch: false })
-  loginRedirect$ = this.actions$.pipe(
-    ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT),
-    tap(() => this.authService.logOut())
+  logout$ = this.actions$.pipe(
+    ofType(Auth.LOGOUT),
+    tap(() => {
+      this.authService.logOut();
+      this.router.navigate(['/']);
+    })
   );
 
   @Effect()

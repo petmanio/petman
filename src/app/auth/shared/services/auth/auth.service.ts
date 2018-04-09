@@ -78,7 +78,7 @@ export class AuthService implements IAuthService {
     const storedSelectedId = this.localStorageService.getItem('selectedUserId');
     if (selectedUserId.toString() !== storedSelectedId) {
       this.localStorageService.setItem('selectedUserId', selectedUserId.toString());
-      location.reload();
+      // location.reload();
     }
   }
 }
