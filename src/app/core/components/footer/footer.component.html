@@ -30,7 +30,7 @@
           <a class="button is-white"
              *ngFor="let language of Language | appKeys"
              [class.is-active]="currentLanguage === language.key"
-             (click)="onLanguageChange.emit(language.key)">{{language.value}}</a>
+             (click)="onLanguageChange.emit(language.key)">{{language.key | translate}}</a>
         </div>
       </div>
     </mat-card-content>
