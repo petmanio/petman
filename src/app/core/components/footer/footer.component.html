@@ -20,8 +20,18 @@
           </div>
         </div>
       </div>
-      <div>
-        © 2017 Copyright: <a href="https://petman.io"> Petman.io </a>
+      <div class="columns">
+        <div class="column">
+          <p>
+            © 2017 Copyright: <a href="https://petman.io"> Petman.io </a>
+          </p>
+        </div>
+        <div class="column is-4 has-text-right">
+          <a class="button is-white"
+             *ngFor="let language of Language | appKeys"
+             [class.is-active]="currentLanguage === language.key"
+             (click)="onLanguageChange.emit(language.key)">{{language.value}}</a>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>

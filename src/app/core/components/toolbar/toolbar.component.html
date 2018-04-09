@@ -6,11 +6,6 @@
   <div flex></div>
   <!--<td-search-box placeholder="Search" [alwaysVisible]="false" flex></td-search-box>-->
   <span class="pm-spacer" flex></span>
-  <div class="pm-language">
-    <mat-select [ngModel]="currentLanguage" (change)="onLanguageChange.emit($event.value)">
-      <mat-option *ngFor="let language of Language | appKeys" [value]="language.key">{{language.value}}</mat-option>
-    </mat-select>
-  </div>
   <ng-container *ngIf="loggedIn; else unauthorized">
     <!--<td-notification-count color="warn">-->
       <!--<mat-icon>messages</mat-icon>-->
