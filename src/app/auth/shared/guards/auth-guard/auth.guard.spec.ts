@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { combineReducers, Store, StoreModule } from '@ngrx/store';
 // import { cold } from 'jasmine-marbles';
 import { AuthGuard } from './auth.guard';
-import * as fromRoot from '../../../../core/shared/reducers';
+import * as fromRoot from '../../../../core/reducers';
 import * as fromAuth from '../../reducers';
 
 describe('Auth Guard', () => {

@@ -22,10 +22,10 @@ import { Language } from '@common/enums';
 import { UtilService } from '@shared/services/util/util.service';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
-import * as fromRoot from './core/shared/reducers/index';
+import * as fromRoot from './core/reducers/index';
 import * as fromAuth from './auth/shared/reducers/index';
 import * as Auth from './auth/shared/actions/auth.action';
-import * as Layout from './core/shared/actions/layout';
+import * as Layout from './core/actions/layout';
 import * as Shared from './shared/actions/shared.action';
 
 export interface IAppComponent {

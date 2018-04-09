@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromRoot from '../../../core/shared/reducers';
+import * as fromRoot from '../../../core/reducers';
 import * as fromWalker from './walker/walker.reducer';
 import * as fromAddPage from './add-page/add-page.reducer';
 import * as fromEditPage from './edit-page/edit-page.reducer';

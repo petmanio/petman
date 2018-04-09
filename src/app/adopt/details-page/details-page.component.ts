@@ -7,9 +7,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from '../../core/shared/reducers';
+import * as fromRoot from '../../core/reducers';
 import * as fromAdopt from '../shared/reducers';
-import * as Layout from '../../core/shared/actions/layout';
+import * as Layout from '../../core/actions/layout';
 import * as Adopt from '../shared/actions/adopt.action';
 import { ModalSize } from '../../../../common/enums';
 import { AdoptDto } from '../../../../common/models/adopt.model';

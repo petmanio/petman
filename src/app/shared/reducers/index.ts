@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromRoot from '../../core/shared/reducers';
+import * as fromRoot from '../../core/reducers';
 import * as fromShared from './shared/shared.reducer';
 
 export interface SharedState {

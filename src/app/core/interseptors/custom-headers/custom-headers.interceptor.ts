@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 
-import { LocalStorageService } from '../../../../shared/services/local-storage/local-storage.service';
+import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
 @Injectable()
 export class CustomHeadersInterceptor implements HttpInterceptor {

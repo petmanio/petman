@@ -7,9 +7,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from '../../core/shared/reducers';
+import * as fromRoot from '../../core/reducers';
 import * as fromLostFound from '../shared/reducers';
-import * as Layout from '../../core/shared/actions/layout';
+import * as Layout from '../../core/actions/layout';
 import * as LostFound from '../shared/actions/lost-found.action';
 import { LostFoundType, ModalSize } from '../../../../common/enums';
 import { LostFoundDto } from '../../../../common/models/lost-found.model';

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
-import { UserDto } from '../../../../../../common/models/user.model';
+import { UserDto } from '@common/models/user.model';
 
 interface ISidenavComponent {
   onClick($event: Event): void;

@@ -20,9 +20,9 @@ import { OrganizationModule } from './organization/organization.module';
 import { MapModule } from './map/map.module';
 
 import { environment } from '../environments/environment';
-import { metaReducers, reducers } from './core/shared/reducers';
+import { metaReducers, reducers } from './core/reducers';
 import { CustomRouterStateSerializer } from './shared/lib/util';
-import { CustomHeadersInterceptor } from './core/shared/interseptors/custom-headers/custom-headers.interceptor';
+import { CustomHeadersInterceptor } from './core/interseptors/custom-headers/custom-headers.interceptor';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';

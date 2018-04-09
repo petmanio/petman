@@ -4,10 +4,10 @@ import { MaterialModule } from '@material/material.module';
 import { SharedModule } from '@shared/shared.module';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
-import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
-import { NavItemComponent } from './shared/components/nav-item/nav-item.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { NavItemComponent } from './components/nav-item/nav-item.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [

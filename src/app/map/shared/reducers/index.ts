@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromRoot from '../../../core/shared/reducers';
+import * as fromRoot from '../../../core/reducers';
 import * as fromListPage from './list-page/list-page.reducer';
 
 export interface MapState {
