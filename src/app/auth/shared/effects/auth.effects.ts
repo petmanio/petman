@@ -2,12 +2,12 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs/observable/of';
-
-import { AuthService } from '../services/auth/auth.service';
-import * as Auth from '../actions/auth.action';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import { defer } from 'rxjs/observable/defer';
+
+import * as Auth from '../actions/auth.action';
+import { AuthService } from '../services/auth/auth.service';
 
 @Injectable()
 export class AuthEffects {
