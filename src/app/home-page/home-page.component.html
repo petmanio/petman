@@ -1,40 +1,107 @@
-<div class="columns is-marginless">
-  <div class="column home-card home-card-adopt" routerLink="/adoption">
-    <div class="home-card-overlay"></div>
-    <div class="text">
-      <span class="font-bold font-20 font-uppercase" i18n>Adopt</span><br><br>
-      <span class="font-16"
-            i18n>Hey! It's love from the first sight! I want to make some trouble at your apartment ;)</span>
+<div class="android-content mdl-layout__content">
+  <a name="top"></a>
+  <div class="android-be-together-section has-text-centered">
+    <div class="logo-font android-slogan">be together. not the same.</div>
+    <div class="logo-font android-sub-slogan">welcome to android... be yourself. do your thing. see what's going on.
+    </div>
+    <div class="logo-font android-create-character">
+      <a href=""><img src="https://getmdl.io/templates/android-dot-com/images/andy.png"> create your android character</a>
+    </div>
+
+    <a href="#screens">
+      <button mat-fab class="android-fab">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </a>
+  </div>
+  <div class="android-screen-section has-text-centered">
+    <a name="screens"></a>
+    <div class="mat-display-1">Powering screens of all sizes</div>
+    <div class="android-screens">
+      <div class="android-wear android-screen">
+        <a class="android-image-link" href="">
+          <img class="android-screen-image" src="https://getmdl.io/templates/android-dot-com/images/wear-silver-on.png">
+          <img class="android-screen-image" src="https://getmdl.io/templates/android-dot-com/images/wear-black-on.png">
+        </a>
+        <a class="android-link has-text-weight-normal is-uppercase" href="">Android Wear</a>
+      </div>
+      <div class="android-phone android-screen">
+        <a class="android-image-link" href="">
+          <img class="android-screen-image" src="https://getmdl.io/templates/android-dot-com/images/nexus6-on.jpg">
+        </a>
+        <a class="android-link has-text-weight-normal is-uppercase" href="">Phones</a>
+      </div>
+      <div class="android-tablet android-screen">
+        <a class="android-image-link" href="">
+          <img class="android-screen-image" src="https://getmdl.io/templates/android-dot-com/images/nexus9-on.jpg">
+        </a>
+        <a class="android-link has-text-weight-normal is-uppercase" href="">Tablets</a>
+      </div>
+      <div class="android-tv android-screen">
+        <a class="android-image-link" href="">
+          <img class="android-screen-image" src="https://getmdl.io/templates/android-dot-com/images/tv-on.jpg">
+        </a>
+        <a class="android-link has-text-weight-normal is-uppercase" href="">Android TV</a>
+      </div>
+      <div class="android-auto android-screen">
+        <a class="android-image-link" href="">
+          <img class="android-screen-image" src="https://getmdl.io/templates/android-dot-com/images/auto-on.jpg">
+        </a>
+        <a class="android-link has-text-weight-normal is-uppercase mdl-typography--text-left"
+           href="">Coming Soon: Android Auto</a>
+      </div>
     </div>
   </div>
-  <div class="column home-card home-card-walkers" routerLink="/walkers">
-    <div class="home-card-overlay"></div>
-    <div class="text">
-      <span class="font-bold font-20 font-uppercase" i18n>Walkers</span><br><br>
-      <span class="font-16" i18n>Let's walk together! We'll be happy to introduce your pet with all the secret petty places of our city</span>
+  <div class="android-wear-section">
+    <div class="android-wear-band">
+      <div class="android-wear-band-text">
+        <div class="mat-display-2 has-text-weight-light">The best of Google built in</div>
+        <p class="mat-headline has-text-weight-light">
+          Android works perfectly with your favourite apps like Google Maps,
+          Calendar and YouTube.
+        </p>
+        <p>
+          <a class="has-text-weight-normal is-uppercase android-alt-link" href="">
+            See what's new in the Play Store&nbsp;<i class="material-icons">chevron_right</i>
+          </a>
+        </p>
+      </div>
     </div>
   </div>
-  <div class="column home-card home-card-locations" routerLink="/map">
-    <div class="home-card-overlay"></div>
-    <div class="text">
-      <span class="font-bold font-20 font-uppercase" i18n>Places</span><br><br>
-      <span class="font-16" i18n>Find the pettiest places of our city. Pet shops, parks, clinics and much more</span>
+  <div class="android-customized-section">
+    <div class="android-customized-section-text">
+      <div class="has-text-weight-light mat-display-1">Customised by you, for you</div>
+      <p class="has-text-weight-light">
+        Put the stuff that you care about right on your home screen: the latest news, the weather or a stream of your
+        recent photos.
+        <br>
+        <a href="" class="android-link has-text-weight-light">Customise your phone</a>
+      </p>
     </div>
+    <div class="android-customized-section-image"></div>
   </div>
-</div>
-<div class="columns is-marginless">
-  <div class="column home-card home-card-lost-found" routerLink="/lost-found">
-    <div class="home-card-overlay"></div>
-    <div class="text">
-      <span class="font-bold font-20 font-uppercase" i18n>Lost or found</span><br><br>
-      <span class="font-16" i18n>If your pet is missing, or if you have found an animal, report it to us and we will do our best to ensure a happy reunion.</span>
-    </div>
-  </div>
-  <div class="column home-card home-card-sitters" routerLink="/shelters">
-    <div class="home-card-overlay"></div>
-    <div class="text">
-      <span class="font-bold font-20 font-uppercase" i18n>Sitters</span><br><br>
-      <span class="font-16" i18n>Leaving for a vacation? Give your pet into trusted hands. Pet-lovers will honestly take care of them!</span>
+  <div class="android-more-section">
+    <div class="android-section-title mat-display-1">More from Android</div>
+    <div class="columns android-card-container">
+      <div class="column is-3 is-4-tablet">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              Get going on Android
+            </mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="https://getmdl.io/templates/android-dot-com/images/more-from-1.png">
+          <mat-card-content>
+            <span class="has-text-weight-light mdl-typography--subhead">Four tips to make your switch to Android quick and easy</span>
+          </mat-card-content>
+          <mat-card-actions>
+            <a mat-button class="android-link is-uppercase" href="">
+              Make the switch
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>

@@ -9,7 +9,7 @@ export const routes: Routes = [
     path: '',
     component: HomePageComponent,
     pathMatch: 'full',
-    data: { showSidenav: true }
+    data: { showSidenav: false }
   },
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
   {
