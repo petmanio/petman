@@ -39,8 +39,8 @@
       <app-google-map class="p-full-height" [pins]="pins"></app-google-map>
     </div>
   </div>
-  <div class="columns is-marginless is-paddingless is-hidden-desktop is-hidden-tablet p-list-mobile"
-       class="p-list" infinite-scroll infiniteScrollContainer="mat-sidenav-content" infiniteScrollDistance="2"
+  <div class="columns is-marginless is-paddingless is-hidden-desktop is-hidden-tablet p-list-mobile p-list"
+       infinite-scroll infiniteScrollContainer="mat-sidenav-content" infiniteScrollDistance="2"
        infiniteScrollThrottle="300"
        fromRoot="true"
        (scrolled)="onLoadMore()">
