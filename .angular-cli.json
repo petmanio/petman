@@ -27,7 +27,6 @@
         "../node_modules/ngx-sharebuttons/styles/themes/material/material-dark-theme.css",
         "../node_modules/medium-editor/dist/css/medium-editor.css",
         "../node_modules/medium-editor/dist/css/themes/default.css",
-        "../node_modules/@covalent/core/common/platform.css",
         "styles.scss"
       ],
       "scripts": [

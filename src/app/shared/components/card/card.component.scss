@@ -12,11 +12,6 @@ p {
   @include word-wrap;
 }
 
-mat-card-actions, mat-card-content, mat-card-subtitle, mat-card-title {
-  padding: initial !important;
-  margin-bottom: 10px;
-}
-
 /deep/ .pm-card .mat-chip-list-wrapper {
   margin-bottom: 12px;
 }
