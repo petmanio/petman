@@ -59,3 +59,9 @@ $theme: mat-light-theme($primary, $accent, $warn);
 // .mat-sidenav {
 //   transform: none !important;
 // }
+
+// override global image with/height styles from bulma
+.mat-card-image {
+  max-width: inherit;
+  height: inherit;
+}
