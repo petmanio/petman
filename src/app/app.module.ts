@@ -9,26 +9,26 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { NgProgressInterceptor, NgProgressModule } from 'ngx-progressbar';
 
-import { CoreModule } from './core/core.module';
-import { MaterialModule } from './material/material.module';
-import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
-import { ShelterModule } from './shelter/shelter.module';
-import { AdoptModule } from './adopt/adopt.module';
+import { CoreModule } from '@core/core.module';
+import { MaterialModule } from '@material/material.module';
+import { SharedModule } from '@shared/shared.module';
+import { AuthModule } from '@auth/auth.module';
+import { ShelterModule } from '@shelter/shelter.module';
+import { AdoptModule } from '@adopt/adopt.module';
 import { LostFoundModule } from './lost-found/lost-found.module';
-import { OrganizationModule } from './organization/organization.module';
-import { MapModule } from './map/map.module';
+import { OrganizationModule } from '@organization/organization.module';
+import { MapModule } from '@map/map.module';
 
-import { environment } from '../environments/environment';
+import { environment } from '@environments/environment';
 import { metaReducers, reducers } from './core/reducers';
-import { CustomRouterStateSerializer } from './shared/lib/util';
-import { CustomHeadersInterceptor } from './core/interseptors/custom-headers/custom-headers.interceptor';
+import { CustomRouterStateSerializer } from '@shared/lib/util';
+import { CustomHeadersInterceptor } from '@core/interseptors/custom-headers/custom-headers.interceptor';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundPageComponent } from './not-found-page/not-found-page';
 import { HomePageComponent } from './home-page/home-page.component';
-import { UtilService } from './shared/services/util/util.service';
+import { UtilService } from '@shared/services/util/util.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
