@@ -6,7 +6,7 @@
     "ng": "ng",
     "dev": "concurrently --kill-others \"npm run server:run\" \"ng serve --progress=false --proxy-config proxy.conf.json\"",
     "start": "DEBUG=petman node dist/server/bin/www.js",
-    "start:universal": "DEBUG=petman UNIVERSAL_APP=true node dist/server/bin/www.js",
+    "start:universal": "NODE_ENV=production DEBUG=petman UNIVERSAL_APP=true node dist/server/bin/www.js",
     "build": "npm run client:build && npm run server:build",
     "build:universal": "npm run client:build:universal && npm run server:build",
     "test:client": "ng test",

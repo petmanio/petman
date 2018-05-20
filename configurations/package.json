@@ -1,0 +1,64 @@
+{
+  "name": "petman",
+  "version": "1.5.1",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=production DEBUG=petman UNIVERSAL_APP=true node server/bin/www.js"
+  },
+  "repository": {
+    "url": "https://bitbucket.org/petmanio/petman"
+  },
+  "private": true,
+  "dependencies": {
+    "@nguniversal/express-engine": "^5.0.0",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0",
+    "accept-language": "^3.0.18",
+    "body-parser": "^1.17.2",
+    "class-transformer": "^0.1.9",
+    "compression": "^1.7.2",
+    "cookie-parser": "^1.3.5",
+    "core-js": "^2.5.6",
+    "domino": "^2.0.2",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "express-session": "^1.15.6",
+    "fb": "^2.0.0",
+    "hammerjs": "^2.0.8",
+    "headroom.js": "^0.9.4",
+    "intl": "^1.2.5",
+    "jsonwebtoken": "^7.4.3",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.1",
+    "multer": "^1.3.0",
+    "muuri": "^0.5.4",
+    "pg": "^6.4.2",
+    "request-promise": "^4.2.2",
+    "reselect": "^2.5.4",
+    "rxjs": "^5.5.10",
+    "sequelize": "^4.37.7",
+    "sequelize-typescript": "^0.5.0",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "debug": "^3.1.0",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.4",
+    "winston": "^2.4.2"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "verbose": true,
+    "events": {
+      "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+    },
+    "watch": [
+      "server/"
+    ],
+    "env": {},
+    "ext": "ts,json"
+  }
+}
