@@ -11,6 +11,7 @@ export class CustomHeadersInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     req = req.clone({
       headers: req.headers
+        .set('accept-language', this.localStorageService.getItem('language') || '')
         .set('x-auth-token', this.localStorageService.getItem('token') || '')
         .set('x-selected-user', this.localStorageService.getItem('selectedUserId') || '')
     });

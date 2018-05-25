@@ -230,3 +230,9 @@ mat-icon {
     clear: both;
   }
 }
+
+.pm-vertical-align {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
